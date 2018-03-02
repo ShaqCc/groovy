@@ -6,7 +6,7 @@ android {
             keyAlias 'groovy'
             keyPassword 'groovy'
             storePassword 'groovy'
-            storeFile file('D:/AndroidStudioProjects/pppppptj/groovy/groovy.jks')
+            storeFile file('../groovy.jks')
         }
     }
 
