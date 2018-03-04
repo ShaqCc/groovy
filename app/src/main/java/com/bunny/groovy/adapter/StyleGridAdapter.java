@@ -30,7 +30,8 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
     private Context mContext;
     private String selectedStyle;
     private final RelativeLayout.LayoutParams params;
-    private int count = 0;
+    private int mCount = 0;
+    private int mMaxNum = 2;
 
     public StyleGridAdapter(List<StyleModel> dataList, String selected) {
         this.dataList = dataList;
@@ -46,6 +47,10 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
         return new StyleHolder(inflate);
     }
 
+    public void setSelectNum(int num) {
+        this.mMaxNum = num;
+    }
+
     @Override
     public void onBindViewHolder(final StyleHolder holder, final int position) {
         final StyleModel styleModel = dataList.get(position);
@@ -54,9 +59,9 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
         } else holder.mIvPic.setImageResource(R.mipmap.icon_load_pic);
         holder.itemView.setLayoutParams(params);
         KLog.d(position + "--" + styleModel.isChecked());
-        if (styleModel.isChecked()){
+        if (styleModel.isChecked()) {
             holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square_selected);
-        }else {
+        } else {
             holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square);
         }
         holder.mTvName.setText(styleModel.getTypeName());
@@ -66,14 +71,13 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
                 if (styleModel.isChecked()) {
                     holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square);
                     dataList.get(position).setChecked(false);
-                }
-                else {
-                    count = 0;
+                } else {
+                    mCount = 0;
                     for (StyleModel model :
                             dataList) {
-                        if (model.isChecked()) count++;
+                        if (model.isChecked()) mCount++;
                     }
-                    if (count>=2) {
+                    if (mCount >= mMaxNum) {
                         UIUtils.showBaseToast("最多选两个");
                         return;
                     }

@@ -66,7 +66,7 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
                     //根据类型发送验证码
                     //邮箱账户
                     if (type == AppConstants.ACCOUNT_TYPE_EMAIL)
-                        addSubscription(apiService.getEmailCheckCode(account, AppConstants.USER_TYPE_MUSICIAN),
+                        addSubscription(apiService.getEmailCheckCode(account, String.valueOf(AppConstants.USER_TYPE_MUSICIAN)),
                                 new SubscriberCallBack<ResultResponse>(mView.get()) {
                                     @Override
                                     protected void onSuccess(ResultResponse response) {
@@ -168,5 +168,7 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
             }
         });
     }
+
+
 
 }

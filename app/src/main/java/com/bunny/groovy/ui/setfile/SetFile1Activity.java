@@ -71,7 +71,7 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
 
     @OnClick(R.id.perfect_info_tv_login)
     void login() {
-        LoginActivity.launch(this);
+        LoginActivity.launch(this, AppConstants.USER_TYPE_MUSICIAN);
     }
 
     @OnClick(R.id.perfect_info_tv_next)

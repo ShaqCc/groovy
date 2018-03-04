@@ -31,9 +31,15 @@ public class PostParamInterceptor implements Interceptor {
         Request request = chain.request();
         //添加统一参数
         String userID = (String) SharedPreferencesUtils.getUserParam(BaseApp.getContext(), AppConstants.KEY_USERID, "");
+        String userType = (String) SharedPreferencesUtils.getUserParam(BaseApp.getContext(), AppConstants.KEY_USER_TYPE, "");
         if (!TextUtils.isEmpty(userID)) {
             HttpUrl.Builder builder = request.url().newBuilder();
-            HttpUrl url = builder.addQueryParameter("performerID", userID).build();
+            if(TextUtils.equals(userType, String.valueOf(AppConstants.USER_TYPE_MUSICIAN))){
+                builder = builder.addQueryParameter("performerID", userID);
+            }else if(TextUtils.equals(userType, String.valueOf(AppConstants.USER_TYPE_VENUE))){
+                builder = builder.addQueryParameter("venueID", userID);
+            }
+            HttpUrl url = builder.build();
             Request build = request.newBuilder().url(url).build();
             return chain.proceed(build);
         }

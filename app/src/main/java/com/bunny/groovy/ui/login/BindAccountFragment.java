@@ -44,6 +44,7 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
     private static String logintype;
     private static String uid;
     private static String username;
+    private static String userType;
     private ProgressHUD mSendProgress;
 
     @OnClick({R.id.bind_account_tv_ok, R.id.bind_account_tv_send})
@@ -88,6 +89,7 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
         username = bundle.getString("username");
         uid = bundle.getString("uid");
         logintype = bundle.getString("logintype");
+        userType = bundle.getString("userType");
         FragmentContainerActivity.launch(from, BindAccountFragment.class, bundle);
     }
 
@@ -112,7 +114,7 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
         if (mSendProgress != null && mSendProgress.isShowing()) mSendProgress.dismiss();
         switch (result) {
             case AppConstants.Code_Verify_Correct:
-                mPresenter.socialLogin(logintype, uid, username, etAccount.getTrimmedString());
+                mPresenter.socialLogin(logintype, uid, username, etAccount.getTrimmedString(),userType);
                 break;
             case AppConstants.Code_Verify_Invalid:
                 UIUtils.showBaseToast("验证码不正确");

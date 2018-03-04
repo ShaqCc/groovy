@@ -2,17 +2,20 @@ package com.bunny.groovy.api;
 
 import com.bunny.groovy.model.GlobalModel;
 import com.bunny.groovy.model.GoogleMapLoc;
+import com.bunny.groovy.model.MusicianDetailModel;
 import com.bunny.groovy.model.OpportunityModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.StyleModel;
+import com.bunny.groovy.model.VenueApplyModel;
 import com.bunny.groovy.model.VenueModel;
+import com.bunny.groovy.model.VenueInViteModel;
+import com.bunny.groovy.model.VenueOpportunityModel;
 import com.bunny.groovy.model.WalletBean;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -86,11 +89,21 @@ public interface ApiService {
     @POST("PerformerOverviewController/getVenueListBykeyword")
     Observable<ResultResponse<List<VenueModel>>> getVenueList(@Field("keyword") String keyword);
 
+    //获取表演者列表-关键字查询
+    @FormUrlEncoded
+    @POST("VenueBookingsController/getPerformerList")
+    Observable<ResultResponse<List<PerformerUserModel>>> getPerformerList(@Field("keyword") String keyword);
+
 
     //Release Show: 发布演出-待验证演出
     @FormUrlEncoded
     @POST("PerformerOverviewController/addPerformApply")
     Observable<ResultResponse<Object>> releaseShow(@FieldMap Map<String, String> map);
+
+    //Release Show: （演出厅用户）发布演出
+    @FormUrlEncoded
+    @POST("VenueBookingsController/addPerform")
+    Observable<ResultResponse<Object>> releaseVenueShow(@FieldMap Map<String, String> map);
 
 
     //获取收藏演出厅记录
@@ -147,13 +160,25 @@ public interface ApiService {
     @POST("PerformerOverviewController/getPerformerOverviewOpportunityList")
     Observable<ResultResponse<List<ShowModel>>> getApplyOpportunityList();
 
+    //演出厅-获取演出机会申请列表
+    @POST("VenueBookingsController/getVenuePerformOpportunityList")
+    Observable<ResultResponse<List<VenueOpportunityModel>>> getVenueApplyOpportunityList();
+
     //获取邀请的列表
     @POST("PerformerOverviewController/getPerformerOverviewInviteList")
     Observable<ResultResponse<List<ShowModel>>> getInviteList();
 
+    //演出厅-获取邀请的列表
+    @POST("VenueBookingsController/getVenuePerformInviteList")
+    Observable<ResultResponse<List<VenueInViteModel>>> getVenueInviteList();
+
     //获取待验证演出申请列表
     @POST("PerformerOverviewController/getPerformerOverviewApplyList")
     Observable<ResultResponse<List<ShowModel>>> getReleaseShowList();
+
+    //获取待验证演出申请列表
+    @POST("VenueBookingsController/getVenuePerformApplyList")
+    Observable<ResultResponse<List<VenueApplyModel>>> getVenueReleaseShowList();
 
     //获取选中周期内的表演统计
     @FormUrlEncoded
@@ -188,6 +213,16 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("PerformerOverviewController/refusePerformerOverviewInvite")
     Observable<ResultResponse<Object>> rejectPerformInvite(@Field("inviteID") String inviteID);
+
+    //Notification：演出厅用户--Invite-拒绝邀请
+    @FormUrlEncoded
+    @POST("VenueBookingsController/refusePerformApply")
+    Observable<ResultResponse<Object>> refusePerformApply(@Field("performID") String performID);
+
+    //Notification：演出厅用户--Invite-同意邀请
+    @FormUrlEncoded
+    @POST("VenueBookingsController/agreePerformApply")
+    Observable<ResultResponse<Object>> agreePerformApply(@Field("performID") String performID);
 
 
     //修改用户信息
@@ -336,5 +371,60 @@ public interface ApiService {
                                                  @Field("accountType") String accountType,//账户类型（0-手机号 1-邮箱）
                                                  @Field("newPassword") String newPassword);
 
+    //获取表演者个人信息
+    @POST("VenueMeController/getVenueDetailInfo")
+    Observable<ResultResponse<PerformerUserModel>> getVenueDetailInfo();
 
+    //注册：演出厅用户注册
+    @POST("FrontUserController/venueFrontUserRegister")
+    Observable<ResultResponse<Object>> venueRegister(@Body RequestBody body);
+
+    //演出厅：第三方登陆后首次登陆完善表演者信息
+    @POST("FrontUserController/updatePerformerInfoFirstLogin")
+    Observable<ResultResponse<Object>> updatePerformerInfoFirstLogin(@Body RequestBody body);
+
+    //获取下一场演出信息，包含演出详情
+    @POST("VenueBookingsController/getNextPerformInfo")
+    Observable<ResultResponse<ShowModel>> getNextPerformInfo(
+            @Query("venueID") String venueID
+    );
+
+    //发布演出机会
+    @FormUrlEncoded
+    @POST("VenueBookingsController/addPerformOpportunity")
+    Observable<ResultResponse<Object>> addPerformOpportunity(@Field("startDate") String startDate,
+                                                             @Field("endDate") String endDate,
+                                                             @Field("performDesc") String performDesc);
+
+    //获取表演者列表
+    @FormUrlEncoded
+    @POST("VenueBookingsController/getSearchPerformerList")
+    Observable<ResultResponse<List<PerformerUserModel>>> getSearchPerformerList(@Field("keyword") String keyword,
+                                                                                @Field("orderType") String orderType,
+                                                                                @Field("performType") String performType);
+
+    //获取表演者列表
+    @FormUrlEncoded
+    @POST("VenueBookingsController/addPerformInvitation")
+    Observable<ResultResponse<Object>> addPerformInvitation(@Field("performerID") String performerID,
+                                                            @Field("performStartDate") String performStartDate,
+                                                            @Field("performEndDate") String performEndDate,
+                                                            @Field("invitationDesc") String invitationDesc);
+
+    //表演者个人主页：获取表演者主页信息
+    @FormUrlEncoded
+    @POST("PerformerBasicsController/getSingPerformerDetail")
+    Observable<ResultResponse<MusicianDetailModel>> getSingPerformerDetail(@Field("performerID") String performerID,
+                                                                           @Field("userID") String userID);
+    //表演者个人主页：收藏表演者
+    @FormUrlEncoded
+    @POST("PerformerBasicsController/collectionPerformer")
+    Observable<ResultResponse<Object>> collectionPerformer(@Field("performerID") String performerID,
+                                                                           @Field("userID") String userID);
+
+    //表演者个人主页：取消收藏表演者
+    @FormUrlEncoded
+    @POST("PerformerBasicsController/cancelCollectionPerformer")
+    Observable<ResultResponse<MusicianDetailModel>> cancelCollectionPerformer(@Field("performerID") String performerID,
+                                                                           @Field("userID") String userID);
 }

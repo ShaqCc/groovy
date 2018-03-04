@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_textarea_bg"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_search" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:background="@null"
+            android:hint="Search the musician by their name or phone number"
+            android:maxLength="400"
+            android:textColor="@color/white"
+            android:textColorHint="@color/common_grey"
+            android:textSize="@dimen/text_size_common" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/discover_sort_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="10.5sp"
+            android:gravity="left|center_vertical"
+            android:text="SORT BY RATING"
+
+            android:textColor="@color/discover_musician_color" />
+
+        <TextView
+            android:id="@+id/discover_sort_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="10.5sp"
+            android:text="SORT BY DISTANCE"
+            android:textColor="@color/discover_musician_color" />
+
+        <TextView
+            android:id="@+id/discover_sort_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="10.5sp"
+            android:gravity="right|center_vertical"
+            android:drawableLeft="@mipmap/icon_discover_genre"
+            android:text="GENRE"
+            android:textColor="@color/white" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#343434"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/venue_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"/>
+</LinearLayout>

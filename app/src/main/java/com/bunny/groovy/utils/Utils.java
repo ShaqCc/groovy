@@ -259,6 +259,7 @@ public class Utils {
     public static void initLoginData(Context context, PerformerUserModel model) {
         SharedPreferencesUtils.setUserParam(context, AppConstants.KEY_LOGIN, true);
         SharedPreferencesUtils.setUserParam(context, AppConstants.KEY_USERID, model.getUserID());
+        SharedPreferencesUtils.setUserParam(context, AppConstants.KEY_USER_TYPE, model.getUserType());
         AppCacheData.setPerformerUserModel(model);
     }
 
@@ -290,5 +291,13 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static int parseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+        }
+        return 0;
     }
 }

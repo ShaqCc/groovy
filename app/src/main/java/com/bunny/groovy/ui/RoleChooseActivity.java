@@ -25,9 +25,21 @@ import flyn.Eyes;
  */
 
 public class RoleChooseActivity extends BaseActivity {
+
+
     @OnClick(R.id.tv_musician)
-    void login() {
-        startActivityForResult(new Intent(this, LoginActivity.class), 2);
+    void loginMusician() {
+        startActivity(new Intent(this, LoginActivity.class).putExtra("type", AppConstants.USER_TYPE_MUSICIAN));
+    }
+
+    @OnClick(R.id.tv_venue)
+    void loginVenue() {
+        startActivity(new Intent(this, LoginActivity.class).putExtra("type", AppConstants.USER_TYPE_VENUE));
+    }
+
+    @OnClick(R.id.tv_showgoer)
+    void loginNormal() {
+        startActivity(new Intent(this, LoginActivity.class).putExtra("type", AppConstants.USER_TYPE_NORMAL));
     }
 
     @Override

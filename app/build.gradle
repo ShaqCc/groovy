@@ -45,7 +45,8 @@ android {
                             'src/main/res/base',
                             'src/main/res/main',
                             'src/main/res/self_info',
-                            'src/main/res/login'
+                            'src/main/res/login',
+                            'src/main/res/venue'
                     ]//res 目录的拆分
         }
     }

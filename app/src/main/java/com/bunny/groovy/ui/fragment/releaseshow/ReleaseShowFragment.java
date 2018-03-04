@@ -11,8 +11,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -21,10 +21,12 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.adapter.StyleGridAdapter;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
+import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.ReleasePresenter;
 import com.bunny.groovy.ui.fragment.spotlight.SpotlightFragment;
+import com.bunny.groovy.ui.fragment.spotlight.SpotlightInfoFragment;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.DateUtils;
 import com.bunny.groovy.utils.UIUtils;
@@ -72,7 +74,9 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
     private TextView mTvTimeTitle;
     private Date today = Calendar.getInstance().getTime();
     private VenueModel mVenueModel;
+    private PerformerUserModel mPerformerModel;
     private Place mPlace;
+    private int mType;
 
     public static void launch(Activity from) {
         Bundle bundle = new Bundle();
@@ -119,9 +123,12 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
     @Bind(R.id.release_checkbox_use_spotlight)
     CheckBox cbUseSpotlight;
 
+    @Bind(R.id.release_name)
+    TextView mReleaseName;
+
     @OnClick(R.id.release_tv_spotlight)
     public void spotLight() {
-
+        SpotlightInfoFragment.launch(get());
     }
 
     @OnClick(R.id.release_tv_get_credits)
@@ -134,7 +141,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
     public void release() {
         //判断空
         if (UIUtils.isEdittextEmpty(etVenue)) {
-            UIUtils.showBaseToast("请选择音乐厅");
+            UIUtils.showBaseToast(mType == 2 ? "请选择表演者" : "请选择音乐厅");
             return;
         }
         if (UIUtils.isEdittextEmpty(etStyle)) {
@@ -150,30 +157,43 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
             return;
         }
         Map<String, String> map = new HashMap<>();
-        if (mVenueModel != null && !TextUtils.isEmpty(mVenueModel.getVenueID()) && !TextUtils.isEmpty(mVenueModel.getVenueName())) {
-            map.put("venueID", mVenueModel.getVenueID());
-            map.put("venueName", mVenueModel.getVenueName());
-            map.put("venueAddress", mVenueModel.getVenueAddress());
-            map.put("venueLongitude", mVenueModel.getLongitude());
-            map.put("venueLatitude", mVenueModel.getLatitude());
-        } else if (mPlace != null) {
-            map.put("venueName", mPlace.getName().toString());
-            map.put("venueAddress", mPlace.getAddress().toString());
-            map.put("venueLongitude", String.valueOf(mPlace.getLatLng().longitude));
-            map.put("venueLatitude", String.valueOf(mPlace.getLatLng().latitude));
+        //mType-2:演出厅发布演出
+        if (mType == 2) {
+            if (mPerformerModel != null && !TextUtils.isEmpty(mPerformerModel.getUserID())) {
+                map.put("performerID", mPerformerModel.getUserID());
+            }
+            map.put("performerName", etVenue.getText().toString());
+            PerformerUserModel performerModel = AppCacheData.getPerformerUserModel();
+            map.put("venueName", performerModel.getUserName());
+            map.put("venueLongitude", performerModel.getLongitude());
+            map.put("venueLatitude", performerModel.getLatitude());
+            map.put("venueAddress", performerModel.getVenueAddress());
         } else {
-            UIUtils.showBaseToast("音乐厅选取失败，请重新选择");
-            return;
+            if (mVenueModel != null && !TextUtils.isEmpty(mVenueModel.getVenueID()) && !TextUtils.isEmpty(mVenueModel.getVenueName())) {
+                map.put("venueID", mVenueModel.getVenueID());
+                map.put("venueName", mVenueModel.getVenueName());
+                map.put("venueAddress", mVenueModel.getVenueAddress());
+                map.put("venueLongitude", mVenueModel.getLongitude());
+                map.put("venueLatitude", mVenueModel.getLatitude());
+            } else if (mPlace != null) {
+                map.put("venueName", mPlace.getName().toString());
+                map.put("venueAddress", mPlace.getAddress().toString());
+                map.put("venueLongitude", String.valueOf(mPlace.getLatLng().longitude));
+                map.put("venueLatitude", String.valueOf(mPlace.getLatLng().latitude));
+            } else {
+                UIUtils.showBaseToast("音乐厅选取失败，请重新选择");
+                return;
+            }
+            map.put("performerName", AppCacheData.getPerformerUserModel().getUserName());
         }
         map.put("performType", etStyle.getText().toString());
         map.put("performStartDate", DateUtils.getFormatTime(mSelectDate.getTime(), startTime));
         map.put("performEndDate", DateUtils.getFormatTime(mSelectDate.getTime(), endTime));
         map.put("performDesc", etBio.getText().toString());
-        map.put("performerName", AppCacheData.getPerformerUserModel().getUserName());
-        if (cbUseSpotlight.isChecked()){
-            map.put("isOpportunity","1");
-        }else map.put("isOpportunity","0");
-        mPresenter.releaseShow(map);
+        if (cbUseSpotlight.isChecked()) {
+            map.put("isOpportunity", "1");
+        } else map.put("isOpportunity", "0");
+        mPresenter.releaseShow(map, mType);
     }
 
     /**
@@ -181,7 +201,11 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
      */
     @OnClick(R.id.release_tv_search)
     public void search() {
-        SearchVenueFragment.launchForResult(mActivity, new Bundle(), 1);
+        if (mType == 2) {
+            SearchMusicianFragment.launchForResult(mActivity, new Bundle(), 1);
+        } else {
+            SearchVenueFragment.launchForResult(mActivity, new Bundle(), 1);
+        }
     }
 
     @OnClick(R.id.release_et_style)
@@ -396,6 +420,29 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         }
     }
 
+    /**
+     * 接收选择的演出厅
+     *
+     * @param model
+     */
+    @Subscribe
+    public void onChooseMusician(PerformerUserModel model) {
+        mPerformerModel = model;
+        if (model != null) {
+            etVenue.setText(model.getUserName());
+            venueInfoLayout.setVisibility(View.VISIBLE);
+            llSpotLight.setVisibility(View.VISIBLE);
+            Glide.with(get()).load(model.getHeadImg()).into(venueHeadImg);
+            tvVenueName.setText(model.getUserName());
+            tvVenueScore.setText(model.getStarLevel());
+            tvVenueAddress.setText(model.getPerformTypeName());
+            tvVenuePhone.setText(model.getPhoneNumber());
+        } else {
+            venueInfoLayout.setVisibility(View.GONE);
+            llSpotLight.setVisibility(View.GONE);
+        }
+    }
+
 
     @Override
     protected ReleasePresenter createPresenter() {
@@ -420,8 +467,15 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
+        mType = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+        //演出厅
+        if (mType == 2) {
+            mReleaseName.setText("SELECT MUSICIAN");
+            etVenue.setHint("Fill in musician name or search");
+        } else {
+            etVenue.setFocusable(false);
+        }
         //禁用编辑
-        etVenue.setFocusable(false);
         etStyle.setFocusable(false);
         etTime.setFocusable(false);
         //spotlight
@@ -453,7 +507,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         styleList = modelList;
         if (mPopupWindow == null)
             initPopWindow(modelList);
-        mPopupWindow.showAtLocation(etBio, Gravity.CENTER, 0, 0);
+        mPopupWindow.showAtLocation(etBio, Gravity.CENTER, 0, UIUtils.dip2Px(15));
     }
 
     /**
@@ -471,6 +525,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         mPopupWindow.setTouchable(true);
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
+        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView recyclerview = (RecyclerView) popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdatper = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());

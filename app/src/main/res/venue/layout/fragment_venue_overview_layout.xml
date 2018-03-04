@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/bg_hone" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/black"
+        android:scaleType="center"
+        android:src="@mipmap/nav_logo" />
+
+    <LinearLayout
+        android:id="@+id/next_show_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="NEXT SCHEDULED SHOW"
+            android:textColor="@color/white"
+            android:textSize="@dimen/title_size" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="180px"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/next_show_default_info"
+                android:textColor="@color/common_grey"
+                android:textSize="@dimen/text_size_common" />
+
+            <include
+                android:id="@+id/nextshow_layout"
+                layout="@layout/include_recent_show_layout" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- 点点点的背景图 -->
+
+    <!-- logo图 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/next_show_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp">
+
+        <!--圆盘背景图-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="6dp"
+            android:src="@mipmap/bg_pan_venue" />
+
+        <!--上面的按钮-->
+        <TextView
+            android:id="@+id/tv_release_show"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#0888"
+            android:drawablePadding="3dp"
+            android:drawableTop="@mipmap/icon_home_one"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="Release Show"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+        <!--下面的按钮-->
+        <TextView
+            android:id="@+id/tv_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#0888"
+            android:drawablePadding="3dp"
+            android:drawableTop="@mipmap/icon_home_three"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="Notifications"
+            android:textColor="#ffffff"
+            android:textSize="13sp"
+
+            />
+
+        <!--左边的按钮-->
+        <TextView
+            android:id="@+id/tv_discover_musician"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+
+            android:background="#0888"
+            android:drawablePadding="3dp"
+            android:drawableTop="@mipmap/icon_home_two"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="Discover Musician"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+        <!--右边的按钮-->
+        <TextView
+            android:id="@+id/tv_release_opportunity"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="#0888"
+            android:drawablePadding="3dp"
+            android:drawableTop="@mipmap/icon_home_four"
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="Release Show Opportunity"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

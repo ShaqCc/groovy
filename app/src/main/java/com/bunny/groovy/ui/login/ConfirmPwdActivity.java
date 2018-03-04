@@ -8,6 +8,7 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.presenter.ForgetPwdPresenter;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IForgetView;
@@ -60,7 +61,8 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
 
     @OnClick(R.id.confirm_pwd_tv_login)
     public void login() {
-        LoginActivity.launch(this);
+        int type = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+        LoginActivity.launch(this, type);
     }
 
     public static String KEY_ACCOUNT = "key_account";
@@ -109,7 +111,8 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
 
     @Override
     public void next() {
-        LoginActivity.launch(this);
+        int type = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+        LoginActivity.launch(this, type);
     }
 
     @Override

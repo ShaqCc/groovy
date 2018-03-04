@@ -133,7 +133,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
 
     @OnClick(R.id.tv_login)
     void login() {
-        LoginActivity.launch(this);
+        LoginActivity.launch(this, AppConstants.USER_TYPE_MUSICIAN);
     }
 
     @Bind(R.id.tv_count)

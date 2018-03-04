@@ -9,6 +9,7 @@
               android:paddingTop="26dp">
 
     <TextView
+        android:id="@+id/release_name"
         style="@style/common_text_style"
         android:text="@string/role_venue"/>
 

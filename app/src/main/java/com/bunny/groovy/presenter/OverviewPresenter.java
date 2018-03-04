@@ -5,6 +5,7 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IOverView;
 
