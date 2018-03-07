@@ -3,8 +3,10 @@ package com.bunny.groovy.presenter;
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.MusicianDetailModel;
+import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.VenueModel;
+import com.bunny.groovy.ui.fragment.releaseshow.InviteMusicianFragment;
 import com.bunny.groovy.view.IMusicianView;
 import com.bunny.groovy.view.IVenueView;
 
@@ -87,5 +89,18 @@ public class MusicianDetailPresenter extends BasePresenter<IMusicianView> {
 
             }
         });
+    }
+
+    /**
+     * 取消收藏表演者
+     */
+    public void invite(MusicianDetailModel musicianDetailModel){
+        PerformerUserModel model = new PerformerUserModel();
+        model.setUserID(musicianDetailModel.userID);
+        model.setHeadImg(musicianDetailModel.headImg);
+        model.setStarLevel(musicianDetailModel.starLevel);
+        model.setPerformTypeName(musicianDetailModel.performTypeName);
+        model.setPhoneNumber(musicianDetailModel.telephone);
+        InviteMusicianFragment.launch(mView.get(), model);
     }
 }

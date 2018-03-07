@@ -46,8 +46,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/user_header"
-                        android:layout_width="170px"
-                        android:layout_height="170px"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
                         android:layout_marginBottom="30dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/head"
@@ -66,21 +66,21 @@
                             android:layout_height="wrap_content"
                             android:text="NAME"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/text_size_common" />
+                            android:textSize="23dp" />
 
                         <ImageView
                             android:id="@+id/user_music"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="20px"
+                            android:layout_marginLeft="10dp"
                             android:src="@mipmap/login_play" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15px"
-                        android:layout_marginTop="15px"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -108,18 +108,19 @@
                         android:id="@+id/user_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/icon_phone"
                         android:text="POP , ROCK"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/user_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/icon_phone"
+                        android:drawablePadding="10dp"
                         android:text="13123123213"
                         android:textColor="@color/accentPurple"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="13dp" />
 
                     <TextView
                         android:id="@+id/user_desc"
@@ -129,9 +130,8 @@
                         android:paddingRight="16dp"
                         android:layout_marginTop="30dp"
                         android:gravity="center"
-                        android:text="@string/available_time_interval"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/text_size_small" />
+                        android:textSize="13dp" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -142,7 +142,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:paddingLeft="16dp"
-                android:paddingRight="16dp" />
+                android:paddingRight="16dp"
+                android:paddingBottom="40dp"/>
         </LinearLayout>
     </ScrollView>
 

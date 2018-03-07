@@ -12,6 +12,7 @@ import com.bunny.groovy.model.VenueOpportunityModel;
 import com.bunny.groovy.presenter.ListPresenter;
 import com.bunny.groovy.view.IListPageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,11 +53,26 @@ public class VenueNotify1ListFragment extends BaseListFragment<ListPresenter, Ve
     @Override
     public void setView(List<VenueOpportunityModel> o) {
         setNormalView();
+        List<VenueOpportunityModel> models = new ArrayList<>();
+        for (int i = 0; i < o.size(); i++){
+                /*List<VenueOpportunityModel.ApplyList> applyList = new ArrayList<>();
+                applyList.addAll(o.get(i).getApplyList());
+                applyList.addAll(o.get(i).getApplyList());
+                applyList.addAll(o.get(i).getApplyList());
+                o.get(i).setApplyList(applyList);*/
+            if(o.get(i).getApplyList().size() > 0){
+                if(o.get(i).getApplyList().size() > 4){
+                    o.get(i).setApplyList(o.get(i).getApplyList().subList(0, 4));
+                }
+                models.add(o.get(i));
+            }
+        }
         if (mAdapter == null) {
-            mAdapter = new VenueNotify1ListAdapter(o);
+            //去除ApplyList为空情况(最多为4个)
+            mAdapter = new VenueNotify1ListAdapter(models);
             mRecyclerView.setAdapter(mAdapter);
         } else {
-            mAdapter.refresh(o);
+            mAdapter.refresh(models);
         }
     }
 

@@ -1,5 +1,8 @@
 package com.bunny.groovy.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /****************************************
@@ -7,7 +10,7 @@ import java.util.List;
  * 具体的按实际返回数据为准，缺的后续再加(接口文档里面一些字段有误)
  ****************************************/
 
-public class VenueOpportunityModel {
+public class VenueOpportunityModel implements Parcelable {
 
     /**
      "createDate": "2018-03-02 20:13",
@@ -63,6 +66,36 @@ public class VenueOpportunityModel {
     private String performTime;
 
     private List<ApplyList> applyList;
+
+    protected VenueOpportunityModel(Parcel in) {
+
+        createDate = in.readString();
+        opportunityID = in.readString();
+        venueID = in.readString();
+        startDate = in.readString();
+        endDate = in.readString();
+        performDesc = in.readString();
+        opportunityState = in.readString();
+        applyID = in.readString();
+        operationDate = in.readString();
+        performDate = in.readString();
+        performTime = in.readString();
+
+    }
+
+    public static final Creator<VenueOpportunityModel> CREATOR = new Creator<VenueOpportunityModel>() {
+        @Override
+        public VenueOpportunityModel createFromParcel(Parcel in) {
+            return new VenueOpportunityModel(in);
+        }
+
+        @Override
+        public VenueOpportunityModel[] newArray(int size) {
+            return new VenueOpportunityModel[size];
+        }
+    };
+
+
 
 
     public String getCreateDate() {
@@ -379,5 +412,26 @@ public class VenueOpportunityModel {
         public void setVenueName(String venueName) {
             this.venueName = venueName;
         }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(createDate);
+        dest.writeString(opportunityID);
+        dest.writeString(venueID);
+        dest.writeString(startDate);
+        dest.writeString(endDate);
+        dest.writeString(performDesc);
+        dest.writeString(opportunityState);
+        dest.writeString(applyID);
+        dest.writeString(operationDate);
+        dest.writeString(performDate);
+        dest.writeString(performTime);
     }
 }

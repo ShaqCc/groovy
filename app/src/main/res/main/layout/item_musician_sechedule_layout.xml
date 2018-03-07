@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <TextView
+        android:id="@+id/item_musician_reply_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18.5dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/item_musician_reply_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/item_musician_reply_user_name"
+        android:layout_below="@id/item_musician_reply_user_name"
+        android:lines="1"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/item_musician_reply_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/item_musician_reply_user_name"
+        android:layout_below="@id/item_musician_reply_data"
+        android:lines="1"
+        android:textColor="#878787"
+        android:paddingBottom="10dp"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/tvDot"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/details_ok" />
+
+    <View
+        android:id="@+id/tvTopLine"
+        android:layout_width="0.5dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="2.5dp"
+        android:background="@color/light_purple" />
+
+
+    <View
+        android:id="@+id/tvBottomLine"
+        android:layout_width="0.5dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="2.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_purple" />
+
+</RelativeLayout>

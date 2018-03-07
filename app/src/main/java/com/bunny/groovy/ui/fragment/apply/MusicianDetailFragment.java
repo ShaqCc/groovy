@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
+import com.bunny.groovy.adapter.MusicianScheduleAdapter;
 import com.bunny.groovy.adapter.VenueScheduleAdapter;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
@@ -24,6 +24,7 @@ import com.bunny.groovy.view.IMusicianView;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /****************************************
  * 功能说明:  表演者详情页面，邀请
@@ -34,7 +35,7 @@ import butterknife.OnClick;
 public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter> implements IMusicianView {
 
     @Bind(R.id.user_header)
-    ImageView mUserHeader;
+    CircleImageView mUserHeader;
     @Bind(R.id.user_score)
     TextView mUserScore;
     @Bind(R.id.user_name)
@@ -56,33 +57,27 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
     private static String mPerformerId;
 
 
-    private VenueScheduleAdapter mAdapter;
-    private MusicianDetailModel venueModel;
+    private MusicianScheduleAdapter mAdapter;
+    private MusicianDetailModel musicianDetailModel;
 
     @OnClick(R.id.user_invite)
     public void invite() {
-        PerformerUserModel model = new PerformerUserModel();
-        model.setUserID(venueModel.userID);
-        model.setHeadImg(venueModel.headImg);
-        model.setStarLevel(venueModel.starLevel);
-        model.setPerformTypeName(venueModel.performTypeName);
-        model.setPhoneNumber(venueModel.telephone);
-        InviteMusicianFragment.launch(mActivity, model);
+        mPresenter.invite(musicianDetailModel);
     }
 
     @OnClick(R.id.user_phone)
     public void call() {
-        Utils.CallPhone(mActivity, venueModel.telephone);
+        Utils.CallPhone(mActivity, musicianDetailModel.telephone);
     }
 
     @OnClick(R.id.me_tv_facebook)
     public void facebook() {
-        Utils.openFacebook(mActivity, venueModel.facebookAccount);
+        Utils.openFacebook(mActivity, musicianDetailModel.facebookAccount);
     }
 
     @OnClick(R.id.me_tv_twitter)
     public void twitter() {
-        Utils.openTwitter(mActivity, venueModel.twitterAccount);
+        Utils.openTwitter(mActivity, musicianDetailModel.twitterAccount);
     }
 
     @OnClick(R.id.user_iv_fav)
@@ -116,11 +111,18 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
 
     @Override
     public void setView(MusicianDetailModel model) {
-        venueModel = model;
+        musicianDetailModel = model;
         mUserName.setText(model.userName);
-        mUserScore.setText(model.starLevel);
+        if (model.starLevel.contains(".")) {
+            String start = model.starLevel.substring(0, model.starLevel.lastIndexOf(".") + 2);
+            mUserScore.setText(start);
+        } else {
+            mUserScore.setText(model.starLevel);
+        }
+
         mUserPhone.setText(model.telephone);
         mUserStyle.setText(model.performTypeName);
+        mUserDesc.setText(model.signature);
         if ("1".equals(model.isBeCollection)) {
             isFavorite = true;
             mIvFavouriteView.setImageResource(R.drawable.nav_collection_selected);
@@ -131,13 +133,13 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
 
         Glide.with(mActivity).load(model.headImg).error(R.mipmap.venue_instead_pic).into(mUserHeader);
         //set list
-//        if (mAdapter == null) {
-//            mAdapter = new VenueScheduleAdapter(model.getScheduleList());
-//            mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-//            mRecyclerView.setAdapter(mAdapter);
-//        } else {
-//            mAdapter.refresh(model.getScheduleList());
-//        }
+        if (mAdapter == null) {
+            mAdapter = new MusicianScheduleAdapter(model.evaluateList);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
+            mRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.refresh(model.evaluateList);
+        }
     }
 
     @Override
@@ -159,7 +161,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.fragment_venue_detail_layout;
+        return R.layout.fragment_musician_detail_layout;
     }
 
     @Override

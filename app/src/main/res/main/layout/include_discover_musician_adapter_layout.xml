@@ -51,7 +51,7 @@
                     android:drawableLeft="@mipmap/list_star"
                     android:drawablePadding="4dp"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_small" />
+                    android:textSize="@dimen/text_size_common" />
 
             </LinearLayout>
 
@@ -102,6 +102,6 @@
             android:layout_marginRight="16dp"
             android:text="INVITE"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_common" />
+            android:textSize="9sp" />
     </RelativeLayout>
 </LinearLayout>

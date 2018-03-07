@@ -413,18 +413,22 @@ public interface ApiService {
 
     //表演者个人主页：获取表演者主页信息
     @FormUrlEncoded
-    @POST("PerformerBasicsController/getSingPerformerDetail")
+    @POST("VenueBasicsController/getSingPerformerDetail")
     Observable<ResultResponse<MusicianDetailModel>> getSingPerformerDetail(@Field("performerID") String performerID,
                                                                            @Field("userID") String userID);
     //表演者个人主页：收藏表演者
     @FormUrlEncoded
-    @POST("PerformerBasicsController/collectionPerformer")
+    @POST("VenueBasicsController/collectionPerformer")
     Observable<ResultResponse<Object>> collectionPerformer(@Field("performerID") String performerID,
-                                                                           @Field("userID") String userID);
+                                                           @Field("userID") String userID);
 
     //表演者个人主页：取消收藏表演者
     @FormUrlEncoded
-    @POST("PerformerBasicsController/cancelCollectionPerformer")
+    @POST("VenueBasicsController/cancelCollectionPerformer")
     Observable<ResultResponse<MusicianDetailModel>> cancelCollectionPerformer(@Field("performerID") String performerID,
-                                                                           @Field("userID") String userID);
+                                                                              @Field("userID") String userID);
+    //表演者个人主页：取消收藏表演者
+    @FormUrlEncoded
+    @POST("VenueBookingsController/choosePerformer")
+    Observable<ResultResponse<Object>> choosePerformer(@Field("applyID") String applyID);
 }
