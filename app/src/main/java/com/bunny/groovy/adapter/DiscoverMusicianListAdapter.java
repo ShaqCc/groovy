@@ -16,7 +16,6 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.ui.fragment.apply.MusicianDetailFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.InviteMusicianFragment;
-import com.bunny.groovy.ui.fragment.releaseshow.SearchMusicianFragment;
 import com.bunny.groovy.weidget.HeightLightTextView;
 
 import org.greenrobot.eventbus.EventBus;

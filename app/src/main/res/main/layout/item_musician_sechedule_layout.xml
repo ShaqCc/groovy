@@ -7,7 +7,7 @@
         android:id="@+id/item_musician_reply_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18.5dp"
+        android:layout_marginLeft="20.5dp"
         android:paddingTop="10dp"
         android:textColor="@color/white"
         android:textSize="13sp" />

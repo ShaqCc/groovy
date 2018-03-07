@@ -55,10 +55,10 @@ public class VenueApplyDetailsFragment extends BaseFragment {
     @Bind(R.id.invite_ll_action)
     LinearLayout llAction;
 
-    @Bind(R.id.include_detail_tv_venueName)
+    @Bind(R.id.performer_detail_tv_venueName)
     TextView mTvVenueName_2;
 
-    @Bind(R.id.include_detail_iv_head)
+    @Bind(R.id.performer_detail_iv_head)
     ImageView mHead;
 
     @Bind(R.id.show_detail_tv_style)
@@ -72,28 +72,28 @@ public class VenueApplyDetailsFragment extends BaseFragment {
 
     @Bind(R.id.show_detail_tv_desc)
     TextView mTvDesc;
-    @Bind(R.id.user_center_tv_style)
+    @Bind(R.id.performer_center_tv_style)
     TextView mTvDesDetail;
-    @Bind(R.id.user_center_tv_score)
+    @Bind(R.id.performer_center_tv_score)
     TextView mTvStars;
 
     @Bind(R.id.apply_layout)
     LinearLayout mApplyLayout;
 
 
-    @OnClick(R.id.facebook_page)
+    @OnClick(R.id.performer_facebook_page)
     public void facebook() {
         if (!TextUtils.isEmpty(sModel.getFacebookAccount()))
             Utils.openFacebook(mActivity, sModel.getFacebookAccount());
     }
 
-    @OnClick(R.id.twitter_page)
+    @OnClick(R.id.performer_twitter_page)
     public void twitter() {
         if (!TextUtils.isEmpty(sModel.getTwitterAccount()))
             Utils.openTwitter(mActivity, sModel.getTwitterAccount());
     }
 
-    @OnClick(R.id.me_tv_cloud)
+    @OnClick(R.id.performer_me_tv_cloud)
     public void cloud() {
         if (!TextUtils.isEmpty(sModel.getSoundcloudAccount()))
             Utils.openSoundCloud(mActivity, sModel.getSoundcloudAccount());
@@ -217,7 +217,7 @@ public class VenueApplyDetailsFragment extends BaseFragment {
 
     }
 
-    @OnClick(R.id.me_play_music)
+    @OnClick(R.id.performer_me_play_music)
     public void playMusic() {
         if (!TextUtils.isEmpty(sModel.getMusicFile())) {
             MusicBox.getInstance().playOnLineMusic(sModel.getMusicFile(), mActivity);

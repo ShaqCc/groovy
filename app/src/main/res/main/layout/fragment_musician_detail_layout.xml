@@ -46,9 +46,9 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/user_header"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginBottom="30dp"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_marginTop="30dp"
                         android:src="@drawable/head"
                         app:civ_border_color="@color/white"
@@ -58,6 +58,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
+                        android:layout_gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
@@ -66,12 +67,12 @@
                             android:layout_height="wrap_content"
                             android:text="NAME"
                             android:textColor="@color/white"
-                            android:textSize="23dp" />
+                            android:textSize="20dp" />
 
                         <ImageView
                             android:id="@+id/user_music"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
                             android:layout_marginLeft="10dp"
                             android:src="@mipmap/login_play" />
                     </LinearLayout>
@@ -87,21 +88,21 @@
                             android:id="@+id/me_tv_facebook"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_facebook" />
+                            android:src="@mipmap/user_facebook" />
 
                         <ImageView
                             android:id="@+id/me_tv_cloud"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:src="@mipmap/icon_soundcloud" />
+                            android:src="@mipmap/user_soundcloud" />
 
                         <ImageView
                             android:id="@+id/me_tv_twitter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:src="@mipmap/icon_twiter" />
+                            android:src="@mipmap/user_twiter" />
                     </LinearLayout>
 
                     <TextView
@@ -117,10 +118,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableLeft="@drawable/icon_phone"
-                        android:drawablePadding="10dp"
+                        android:drawablePadding="5dp"
                         android:text="13123123213"
                         android:textColor="@color/accentPurple"
-                        android:textSize="13dp" />
+                        android:textSize="12dp" />
 
                     <TextView
                         android:id="@+id/user_desc"
@@ -131,7 +132,7 @@
                         android:layout_marginTop="30dp"
                         android:gravity="center"
                         android:textColor="@color/white"
-                        android:textSize="13dp" />
+                        android:textSize="12dp" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -157,18 +158,19 @@
         <ImageView
             android:id="@+id/user_iv_fav"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:scaleType="center"
             android:src="@drawable/nav_collection" />
 
         <ImageView
             android:id="@+id/user_iv_money"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingRight="10dp"
             android:layout_weight="1"
-            android:scaleType="center"
-            android:src="@drawable/me_wallet" />
+            android:src="@drawable/dashang" />
 
         <View
             android:layout_width="1dp"

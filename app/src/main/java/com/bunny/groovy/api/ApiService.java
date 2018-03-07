@@ -186,6 +186,12 @@ public interface ApiService {
     Observable<String> getScheduleList(@Field("performStartDate") String performStartDate,
                                        @Field("performEndDate") String performEndDate);
 
+    //演出厅用户-获取选中周期内的表演统计
+    @FormUrlEncoded
+    @POST("VenueScheduleController/getVenuePerformScheduleList")
+    Observable<String> getVenuePerformScheduleList(@Field("startDate") String startDate,
+                                                   @Field("endDate") String endDate);
+
     //演出厅个人主页：获取演出厅详细信息
     @FormUrlEncoded
     @POST("PerformerBasicsController/getVenueScheduleList")
@@ -273,6 +279,11 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("PaypalController/buySpotlight")
     Observable<ResultResponse<String>> buySpotlight(@FieldMap Map<String, String> map);
+
+    //演出厅用户--Spotlight-推广表演(已付费)
+    @FormUrlEncoded
+    @POST("VenueScheduleController/spotlightPerform")
+    Observable<ResultResponse<Object>> spotlightPerform(@Field("performID") String performID, @Field("userID") String userID);
 
 
     //获取配置参数
@@ -416,6 +427,14 @@ public interface ApiService {
     @POST("VenueBasicsController/getSingPerformerDetail")
     Observable<ResultResponse<MusicianDetailModel>> getSingPerformerDetail(@Field("performerID") String performerID,
                                                                            @Field("userID") String userID);
+
+    //表演者个人主页：举报表演者
+    @FormUrlEncoded
+    @POST("VenueBasicsController/reportPerformer")
+    Observable<ResultResponse<Object>> reportPerformer(@Field("beReportedID") String beReportedID,
+                                                       @Field("reporterID") String reporterID,
+                                                       @Field("reportContent") String reportContent);
+
     //表演者个人主页：收藏表演者
     @FormUrlEncoded
     @POST("VenueBasicsController/collectionPerformer")
@@ -427,7 +446,8 @@ public interface ApiService {
     @POST("VenueBasicsController/cancelCollectionPerformer")
     Observable<ResultResponse<MusicianDetailModel>> cancelCollectionPerformer(@Field("performerID") String performerID,
                                                                               @Field("userID") String userID);
-    //表演者个人主页：取消收藏表演者
+
+    //演出厅用户: 表演机会中选择表演者
     @FormUrlEncoded
     @POST("VenueBookingsController/choosePerformer")
     Observable<ResultResponse<Object>> choosePerformer(@Field("applyID") String applyID);

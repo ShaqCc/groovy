@@ -14,6 +14,7 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.ui.fragment.MeFragment;
 import com.bunny.groovy.ui.fragment.ScheduleFragment;
 import com.bunny.groovy.ui.fragment.venue.VenueOverviewFragment;
+import com.bunny.groovy.ui.fragment.wallet.VenueScheduleFragment;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.weidget.BottomBarItem;
@@ -135,7 +136,7 @@ public class VenueMainActivity extends BaseActivity {
     private void intiFragments() {
         mFragments = new ArrayList<>(3);
         mFragments.add(new VenueOverviewFragment());
-        mFragments.add(new ScheduleFragment());
+        mFragments.add(new VenueScheduleFragment());
         mFragments.add(new MeFragment());
 
     }
