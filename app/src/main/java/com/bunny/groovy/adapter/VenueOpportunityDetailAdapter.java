@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
 import com.bunny.groovy.model.VenueOpportunityModel;
+import com.bunny.groovy.utils.Utils;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class VenueOpportunityDetailAdapter extends RecyclerView.Adapter<VenueOpp
         holder.viewTopLine.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
         holder.viewBottomLine.setVisibility((mList.size() > 0 && mList.size() == position + 1) ? View.INVISIBLE : View.VISIBLE);
         holder.tvName.setText(showModel.getUserName());
-        holder.tvStar.setText(showModel.getStarLevel());
+        holder.tvStar.setText(Utils.getStar(showModel.getStarLevel()));
         holder.tvType.setText(showModel.getPerformType());
         holder.tvDes.setText(showModel.getPerformDesc());
         holder.imgSelect.setImageResource(mIsChoose ? R.drawable.selector_perform_choosed_light : R.drawable.selector_perform_light);

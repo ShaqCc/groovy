@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_big"
+            android:textSize="@dimen/text_size_common"
             android:layout_centerVertical="true"
             tools:text="Oct 2st 1:10PM-3:20PM"/>
         <TextView
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
-            android:textSize="@dimen/text_size_common"
+            android:textSize="@dimen/text_size_small"
             android:layout_centerVertical="true"
             tools:text="Oct 2st 1:10PM-3:20PM"/>
         <LinearLayout
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="6dp">
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/item_notification_recyclerView"
                 android:layout_width="match_parent"

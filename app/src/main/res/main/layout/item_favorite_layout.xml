@@ -43,7 +43,7 @@
                 android:textSize="@dimen/text_size_small"
                 android:layout_marginLeft="16dp"
                 android:gravity="center"
-                android:drawableLeft="@mipmap/list_star"
+                android:drawableLeft="@drawable/list_star"
                 android:drawablePadding="4dp"
                 tools:text="2.0"/>
         </LinearLayout>
@@ -69,7 +69,7 @@
                 android:layout_toRightOf="@+id/item_favorite_tv_contact"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/list_phone"/>
+                android:src="@drawable/list_phone"/>
 
             <ImageView
                 android:id="@+id/item_favorite_iv_email"
@@ -78,7 +78,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/item_favorite_iv_phone"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/list_email"/>
+                android:src="@drawable/list_email"/>
 
             <TextView
                 android:id="@+id/item_favorite_tv_apply"

@@ -118,30 +118,53 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
             UIUtils.showBaseToast("Code must not be null.");
             return;
         }
-
-        if (mType == AppConstants.ACCOUNT_TYPE_PHONE) {
-            if (TextUtils.isEmpty(mEditEmail.getTrimmedString())) {
-                //邮箱为空
-                UIUtils.showBaseToast("E-mail must not be null.");
-                return;
-            } else if (!PatternUtils.isValidEmail(mEditEmail.getTrimmedString())) {
-                //邮箱不合法
-                UIUtils.showBaseToast("E-mail invalid.");
-                return;
-            }
-            VerifyEvent.verifyCode(mEditCode.getTrimmedString());
-        } else if (mType == AppConstants.ACCOUNT_TYPE_EMAIL) {
-            if (TextUtils.isEmpty(mEditPhone.getTrimmedString()))
-            //手机号为空
-            {
-                UIUtils.showBaseToast("Phone must not be null.");
-                return;
-            } else if (!PatternUtils.isUSphonenumber(mEditPhone.getTrimmedString()) && !PatternUtils.isCNPhone(mEditPhone.getTrimmedString())) {
-                UIUtils.showBaseToast("Phone invalid.");
-                return;
-            }
-            mPresenter.checkEmailCode(mEditCode.getTrimmedString(), URLEncoder.encode(mAccount));
+        if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
+            UIUtils.showBaseToast("Venue service must not be null.");
+            return;
         }
+        if (TextUtils.isEmpty(mVenuePhone.getTrimmedString())) {
+            UIUtils.showBaseToast("Booking telphone must not be null.");
+            return;
+        }
+        if (TextUtils.isEmpty(mVenueWebsite.getTrimmedString())) {
+            UIUtils.showBaseToast("Website telphone must not be null.");
+            return;
+        }
+        if (TextUtils.isEmpty(mVenueFacebook.getTrimmedString())) {
+            UIUtils.showBaseToast("Facebook must not be null.");
+            return;
+        }
+        if (TextUtils.isEmpty(mVenueTwitter.getTrimmedString())) {
+            UIUtils.showBaseToast("Twitter must not be null.");
+            return;
+        }
+//        if (mType == AppConstants.ACCOUNT_TYPE_PHONE) {
+//            if (TextUtils.isEmpty(mEditEmail.getTrimmedString())) {
+//                //邮箱为空
+//                UIUtils.showBaseToast("E-mail must not be null.");
+//                return;
+//            } else if (!PatternUtils.isValidEmail(mEditEmail.getTrimmedString())) {
+//                //邮箱不合法
+//                UIUtils.showBaseToast("E-mail invalid.");
+//                return;
+//            }
+//            VerifyEvent.verifyCode(mEditCode.getTrimmedString());
+//        } else if (mType == AppConstants.ACCOUNT_TYPE_EMAIL) {
+//            if (TextUtils.isEmpty(mEditPhone.getTrimmedString()))
+//            //手机号为空
+//            {
+//                UIUtils.showBaseToast("Phone must not be null.");
+//                return;
+//            } else if (!PatternUtils.isUSphonenumber(mEditPhone.getTrimmedString()) && !PatternUtils.isCNPhone(mEditPhone.getTrimmedString())) {
+//                UIUtils.showBaseToast("Phone invalid.");
+//                return;
+//            }
+        mPresenter.registerVenue(mAccount, mPassword, mEditPhone.getTrimmedString(), mEditEmail.getTrimmedString(),
+                mEditCode.getTrimmedString(), mVenueService.getTrimmedString(), mAddress, mVenuePhone.getTrimmedString(),
+                mVenueWebsite.getTrimmedString(), mLongitude, mLatitude, mPlaceId, mVenueTwitter.getTrimmedString()
+                , mVenueFacebook.getTrimmedString(), mHeadUrl);
+//            mPresenter.checkEmailCode(mEditCode.getTrimmedString(), URLEncoder.encode(mAccount));
+//        }
     }
 
     @Override
@@ -203,8 +226,8 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
             case AppConstants.Code_Verify_Correct:
                 mPresenter.registerVenue(mAccount, mPassword, mEditPhone.getTrimmedString(), mEditEmail.getTrimmedString(),
                         mEditCode.getTrimmedString(), mVenueService.getTrimmedString(), mAddress, mVenuePhone.getTrimmedString(),
-                        mVenueWebsite.getTrimmedString(), mLongitude, mLatitude, mPlaceId, mVenueTwitter.getTrimmedString(), mVenueFacebook.getTrimmedString(),
-                        mHeadUrl);
+                        mVenueWebsite.getTrimmedString(), mLongitude, mLatitude, mPlaceId, mVenueTwitter.getTrimmedString()
+                        , mVenueFacebook.getTrimmedString(), mHeadUrl);
                 break;
             case AppConstants.Code_Verify_Invalid:
                 UIUtils.showBaseToast("验证码不正确");

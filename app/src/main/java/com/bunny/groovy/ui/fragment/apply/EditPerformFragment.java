@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -21,7 +22,6 @@ import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.StyleModel;
-import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.model.VenueShowModel;
 import com.bunny.groovy.presenter.ApplyVenuePresenter;
 import com.bunny.groovy.utils.AppCacheData;
@@ -138,7 +138,7 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
             startTime = DateUtils.getDateHour(sVenueShow.getPerformStartDate());
             endTime = DateUtils.getDateHour(sVenueShow.getPerformEndDate());
         }
-        int index =sVenueShow.getPerformDesc().length();
+        int index = sVenueShow.getPerformDesc().length();
         etDesc.setSelection(index);
         tvNumber.setText(String.valueOf(index));
         etDesc.addTextChangedListener(new TextWatcher() {
@@ -364,7 +364,7 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         styleList = modelList;
         if (mPopupWindow == null)
             initStylePop(modelList);
-        mPopupWindow.showAtLocation(etStyle, Gravity.CENTER, 0, 0);
+        mPopupWindow.showAtLocation(etStyle, Gravity.CENTER, 0, UIUtils.dip2Px(15));
     }
 
 
@@ -383,6 +383,7 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         mPopupWindow.setTouchable(true);
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
+        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView recyclerview = (RecyclerView) popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());

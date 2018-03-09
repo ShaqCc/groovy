@@ -14,7 +14,7 @@
         android:layout_height="140px"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:src="@mipmap/venue_instead_pic" />
+        android:src="@drawable/venue_instead_pic" />
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:drawableLeft="@mipmap/list_star"
+                android:drawableLeft="@drawable/list_star"
                 android:drawablePadding="4dp"
                 android:text="4.1"
                 android:textColor="@color/white"

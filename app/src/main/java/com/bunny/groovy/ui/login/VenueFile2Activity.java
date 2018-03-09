@@ -1,6 +1,7 @@
 package com.bunny.groovy.ui.login;
 
 import android.app.Activity;
+import android.text.TextUtils;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
@@ -22,9 +23,12 @@ public class VenueFile2Activity extends BaseActivity<VenueRegisterPresenter> imp
 
     @OnClick(R.id.tv_go)
     void go() {
-        AppCacheData.getFileMap().put("facebookAccount", etFaceBook.getTrimmedString());
-        AppCacheData.getFileMap().put("twitterAccount", etTwitter.getTrimmedString());
-
+        if (!TextUtils.isEmpty(etFaceBook.getTrimmedString())) {
+            AppCacheData.getFileMap().put("facebookAccount", etFaceBook.getTrimmedString());
+        }
+        if (!TextUtils.isEmpty(etTwitter.getTrimmedString())) {
+            AppCacheData.getFileMap().put("twitterAccount", etTwitter.getTrimmedString());
+        }
         mPresenter.updateVenueInfo(AppCacheData.getFileMap());
     }
 

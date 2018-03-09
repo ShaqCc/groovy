@@ -91,7 +91,7 @@ public class SearchMusicianFragment extends BaseFragment<SearchMusicianListPrese
 
     @Override
     protected void loadData() {
-
+        mPresenter.searchPerformer("1");
     }
 
     int PLACE_PICKER_REQUEST = 1;

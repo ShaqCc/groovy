@@ -19,8 +19,8 @@
         android:id="@+id/et_signup_password"
         style="@style/base_edit_text_style"
         app:x_disableEmoji="true"
-        app:x_hidePwdDrawable="@mipmap/login_closeeye"
-        app:x_showPwdDrawable="@mipmap/login_openeye"
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_showPwdDrawable="@drawable/login_openeye"
         android:hint="@string/password"
         android:inputType="textPassword" />
 
@@ -28,8 +28,8 @@
         android:id="@+id/et_signup_password_again"
         style="@style/base_edit_text_style"
         app:x_disableEmoji="true"
-        app:x_hidePwdDrawable="@mipmap/login_closeeye"
-        app:x_showPwdDrawable="@mipmap/login_openeye"
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_showPwdDrawable="@drawable/login_openeye"
         android:hint="@string/password_again"
         android:inputType="textPassword" />
 

@@ -58,7 +58,7 @@ public class WalletFragment extends BaseFragment<PayPalPresenter> implements IPa
 
     @Override
     protected void loadData() {
-        mPresenter.updateUserData();
+        mPresenter.updateUserData(AppCacheData.getPerformerUserModel().getUserType());
     }
 
     @Override

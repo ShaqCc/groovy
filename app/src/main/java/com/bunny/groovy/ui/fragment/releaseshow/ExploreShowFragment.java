@@ -325,7 +325,7 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
         mTvTime.setText(bean.getPerformTime());
         mTvDistance.setText(bean.getDistance() + "mi");
         mTvScore.setText(bean.getVenueScore());
-        Glide.with(mActivity).load(bean.getHeadImg()).error(R.mipmap.venue_instead_pic).into(mHeadImg);
+        Glide.with(mActivity).load(bean.getHeadImg()).error(R.drawable.venue_instead_pic).into(mHeadImg);
     }
 
     private int lastMarkerSelected = -2;//上一个显示的marker index

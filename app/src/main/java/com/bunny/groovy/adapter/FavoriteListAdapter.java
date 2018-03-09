@@ -50,11 +50,11 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         VenueModel model = mModelList.get(position);
         if (!TextUtils.isEmpty(model.getHeadImg())) {
             Glide.with(mContext).load(model.getHeadImg())
-                    .placeholder(R.mipmap.icon_load_pic)
-                    .error(R.mipmap.icon_load_pic)
+                    .placeholder(R.drawable.icon_load_pic)
+                    .error(R.drawable.icon_load_pic)
                     .into(holder.mIvHead);
         } else {
-            holder.mIvHead.setImageResource(R.mipmap.icon_load_pic);
+            holder.mIvHead.setImageResource(R.drawable.icon_load_pic);
         }
         holder.mTvName.setText(model.getVenueName());
         holder.mTvStar.setText(model.getVenueScore());

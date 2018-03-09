@@ -73,8 +73,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.HisHol
                 break;
         }
         Glide.with(mContext).load(bean.getHeadImg())
-                .placeholder(R.mipmap.venue_instead_pic)
-                .error(R.mipmap.venue_instead_pic)
+                .placeholder(R.drawable.venue_instead_pic)
+                .error(R.drawable.venue_instead_pic)
                 .into(holder.mIvHead);
         holder.mTvStar.setText(bean.getVenueScore());
         holder.mTvName.setText(bean.getVenueName());

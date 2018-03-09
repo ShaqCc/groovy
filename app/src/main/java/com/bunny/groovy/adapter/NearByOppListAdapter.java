@@ -51,11 +51,11 @@ public class NearByOppListAdapter extends RecyclerView.Adapter<NearByOppListAdap
         OpportunityModel model = mModelList.get(position);
         if (!TextUtils.isEmpty(model.getHeadImg())) {
             Glide.with(mContext).load(model.getHeadImg())
-                    .placeholder(R.mipmap.venue_instead_pic)
-                    .error(R.mipmap.venue_instead_pic)
+                    .placeholder(R.drawable.venue_instead_pic)
+                    .error(R.drawable.venue_instead_pic)
                     .into(holder.mIvHead);
         } else {
-            holder.mIvHead.setImageResource(R.mipmap.venue_instead_pic);
+            holder.mIvHead.setImageResource(R.drawable.venue_instead_pic);
         }
         holder.mTvName.setText(model.getVenueName());
         holder.mTvStar.setText(model.getVenueScore());

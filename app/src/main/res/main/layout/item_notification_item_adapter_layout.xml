@@ -42,9 +42,9 @@
                 android:id="@+id/item_notification_tv_venueStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.1"
+                android:text="0.0"
                 android:layout_marginLeft="16dp"
-                android:drawableLeft="@mipmap/list_star"
+                android:drawableLeft="@drawable/list_star"
                 android:drawablePadding="4dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small"/>

@@ -102,9 +102,9 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         if (callBack != null) {
             boolean isPlay = callBack.isPlayerMusic();
             if (isPlay) {
-                btPlay.setBackgroundResource(R.mipmap.login_stop);
+                btPlay.setBackgroundResource(R.drawable.login_stop);
             } else {
-                btPlay.setBackgroundResource(R.mipmap.login_play);
+                btPlay.setBackgroundResource(R.drawable.login_play);
             }
         }
     }
@@ -172,7 +172,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
 
     @Subscribe
     public void onMusicEnd(String event) {
-        btPlay.setBackgroundResource(R.mipmap.login_play);
+        btPlay.setBackgroundResource(R.drawable.login_play);
     }
 
 
@@ -229,7 +229,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         super.onPause();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            btPlay.setBackgroundResource(R.mipmap.login_play);
+            btPlay.setBackgroundResource(R.drawable.login_play);
         }
     }
 
@@ -238,7 +238,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         super.onDestroy();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            btPlay.setBackgroundResource(R.mipmap.login_play);
+            btPlay.setBackgroundResource(R.drawable.login_play);
         }
     }
 

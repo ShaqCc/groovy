@@ -312,14 +312,14 @@ public class InviteMusicianFragment extends BaseFragment<InviteMusicianPresenter
         etTime.setFocusable(false);
         if (!TextUtils.isEmpty(mPerformerModel.getHeadImg())) {
             Glide.with(getActivity()).load(mPerformerModel.getHeadImg())
-                    .placeholder(R.mipmap.icon_load_pic)
-                    .error(R.mipmap.icon_load_pic).dontAnimate()
+                    .placeholder(R.drawable.icon_load_pic)
+                    .error(R.drawable.icon_load_pic).dontAnimate()
                     .into(mHeadView);
         } else {
-            mHeadView.setImageResource(R.mipmap.icon_load_pic);
+            mHeadView.setImageResource(R.drawable.icon_load_pic);
         }
         mNameView.setText(mPerformerModel.getUserName());
-        mStarView.setText(mPerformerModel.getStarLevel());
+        mStarView.setText(Utils.getStar(mPerformerModel.getStarLevel()));
         mStyleView.setText(mPerformerModel.getPerformTypeName());
         mPhoneView.setText(mPerformerModel.getPhoneNumber());
     }

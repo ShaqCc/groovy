@@ -56,20 +56,20 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
         final StyleModel styleModel = dataList.get(position);
         if (!TextUtils.isEmpty(styleModel.getTypeImg())) {
             Glide.with(mContext).load(styleModel.getTypeImg()).into(holder.mIvPic);
-        } else holder.mIvPic.setImageResource(R.mipmap.icon_load_pic);
+        } else holder.mIvPic.setImageResource(R.drawable.icon_load_pic);
         holder.itemView.setLayoutParams(params);
         KLog.d(position + "--" + styleModel.isChecked());
         if (styleModel.isChecked()) {
-            holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square_selected);
+            holder.mTvCheckBox.setBackgroundResource(R.drawable.btn_square_selected);
         } else {
-            holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square);
+            holder.mTvCheckBox.setBackgroundResource(R.drawable.btn_square);
         }
         holder.mTvName.setText(styleModel.getTypeName());
         holder.mTvCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (styleModel.isChecked()) {
-                    holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square);
+                    holder.mTvCheckBox.setBackgroundResource(R.drawable.btn_square);
                     dataList.get(position).setChecked(false);
                 } else {
                     mCount = 0;
@@ -81,7 +81,7 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
                         UIUtils.showBaseToast("最多选两个");
                         return;
                     }
-                    holder.mTvCheckBox.setBackgroundResource(R.mipmap.btn_square_selected);
+                    holder.mTvCheckBox.setBackgroundResource(R.drawable.btn_square_selected);
                     dataList.get(position).setChecked(true);
                 }
             }

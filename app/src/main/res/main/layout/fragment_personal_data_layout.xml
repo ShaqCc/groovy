@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|bottom"
-                android:src="@mipmap/login_photo" />
+                android:src="@drawable/login_photo" />
         </FrameLayout>
 
         <TextView
@@ -103,7 +103,7 @@
                 android:id="@+id/personal_iv_play"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@mipmap/login_play" />
+                android:src="@drawable/login_play" />
 
             <TextView
                 android:id="@+id/personal_tv_replace"

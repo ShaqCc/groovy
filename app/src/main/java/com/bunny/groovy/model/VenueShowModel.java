@@ -11,47 +11,47 @@ import android.os.Parcelable;
 public class VenueShowModel implements Parcelable {
 
     /**
-     "createDate": "2018-02-08 20:51",
-     "performID": "1234",
-     "venueID": "32",
-     "performStartDate": "2018-03-08 13:00",
-     "performEndDate": "2018-03-08 21:00",
-     "performType": "FOLK",
-     "performerID": "29",
-     "performState": "0",
-     "isOpportunity": null,
-     "performerName": "熊孩子",
-     "performDesc": "流行851",
-     "venueName": "龙东大道金科路",
-     "venueAddress": "中国上海市浦东新区龙东大道 邮政编码: 201203",
-     "publishType": "0",
-     "venueLongitude": "121.6000",
-     "venueLatitude": "31.2200",
-     "performDate": "Mar 08 2018",
-     "performTime": "1:00PM-9:00PM",
-     "performerImg": "http://47.100.104.82:8083/upload/headImgFile/headImg_1514280946972.jpg",
-     "performerMusic": "http://47.100.104.82:8083/upload/musicFile/music_1514280946971.m4a",
-     "performerScore": "3.0000",
-     "performerFacebook": "ffghj",
-     "performerTwitter": "ccbhj",
-     "performerSoundcloud": "ffghh",
-     "performerSignature": "hhjjj",
-     "venueScore": "0.00",
-     "venueFacebook": "246781",
-     "venueTwitter": "356889",
-     "venueTypeName": "Exclude 21+",
-     "isHaveCharges": "1",
-     "venueBookingPhone": "13761434342",
-     "venueWebSite": "tx-46789",
-     "venueImg": "http://47.100.104.82:8083/upload/headImgFile/headImg_1516593311012.jpg",
-     "venueEmail": null,
-     "performList": null,
-     "newPerformInfo": null,
-     "isEvaluate": null,
-     "performerStarLevel": null,
-     "evaluateDate": null,
-     "evaluateContent": null,
-     "distance": null
+     * "createDate": "2018-02-08 20:51",
+     * "performID": "1234",
+     * "venueID": "32",
+     * "performStartDate": "2018-03-08 13:00",
+     * "performEndDate": "2018-03-08 21:00",
+     * "performType": "FOLK",
+     * "performerID": "29",
+     * "performState": "0",
+     * "isOpportunity": null,
+     * "performerName": "熊孩子",
+     * "performDesc": "流行851",
+     * "venueName": "龙东大道金科路",
+     * "venueAddress": "中国上海市浦东新区龙东大道 邮政编码: 201203",
+     * "publishType": "0",
+     * "venueLongitude": "121.6000",
+     * "venueLatitude": "31.2200",
+     * "performDate": "Mar 08 2018",
+     * "performTime": "1:00PM-9:00PM",
+     * "performerImg": "http://47.100.104.82:8083/upload/headImgFile/headImg_1514280946972.jpg",
+     * "performerMusic": "http://47.100.104.82:8083/upload/musicFile/music_1514280946971.m4a",
+     * "performerScore": "3.0000",
+     * "performerFacebook": "ffghj",
+     * "performerTwitter": "ccbhj",
+     * "performerSoundcloud": "ffghh",
+     * "performerSignature": "hhjjj",
+     * "venueScore": "0.00",
+     * "venueFacebook": "246781",
+     * "venueTwitter": "356889",
+     * "venueTypeName": "Exclude 21+",
+     * "isHaveCharges": "1",
+     * "venueBookingPhone": "13761434342",
+     * "venueWebSite": "tx-46789",
+     * "venueImg": "http://47.100.104.82:8083/upload/headImgFile/headImg_1516593311012.jpg",
+     * "venueEmail": null,
+     * "performList": null,
+     * "newPerformInfo": null,
+     * "isEvaluate": null,
+     * "performerStarLevel": null,
+     * "evaluateDate": null,
+     * "evaluateContent": null,
+     * "distance": null
      */
 
     private String createDate;
@@ -96,6 +96,9 @@ public class VenueShowModel implements Parcelable {
     private String evaluateContent;
     private String distance;
 
+    public VenueShowModel() {
+        super();
+    }
 
     protected VenueShowModel(Parcel in) {
         createDate = in.readString();

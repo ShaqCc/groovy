@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bunny.groovy.BuildConfig;
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.listener.PermissionListener;
@@ -139,7 +140,6 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
     //下一步
     @OnClick(R.id.tv_venue_next)
     void next() {
-        nextStep();
         String pwd = mPassword.getTrimmedString();
         String pwdAgain = mPasswordAgain.getTrimmedString();
         String publicName = mPublicName.getTrimmedString();
@@ -176,7 +176,12 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
         } catch (GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
             UIUtils.showBaseToast("GooglePlay services not available!");
-
+        }
+        if(BuildConfig.DEBUG){
+            mAddress.setText("中国上海市浦东新区");
+            mLongitude = "121.6000";
+            mLatitude = "31.2200";
+            mPlaceId = "ChIJG9rV8LJ3sjURgCSirgwJAGM";
         }
     }
     //登陆
@@ -223,7 +228,7 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
                 mLatitude = String.valueOf(place.getLatLng().latitude);
                 mPlaceId = String.valueOf(place.getId());
                 String toastMsg = String.format("Place: %s", place.getName());
-                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+                UIUtils.showToast(toastMsg);
             }
         }
     }
@@ -239,7 +244,7 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
                 break;
             default:
             case "5000"://网络错误
-                UIUtils.showBaseToast("服务器出错");
+//                UIUtils.showBaseToast("服务器出错");
                 break;
         }
     }

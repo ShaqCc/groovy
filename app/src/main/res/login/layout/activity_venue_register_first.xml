@@ -10,40 +10,42 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_venue_head_pic"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/head"
-            app:civ_border_width="2dp"
             app:civ_border_color="@color/white"
-            />
+            app:civ_border_width="2dp" />
+
         <ImageView
             android:id="@+id/iv_venue_select_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/login_photo"
-            android:layout_gravity="right|bottom"/>
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/login_photo" />
     </FrameLayout>
+
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_phone_or_email"
         style="@style/base_edit_text_style"
         android:layout_marginTop="30dp"
         android:hint="@string/venue_register_phone_or_email"
-        app:x_importantWord="true"
-        app:x_disableEmoji="true" />
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_password"
         style="@style/base_edit_text_style"
         android:hint="@string/venue_register_password"
         android:inputType="textPassword"
-        app:x_importantWord="true"
         app:x_disableEmoji="true"
-        app:x_hidePwdDrawable="@mipmap/login_closeeye"
-        app:x_showPwdDrawable="@mipmap/login_openeye" />
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_importantWord="true"
+        app:x_showPwdDrawable="@drawable/login_openeye" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_password_again"
@@ -51,32 +53,37 @@
         android:hint="@string/venue_register_password_again"
         android:inputType="textPassword"
         app:x_disableEmoji="true"
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
         app:x_importantWord="true"
-        app:x_hidePwdDrawable="@mipmap/login_closeeye"
-        app:x_showPwdDrawable="@mipmap/login_openeye" />
+        app:x_showPwdDrawable="@drawable/login_openeye" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_public_name"
         style="@style/base_edit_text_style"
         android:hint="@string/venue_register_name"
-        app:x_importantWord="true"
-        app:x_disableEmoji="true" />
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
 
-    <com.xw.repo.XEditText
-        android:id="@+id/et_venue_address"
-        style="@style/base_edit_text_style"
-        android:hint="@string/venue_register_address"/>
+
+        <com.xw.repo.XEditText
+            android:id="@+id/et_venue_address"
+            style="@style/base_edit_text_style"
+            android:hint="@string/venue_register_address"
+            android:focusable="false"
+            app:x_importantWord="true" />
+
     <TextView
         android:id="@+id/tv_venue_protocol"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="110px"
         android:layout_marginLeft="115px"
+        android:layout_marginRight="110px"
         android:drawableLeft="@drawable/icon_start"
         android:drawablePadding="3dp"
         android:text="@string/required"
         android:textColor="@color/common_grey"
-        android:textSize="@dimen/text_size_small"/>
+        android:textSize="@dimen/text_size_small" />
+
     <TextView
         android:id="@+id/tv_venue_next"
         style="@style/role_selected_text_style"

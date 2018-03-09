@@ -38,6 +38,7 @@ public class VenueOpportunityDetailFragment extends BaseFragment {
     public static String KEY_SHOW_BEAN = "key_show_bean";
     private static VenueOpportunityModel sModel;
     private int mPosition = 0;
+    private List<VenueOpportunityModel.ApplyList> mList;
 
     public static void launch(Activity activity, Bundle bundle) {
         sModel = bundle.getParcelable(KEY_SHOW_BEAN);
@@ -51,6 +52,10 @@ public class VenueOpportunityDetailFragment extends BaseFragment {
     TextView mOpportunityDate;
     @Bind(R.id.opportunity_choose_layout)
     LinearLayout mChooseLayout;
+    @Bind(R.id.opportunity_tv_choose)
+    TextView mTvChoose;
+    @Bind(R.id.venue_des)
+    TextView mTvDes;
 
 
     @Override
@@ -59,11 +64,14 @@ public class VenueOpportunityDetailFragment extends BaseFragment {
         if (sModel != null) {
             String status = sModel.getOpportunityState();
             mChooseLayout.setVisibility(TextUtils.equals("0", status) ? View.VISIBLE : View.GONE);
+            mList = sModel.getApplyList();
+            mTvChoose.setText(mList.size() > 0 ? "CHOOSE" : "No one is involved yet.");
+            mTvDes.setText(sModel.getPerformDesc());
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("Show Opportunity on ").append(sModel.getPerformDate()).append(" ").append(sModel.getPerformTime());
             mOpportunityDate.setText(stringBuilder.toString());
             mRecycleView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-            final VenueOpportunityDetailAdapter adapter = new VenueOpportunityDetailAdapter(sModel.getApplyList(), TextUtils.equals(status, "0") ? false : true);
+            final VenueOpportunityDetailAdapter adapter = new VenueOpportunityDetailAdapter(mList, TextUtils.equals(status, "0") ? false : true);
             adapter.setOnSelectListener(new VenueOpportunityDetailAdapter.OnSelectListener() {
                 @Override
                 public void select(int position) {
@@ -93,9 +101,8 @@ public class VenueOpportunityDetailFragment extends BaseFragment {
     @OnClick(R.id.opportunity_tv_choose)
     public void reject() {//opportunity-选择表演者
         ApiService apiService = ApiRetrofit.getInstance().getApiService();
-        List<VenueOpportunityModel.ApplyList> list = sModel.getApplyList();
-        if (list.size() >= mPosition) {
-            apiService.choosePerformer(list.get(mPosition).getApplyID())
+        if (mList.size() != 0 && mList.size() >= mPosition) {
+            apiService.choosePerformer(mList.get(mPosition).getApplyID())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<ResultResponse<Object>>() {

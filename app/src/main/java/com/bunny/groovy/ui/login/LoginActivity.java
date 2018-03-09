@@ -196,6 +196,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @Override
     public void launchMainPage() {
         LoginBlock.getInstance().handleCheckSuccess(String.valueOf(mUserType));
+        finish();
     }
 
     /**

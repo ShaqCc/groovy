@@ -1,10 +1,13 @@
 package com.bunny.groovy.ui.fragment.wallet;
 
+import android.text.TextUtils;
+
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 
@@ -67,8 +70,9 @@ public class PayPalPresenter extends BasePresenter<IPayPalView> {
     /**
      * 获取用户数据
      */
-    public void updateUserData() {
-        addSubscription(apiService.getPerformerInfo(),
+    public void updateUserData(String type) {
+        addSubscription(TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_MUSICIAN))
+                        ? apiService.getPerformerInfo() : apiService.getVenueDetailInfo(),
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {

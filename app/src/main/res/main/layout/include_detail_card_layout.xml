@@ -35,9 +35,8 @@
                 android:id="@+id/include_detail_tv_venueStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.1"
                 android:layout_marginLeft="16dp"
-                android:drawableLeft="@mipmap/list_star"
+                android:drawableLeft="@drawable/list_star"
                 android:drawablePadding="4dp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_small"/>
@@ -58,14 +57,14 @@
                 android:id="@+id/facebook_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/user_facebook"/>
+                android:src="@drawable/user_facebook"/>
 
             <ImageView
                 android:id="@+id/twitter_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:src="@mipmap/user_twiter"/>
+                android:src="@drawable/user_twiter"/>
         </LinearLayout>
 
         <LinearLayout
@@ -132,5 +131,5 @@
         android:id="@+id/include_detail_iv_head"
         android:layout_width="300px"
         android:layout_height="300px"
-        android:src="@mipmap/venue_instead_pic"/>
+        android:src="@drawable/venue_instead_pic"/>
 </LinearLayout>

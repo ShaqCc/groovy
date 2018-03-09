@@ -45,9 +45,9 @@ public class VenueNotify1ListAdapter extends RecyclerView.Adapter<VenueNotify1Li
     public void onBindViewHolder(NotifyHolder holder, int position) {
         VenueOpportunityModel showModel = mList.get(position);
         StringBuilder stringBuilder = new StringBuilder("Show Opportunity on ");
-        if (!TextUtils.isEmpty(showModel.getPerformDate())) {
+        /*if (!TextUtils.isEmpty(showModel.getPerformDate())) {
             holder.tvDate.setText(stringBuilder.append(showModel.getPerformDate()));
-        }
+        }*/
         if (!TextUtils.isEmpty(showModel.getPerformTime())) {
             holder.tvDate.setText(" ");
             holder.tvDate.setText(stringBuilder.append(showModel.getPerformTime()));

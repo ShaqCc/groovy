@@ -12,6 +12,7 @@ import com.bunny.groovy.model.VenueApplyModel;
 import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.model.VenueInViteModel;
 import com.bunny.groovy.model.VenueOpportunityModel;
+import com.bunny.groovy.model.VenueShowModel;
 import com.bunny.groovy.model.WalletBean;
 
 import java.util.List;
@@ -264,6 +265,10 @@ public interface ApiService {
     @POST("PerformerMeController/getWalletList")
     Observable<ResultResponse<List<WalletBean>>> getWalletList();
 
+    //演出厅用户--获取账单明细记录
+    @POST("VenueMeController/getUserTransactionRecord")
+    Observable<ResultResponse<List<WalletBean>>> getUserTransactionRecord();
+
 
     //获取PayPal 的token
     @FormUrlEncoded
@@ -396,7 +401,7 @@ public interface ApiService {
 
     //获取下一场演出信息，包含演出详情
     @POST("VenueBookingsController/getNextPerformInfo")
-    Observable<ResultResponse<ShowModel>> getNextPerformInfo(
+    Observable<ResultResponse<VenueShowModel>> getNextPerformInfo(
             @Query("venueID") String venueID
     );
 
@@ -414,7 +419,7 @@ public interface ApiService {
                                                                                 @Field("orderType") String orderType,
                                                                                 @Field("performType") String performType);
 
-    //获取表演者列表
+    //邀请表演者
     @FormUrlEncoded
     @POST("VenueBookingsController/addPerformInvitation")
     Observable<ResultResponse<Object>> addPerformInvitation(@Field("performerID") String performerID,
@@ -451,4 +456,32 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("VenueBookingsController/choosePerformer")
     Observable<ResultResponse<Object>> choosePerformer(@Field("applyID") String applyID);
+
+    //查看演出厅营业时间安排
+    @POST("VenueMeController/getVenueSchedule")
+    Observable<ResultResponse<List<VenueModel.ScheduleListBean>>> getVenueSchedule();
+
+    //查看演出厅营业时间安排
+    @FormUrlEncoded
+    @POST("VenueMeController/updateScheduleDate")
+    Observable<ResultResponse<Object>> updateScheduleDate(@Field("scheduleID") String scheduleID,
+                                                          @Field("startDate") String startDate, @Field("endDate") String endDate);
+    //修改演出厅是否有服务费状态
+    @FormUrlEncoded
+    @POST("VenueMeController/updateScheduleIsHaveCharges")
+    Observable<ResultResponse<Object>> updateScheduleIsHaveCharges(@Field("scheduleID") String scheduleID,
+                                                          @Field("isHaveCharges") String isHaveCharges);
+
+    //获取历史表演记录
+    @POST("VenueMeController/getPerformHistoryList")
+    Observable<ResultResponse<List<VenueShowModel>>> getPerformHistoryList();
+
+    //获取收藏的表演者列表
+    @FormUrlEncoded
+    @POST("VenueMeController/getCollectionPerformerList")
+    Observable<ResultResponse<List<PerformerUserModel>>> getCollectionPerformerList(@Field("userID") String userID);
+
+    //演播厅个人资料-编辑个人资料
+    @POST("VenueMeController/updateVenueInfo")
+    Observable<ResultResponse<Object>> updateVenueInfo(@Body RequestBody body);
 }

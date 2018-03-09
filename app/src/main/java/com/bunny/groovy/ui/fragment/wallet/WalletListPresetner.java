@@ -37,4 +37,26 @@ public class WalletListPresetner extends BasePresenter<IWalletListView> {
             }
         });
     }
+
+    public void getUserTransactionRecord(){
+        addSubscription(apiService.getUserTransactionRecord(), new SubscriberCallBack<List<WalletBean>>(mView.get()) {
+
+            @Override
+            protected boolean isShowProgress() {
+                return true;
+            }
+
+            @Override
+            protected void onSuccess(List<WalletBean> response) {
+                if (response!=null && response.size()>0){
+                    mView.setListData(response);
+                }else mView.noData();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+                mView.noData();
+            }
+        });
+    }
 }

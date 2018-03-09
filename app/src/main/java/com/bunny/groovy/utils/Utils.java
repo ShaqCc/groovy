@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bunny.groovy.model.MusicBean;
@@ -18,6 +19,7 @@ import com.socks.library.KLog;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -299,5 +301,19 @@ public class Utils {
         } catch (Exception e) {
         }
         return 0;
+    }
+
+    public static String getStar(String star){
+        String starStr = "0.0";
+        if(!TextUtils.isEmpty(star)){
+            try {
+                double starDouble = Double.parseDouble(star);
+                DecimalFormat decimalFormat = new DecimalFormat("0.0");
+                starStr = decimalFormat.format(starDouble);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return starStr;
     }
 }

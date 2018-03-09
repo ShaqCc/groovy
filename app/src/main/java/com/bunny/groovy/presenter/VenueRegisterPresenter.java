@@ -1,12 +1,13 @@
 package com.bunny.groovy.presenter;
 
+import android.content.Intent;
 import android.text.TextUtils;
 
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.ResultResponse;
-import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.VenueMainActivity;
+import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.view.ISingUpView;
 
@@ -78,6 +79,8 @@ public class VenueRegisterPresenter extends BasePresenter<ISingUpView> {
             if (img.isFile()) {
                 builder.addFormDataPart("imgfile", img.getName(), RequestBody.create(MediaType.parse("image/*"), img));
             }
+        } else {
+            builder.addFormDataPart("imgfile", "image.jpg", RequestBody.create(MultipartBody.FORM, ""));
         }
 
         RequestBody build = builder.build();
@@ -103,31 +106,32 @@ public class VenueRegisterPresenter extends BasePresenter<ISingUpView> {
     }
 
     public void registerVenue(String userName, String userPwd, String telephone, String userEmail,
-                               String checkCode, String venueTypeName, String venueAddress, String phoneNumber,
-                               String webSiteAddress, String longitude, String latitude,String placeID, String twitterAccount,
-                               String facebookAccount, String imgfile) {
+                              String checkCode, String venueTypeName, String venueAddress, String phoneNumber,
+                              String webSiteAddress, String longitude, String latitude, String placeID, String twitterAccount,
+                              String facebookAccount, String imgfile) {
         Map<String, String> fileMap = new HashMap<>();
-        fileMap.put("userName",userName);
-        fileMap.put("userPwd",userPwd);
-        fileMap.put("telephone",telephone);
-        fileMap.put("userEmail",userEmail);
-        fileMap.put("checkCode",checkCode);
-        fileMap.put("venueTypeName",venueTypeName);
-        fileMap.put("venueAddress",venueAddress);
-        fileMap.put("phoneNumber",phoneNumber);
-        fileMap.put("webSiteAddress",webSiteAddress);
-        fileMap.put("longitude",longitude);
-        fileMap.put("latitude",latitude);
-        fileMap.put("twitterAccount",twitterAccount);
-        fileMap.put("facebookAccount",facebookAccount);
-        fileMap.put("placeID",placeID);
+        fileMap.put("userName", userName);
+        fileMap.put("userPwd", userPwd);
+        fileMap.put("telephone", telephone);
+        fileMap.put("userEmail", userEmail);
+        fileMap.put("checkCode", checkCode);
+        fileMap.put("venueTypeName", venueTypeName);
+        fileMap.put("venueAddress", venueAddress);
+        fileMap.put("phoneNumber", phoneNumber);
+        fileMap.put("webSiteAddress", webSiteAddress);
+        fileMap.put("longitude", longitude);
+        fileMap.put("latitude", latitude);
+        fileMap.put("twitterAccount", twitterAccount);
+        fileMap.put("facebookAccount", facebookAccount);
+        fileMap.put("placeID", placeID);
         //构建body
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         Set<Map.Entry<String, String>> entries = fileMap.entrySet();
         for (Map.Entry<String, String> entry :
                 entries) {
             //文本参数
-                if(!TextUtils.isEmpty(entry.getValue()))builder.addFormDataPart(entry.getKey(), entry.getValue());
+            if (!TextUtils.isEmpty(entry.getValue()) && (!entry.getValue().equals("imgfile")))
+                builder.addFormDataPart(entry.getKey(), entry.getValue());
         }
         //文件参数
         if (!TextUtils.isEmpty(imgfile)) {
@@ -150,9 +154,9 @@ public class VenueRegisterPresenter extends BasePresenter<ISingUpView> {
 
             @Override
             protected void onSuccess(Object response) {
-                MainActivity.launch(mView.get());
                 mView.get().setResult(AppConstants.ACTIVITY_FINISH);
                 mView.get().finish();
+                mView.get().startActivity(new Intent(mView.get(), LoginActivity.class));
             }
 
             @Override

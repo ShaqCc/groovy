@@ -119,7 +119,7 @@ public class VenueDetailFragment extends BaseFragment<VenueDetailPresenter> impl
     public void setView(VenueModel model) {
         venueModel = model;
         mTvVenueName.setText(model.getVenueName());
-        mTvScore.setText(model.getVenueScore());
+        mTvScore.setText(Utils.getStar(model.getVenueScore()));
         mTvTel.setText(model.getPhoneNumber());
         mTvAddress.setText(model.getVenueAddress());
         mTvEmail.setText(model.getWebSiteAddress());
@@ -143,7 +143,7 @@ public class VenueDetailFragment extends BaseFragment<VenueDetailPresenter> impl
         }
 
 
-        Glide.with(mActivity).load(model.getHeadImg()).error(R.mipmap.venue_instead_pic).into(mHead);
+        Glide.with(mActivity).load(model.getHeadImg()).error(R.drawable.venue_instead_pic).into(mHead);
         //set list
         if (mAdapter == null) {
             mAdapter = new VenueScheduleAdapter(model.getScheduleList());

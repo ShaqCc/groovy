@@ -147,9 +147,9 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
         if (callBack != null) {
             boolean isPlay = callBack.isPlayerMusic();
             if (isPlay) {
-                mIvPlay.setImageResource(R.mipmap.login_stop);
+                mIvPlay.setImageResource(R.drawable.login_stop);
             } else {
-                mIvPlay.setImageResource(R.mipmap.login_play);
+                mIvPlay.setImageResource(R.drawable.login_play);
             }
         }
     }
@@ -331,7 +331,7 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
         super.onPause();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            mIvPlay.setBackgroundResource(R.mipmap.login_play);
+            mIvPlay.setBackgroundResource(R.drawable.login_play);
         }
     }
 
@@ -340,7 +340,7 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
         super.onDestroy();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            mIvPlay.setBackgroundResource(R.mipmap.login_play);
+            mIvPlay.setBackgroundResource(R.drawable.login_play);
         }
     }
 }

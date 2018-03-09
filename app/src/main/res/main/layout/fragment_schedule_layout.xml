@@ -19,7 +19,7 @@
             android:paddingBottom="16dp"
             android:paddingRight="10dp"
             android:paddingTop="16dp"
-            android:src="@mipmap/icon_left"/>
+            android:src="@drawable/icon_left"/>
 
         <TextView
             android:id="@+id/schedule_tv_time"
@@ -36,7 +36,7 @@
             android:paddingBottom="16dp"
             android:paddingLeft="10dp"
             android:paddingTop="16dp"
-            android:src="@mipmap/icon_right"/>
+            android:src="@drawable/icon_right"/>
     </LinearLayout>
 
 
@@ -278,7 +278,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@mipmap/icon_shrink"/>
+                android:src="@drawable/icon_shrink"/>
         </FrameLayout>
 
         <TextView

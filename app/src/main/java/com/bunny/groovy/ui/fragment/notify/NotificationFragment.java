@@ -37,6 +37,7 @@ public class NotificationFragment extends BaseFragment {
     private int mType;
 
     private String[] titleArray = new String[]{"OPPORTUNITY", "INVITE", "APPLY"};
+    private String[] titleAVenueArray = new String[]{"OPPORTUNITY", "APPLY", "INVITE"};
 
     private List<BaseListFragment> mFragments = new ArrayList<>();
 
@@ -101,7 +102,7 @@ public class NotificationFragment extends BaseFragment {
              mFragments.add(release);
          }
 
-        UserCenterAdapter adapter = new UserCenterAdapter(mFragments, titleArray, getChildFragmentManager());
+        UserCenterAdapter adapter = new UserCenterAdapter(mFragments, mType == 2 ? titleAVenueArray : titleArray, getChildFragmentManager());
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(adapter);
         slidingTabLayout.setDistributeEvenly(true);

@@ -64,10 +64,10 @@
 
                 <ImageView
                     android:id="@+id/performer_me_play_music"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginLeft="20px"
-                    android:src="@mipmap/login_play"/>
+                    android:src="@drawable/login_play"/>
             </LinearLayout>
 
             <LinearLayout
@@ -81,21 +81,21 @@
                     android:id="@+id/performer_facebook_page"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/user_facebook"/>
+                    android:src="@drawable/user_facebook"/>
 
                 <ImageView
                     android:id="@+id/performer_twitter_page"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:src="@mipmap/user_twiter"/>
+                    android:src="@drawable/user_twiter"/>
 
                 <ImageView
                     android:id="@+id/performer_me_tv_cloud"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:src="@mipmap/user_soundcloud"/>
+                    android:src="@drawable/user_soundcloud"/>
             </LinearLayout>
 
             <TextView
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:text="POP , ROCK"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small"/>
+                android:textSize="@dimen/text_size_common"/>
         </LinearLayout>
 
         <LinearLayout
@@ -121,9 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="4.9"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big"/>
+                android:textSize="@dimen/text_size_common"/>
         </LinearLayout>
 
     </RelativeLayout>

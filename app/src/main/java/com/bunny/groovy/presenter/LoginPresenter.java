@@ -11,6 +11,7 @@ import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.login.BindAccountFragment;
+import com.bunny.groovy.ui.login.VenueRegister1Activity;
 import com.bunny.groovy.ui.setfile.SetFile1Activity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
@@ -44,18 +45,14 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                             getGlobParam();
                             //判断资料是否完善
                             int userType = Utils.parseInt(response.getUserType());
+                            //需要完善信息
                             if (userType == AppConstants.USER_TYPE_MUSICIAN
                                     && TextUtils.isEmpty(response.getZipCode())) {
-                                //需要完善信息
-//                                switch (userType) {
-//                                    case AppConstants.USER_TYPE_NORMAL:
-//                                        break;
-//                                    case AppConstants.USER_TYPE_MUSICIAN:
+
                                 mView.get().startActivityForResult(new Intent(mView.get(), SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
-//                                        break;
-//                                    case AppConstants.USER_TYPE_VENUE:
-//                                        //TODO 完善资料
-//                                        break;
+                            } else if (userType == AppConstants.USER_TYPE_VENUE
+                                    && TextUtils.isEmpty(response.getVenueTypeName())) {
+                                mView.get().startActivityForResult(new Intent(mView.get(), VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                             } else {
                                 //进入主页
                                 mView.launchMainPage();
@@ -104,9 +101,13 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                     //获取全局参数
                     getGlobParam();
                     //判断资料是否完善
-                    if (TextUtils.isEmpty(response.getZipCode())) {
-                        //需要完善信息
+                    int type = Utils.parseInt(userType);
+                    if (type == AppConstants.USER_TYPE_MUSICIAN
+                            && TextUtils.isEmpty(response.getZipCode())) {
                         mView.get().startActivityForResult(new Intent(mView.get(), SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
+                    } else if (type == AppConstants.USER_TYPE_VENUE
+                            && TextUtils.isEmpty(response.getVenueTypeName())) {
+                        mView.get().startActivityForResult(new Intent(mView.get(), VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                     } else {
                         //进入主页
                         MainActivity.launch(mView.get());
@@ -193,7 +194,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                         }
                         break;
                     case AppConstants.USER_TYPE_MUSICIAN:
-                        if (response == null || TextUtils.isEmpty(response.getVenueAddress()) ||
+                        if (response == null || TextUtils.isEmpty(response.getVenueTypeName()) ||
                                 TextUtils.isEmpty(response.getUserType())) {
                             mView.launchToSetFile();
                             return;

@@ -154,7 +154,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
             mIvFavouriteView.setImageResource(R.drawable.nav_collection);
         }
 
-        Glide.with(mActivity).load(model.headImg).error(R.mipmap.venue_instead_pic).into(mUserHeader);
+        Glide.with(mActivity).load(model.headImg).error(R.drawable.venue_instead_pic).into(mUserHeader);
         //set list
         if (mAdapter == null) {
             mAdapter = new MusicianScheduleAdapter(model.evaluateList);
@@ -181,7 +181,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
     private void handleMusic() {
         if (callBack != null) {
             boolean isPlay = callBack.isPlayerMusic();
-            mMusicView.setImageResource(isPlay ? R.mipmap.login_stop : R.mipmap.login_play);
+            mMusicView.setImageResource(isPlay ? R.drawable.login_stop : R.drawable.login_play);
         }
     }
 
@@ -238,7 +238,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
         super.onPause();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            mMusicView.setImageResource(R.mipmap.login_play);
+            mMusicView.setImageResource(R.drawable.login_play);
         }
     }
 
@@ -247,7 +247,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
         super.onDestroy();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            mMusicView.setImageResource(R.mipmap.login_play);
+            mMusicView.setImageResource(R.drawable.login_play);
         }
     }
 

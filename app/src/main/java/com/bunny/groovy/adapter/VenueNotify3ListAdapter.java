@@ -74,7 +74,7 @@ public class VenueNotify3ListAdapter extends RecyclerView.Adapter<VenueNotify3Li
                     holder.tvMsg.setText("verification");
                     break;
             }
-        Glide.with(mContext).load(showModel.getHeadImg()).error(R.mipmap.venue_instead_pic).into(holder.ivHeader);
+        Glide.with(mContext).load(showModel.getHeadImg()).error(R.drawable.venue_instead_pic).into(holder.ivHeader);
         holder.tvName.setText(showModel.getStageName());
         holder.tvScore.setText(showModel.getStarLevel());
         holder.tvPerformType.setText(showModel.getPerformTypeName());

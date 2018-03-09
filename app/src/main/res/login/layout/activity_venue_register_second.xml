@@ -19,6 +19,7 @@
         android:id="@+id/et_venue_service"
         style="@style/base_edit_text_style"
         android:hint="@string/venue_register_service"
+        app:x_importantWord="true"
         app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText
@@ -38,27 +39,31 @@
         android:id="@+id/et_venue_phone"
         style="@style/base_edit_text_style"
         android:hint="@string/venue_register_phone"
+        app:x_importantWord="true"
         app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_website"
         style="@style/base_edit_text_style"
         android:hint="@string/venue_register_website"
+        app:x_importantWord="true"
         app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_facebook"
         style="@style/base_edit_text_style"
         android:hint="@string/facebook"
+        app:x_importantWord="true"
         app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_venue_twitter"
         style="@style/base_edit_text_style"
         android:hint="@string/twitter"
+        app:x_importantWord="true"
         app:x_disableEmoji="true" />
 
-    <com.xw.repo.XEditText
+    <TextView
         android:id="@+id/tv_venue_protocol"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:paddingLeft="80px"
-        android:paddingRight="80px"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:text="By signing up,I agree with terms of the services"
         android:textColor="@color/common_grey"
         android:textSize="@dimen/text_size_common" />

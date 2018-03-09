@@ -58,9 +58,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_weight="1"
-                    android:drawableLeft="@mipmap/list_star"
+                    android:drawableLeft="@drawable/list_star"
                     android:drawablePadding="4dp"
-                    android:text="2.0"
+                    android:text="0.0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_small"/>
 

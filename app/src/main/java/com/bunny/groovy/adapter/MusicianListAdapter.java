@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
 import com.bunny.groovy.model.PerformerUserModel;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.weidget.HeightLightTextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -46,14 +47,14 @@ public class MusicianListAdapter extends RecyclerView.Adapter<MusicianListAdapte
         PerformerUserModel performerModel = mModelList.get(position);
         if (!TextUtils.isEmpty(performerModel.getHeadImg())) {
             Glide.with(mContext).load(performerModel.getHeadImg())
-                    .placeholder(R.mipmap.icon_load_pic)
-                    .error(R.mipmap.icon_load_pic).dontAnimate()
+                    .placeholder(R.drawable.head)
+                    .error(R.drawable.head).dontAnimate()
                     .into(holder.mIvHead);
         } else {
-            holder.mIvHead.setImageResource(R.mipmap.icon_load_pic);
+            holder.mIvHead.setImageResource(R.drawable.head);
         }
-        holder.mTvName.setTextHeighLight(performerModel.getUserName(), keyword);
-        holder.mTvStar.setText(performerModel.getStarLevel());
+        holder.mTvName.setTextHeighLight(performerModel.getStageName(), keyword);
+        holder.mTvStar.setText(Utils.getStar(performerModel.getStarLevel()));
         holder.mTvPhone.setText(performerModel.getTelephone());
         holder.mTvType.setText(performerModel.getPerformTypeName());
 
@@ -91,11 +92,11 @@ public class MusicianListAdapter extends RecyclerView.Adapter<MusicianListAdapte
 
         public MusicianHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.iv_musician_head_pic);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.musician_tv_name);
-            mTvStar = (TextView) itemView.findViewById(R.id.musician_tv_performerStar);
-            mTvType = (TextView) itemView.findViewById(R.id.musician_tv_type);
-            mTvPhone = (TextView) itemView.findViewById(R.id.musician_tv_phone);
+            mIvHead = itemView.findViewById(R.id.iv_musician_head_pic);
+            mTvName = itemView.findViewById(R.id.musician_tv_name);
+            mTvStar = itemView.findViewById(R.id.musician_tv_performerStar);
+            mTvType = itemView.findViewById(R.id.musician_tv_type);
+            mTvPhone = itemView.findViewById(R.id.musician_tv_phone);
         }
     }
 }

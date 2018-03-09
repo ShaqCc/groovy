@@ -124,9 +124,9 @@ public class VenueSchedulePresenter extends BasePresenter<IScheduleVenueView> {
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("推广成功！");
+                            UIUtils.showBaseToast("To promote success !");
                         } else {
-                            UIUtils.showBaseToast("推广失败！请重试");
+                            UIUtils.showBaseToast(response.errorMsg);
                         }
                     }
                 });

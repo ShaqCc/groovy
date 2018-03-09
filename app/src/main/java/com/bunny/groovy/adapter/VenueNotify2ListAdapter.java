@@ -18,6 +18,7 @@ import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.VenueApplyModel;
 import com.bunny.groovy.ui.fragment.notify.VenueApplyDetailsFragment;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 import com.socks.library.KLog;
 
 import java.util.List;
@@ -84,9 +85,9 @@ public class VenueNotify2ListAdapter extends RecyclerView.Adapter<VenueNotify2Li
             }
         }
 
-        Glide.with(mContext).load(showModel.getHeadImg()).error(R.mipmap.venue_instead_pic).into(holder.ivHeader);
+        Glide.with(mContext).load(showModel.getHeadImg()).error(R.drawable.venue_instead_pic).into(holder.ivHeader);
         holder.tvName.setText(showModel.getPerformerName());
-        holder.tvScore.setText(showModel.getStarLevel());
+        holder.tvScore.setText(Utils.getStar(showModel.getStarLevel()));
         holder.tvPerformType.setText(showModel.getPerformType());
         holder.tvCreateTime.setText(showModel.getCreateDate());
         holder.tvPerformDate.setText(showModel.getPerformDate() + " " + showModel.getPerformTime());

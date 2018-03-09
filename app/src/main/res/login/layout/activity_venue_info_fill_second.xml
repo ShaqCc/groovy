@@ -40,7 +40,7 @@
         android:id="@+id/et_facebook"
         style="@style/base_edit_text_style"
         android:layout_marginTop="50dp"
-        android:drawableLeft="@mipmap/login_facebook"
+        android:drawableLeft="@drawable/login_facebook"
         android:drawablePadding="4dp"
         android:hint="@string/facebook"
         app:x_disableEmoji="true" />
@@ -49,7 +49,7 @@
         android:id="@+id/et_twitter"
         style="@style/base_edit_text_style"
         android:layout_marginTop="10dp"
-        android:drawableLeft="@mipmap/icon_twiter"
+        android:drawableLeft="@drawable/icon_twiter"
         android:drawablePadding="4dp"
         android:hint="@string/twitter"
         app:x_disableEmoji="true" />

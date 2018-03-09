@@ -11,6 +11,8 @@ import com.bunny.groovy.utils.SharedPreferencesUtils;
 import com.bunny.groovy.utils.Utils;
 import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by mysty on 2018/2/26.
  */
@@ -71,6 +73,7 @@ public class LoginBlock {
                 VenueMainActivity.start(BaseApp.getContext());
                 break;
         }
+        EventBus.getDefault().post(AppConstants.EVENT_LOGIN_SUCCESS);
     }
 
 }

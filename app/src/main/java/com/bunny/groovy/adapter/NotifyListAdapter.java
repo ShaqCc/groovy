@@ -133,7 +133,7 @@ public class NotifyListAdapter extends RecyclerView.Adapter<NotifyListAdapter.No
                 break;
         }
 
-        Glide.with(mContext).load(showModel.getHeadImg()).error(R.mipmap.venue_instead_pic).into(holder.ivHeader);
+        Glide.with(mContext).load(showModel.getHeadImg()).error(R.drawable.venue_instead_pic).into(holder.ivHeader);
         holder.tvName.setText(showModel.getVenueName());
         holder.tvScore.setText(showModel.getVenueScore());
         holder.tvCreateTime.setText(showModel.getCreateDate());

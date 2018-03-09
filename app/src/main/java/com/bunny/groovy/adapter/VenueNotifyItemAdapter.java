@@ -44,7 +44,7 @@ public class VenueNotifyItemAdapter extends RecyclerView.Adapter<VenueNotifyItem
         VenueOpportunityModel.ApplyList showModel = mList.get(position);
         String status = showModel.getApplyState();
         holder.tvImgHeadDark.setVisibility(TextUtils.equals("1", status) ? View.GONE : View.VISIBLE);
-        Glide.with(mContext).load(showModel.getHeadImg()).error(R.mipmap.venue_instead_pic).into(holder.tvImgHead);
+        Glide.with(mContext).load(showModel.getHeadImg()).error(R.drawable.venue_instead_pic).into(holder.tvImgHead);
     }
 
     @Override

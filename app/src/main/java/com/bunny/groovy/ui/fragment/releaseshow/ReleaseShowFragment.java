@@ -409,9 +409,9 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
             etVenue.setText(model.getVenueName());
             venueInfoLayout.setVisibility(View.VISIBLE);
             llSpotLight.setVisibility(View.VISIBLE);
-            Glide.with(get()).load(model.getHeadImg()).into(venueHeadImg);
+            Glide.with(get()).load(model.getHeadImg()).placeholder(R.drawable.head).dontAnimate().into(venueHeadImg);
             tvVenueName.setText(model.getVenueName());
-            tvVenueScore.setText(model.getVenueScore());
+            tvVenueScore.setText(Utils.getStar(model.getVenueScore()));
             tvVenueAddress.setText(model.getVenueAddress());
             tvVenuePhone.setText(model.getPhoneNumber());
         } else {
@@ -429,14 +429,14 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
     public void onChooseMusician(PerformerUserModel model) {
         mPerformerModel = model;
         if (model != null) {
-            etVenue.setText(model.getUserName());
+            etVenue.setText(model.getStageName());
             venueInfoLayout.setVisibility(View.VISIBLE);
             llSpotLight.setVisibility(View.VISIBLE);
             Glide.with(get()).load(model.getHeadImg()).into(venueHeadImg);
-            tvVenueName.setText(model.getUserName());
-            tvVenueScore.setText(model.getStarLevel());
+            tvVenueName.setText(model.getStageName());
+            tvVenueScore.setText(Utils.getStar(model.getStarLevel()));
             tvVenueAddress.setText(model.getPerformTypeName());
-            tvVenuePhone.setText(model.getPhoneNumber());
+            tvVenuePhone.setText(model.getTelephone());
         } else {
             venueInfoLayout.setVisibility(View.GONE);
             llSpotLight.setVisibility(View.GONE);

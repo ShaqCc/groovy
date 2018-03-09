@@ -23,6 +23,7 @@ import com.bunny.groovy.ui.fragment.apply.EditPerformFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.VenueShowDetailFragment;
 import com.bunny.groovy.ui.fragment.spotlight.SpotlightFragment;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.weidget.HeightLightTextView;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class ScheduleVenueAdapter extends RecyclerView.Adapter<ScheduleVenueAdap
                 .placeholder(R.drawable.head)
                 .error(R.drawable.head).dontAnimate()
                 .into(holder.mIvHead);
-        holder.mTvStar.setText(bean.getPerformerScore());
+        holder.mTvStar.setText(Utils.getStar(bean.getPerformerScore()));
         holder.mTvName.setText(bean.getPerformerName());
         holder.mTvStyle.setText(bean.getPerformType());
         holder.mTvShowTime.setText(bean.getPerformDate() + " " + bean.getPerformTime());

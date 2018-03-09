@@ -125,11 +125,11 @@ public class OpportunityDetailFragment extends BaseFragment {
             mTvName.setText(sParcelable.getVenueName());
             mTvDesc.setText(sParcelable.getPerformDesc());
             mTvVenueName.setText(sParcelable.getVenueName());
-            mTvScore.setText(sParcelable.getVenueScore());
+            mTvScore.setText(Utils.getStar(sParcelable.getVenueScore()));
             mTvAddress.setText(sParcelable.getVenueAddress());
             mTvTel.setText(sParcelable.getPhoneNumber());
             mTvEmail.setText(sParcelable.getWebSiteAddress());
-            Glide.with(mActivity).load(sParcelable.getHeadImg()).placeholder(R.mipmap.venue_instead_pic).error(R.mipmap.venue_instead_pic)
+            Glide.with(mActivity).load(sParcelable.getHeadImg()).placeholder(R.drawable.venue_instead_pic).error(R.drawable.venue_instead_pic)
                     .into(mHead);
             //设置演出厅提供服务
             String venueTypeName = sParcelable.getVenueTypeName();

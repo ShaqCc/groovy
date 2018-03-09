@@ -163,7 +163,9 @@ public class VenueFile1Activity extends BaseActivity<SingUpPresenter> implements
         AppCacheData.getFileMap().put("userEmail", mVenueEmail.getTrimmedString());
         AppCacheData.getFileMap().put("phoneNumber", mVenuePhone.getTrimmedString());
         AppCacheData.getFileMap().put("userID", AppCacheData.getPerformerUserModel().getUserID());
-        AppCacheData.getFileMap().put("webSiteAddress", mWebsite.getTrimmedString());
+        if(!TextUtils.isEmpty(mWebsite.getTrimmedString())){
+            AppCacheData.getFileMap().put("webSiteAddress", mWebsite.getTrimmedString());
+        }
         AppCacheData.getFileMap().put("headUrl", mHeadUrl);
         startActivityForResult(new Intent(this, VenueFile2Activity.class), 2);
     }

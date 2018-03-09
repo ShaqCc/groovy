@@ -30,8 +30,8 @@
         android:inputType="textPassword"
         app:x_importantWord="true"
         app:x_disableEmoji="true"
-        app:x_hidePwdDrawable="@mipmap/login_closeeye"
-        app:x_showPwdDrawable="@mipmap/login_openeye" />
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_showPwdDrawable="@drawable/login_openeye" />
 
     <TextView
         android:id="@+id/tv_musician_login"
@@ -83,14 +83,14 @@
             android:id="@+id/iv_login_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/login_google" />
+            android:src="@drawable/login_google" />
 
         <ImageView
             android:id="@+id/iv_login_facebook"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50px"
-            android:src="@mipmap/login_facebook" />
+            android:src="@drawable/login_facebook" />
 
     </LinearLayout>
 </LinearLayout>
