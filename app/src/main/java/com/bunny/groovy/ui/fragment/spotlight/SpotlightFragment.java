@@ -126,7 +126,7 @@ public class SpotlightFragment extends BaseFragment<SpotlightPresenter> implemen
             ma.put("userID", AppCacheData.getPerformerUserModel().getUserID());
             ma.put("num", number);
             ma.put("amount", String.valueOf(mAmount));
-            ma.put("payMethod", AppConstants.Pay_Style_paypal);
+            ma.put("payMethod", AppConstants.PAY_STYLE_BALANCE);
             mPresenter.buySpotLight(ma);
         }
     }

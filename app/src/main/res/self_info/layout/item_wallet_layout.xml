@@ -2,37 +2,37 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp">
 
     <TextView
         android:id="@+id/item_wallet_tv_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20px"
-        android:textSize="@dimen/text_size_big"
+        android:text="recharge"
         android:textColor="@color/common_grey"
-        android:layout_marginLeft="32px"
-        android:text="recharge"/>
+        android:textSize="@dimen/text_size_big" />
 
     <TextView
         android:id="@+id/item_wallet_tv_time"
-        android:layout_marginLeft="32px"
-        android:layout_below="@+id/item_wallet_tv_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8px"
-        android:layout_marginBottom="20px"
-        android:textSize="@dimen/text_size_big"
+        android:layout_below="@+id/item_wallet_tv_type"
+        android:layout_marginTop="5dp"
+        android:text="2017"
         android:textColor="@color/common_grey"
-        android:text="2017"/>
+        android:textSize="@dimen/text_size_big" />
+
     <TextView
         android:id="@+id/item_wallet_tv_amount"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/title_size"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="2017"
         android:textColor="@color/white"
-        android:layout_marginRight="32px"
-        android:text="2017"/>
+        android:textSize="@dimen/title_size" />
 </RelativeLayout>

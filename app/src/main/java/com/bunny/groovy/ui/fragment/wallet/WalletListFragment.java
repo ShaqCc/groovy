@@ -11,6 +11,8 @@ import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.divider.HLineDecoration;
 import com.bunny.groovy.model.WalletBean;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
+import com.bunny.groovy.utils.Utils;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ import java.util.List;
 public class WalletListFragment extends BaseListFragment<WalletListPresetner, WalletAdapter> implements IWalletListView {
 
     private int mType;
+
     public static void launch(Activity from) {
         Bundle bundle = new Bundle();
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "WALLET RECORD");
@@ -35,15 +38,17 @@ public class WalletListFragment extends BaseListFragment<WalletListPresetner, Wa
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
-        mType = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+        mType = Utils.parseInt(AppCacheData.getPerformerUserModel().getUserType());
     }
 
     @Override
     protected void loadData() {
-        if(mType == 2){
+        if (mType == AppConstants.USER_TYPE_VENUE) {
             mPresenter.getUserTransactionRecord();
-        }else{
-            mPresenter.fetchList();
+        } else if (mType == AppConstants.USER_TYPE_MUSICIAN) {
+            mPresenter.getWalletList();
+        } else {
+            mPresenter.getNormalUserTransactionRecord();
         }
     }
 

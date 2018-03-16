@@ -16,7 +16,7 @@ public class WalletListPresetner extends BasePresenter<IWalletListView> {
         super(view);
     }
 
-    public void fetchList(){
+    public void getWalletList(){
         addSubscription(apiService.getWalletList(), new SubscriberCallBack<List<WalletBean>>(mView.get()) {
 
             @Override
@@ -40,6 +40,28 @@ public class WalletListPresetner extends BasePresenter<IWalletListView> {
 
     public void getUserTransactionRecord(){
         addSubscription(apiService.getUserTransactionRecord(), new SubscriberCallBack<List<WalletBean>>(mView.get()) {
+
+            @Override
+            protected boolean isShowProgress() {
+                return true;
+            }
+
+            @Override
+            protected void onSuccess(List<WalletBean> response) {
+                if (response!=null && response.size()>0){
+                    mView.setListData(response);
+                }else mView.noData();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+                mView.noData();
+            }
+        });
+    }
+
+    public void getNormalUserTransactionRecord(){
+        addSubscription(apiService.getNormalUserTransactionRecord(), new SubscriberCallBack<List<WalletBean>>(mView.get()) {
 
             @Override
             protected boolean isShowProgress() {

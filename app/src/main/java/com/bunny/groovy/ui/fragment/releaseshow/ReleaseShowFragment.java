@@ -281,9 +281,11 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
                 } else {
                     closeTimePop();
                     //设置开始结束时间
-                    startTime = mRealTimeClockList.get(loopviewFromTime.getSelectedItem());
-                    endTime = mRealTimeClockList.get(loopviewEndTime.getSelectedItem());
-                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startTime) + "-" + endTime);
+                    int startIndex = loopviewFromTime.getSelectedItem();
+                    int endIndex = loopviewEndTime.getSelectedItem();
+                    startTime = mRealTimeClockList.get(startIndex);
+                    endTime = mRealTimeClockList.get(endIndex);
+                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startTime) + (startIndex < 12 ? "am" : "pm") + "-" + endTime + (endIndex < 12 ? "am" : "pm"));
                 }
             }
         });
@@ -408,7 +410,6 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         if (model != null) {
             etVenue.setText(model.getVenueName());
             venueInfoLayout.setVisibility(View.VISIBLE);
-            llSpotLight.setVisibility(View.VISIBLE);
             Glide.with(get()).load(model.getHeadImg()).placeholder(R.drawable.head).dontAnimate().into(venueHeadImg);
             tvVenueName.setText(model.getVenueName());
             tvVenueScore.setText(Utils.getStar(model.getVenueScore()));
@@ -416,7 +417,6 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
             tvVenuePhone.setText(model.getPhoneNumber());
         } else {
             venueInfoLayout.setVisibility(View.GONE);
-            llSpotLight.setVisibility(View.GONE);
         }
     }
 
@@ -431,7 +431,6 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         if (model != null) {
             etVenue.setText(model.getStageName());
             venueInfoLayout.setVisibility(View.VISIBLE);
-            llSpotLight.setVisibility(View.VISIBLE);
             Glide.with(get()).load(model.getHeadImg()).into(venueHeadImg);
             tvVenueName.setText(model.getStageName());
             tvVenueScore.setText(Utils.getStar(model.getStarLevel()));
@@ -439,7 +438,6 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
             tvVenuePhone.setText(model.getTelephone());
         } else {
             venueInfoLayout.setVisibility(View.GONE);
-            llSpotLight.setVisibility(View.GONE);
         }
     }
 

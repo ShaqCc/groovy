@@ -316,4 +316,13 @@ public class Utils {
         }
         return starStr;
     }
+
+    /**
+     * 打开google Web地图导航
+     */
+    public static void openWebGoogleNavi(Context context,String lat, String lng) {
+        StringBuffer stringBuffer = new StringBuffer("http://ditu.google.cn/maps?hl=zh&mrt=loc&q=").append(lat).append(",").append(lng);
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(stringBuffer.toString()));
+        context.startActivity(i);
+    }
 }

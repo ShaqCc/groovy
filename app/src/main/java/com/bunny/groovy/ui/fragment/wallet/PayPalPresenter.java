@@ -72,7 +72,8 @@ public class PayPalPresenter extends BasePresenter<IPayPalView> {
      */
     public void updateUserData(String type) {
         addSubscription(TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_MUSICIAN))
-                        ? apiService.getPerformerInfo() : apiService.getVenueDetailInfo(),
+                        ? apiService.getPerformerInfo() : (TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_VENUE))
+                        ? apiService.getVenueDetailInfo() : apiService.getUserInfo()),
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {

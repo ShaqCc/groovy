@@ -4,6 +4,7 @@ import com.bunny.groovy.base.BaseApp;
 import com.bunny.groovy.model.LoginRequest;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.ui.MainActivity;
+import com.bunny.groovy.ui.UserMainActivity;
 import com.bunny.groovy.ui.VenueMainActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
@@ -65,6 +66,7 @@ public class LoginBlock {
         int userType = Utils.parseInt(type);
         switch (userType) {
             case AppConstants.USER_TYPE_NORMAL:
+                UserMainActivity.start(BaseApp.getContext());
                 break;
             case AppConstants.USER_TYPE_MUSICIAN:
                 MainActivity.launch(BaseApp.getContext());

@@ -55,7 +55,7 @@ public class MusicianListAdapter extends RecyclerView.Adapter<MusicianListAdapte
         }
         holder.mTvName.setTextHeighLight(performerModel.getStageName(), keyword);
         holder.mTvStar.setText(Utils.getStar(performerModel.getStarLevel()));
-        holder.mTvPhone.setText(performerModel.getTelephone());
+        holder.mTvPhone.setTextHeighLight(performerModel.getTelephone(),keyword);
         holder.mTvType.setText(performerModel.getPerformTypeName());
 
         holder.itemView.setTag(position);
@@ -88,7 +88,7 @@ public class MusicianListAdapter extends RecyclerView.Adapter<MusicianListAdapte
         private final HeightLightTextView mTvName;
         private final TextView mTvStar;
         private final TextView mTvType;
-        private final TextView mTvPhone;
+        private final HeightLightTextView mTvPhone;
 
         public MusicianHolder(View itemView) {
             super(itemView);

@@ -124,7 +124,7 @@ public class MusicService extends Service {
                 public void onPrepared(MediaPlayer mediaPlayer) {
                 }
             });
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -141,7 +141,7 @@ public class MusicService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        musicPath = intent.getStringExtra("music_path");
+        if(intent != null) musicPath = intent.getStringExtra("music_path");
         initMusic();
         return super.onStartCommand(intent, flags, startId);
     }

@@ -93,7 +93,6 @@
 
     <LinearLayout
         android:id="@+id/release_ll_spotlight"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16px"

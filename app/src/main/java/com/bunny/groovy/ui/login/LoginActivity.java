@@ -131,11 +131,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         //just for test
         if(BuildConfig.DEBUG){
             switch (mUserType){
+                case AppConstants.USER_TYPE_NORMAL:
+                    etPhoneOrEmail.setText("18601794067");
+                    break;
                 case AppConstants.USER_TYPE_MUSICIAN:
                     etPhoneOrEmail.setText("13564521320");
                     break;
                 case AppConstants.USER_TYPE_VENUE:
                     etPhoneOrEmail.setText("13761434342");
+//                    etPhoneOrEmail.setText("15021370938");
 //                    etPhoneOrEmail.setText("13476027261");
             }
             etPassword.setText("123456789");

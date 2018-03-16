@@ -35,7 +35,7 @@ public class MusicianDetailModel {
     public List<PerformViewer> evaluateList;
     public List<TransactionRecord> rewardList;
 
-    public class PerformViewer {
+    public static class PerformViewer {
         public String viewerID; // 订单编号
         public String performID; // 演出编号
         public String userID; // 普通用户编号

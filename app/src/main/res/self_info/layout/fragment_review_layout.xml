@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+
+    <TextView
+        style="@style/common_text_style"
+        android:layout_marginTop="16dp"
+        android:text="RATING"
+        android:textSize="13dp" />
+
+    <com.bunny.groovy.weidget.StarGradeView
+        android:id="@+id/star_grade"
+        android:layout_width="173dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="16dp"
+        app:star_height="24.5dp"
+        app:star_space="12dp"
+        app:star_width="25dp" />
+
+    <EditText
+        android:id="@+id/performer_review_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="REVIEW CONTENT"
+        android:maxLength="400"
+        android:minHeight="200dp"
+        android:background="@drawable/shape_textarea_bg"
+        android:textColor="@color/white"
+        android:textColorHint="#878787"
+        android:padding="15dp"
+        android:gravity="start"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/tv_submit"
+        style="@style/role_selected_text_style"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:text="SUBMIT" />
+</LinearLayout>

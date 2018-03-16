@@ -52,8 +52,8 @@ public class AppConstants {
     public final static String EVENT_LOGIN_SUCCESS = "logout_success";//eventbus 用户退出标志
     public final static String EVENT_LOGIN_OUT = "logout";//eventbus 用户退出标志
 
-    public final static String Pay_Style_paypal = "0";//余额支付方式
-    public final static String Pay_Style_balance = "1";//PayPal支付方式
+    public final static String PAY_STYLE_BALANCE = "0";//余额支付方式
+    public final static String PAY_STYLE_PAYPAL = "1";//PayPal支付方式
 
     public static String KEY_DISCOVER = "key_discover";
 

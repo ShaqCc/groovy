@@ -38,7 +38,8 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
     public void requestUserInfo(final int userType) {
         startRequestTime = SystemClock.currentThreadTimeMillis();
         addSubscription(userType == AppConstants.USER_TYPE_MUSICIAN
-                        ? apiService.getPerformerInfo() : apiService.getVenueDetailInfo()
+                        ? apiService.getPerformerInfo() : (userType == AppConstants.USER_TYPE_NORMAL
+                        ? apiService.getUserInfo() : apiService.getVenueDetailInfo())
                 , new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(final PerformerUserModel response) {

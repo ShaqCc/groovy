@@ -30,4 +30,10 @@
         <!--设置提示消息字体大小-->
         <attr name="msgTextSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="StarGradeAttr">
+        <attr name="star_width" format="dimension" />
+        <attr name="star_height" format="dimension" />
+        <attr name="star_space" format="dimension" />
+    </declare-styleable>
 </resources>

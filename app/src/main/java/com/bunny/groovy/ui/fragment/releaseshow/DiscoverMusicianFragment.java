@@ -200,7 +200,7 @@ public class DiscoverMusicianFragment extends BaseFragment<DiscoverMusicianListP
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        RecyclerView recyclerview = (RecyclerView) popview.findViewById(R.id.recyclerview);
+        RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdatper = new StyleGridAdapter(modelList, mPerformType);
         mAdatper.setSelectNum(100);
