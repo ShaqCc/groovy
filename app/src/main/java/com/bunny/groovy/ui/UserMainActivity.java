@@ -17,12 +17,14 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.BasePresenter;
+import com.bunny.groovy.manager.LoginBlock;
 import com.bunny.groovy.ui.fragment.user.MyFavoriteListFragment;
 import com.bunny.groovy.ui.fragment.user.MyHistoryListFragment;
 import com.bunny.groovy.ui.fragment.user.UserMainFragment;
 import com.bunny.groovy.ui.fragment.usercenter.SettingsFragment;
 import com.bunny.groovy.ui.fragment.usercenter.UserDataFragment;
 import com.bunny.groovy.ui.fragment.wallet.WalletFragment;
+import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
 
 import butterknife.Bind;
@@ -118,12 +120,13 @@ public class UserMainActivity extends BaseActivity implements View.OnClickListen
         headerView.findViewById(R.id.nav_settings).setOnClickListener(this);
     }
 
-    private void refresh(){
-        if(mNavigationView != null){
+    private void refresh() {
+        if (mNavigationView != null) {
             View headerView = mNavigationView.getHeaderView(0);
             CircleImageView mHeadImage = headerView.findViewById(R.id.nav_head);
             TextView mUserName = headerView.findViewById(R.id.nav_name);
-            Glide.with(this).load(AppCacheData.getPerformerUserModel().getHeadImg()).into(mHeadImage);
+            Glide.with(this).load(AppCacheData.getPerformerUserModel().getHeadImg())
+                    .placeholder(R.drawable.icon_default_photo).into(mHeadImage);
             mUserName.setText(AppCacheData.getPerformerUserModel().getUserName());
         }
 
@@ -168,6 +171,8 @@ public class UserMainActivity extends BaseActivity implements View.OnClickListen
                 MyFavoriteListFragment.launch(this);
                 break;
             case R.id.nav_switch:
+                startActivity(new Intent(this, LoginActivity.class).putExtra("switch_type", true));
+                finish();
                 break;
             case R.id.nav_settings:
                 SettingsFragment.launch(this);

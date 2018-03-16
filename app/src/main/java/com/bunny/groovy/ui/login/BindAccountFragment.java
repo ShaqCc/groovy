@@ -10,6 +10,7 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.listener.VerifyEvent;
+import com.bunny.groovy.manager.LoginBlock;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.presenter.LoginPresenter;
 import com.bunny.groovy.ui.MainActivity;
@@ -136,9 +137,9 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
     }
 
     @Override
-    public void launchMainPage() {
-        //登录成功，进入主页，结束登录页面
-        MainActivity.launch(mActivity);
+    public void launchMainPage(int type) {
+        LoginBlock.getInstance().handleCheckSuccess(String.valueOf(type));
+        getActivity().finish();
     }
 
     @Override

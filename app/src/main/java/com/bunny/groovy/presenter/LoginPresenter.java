@@ -54,7 +54,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                                 mView.get().startActivityForResult(new Intent(mView.get(), VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                             } else {
                                 //进入主页
-                                mView.launchMainPage();
+                                mView.launchMainPage(type);
                             }
                         }
                     }
@@ -200,7 +200,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                         }
                         break;
                 }
-                mView.launchMainPage();
+                mView.launchMainPage(Utils.parseInt(userType));
             }
 
             @Override

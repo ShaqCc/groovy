@@ -1,37 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_bg"
-    android:paddingTop="60dp"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="60dp">
 
     <com.xw.repo.XEditText
         android:id="@+id/et_signup_phone_or_email"
         style="@style/base_edit_text_style"
-        app:x_disableEmoji="true"
         android:layout_marginTop="40dp"
-        android:hint="@string/email_phone" />
+        android:hint="@string/email_phone"
+        app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_signup_password"
         style="@style/base_edit_text_style"
+        android:hint="@string/password"
+        android:inputType="textPassword"
         app:x_disableEmoji="true"
         app:x_hidePwdDrawable="@drawable/login_closeeye"
-        app:x_showPwdDrawable="@drawable/login_openeye"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+        app:x_showPwdDrawable="@drawable/login_openeye" />
 
     <com.xw.repo.XEditText
         android:id="@+id/et_signup_password_again"
         style="@style/base_edit_text_style"
+        android:hint="@string/password_again"
+        android:inputType="textPassword"
         app:x_disableEmoji="true"
         app:x_hidePwdDrawable="@drawable/login_closeeye"
-        app:x_showPwdDrawable="@drawable/login_openeye"
-        android:hint="@string/password_again"
-        android:inputType="textPassword" />
+        app:x_showPwdDrawable="@drawable/login_openeye" />
+
+    <com.xw.repo.XEditText
+        android:id="@+id/et_signup_name"
+        style="@style/base_edit_text_style"
+        android:hint="NAME"
+        app:x_disableEmoji="true"
+        android:visibility="gone"
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_showPwdDrawable="@drawable/login_openeye" />
 
     <TextView
         android:id="@+id/tv_signup_next"

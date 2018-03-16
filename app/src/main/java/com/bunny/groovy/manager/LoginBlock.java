@@ -1,11 +1,17 @@
 package com.bunny.groovy.manager;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.text.TextUtils;
+
 import com.bunny.groovy.base.BaseApp;
 import com.bunny.groovy.model.LoginRequest;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.UserMainActivity;
 import com.bunny.groovy.ui.VenueMainActivity;
+import com.bunny.groovy.ui.login.VenueRegister1Activity;
+import com.bunny.groovy.ui.setfile.SetFile1Activity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.SharedPreferencesUtils;
@@ -49,7 +55,7 @@ public class LoginBlock {
     }
 
     public LoginRequest getLoginRequest() {
-        String jsonString = (String) SharedPreferencesUtils.getUserParam(BaseApp.getContext(), KEY_LOGIN_REQUEST,"");
+        String jsonString = (String) SharedPreferencesUtils.getUserParam(BaseApp.getContext(), KEY_LOGIN_REQUEST, "");
         if (jsonString != null) {
             return new Gson().fromJson(jsonString, LoginRequest.class);
         }
@@ -62,7 +68,7 @@ public class LoginBlock {
         handleCheckSuccess(userInfo.getUserType());
     }
 
-    public void handleCheckSuccess(String type){
+    public void handleCheckSuccess(String type) {
         int userType = Utils.parseInt(type);
         switch (userType) {
             case AppConstants.USER_TYPE_NORMAL:
@@ -76,6 +82,19 @@ public class LoginBlock {
                 break;
         }
         EventBus.getDefault().post(AppConstants.EVENT_LOGIN_SUCCESS);
+    }
+
+    public void completeData(Activity context, int type, PerformerUserModel userInfo) {
+        if (type == AppConstants.USER_TYPE_MUSICIAN
+                && TextUtils.isEmpty(userInfo.getZipCode())) {
+            context.startActivityForResult(new Intent(context, SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
+        } else if (type == AppConstants.USER_TYPE_VENUE
+                && TextUtils.isEmpty(userInfo.getVenueTypeName())) {
+            context.startActivityForResult(new Intent(context, VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
+        } else {
+            //进入主页
+            handleCheckSuccess(String.valueOf(type));
+        }
     }
 
 }

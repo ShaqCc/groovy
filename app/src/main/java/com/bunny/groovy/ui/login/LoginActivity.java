@@ -12,6 +12,7 @@ import com.bunny.groovy.manager.LoginBlock;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.presenter.LoginPresenter;
 import com.bunny.groovy.ui.setfile.SetFile1Activity;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.PatternUtils;
 import com.bunny.groovy.utils.UIUtils;
@@ -65,6 +66,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                 break;
             case AppConstants.USER_TYPE_VENUE:
                 startActivityForResult(new Intent(this, VenueRegister1Activity.class), 2);
+                break;
+            case AppConstants.USER_TYPE_NORMAL:
+                startActivityForResult(new Intent(this, UserRegister1Activity.class), 2);
                 break;
         }
     }
@@ -127,10 +131,16 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @Override
     public void initData() {
         super.initData();
-        mUserType = getIntent().getIntExtra("type", AppConstants.USER_TYPE_NORMAL);
+        boolean isSwitchType = getIntent().getBooleanExtra("switch_type", false);
+        if (isSwitchType) {
+            LoginBlock.getInstance().completeData(this, AppConstants.USER_TYPE_MUSICIAN, AppCacheData.getPerformerUserModel());
+            mUserType = AppConstants.USER_TYPE_MUSICIAN;
+        } else {
+            mUserType = getIntent().getIntExtra("type", AppConstants.USER_TYPE_NORMAL);
+        }
         //just for test
-        if(BuildConfig.DEBUG){
-            switch (mUserType){
+        if (BuildConfig.DEBUG) {
+            switch (mUserType) {
                 case AppConstants.USER_TYPE_NORMAL:
                     etPhoneOrEmail.setText("18601794067");
                     break;
@@ -198,8 +208,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
 
     @Override
-    public void launchMainPage() {
-        LoginBlock.getInstance().handleCheckSuccess(String.valueOf(mUserType));
+    public void launchMainPage(int type) {
+        LoginBlock.getInstance().handleCheckSuccess(String.valueOf(type));
         finish();
     }
 
@@ -208,7 +218,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
      */
     @Override
     public void launchToSetFile() {
-        switch (mUserType){
+        switch (mUserType) {
             case AppConstants.USER_TYPE_MUSICIAN:
                 startActivityForResult(new Intent(this, SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                 break;
@@ -226,7 +236,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         super.onActivityResult(requestCode, resultCode, data);
         //设置资料结束，结束本页面,跳转至首页
         if (requestCode == AppConstants.REQUESTCODE_SETFILE && resultCode == AppConstants.ACTIVITY_FINISH) {
-            launchMainPage();
+            launchMainPage(mUserType);
         } else if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
@@ -245,7 +255,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             // Signed in successfully, show authenticated UI.
             KLog.d(account.toString());
             //检查是否绑定了账户
-            mPresenter.checkHadBindUid("0", account.getId(), account.getDisplayName(),String.valueOf(mUserType));
+            mPresenter.checkHadBindUid("0", account.getId(), account.getDisplayName(), String.valueOf(mUserType));
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

@@ -20,6 +20,8 @@ import com.socks.library.KLog;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.HashMap;
+
 /**
  * 注册控制器
  * <p>
@@ -169,6 +171,27 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
         });
     }
 
+    /**
+     * 表演者注册
+     *
+     * @param name
+     * @param pwd
+     * @param phone
+     * @param email
+     */
+    public void registerUser(HashMap<String,String> map) {
 
+        addSubscription(apiService.ordinaryFrontUserRegister(map), new SubscriberCallBack<ResultResponse>(mView.get()) {
+            @Override
+            protected void onSuccess(ResultResponse response) {
+                UIUtils.showBaseToast("注册成功！");
+                mView.registerSuccess();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+            }
+        });
+    }
 
 }

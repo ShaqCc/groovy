@@ -17,7 +17,7 @@ public interface ILoginView {
     /**
      * 跳转至主页
      */
-    void launchMainPage();
+    void launchMainPage(int type);
 
     void launchToSetFile();
 }

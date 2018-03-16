@@ -542,4 +542,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("VenueBasicsController/getrewardPerformerRecord")
     Observable<ResultResponse<List<MusicianDetailModel.TransactionRecord>>> getrewardPerformerRecord(@FieldMap Map<String, String> map);
+
+    //普通用户注册
+    @FormUrlEncoded
+    @POST("FrontUserController/ordinaryFrontUserRegister")
+    Observable<ResultResponse> ordinaryFrontUserRegister(@FieldMap Map<String, String> map);
 }

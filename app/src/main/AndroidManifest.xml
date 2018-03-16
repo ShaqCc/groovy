@@ -47,6 +47,8 @@
         <activity
             android:name=".ui.UserMainActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".ui.login.UserRegister1Activity" />
+        <activity android:name=".ui.login.UserRegister2Activity" />
         <activity android:name=".ui.login.SignUpActivity" />
         <activity android:name=".ui.login.SignUp2Activity" />
         <activity android:name=".ui.setfile.SetFile1Activity" />

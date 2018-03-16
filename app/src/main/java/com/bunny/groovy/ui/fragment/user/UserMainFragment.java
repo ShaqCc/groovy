@@ -192,7 +192,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         } else {
             checkLocationSettings();
         }
-        updateCurrentLocation();
+//        updateCurrentLocation();
     }
 
     /**
