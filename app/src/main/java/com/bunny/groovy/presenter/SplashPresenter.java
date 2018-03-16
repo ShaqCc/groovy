@@ -1,6 +1,5 @@
 package com.bunny.groovy.presenter;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -11,15 +10,11 @@ import com.bunny.groovy.manager.LoginBlock;
 import com.bunny.groovy.model.GlobalModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
-import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.login.LoginActivity;
-import com.bunny.groovy.ui.setfile.SetFile1Activity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.ISplashView;
-
-import javax.microedition.khronos.opengles.GL;
 
 /****************************************
  * 功能说明: 欢迎页的控制器

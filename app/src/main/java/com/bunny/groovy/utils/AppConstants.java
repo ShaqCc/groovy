@@ -1,7 +1,5 @@
 package com.bunny.groovy.utils;
 
-import java.util.Stack;
-
 /****************************************
  * 功能说明:  app常量类
  *

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
 import com.bunny.groovy.model.PerformDetail;
 import com.bunny.groovy.ui.fragment.releaseshow.UserShowDetailFragment;
-import com.bunny.groovy.ui.fragment.user.UserReviewFragment;
 import com.bunny.groovy.utils.Utils;
 
 import java.util.List;

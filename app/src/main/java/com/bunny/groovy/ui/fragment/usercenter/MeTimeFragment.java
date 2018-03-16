@@ -16,7 +16,6 @@ import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.TimePresenter;
 import com.bunny.groovy.utils.UIUtils;
-import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.ITimeView;
 import com.bunny.groovy.weidget.loopview.LoopView;
 import com.suke.widget.SwitchButton;
@@ -105,7 +104,7 @@ public class MeTimeFragment extends BaseFragment<TimePresenter> implements ITime
         mModel = model;
         for (int i = 0; i < model.size(); i++) {
             tvTime.get(i).setText(model.get(i).getStartDate() + "-" + model.get(i).getEndDate());
-            tvSwitchButton.get(i).setChecked(TextUtils.equals(model.get(i).getIsHaveCharges(), "1") ? true : false);
+            tvSwitchButton.get(i).setChecked(TextUtils.equals(model.get(i).getIsHaveCharges(), "1"));
         }
     }
 
@@ -227,10 +226,10 @@ public class MeTimeFragment extends BaseFragment<TimePresenter> implements ITime
         timeView.setFocusable(true);
         timeView.setFocusableInTouchMode(true);
         mTimePop.setFocusable(true);
-        mTvTimeTitle = (TextView) timeView.findViewById(R.id.weidget_tv_title);
+        mTvTimeTitle = timeView.findViewById(R.id.weidget_tv_title);
         mTvTimeTitle.setText("Choose time interval");
-        final LoopView loopviewFromTime = (LoopView) timeView.findViewById(R.id.weidget_from_time);
-        final LoopView loopviewEndTime = (LoopView) timeView.findViewById(R.id.weidget_end_time);
+        final LoopView loopviewFromTime = timeView.findViewById(R.id.weidget_from_time);
+        final LoopView loopviewEndTime = timeView.findViewById(R.id.weidget_end_time);
 
         loopviewFromTime.setItems(mTimeClockList);
         loopviewEndTime.setItems(mTimeClockList);
@@ -283,7 +282,7 @@ public class MeTimeFragment extends BaseFragment<TimePresenter> implements ITime
     @Override
     public void updateScheduleIsHaveCharges(String scheduleID, String isHaveCharges) {
         if (mIndex != -1)
-            tvSwitchButton.get(mIndex).setChecked(TextUtils.equals("1", isHaveCharges) ? true : false);
+            tvSwitchButton.get(mIndex).setChecked(TextUtils.equals("1", isHaveCharges));
     }
 
     @Override

@@ -47,8 +47,8 @@ public class StyleAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = View.inflate(parent.getContext(), R.layout.item_perform_style_layout, null);
-        TextView tvName = (TextView) convertView.findViewById(R.id.item_style_tv_name);
-        CheckBox mCheckBox = (CheckBox) convertView.findViewById(R.id.item_style_checkbox);
+        TextView tvName = convertView.findViewById(R.id.item_style_tv_name);
+        CheckBox mCheckBox = convertView.findViewById(R.id.item_style_checkbox);
         tvName.setText(dataList.get(position).getTypeName());
         mCheckBox.setChecked(dataList.get(position).isChecked());
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

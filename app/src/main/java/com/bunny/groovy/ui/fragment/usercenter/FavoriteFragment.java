@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.bunny.groovy.adapter.FavoriteListAdapter;
 import com.bunny.groovy.base.BaseListFragment;
-import com.bunny.groovy.model.FavoriteModel;
 import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.ListPresenter;
 import com.bunny.groovy.view.IListPageView;

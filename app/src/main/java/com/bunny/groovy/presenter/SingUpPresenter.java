@@ -1,10 +1,10 @@
 package com.bunny.groovy.presenter;
 
 import com.bunny.groovy.api.SubscriberCallBack;
-import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.base.BaseApp;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.listener.MyVerificationListener;
+import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.PatternUtils;

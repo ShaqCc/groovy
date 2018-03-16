@@ -3,17 +3,13 @@ package com.bunny.groovy.api.interceptor;
 import android.text.TextUtils;
 
 import com.bunny.groovy.base.BaseApp;
-import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.SharedPreferencesUtils;
-import com.bunny.groovy.utils.Utils;
 
 import java.io.IOException;
 
-import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;

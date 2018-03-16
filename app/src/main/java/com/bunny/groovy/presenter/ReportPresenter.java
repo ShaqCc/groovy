@@ -3,7 +3,6 @@ package com.bunny.groovy.presenter;
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.ResultResponse;
-import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ISetFileView;
 

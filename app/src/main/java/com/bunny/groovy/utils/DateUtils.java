@@ -5,8 +5,6 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.socks.library.KLog;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,14 +36,14 @@ public class DateUtils {
     public static int getHour(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return calendar.get(calendar.HOUR_OF_DAY);
+        return calendar.get(Calendar.HOUR_OF_DAY);
     }
 
     //获取分钟
     public static int getMinute(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return calendar.get(calendar.MINUTE);
+        return calendar.get(Calendar.MINUTE);
     }
 
     //获取周
@@ -66,21 +64,21 @@ public class DateUtils {
     public static int getYear(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return calendar.get(calendar.YEAR);
+        return calendar.get(Calendar.YEAR);
     }
 
     //获取月
     public static int getMoth(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return calendar.get(calendar.MONTH) + 1;
+        return calendar.get(Calendar.MONTH) + 1;
     }
 
     //获取日
     public static int getDay(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return calendar.get(calendar.DATE);
+        return calendar.get(Calendar.DATE);
     }
 
     public static Date getDate(int year, int moth, int day, int hour, int minute) {

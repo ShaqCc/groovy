@@ -248,9 +248,9 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         timeView.setFocusable(true);
         timeView.setFocusableInTouchMode(true);
         mTimePop.setFocusable(true);
-        mTvTimeTitle = (TextView) timeView.findViewById(R.id.weidget_tv_title);
-        final LoopView loopviewFromTime = (LoopView) timeView.findViewById(R.id.weidget_from_time);
-        final LoopView loopviewEndTime = (LoopView) timeView.findViewById(R.id.weidget_end_time);
+        mTvTimeTitle = timeView.findViewById(R.id.weidget_tv_title);
+        final LoopView loopviewFromTime = timeView.findViewById(R.id.weidget_from_time);
+        final LoopView loopviewEndTime = timeView.findViewById(R.id.weidget_end_time);
 
         //set data
         mTvTimeTitle.setText(Utils.getFormatDate(mSelectDate.getTime()));
@@ -328,9 +328,9 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         mDatePop.setContentView(dateView);
         mDatePop.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mDatePop.setHeight(UIUtils.getScreenHeight() / 2);
-        LoopView loopMonth = (LoopView) dateView.findViewById(R.id.weidget_month);
-        final LoopView loopDay = (LoopView) dateView.findViewById(R.id.weidget_day);
-        LoopView loopYear = (LoopView) dateView.findViewById(R.id.weidget_year);
+        LoopView loopMonth = dateView.findViewById(R.id.weidget_month);
+        final LoopView loopDay = dateView.findViewById(R.id.weidget_day);
+        LoopView loopYear = dateView.findViewById(R.id.weidget_year);
         //set data
         final DatePickerHelper helper = new DatePickerHelper();
         //年
@@ -524,7 +524,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
-        RecyclerView recyclerview = (RecyclerView) popview.findViewById(R.id.recyclerview);
+        RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdatper = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());
         recyclerview.setAdapter(mAdatper);

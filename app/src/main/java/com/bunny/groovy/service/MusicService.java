@@ -9,7 +9,6 @@ import android.os.IBinder;
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /****************************************
  * 功能说明:  音乐播放服务
@@ -90,11 +89,7 @@ public class MusicService extends Service {
 
         @Override
         public boolean isPlaying() {
-            if (mPlayer.isPlaying()) {
-                return true;
-            } else {
-                return false;
-            }
+            return mPlayer.isPlaying();
         }
 
     }

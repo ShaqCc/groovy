@@ -2,7 +2,6 @@ package com.bunny.groovy.view;
 
 import android.app.Activity;
 
-import com.bunny.groovy.model.ScheduleModel;
 import com.bunny.groovy.model.VenueScheduleModel;
 
 /**

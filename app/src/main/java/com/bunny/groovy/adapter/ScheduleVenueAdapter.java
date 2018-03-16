@@ -195,13 +195,13 @@ public class ScheduleVenueAdapter extends RecyclerView.Adapter<ScheduleVenueAdap
 
         public HisHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.nextshow_iv_head);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.nextshow_tv_performerName);
-            mTvStar = (TextView) itemView.findViewById(R.id.nextshow_tv_performerStar);
-            mTvStyle = (TextView) itemView.findViewById(R.id.nextshow_tv_address);
-            mTvShowTime = (TextView) itemView.findViewById(R.id.nextshow_tv_time);
-            tvStatus = (TextView) itemView.findViewById(R.id.nextshow_tv_status);
-            ivEdit = (ImageView) itemView.findViewById(R.id.nextshow_iv_edit);
+            mIvHead = itemView.findViewById(R.id.nextshow_iv_head);
+            mTvName = itemView.findViewById(R.id.nextshow_tv_performerName);
+            mTvStar = itemView.findViewById(R.id.nextshow_tv_performerStar);
+            mTvStyle = itemView.findViewById(R.id.nextshow_tv_address);
+            mTvShowTime = itemView.findViewById(R.id.nextshow_tv_time);
+            tvStatus = itemView.findViewById(R.id.nextshow_tv_status);
+            ivEdit = itemView.findViewById(R.id.nextshow_iv_edit);
         }
     }
 

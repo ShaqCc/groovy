@@ -6,11 +6,8 @@ import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
-import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.VenueShowModel;
-import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
-import com.bunny.groovy.view.IOverView;
 import com.bunny.groovy.view.IVenueOverView;
 import com.socks.library.KLog;
 

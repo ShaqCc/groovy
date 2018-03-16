@@ -2,48 +2,28 @@ package com.bunny.groovy.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
-import com.bunny.groovy.adapter.MainTabAdapter;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.BasePresenter;
-import com.bunny.groovy.ui.fragment.apply.FilterFragment;
 import com.bunny.groovy.ui.fragment.user.MyFavoriteListFragment;
 import com.bunny.groovy.ui.fragment.user.MyHistoryListFragment;
 import com.bunny.groovy.ui.fragment.user.UserMainFragment;
 import com.bunny.groovy.ui.fragment.usercenter.SettingsFragment;
 import com.bunny.groovy.ui.fragment.usercenter.UserDataFragment;
-import com.bunny.groovy.ui.fragment.venue.VenueMeFragment;
-import com.bunny.groovy.ui.fragment.venue.VenueOverviewFragment;
-import com.bunny.groovy.ui.fragment.venue.VenueScheduleFragment;
 import com.bunny.groovy.ui.fragment.wallet.WalletFragment;
 import com.bunny.groovy.utils.AppCacheData;
-import com.bunny.groovy.utils.AppConstants;
-import com.bunny.groovy.utils.Utils;
-import com.bunny.groovy.weidget.BottomBarItem;
-import com.bunny.groovy.weidget.BottomBarLayout;
-import com.bunny.groovy.weidget.NoScrollViewPager;
-
-import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;

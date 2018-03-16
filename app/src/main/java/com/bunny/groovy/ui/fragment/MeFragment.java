@@ -1,17 +1,8 @@
 package com.bunny.groovy.ui.fragment;
 
 import android.app.Activity;
-import android.app.Service;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.graphics.Color;
-import android.os.IBinder;
-import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.TypedValue;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,11 +11,9 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.adapter.UserCenterAdapter;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.BaseListFragment;
-import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.presenter.MePresenter;
-import com.bunny.groovy.service.MusicService;
 import com.bunny.groovy.ui.fragment.spotlight.SpotlightFragment;
 import com.bunny.groovy.ui.fragment.usercenter.FavoriteFragment;
 import com.bunny.groovy.ui.fragment.usercenter.HistoryFragment;
@@ -36,11 +25,7 @@ import com.bunny.groovy.utils.MusicBox;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IMeView;
-import com.bunny.groovy.view.IOverView;
 import com.bunny.groovy.weidget.SlidingTabLayout;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;

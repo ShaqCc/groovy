@@ -6,17 +6,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.bunny.groovy.R;
-import com.bunny.groovy.adapter.NotifyListAdapter;
 import com.bunny.groovy.adapter.UserFavoriteListAdapter;
 import com.bunny.groovy.base.BaseListFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.divider.HLineDecoration;
 import com.bunny.groovy.model.MusicianModel;
-import com.bunny.groovy.model.PerformerUserModel;
-import com.bunny.groovy.model.ShowModel;
-import com.bunny.groovy.presenter.ListPresenter;
 import com.bunny.groovy.presenter.UserListPresenter;
-import com.bunny.groovy.ui.fragment.spotlight.SpotlightFragment;
 import com.bunny.groovy.view.IListPageView;
 
 import java.util.List;

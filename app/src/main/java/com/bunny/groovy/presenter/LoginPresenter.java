@@ -48,7 +48,6 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                             //需要完善信息
                             if (userType == AppConstants.USER_TYPE_MUSICIAN
                                     && TextUtils.isEmpty(response.getZipCode())) {
-
                                 mView.get().startActivityForResult(new Intent(mView.get(), SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                             } else if (userType == AppConstants.USER_TYPE_VENUE
                                     && TextUtils.isEmpty(response.getVenueTypeName())) {

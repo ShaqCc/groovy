@@ -58,9 +58,9 @@ public class VenueOpportunityDetailAdapter extends RecyclerView.Adapter<VenueOpp
         holder.imgSelect.setImageResource(mIsChoose ? R.drawable.selector_perform_choosed_light : R.drawable.selector_perform_light);
         String chooseStatus = showModel.getApplyState();
         if (mIsChoose) {
-            holder.imgSelect.setSelected(TextUtils.equals("1", chooseStatus) ? true : false);
+            holder.imgSelect.setSelected(TextUtils.equals("1", chooseStatus));
         } else {
-            holder.imgSelect.setSelected(mPosition == position ? true : false);
+            holder.imgSelect.setSelected(mPosition == position);
         }
         Glide.with(mContext).load(showModel.getHeadImg()).placeholder(R.drawable.head)
                 .error(R.drawable.head).dontAnimate().into(holder.imgHead);

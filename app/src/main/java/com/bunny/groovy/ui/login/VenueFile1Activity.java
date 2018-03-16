@@ -19,7 +19,6 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.listener.PermissionListener;
 import com.bunny.groovy.presenter.SingUpPresenter;
-import com.bunny.groovy.ui.setfile.SetFile2Activity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;

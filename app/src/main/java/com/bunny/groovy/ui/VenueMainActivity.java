@@ -24,6 +24,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import butterknife.Bind;
 
 public class VenueMainActivity extends BaseActivity {

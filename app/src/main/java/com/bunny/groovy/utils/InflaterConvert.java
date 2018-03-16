@@ -1,8 +1,6 @@
 package com.bunny.groovy.utils;
 
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;

@@ -15,14 +15,12 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import rx.Subscriber;
 
 /****************************************
  * 功能说明:  

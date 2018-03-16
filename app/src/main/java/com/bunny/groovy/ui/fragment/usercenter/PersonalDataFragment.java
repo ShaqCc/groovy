@@ -167,7 +167,7 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
         if (popupWindow == null) {
             popupWindow = new PopupWindow(context);
             View inflate = LayoutInflater.from(context).inflate(R.layout.pop_performer_style_layout, null, false);
-            ListView listView = (ListView) inflate.findViewById(R.id.style_listview);
+            ListView listView = inflate.findViewById(R.id.style_listview);
             adapter = new StyleAdapter(dataList);
             listView.setAdapter(adapter);
             popupWindow.setContentView(inflate);

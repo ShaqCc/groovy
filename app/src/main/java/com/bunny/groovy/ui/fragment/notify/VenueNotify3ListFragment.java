@@ -8,7 +8,6 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.adapter.VenueNotify3ListAdapter;
 import com.bunny.groovy.base.BaseListFragment;
 import com.bunny.groovy.divider.HLineDecoration;
-import com.bunny.groovy.model.VenueApplyModel;
 import com.bunny.groovy.model.VenueInViteModel;
 import com.bunny.groovy.presenter.ListPresenter;
 import com.bunny.groovy.view.IListPageView;

@@ -5,10 +5,8 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.MusicianDetailModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
-import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.ui.fragment.releaseshow.InviteMusicianFragment;
 import com.bunny.groovy.view.IMusicianView;
-import com.bunny.groovy.view.IVenueView;
 
 /****************************************
  * 功能说明:  表演者详情页控制器

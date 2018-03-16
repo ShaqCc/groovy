@@ -7,7 +7,6 @@ import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IDiscoverSearchMusicianList;
-import com.bunny.groovy.view.ISearchMusicianList;
 
 import java.util.List;
 

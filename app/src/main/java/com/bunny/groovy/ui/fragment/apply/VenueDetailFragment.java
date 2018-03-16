@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +18,6 @@ import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.VenueDetailPresenter;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IVenueView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;

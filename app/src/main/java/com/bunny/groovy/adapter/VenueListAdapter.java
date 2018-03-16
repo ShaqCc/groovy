@@ -1,7 +1,6 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -93,11 +92,11 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
 
         public VenueHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.nextshow_iv_head);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.nextshow_tv_performerName);
-            mTvStar = (TextView) itemView.findViewById(R.id.nextshow_tv_performerStar);
-            mTvPhone = (TextView) itemView.findViewById(R.id.nextshow_tv_address);
-            mTvAddress = (TextView) itemView.findViewById(R.id.nextshow_tv_time);
+            mIvHead = itemView.findViewById(R.id.nextshow_iv_head);
+            mTvName = itemView.findViewById(R.id.nextshow_tv_performerName);
+            mTvStar = itemView.findViewById(R.id.nextshow_tv_performerStar);
+            mTvPhone = itemView.findViewById(R.id.nextshow_tv_address);
+            mTvAddress = itemView.findViewById(R.id.nextshow_tv_time);
         }
     }
 }

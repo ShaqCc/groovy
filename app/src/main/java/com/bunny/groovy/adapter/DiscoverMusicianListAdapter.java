@@ -1,10 +1,8 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import com.bunny.groovy.ui.fragment.apply.MusicianDetailFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.InviteMusicianFragment;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.weidget.HeightLightTextView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 

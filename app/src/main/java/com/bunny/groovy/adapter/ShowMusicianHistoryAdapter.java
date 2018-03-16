@@ -81,11 +81,11 @@ public class ShowMusicianHistoryAdapter extends RecyclerView.Adapter<ShowMusicia
 
         public HisHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.iv_musician_head_pic);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.musician_tv_name);
-            mTvStar = (TextView) itemView.findViewById(R.id.musician_tv_performerStar);
-            mTvStyle = (TextView) itemView.findViewById(R.id.musician_tv_type);
-            mTvShowTime = (TextView) itemView.findViewById(R.id.musician_tv_time);
+            mIvHead = itemView.findViewById(R.id.iv_musician_head_pic);
+            mTvName = itemView.findViewById(R.id.musician_tv_name);
+            mTvStar = itemView.findViewById(R.id.musician_tv_performerStar);
+            mTvStyle = itemView.findViewById(R.id.musician_tv_type);
+            mTvShowTime = itemView.findViewById(R.id.musician_tv_time);
         }
     }
 }

@@ -5,11 +5,10 @@ import android.text.TextUtils;
 
 import com.bunny.groovy.api.ApiConstants;
 import com.bunny.groovy.api.SubscriberCallBack;
-import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.GoogleMapLoc;
-import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.model.ResultResponse;
+import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.setfile.SetFile2Activity;
 import com.bunny.groovy.utils.AppCacheData;
@@ -17,10 +16,8 @@ import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ISetFileView;
 import com.bunny.groovy.weidget.ProgressHUD;
-import com.socks.library.KLog;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

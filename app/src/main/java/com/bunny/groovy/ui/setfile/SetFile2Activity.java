@@ -33,7 +33,6 @@ import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ISetFileView;
 import com.xw.repo.XEditText;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
@@ -190,7 +189,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         if (popupWindow == null) {
             popupWindow = new PopupWindow(context);
             View inflate = LayoutInflater.from(context).inflate(R.layout.pop_performer_style_layout, null, false);
-            ListView listView = (ListView) inflate.findViewById(R.id.style_listview);
+            ListView listView = inflate.findViewById(R.id.style_listview);
             adapter = new StyleAdapter(dataList);
             listView.setAdapter(adapter);
             popupWindow.setContentView(inflate);

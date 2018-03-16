@@ -66,9 +66,9 @@ public class VenueScheduleAdapter extends RecyclerView.Adapter<VenueScheduleAdap
 
         public VenueScheduleHolder(View itemView) {
             super(itemView);
-            mTvWeekDay = (TextView) itemView.findViewById(R.id.item_venue_schedule_tv_weekday);
-            mTvPerformTime = (TextView) itemView.findViewById(R.id.item_venue_schedule_tv_performtime);
-            mTvMessage = (TextView) itemView.findViewById(R.id.tvMessage);
+            mTvWeekDay = itemView.findViewById(R.id.item_venue_schedule_tv_weekday);
+            mTvPerformTime = itemView.findViewById(R.id.item_venue_schedule_tv_performtime);
+            mTvMessage = itemView.findViewById(R.id.tvMessage);
         }
     }
 }

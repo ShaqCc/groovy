@@ -2,8 +2,6 @@ package com.bunny.groovy.ui.fragment.wallet;
 
 import android.text.TextUtils;
 
-import com.braintreepayments.api.BraintreeFragment;
-import com.braintreepayments.api.exceptions.InvalidArgumentException;
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.ResultResponse;

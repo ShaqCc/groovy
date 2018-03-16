@@ -12,7 +12,6 @@ import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.listener.PermissionListener;
 import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.presenter.SetFilePresenter;
-import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;

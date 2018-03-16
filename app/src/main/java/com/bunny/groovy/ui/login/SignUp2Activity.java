@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.text.TextUtils;
 
 import com.bunny.groovy.R;
-import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.base.BaseActivity;
+import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.presenter.SingUpPresenter;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.PatternUtils;

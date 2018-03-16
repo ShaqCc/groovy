@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bunny.groovy.BuildConfig;
 import com.bunny.groovy.R;

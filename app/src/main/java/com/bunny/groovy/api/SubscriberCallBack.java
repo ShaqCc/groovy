@@ -5,10 +5,8 @@ import android.content.Context;
 
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.ui.RoleChooseActivity;
-import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.weidget.ProgressHUD;
-import com.socks.library.KLog;
 
 import rx.Subscriber;
 

@@ -124,15 +124,15 @@ public class NearByOppListAdapter extends RecyclerView.Adapter<NearByOppListAdap
 
         public NearByHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.item_nearby_iv_header);
-            mTvName = (TextView) itemView.findViewById(R.id.item_nearby_tv_name);
-            mTvStar = (TextView) itemView.findViewById(R.id.item_nearby_tv_score);
-            mTvAddress = (TextView) itemView.findViewById(R.id.item_nearby_tv_address);
-            mBtPhone = (ImageView) itemView.findViewById(R.id.item_nearby_iv_phone);
-            mBtEmail = (ImageView) itemView.findViewById(R.id.item_nearby_iv_email);
-            mBtApply = (TextView) itemView.findViewById(R.id.item_nearby_tv_apply);
-            mTvTime = (TextView) itemView.findViewById(R.id.item_nearby_tv_perform_date);
-            mTvDistance = (TextView) itemView.findViewById(R.id.item_nearby_tv_distance);
+            mIvHead = itemView.findViewById(R.id.item_nearby_iv_header);
+            mTvName = itemView.findViewById(R.id.item_nearby_tv_name);
+            mTvStar = itemView.findViewById(R.id.item_nearby_tv_score);
+            mTvAddress = itemView.findViewById(R.id.item_nearby_tv_address);
+            mBtPhone = itemView.findViewById(R.id.item_nearby_iv_phone);
+            mBtEmail = itemView.findViewById(R.id.item_nearby_iv_email);
+            mBtApply = itemView.findViewById(R.id.item_nearby_tv_apply);
+            mTvTime = itemView.findViewById(R.id.item_nearby_tv_perform_date);
+            mTvDistance = itemView.findViewById(R.id.item_nearby_tv_distance);
         }
     }
 }

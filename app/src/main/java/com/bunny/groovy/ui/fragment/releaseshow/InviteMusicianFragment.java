@@ -17,10 +17,7 @@ import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.StyleModel;
-import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.InviteMusicianPresenter;
-import com.bunny.groovy.presenter.ReleaseShowOpportunityPresenter;
-import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.DateUtils;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
@@ -28,7 +25,6 @@ import com.bunny.groovy.view.ISetFileView;
 import com.bunny.groovy.weidget.datepick.DatePickerHelper;
 import com.bunny.groovy.weidget.loopview.LoopView;
 import com.bunny.groovy.weidget.loopview.OnItemSelectedListener;
-import com.google.android.gms.location.places.Place;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -137,9 +133,9 @@ public class InviteMusicianFragment extends BaseFragment<InviteMusicianPresenter
         timeView.setFocusable(true);
         timeView.setFocusableInTouchMode(true);
         mTimePop.setFocusable(true);
-        mTvTimeTitle = (TextView) timeView.findViewById(R.id.weidget_tv_title);
-        final LoopView loopviewFromTime = (LoopView) timeView.findViewById(R.id.weidget_from_time);
-        final LoopView loopviewEndTime = (LoopView) timeView.findViewById(R.id.weidget_end_time);
+        mTvTimeTitle = timeView.findViewById(R.id.weidget_tv_title);
+        final LoopView loopviewFromTime = timeView.findViewById(R.id.weidget_from_time);
+        final LoopView loopviewEndTime = timeView.findViewById(R.id.weidget_end_time);
 
         //set data
         mTvTimeTitle.setText(Utils.getFormatDate(mSelectDate.getTime()));
@@ -215,9 +211,9 @@ public class InviteMusicianFragment extends BaseFragment<InviteMusicianPresenter
         mDatePop.setContentView(dateView);
         mDatePop.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mDatePop.setHeight(UIUtils.getScreenHeight() / 2);
-        LoopView loopMonth = (LoopView) dateView.findViewById(R.id.weidget_month);
-        final LoopView loopDay = (LoopView) dateView.findViewById(R.id.weidget_day);
-        LoopView loopYear = (LoopView) dateView.findViewById(R.id.weidget_year);
+        LoopView loopMonth = dateView.findViewById(R.id.weidget_month);
+        final LoopView loopDay = dateView.findViewById(R.id.weidget_day);
+        LoopView loopYear = dateView.findViewById(R.id.weidget_year);
         //set data
         final DatePickerHelper helper = new DatePickerHelper();
         //年

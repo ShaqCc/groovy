@@ -10,8 +10,6 @@ import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.view.ISingUpView;
 import com.xw.repo.XEditText;
 
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.OnClick;
 

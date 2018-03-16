@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,10 +14,8 @@ import android.widget.RadioGroup;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
-import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.presenter.VenueRegisterPresenter;
 import com.bunny.groovy.utils.AppConstants;
-import com.bunny.groovy.utils.PatternUtils;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ISingUpView;
 import com.xw.repo.XEditText;
@@ -27,7 +23,6 @@ import com.xw.repo.XEditText;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.lang.ref.WeakReference;
-import java.net.URLEncoder;
 
 import butterknife.Bind;
 import butterknife.OnClick;

@@ -67,9 +67,9 @@ public class MusicianScheduleAdapter extends RecyclerView.Adapter<MusicianSchedu
 
         public MusicianScheduleHolder(View itemView) {
             super(itemView);
-            mTvUserName = (TextView) itemView.findViewById(R.id.item_musician_reply_user_name);
-            mTvReplyTime = (TextView) itemView.findViewById(R.id.item_musician_reply_time);
-            mTvReplyData = (TextView) itemView.findViewById(R.id.item_musician_reply_data);
+            mTvUserName = itemView.findViewById(R.id.item_musician_reply_user_name);
+            mTvReplyTime = itemView.findViewById(R.id.item_musician_reply_time);
+            mTvReplyData = itemView.findViewById(R.id.item_musician_reply_data);
             tvBottomLine = itemView.findViewById(R.id.tvBottomLine);
             tvTopLine = itemView.findViewById(R.id.tvTopLine);
         }

@@ -132,9 +132,9 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
 
         public StyleHolder(View itemView) {
             super(itemView);
-            mIvPic = (ImageView) itemView.findViewById(R.id.item_style_grid_iv_pic);
-            mTvName = (TextView) itemView.findViewById(R.id.item_style_grid_tv_name);
-            mTvCheckBox = (Button) itemView.findViewById(R.id.item_style_grid_cb);
+            mIvPic = itemView.findViewById(R.id.item_style_grid_iv_pic);
+            mTvName = itemView.findViewById(R.id.item_style_grid_tv_name);
+            mTvCheckBox = itemView.findViewById(R.id.item_style_grid_cb);
         }
     }
 

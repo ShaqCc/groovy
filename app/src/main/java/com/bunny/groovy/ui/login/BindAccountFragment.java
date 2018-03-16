@@ -7,9 +7,9 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.bunny.groovy.R;
-import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
+import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.presenter.LoginPresenter;
 import com.bunny.groovy.ui.MainActivity;

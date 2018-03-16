@@ -11,10 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
-
-import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.listener.PermissionListener;
-import com.bunny.groovy.ui.RoleChooseActivity;
 import com.bunny.groovy.weidget.SlidingLayout;
 import com.yan.inflaterauto.InflaterAuto;
 import com.zfdang.multiple_images_selector.ImagesSelectorActivity;

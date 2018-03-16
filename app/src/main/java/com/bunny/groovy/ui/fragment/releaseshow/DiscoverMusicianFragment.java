@@ -8,7 +8,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -22,22 +21,14 @@ import android.widget.TextView;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.adapter.DiscoverMusicianListAdapter;
-import com.bunny.groovy.adapter.MusicianListAdapter;
 import com.bunny.groovy.adapter.StyleGridAdapter;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.presenter.DiscoverMusicianListPresenter;
-import com.bunny.groovy.presenter.SearchMusicianListPresenter;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IDiscoverSearchMusicianList;
-import com.bunny.groovy.view.ISearchMusicianList;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
-import com.socks.library.KLog;
 
 import java.util.List;
 

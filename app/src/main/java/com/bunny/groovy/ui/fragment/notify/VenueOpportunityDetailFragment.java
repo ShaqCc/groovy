@@ -71,7 +71,7 @@ public class VenueOpportunityDetailFragment extends BaseFragment {
             stringBuilder.append("Show Opportunity on ").append(sModel.getPerformDate()).append(" ").append(sModel.getPerformTime());
             mOpportunityDate.setText(stringBuilder.toString());
             mRecycleView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-            final VenueOpportunityDetailAdapter adapter = new VenueOpportunityDetailAdapter(mList, TextUtils.equals(status, "0") ? false : true);
+            final VenueOpportunityDetailAdapter adapter = new VenueOpportunityDetailAdapter(mList, !TextUtils.equals(status, "0"));
             adapter.setOnSelectListener(new VenueOpportunityDetailAdapter.OnSelectListener() {
                 @Override
                 public void select(int position) {
