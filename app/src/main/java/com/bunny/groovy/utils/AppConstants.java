@@ -37,7 +37,7 @@ public class AppConstants {
     public final static String KEY_USERID = "key_userid";//已登录的userid
     public final static String KEY_USER_TYPE = "key_user_type";//已登录的user_type
     public final static String KEY_PHONE = "key_phone";//已登录的user 电话
-
+    public final static String KEY_FIRST_RUN = "key_first_run";//第一次运行
     public final static String Code_Send_Success = "0000";//发送成功
     public final static String Code_Send_ServerError = "5000";//sinch服务器出错
     public final static String Code_Send_InvalidPhone = "1000";//填的不对

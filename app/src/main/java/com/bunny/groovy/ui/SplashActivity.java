@@ -50,7 +50,9 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    RoleChooseActivity.launch(SplashActivity.this);
+                    boolean isFirst = (boolean) SharedPreferencesUtils.getUserParam(SplashActivity.this, AppConstants.KEY_FIRST_RUN, true);
+                    if(isFirst) GuideActivity.launch(SplashActivity.this);
+                    else RoleChooseActivity.launch(SplashActivity.this);
                 }
             }, 2000);
         }
