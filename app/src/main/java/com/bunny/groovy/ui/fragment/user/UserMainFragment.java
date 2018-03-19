@@ -609,6 +609,6 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
 
     @Override
     protected int provideContentViewId() {
-        return R.layout.fragment_map_layout;
+        return R.layout.fragment_user_map_layout;
     }
 }

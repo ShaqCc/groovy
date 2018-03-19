@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true">
 
-                <include layout="@layout/map_marker_info_window_layout"/>
+                <include layout="@layout/map_marker_user_info_window_layout"/>
             </FrameLayout>
         </RelativeLayout>
     </FrameLayout>
