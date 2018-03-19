@@ -14,6 +14,8 @@ import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.base.BaseApp;
 import com.bunny.groovy.base.BasePresenter;
+import com.bunny.groovy.utils.AppConstants;
+import com.bunny.groovy.utils.SharedPreferencesUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -35,7 +37,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     private static final int[] LAYOUT_RES;
 
     static {
-        LAYOUT_RES = new int[]{R.drawable.login_bg, R.drawable.login_bg, R.drawable.login_bg};
+        LAYOUT_RES = new int[]{R.drawable.guide_1, R.drawable.guide_2, R.drawable.guide_3};
     }
 
     public static void launch(Context activity) {
@@ -50,6 +52,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
 
     @OnClick(R.id.btn_start)
     void start() {
+        SharedPreferencesUtils.setUserParam(this, AppConstants.KEY_FIRST_RUN, true);
         RoleChooseActivity.launch(this);
     }
 
