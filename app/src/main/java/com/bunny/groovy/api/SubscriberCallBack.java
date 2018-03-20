@@ -2,6 +2,7 @@ package com.bunny.groovy.api;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.ui.RoleChooseActivity;
@@ -50,11 +51,11 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
             onSuccess((T) response.resultData);
         } else {
             if ("201".equals(response.errorCode)) {//未登录
-                UIUtils.showBaseToast("登录超时，请重新登录!");
+                UIUtils.showBaseToast("You have not signed in or expired");
                 RoleChooseActivity.launch(mContext);
             } else {
                 UIUtils.showBaseToast(response.errorMsg);
-                System.out.print("onError错误！"+response.errorMsg);
+                Log.i("http", "onError错误！" + response.errorMsg);
                 onFailure(response);
             }
         }
@@ -70,7 +71,7 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
         if (mProgressHUD != null && mProgressHUD.isShowing()) mProgressHUD.dismiss();
         UIUtils.showToast("网络出错啦！");
         e.printStackTrace();
-        System.out.print("onError错误！"+e.toString());
+        System.out.print("onError错误！" + e.toString());
 //        onError();
     }
 

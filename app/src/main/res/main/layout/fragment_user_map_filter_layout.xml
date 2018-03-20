@@ -24,9 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:text="0mi"
             android:textColor="@color/white"
-            android:layout_centerVertical="true"
             android:textSize="@dimen/text_size_common" />
 
         <SeekBar
@@ -43,42 +43,43 @@
         style="@style/common_text_style"
         android:text="VENUE SERVICE（MULTI）" />
 
-    <RadioGroup
+    <LinearLayout
         android:id="@+id/venue_service_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingBottom="10dp"
         android:paddingTop="15dp">
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/service_choose_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:button="@drawable/selector_venue_service_checkbox"
-            android:text="Exclude 21+"
             android:paddingLeft="10dp"
+            android:text="Exclude 21+"
             android:textColor="@color/white" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/service_choose_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:button="@drawable/selector_venue_service_checkbox"
-            android:text="Serves Food"
             android:paddingLeft="10dp"
+            android:text="Serves Food"
             android:textColor="@color/white" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/service_choose_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:button="@drawable/selector_venue_service_checkbox"
-            android:text="Serves Alcohol"
             android:paddingLeft="10dp"
+            android:text="Serves Alcohol"
             android:textColor="@color/white" />
-    </RadioGroup>
+    </LinearLayout>
 
     <TextView
         style="@style/common_text_style"

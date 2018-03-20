@@ -52,7 +52,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
 
     @OnClick(R.id.btn_start)
     void start() {
-        SharedPreferencesUtils.setUserParam(this, AppConstants.KEY_FIRST_RUN, true);
+        SharedPreferencesUtils.setUserParam(this, AppConstants.KEY_FIRST_RUN, false);
         RoleChooseActivity.launch(this);
     }
 

@@ -160,13 +160,13 @@ public class VenueOverviewFragment extends BaseFragment<VenueOverviewPresenter> 
     public void onResume() {
         super.onResume();
         //请求最近一场演出
-        mPresenter.requestNextShow(AppCacheData.getPerformerUserModel().getUserID());
+        mPresenter.requestNextShow();
     }
 
     @Override
     public void refreshUI() {
         mPresenter.requestUserData();
-        mPresenter.requestNextShow(AppCacheData.getPerformerUserModel().getUserID());
+        mPresenter.requestNextShow();
     }
 
 

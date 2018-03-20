@@ -5,15 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -41,12 +41,18 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 /****************************************
- * 功能说明:  申请演出厅表演页面
+ * 功能说明:  普通用户地图模式搜索过滤界面
  *
- * Author: Created by bayin on 2018/1/3.
+ * Author: Created by wjy on 2018/3/16.
  ****************************************/
 
 public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implements IApplyVenueView {
+
+    public final static String KEY_DISTANCE = "key_distance";
+    public final static String KEY_START_TIME = "key_start_time";
+    public final static String KEY_END_TIME = "key_end_time";
+    public final static String KEY_VENUE_TYPE = "key_venue_type";
+    public final static String KEY_PERFORM_TYPE = "key_perform_type";
 
     private TextView mTvTimeTitle;
     private List<String> mTimeClockList, mRealTimeList;
@@ -55,38 +61,40 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
     private Date today = Calendar.getInstance().getTime();
     private String startTime = "";//开始时间
     private String endTime = "";//结束时间
+    private int mDistance;//距离
+    private StringBuilder mVenueType;//演播厅类型
+    private String mPerformType;//表演类型
     private List<StyleModel> styleList;
     private PopupWindow mTimePop;
     private PopupWindow mPopupWindow;
     private StyleGridAdapter mAdapter;
+    private CheckBox mCheckList[];//演播厅类型多选框
 
 
     public static void launchForResult(Activity from, Bundle bundle, int requestCode) {
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "FILTER");
         FragmentContainerActivity.launchForResult(from, UserFilterFragment.class, bundle, requestCode);
     }
+
     @Bind(R.id.filter_seekbar)
-    SeekBar seekBar;
+    SeekBar mSeekBar;
     @Bind(R.id.filter_time)
-    EditText etTime;
+    EditText mEtTime;
     @Bind(R.id.filter_style)
-    EditText etStyle;
-    @Bind(R.id.venue_service_group)
-    RadioGroup mRgService;
+    EditText mEtPerformStyle;
     @Bind(R.id.service_choose_1)
-    RadioButton mRb1;
+    CheckBox mCb1;
     @Bind(R.id.service_choose_2)
-    RadioButton mRb2;
+    CheckBox mCb2;
     @Bind(R.id.service_choose_3)
-    RadioButton mRb3;
+    CheckBox mCb3;
     @Bind(R.id.filter_tv_distance)
     TextView mFilterDistance;
-    private String mServiceName;
 
     //弹出选择style窗口
     @OnClick(R.id.filter_style)
     public void showStyle() {
-        UIUtils.hideSoftInput(etStyle);
+        UIUtils.hideSoftInput(mEtPerformStyle);
         if (styleList == null || styleList.size() == 0)
             mPresenter.requestStyle();
         else showStylePop(styleList);
@@ -95,19 +103,31 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
     //弹出时间选择窗口
     @OnClick(R.id.filter_time)
     public void selectTime() {
-        UIUtils.hideSoftInput(etTime);
+        UIUtils.hideSoftInput(mEtTime);
         showTimeChoosePop();
     }
 
     @OnClick(R.id.tv_apply)
-    public void apply(){
-        String distance = String.valueOf(seekBar.getProgress());
+    public void apply() {
+        //获取距离
+        String distance = String.valueOf(mSeekBar.getProgress());
+        //获取演播厅类型
+        mVenueType = new StringBuilder();
+        int length = mCheckList.length;
+        for (int i = 0; i < length; i++) {
+            if (mCheckList[i].isChecked()) {
+                if (mVenueType.toString().length() != 0) {
+                    mVenueType.append(",");
+                }
+                mVenueType.append(mCheckList[i].getText().toString().trim());
+            }
+        }
         Intent intent = new Intent();
-        intent.putExtra("distance", distance);
-        intent.putExtra("venueType", mServiceName);
-        intent.putExtra("performType", etStyle.getText().toString().trim());
-        intent.putExtra("startDate", DateUtils.getFormatTime(mSelectDate.getTime(), startTime));
-        intent.putExtra("endDate", DateUtils.getFormatTime(mSelectDate.getTime(), endTime));
+        intent.putExtra(KEY_DISTANCE, distance);
+        intent.putExtra(KEY_VENUE_TYPE, mVenueType.toString());
+        intent.putExtra(KEY_PERFORM_TYPE, mEtPerformStyle.getText().toString().trim());
+        intent.putExtra(KEY_START_TIME, TextUtils.isEmpty(startTime) ? "" : DateUtils.getFormatTime(mSelectDate.getTime(), startTime));
+        intent.putExtra(KEY_END_TIME, TextUtils.isEmpty(endTime) ? "" : DateUtils.getFormatTime(mSelectDate.getTime(), endTime));
         mActivity.setResult(Activity.RESULT_OK, intent);
         mActivity.finish();
     }
@@ -118,34 +138,45 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
     private void showTimeChoosePop() {
         if (mTimePop == null)
             initTimePop();
-        mTimePop.showAtLocation(etTime, Gravity.CENTER, 0, 0);
+        mTimePop.showAtLocation(mEtTime, Gravity.CENTER, 0, 0);
     }
 
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
-        etStyle.setFocusable(false);
-        etTime.setFocusable(false);
-        mRgService.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i) {
-                    case R.id.service_choose_1:
-                        mServiceName = "Exclude 21+";
+        mDistance = getArguments().getInt(KEY_DISTANCE);
+        mPerformType = getArguments().getString(KEY_PERFORM_TYPE);
+        String venueType = getArguments().getString(KEY_VENUE_TYPE);
+        mEtPerformStyle.setText(mPerformType);
+        mEtPerformStyle.setFocusable(false);
+        mCheckList = new CheckBox[3];
+        mCheckList[0] = mCb1;
+        mCheckList[1] = mCb2;
+        mCheckList[2] = mCb3;
+        String startDate = getArguments().getString(KEY_START_TIME);
+        String endDate = getArguments().getString(KEY_END_TIME);
+        if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
+            mEtTime.setText(startDate + "-" + endDate.split(" ")[1]);
+        }
+        mEtTime.setFocusable(false);
+        if (!TextUtils.isEmpty(venueType)) {
+            mVenueType = new StringBuilder(venueType);
+            String types[] = venueType.split(",");
+            for (String t : types) {
+                for (int i = 0; i < mCheckList.length; i++) {
+                    if (TextUtils.equals(mCheckList[i].getText().toString().trim(), t)) {
+                        mCheckList[i].setChecked(true);
                         break;
-                    case R.id.service_choose_2:
-                        mServiceName = "Serves Food";
-                        break;
-                    case R.id.service_choose_3:
-                        mServiceName = "Serves Alcohol";
-                        break;
+                    }
                 }
             }
-        });
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        }
+        mSeekBar.setProgress(mDistance);
+        mFilterDistance.setText(mDistance + "mi");
+        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                mFilterDistance.setText(i+"mi");
+                mFilterDistance.setText(i + "mi");
             }
 
             @Override
@@ -207,7 +238,7 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
                     //设置开始结束时间
                     startTime = mRealTimeList.get(loopviewFromTime.getSelectedItem());
                     endTime = mRealTimeList.get(loopviewEndTime.getSelectedItem());
-                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startTime) + "-" + endTime);
+                    mEtTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startTime) + "-" + endTime);
                 }
             }
         });
@@ -235,7 +266,7 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
     private void showDatePop() {
         if (mDatePop == null)
             initDatePop();
-        mDatePop.showAtLocation(etTime, Gravity.CENTER, 0, 0);
+        mDatePop.showAtLocation(mEtTime, Gravity.CENTER, 0, 0);
     }
 
     /**
@@ -336,11 +367,11 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
 
     @Override
     public void showStylePop(List<StyleModel> modelList) {
-        UIUtils.hideSoftInput(etStyle);
+        UIUtils.hideSoftInput(mEtPerformStyle);
         styleList = modelList;
         if (mPopupWindow == null)
             initStylePop(modelList);
-        mPopupWindow.showAtLocation(etStyle, Gravity.CENTER, 0, 0);
+        mPopupWindow.showAtLocation(mEtPerformStyle, Gravity.CENTER, 0, 0);
     }
 
 
@@ -362,7 +393,7 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mAdapter = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());
+        mAdapter = new StyleGridAdapter(modelList, mEtPerformStyle.getText().toString().trim());
         mAdapter.setSelectNum(12);
         recyclerview.setAdapter(mAdapter);
         popview.findViewById(R.id.pop_cancel).setOnClickListener(new View.OnClickListener() {
@@ -375,7 +406,7 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
             @Override
             public void onClick(View v) {
                 closePop();
-                etStyle.setText(mAdapter.getSelectStyles());
+                mEtPerformStyle.setText(mAdapter.getSelectStyles());
             }
         });
         // 按下android回退物理键 PopipWindow消失解决
@@ -410,4 +441,5 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         mTimeClockList = Arrays.asList(timeClockArray);
         mRealTimeList = Arrays.asList(realTimeArr);
     }
+
 }

@@ -26,16 +26,17 @@ import java.util.List;
  ****************************************/
 
 public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.StyleHolder> {
-    private List<StyleModel> dataList;
+    private List<StyleModel> mDataList;
     private Context mContext;
-    private String selectedStyle;
+    private String mSelectStyle;
     private final RelativeLayout.LayoutParams params;
     private int mCount = 0;
     private int mMaxNum = 2;
 
     public StyleGridAdapter(List<StyleModel> dataList, String selected) {
-        this.dataList = dataList;
-        selectedStyle = selected;
+        this.mDataList = dataList;
+        mSelectStyle = selected;
+        setCheckData();
         int unitWidth = (UIUtils.getScreenWidth() - UIUtils.dip2Px(32)) / 3;
         params = new RelativeLayout.LayoutParams(unitWidth, unitWidth);
     }
@@ -53,7 +54,7 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
 
     @Override
     public void onBindViewHolder(final StyleHolder holder, final int position) {
-        final StyleModel styleModel = dataList.get(position);
+        final StyleModel styleModel = mDataList.get(position);
         if (!TextUtils.isEmpty(styleModel.getTypeImg())) {
             Glide.with(mContext).load(styleModel.getTypeImg()).into(holder.mIvPic);
         } else holder.mIvPic.setImageResource(R.drawable.icon_load_pic);
@@ -70,19 +71,19 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
             public void onClick(View v) {
                 if (styleModel.isChecked()) {
                     holder.mTvCheckBox.setBackgroundResource(R.drawable.btn_square);
-                    dataList.get(position).setChecked(false);
+                    mDataList.get(position).setChecked(false);
                 } else {
                     mCount = 0;
                     for (StyleModel model :
-                            dataList) {
+                            mDataList) {
                         if (model.isChecked()) mCount++;
                     }
                     if (mCount >= mMaxNum) {
-                        UIUtils.showBaseToast("最多选两个");
+                        UIUtils.showBaseToast("You can only choose " + mMaxNum + " num.");
                         return;
                     }
                     holder.mTvCheckBox.setBackgroundResource(R.drawable.btn_square_selected);
-                    dataList.get(position).setChecked(true);
+                    mDataList.get(position).setChecked(true);
                 }
             }
         });
@@ -90,38 +91,40 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
 
     @Override
     public int getItemCount() {
-        if (dataList != null) return dataList.size();
+        if (mDataList != null) return mDataList.size();
         return 0;
     }
 
     public String getSelectStyles() {
-        selectedStyle = "";
-        for (int i = 0; i < dataList.size(); i++) {
-            if (dataList.get(i).isChecked())
-                selectedStyle = selectedStyle + dataList.get(i).getTypeName() + ",";
+        mSelectStyle = "";
+        for (int i = 0; i < mDataList.size(); i++) {
+            if (mDataList.get(i).isChecked())
+                mSelectStyle = mSelectStyle + mDataList.get(i).getTypeName() + ",";
         }
-        if (selectedStyle.length() > 0)
-            return selectedStyle.substring(0, selectedStyle.length() - 1);
-        return selectedStyle;
+        if (mSelectStyle.length() > 0)
+            return mSelectStyle.substring(0, mSelectStyle.length() - 1);
+        return mSelectStyle;
     }
 
     public void updateSelectedStyle(List<StyleModel> list, String selectedStyle) {
-        this.dataList = list;
-        if (dataList != null && !TextUtils.isEmpty(selectedStyle)) {
-            String[] split = selectedStyle.split(",");
+        this.mDataList = list;
+        setCheckData();
+        notifyDataSetChanged();
+    }
 
-            for (int i = 0; i < dataList.size(); i++) {
-                dataList.get(i).setChecked(false);
-                for (String str :
-                        split) {
-                    if (str.equals(dataList.get(i).getTypeName())) {
-                        dataList.get(i).setChecked(true);
+    public void setCheckData() {
+        if (mDataList != null && !TextUtils.isEmpty(mSelectStyle)) {
+            String[] split = mSelectStyle.split(",");
+            for (StyleModel model : mDataList) {
+                model.setChecked(false);
+                for (String str : split) {
+                    if (TextUtils.equals(str, model.getTypeName())) {
+                        model.setChecked(true);
                         break;
                     }
                 }
             }
         }
-        notifyDataSetChanged();
     }
 
     static class StyleHolder extends RecyclerView.ViewHolder {

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -89,10 +88,10 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     private List<PerformDetail> performDetailList = new ArrayList<>();
     private PerformDetail mCurrentBean;//当前选中的演出
     private List<Marker> mMarkerList = new ArrayList<>();
-    private String distance = "50";//距离默认500mi
-    private String startDate, endDate;//表演时间
-    private String venueType;//表演厅类型（多选，英文逗号隔开）
-    private String performType;//表演类型（多选，英文逗号隔开）
+    private String mDistance = "50";//距离默认500mi
+    private String mStartDate, mEndDate;//表演时间
+    private String mVenueType;//表演厅类型（多选，英文逗号隔开）
+    private String mPerformType;//表演类型（多选，英文逗号隔开）
     private Location mLastLocation;
     private boolean isMarkerShowing = false;
 
@@ -124,7 +123,6 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     @Bind(R.id.map_search_bar)
     View mapSearchBar;
 
-    private LocationManager locationManager;
     private FusedLocationProviderClient mLocationClient;
     private LocationRequest mLocationRequest;
 
@@ -161,8 +159,11 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
      */
     private void filter() {
         Bundle bundle = new Bundle();
-        bundle.putInt(FilterFragment.KEY_DISTANCE, Integer.parseInt(distance));
-        bundle.putString(FilterFragment.KEY_START_TIME, startDate);
+        bundle.putInt(UserFilterFragment.KEY_DISTANCE, Utils.parseInt(mDistance));
+        bundle.putString(UserFilterFragment.KEY_START_TIME, mStartDate);
+        bundle.putString(UserFilterFragment.KEY_END_TIME, mEndDate);
+        bundle.putString(UserFilterFragment.KEY_VENUE_TYPE, mVenueType);
+        bundle.putString(UserFilterFragment.KEY_PERFORM_TYPE, mPerformType);
         UserFilterFragment.launchForResult(mActivity, bundle, FILTER_REQUEST_CODE);
     }
 
@@ -353,9 +354,9 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                         isMarkerShowing = true;
                         //把上个marker的icon设置小图标
                         if (lastMarkerSelected >= 0)
-                            mMarkerList.get(lastMarkerSelected).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_opportunity));
+                            mMarkerList.get(lastMarkerSelected).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_show));
                         //设置当前点击的marker大图片
-                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_opportunity_selected));
+                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_show_selected));
                     }
                 }
                 lastMarkerSelected = clickedIndex;
@@ -392,12 +393,16 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         if (mLastLocation != null) {
             map.put("lon", String.valueOf(mLastLocation.getLongitude()));
             map.put("lat", String.valueOf(mLastLocation.getLatitude()));
-            map.put("distance", distance);
+            map.put("distance", mDistance);
+            if(!TextUtils.isEmpty(mVenueType)) map.put("venueType", mVenueType);
+            if(!TextUtils.isEmpty(mStartDate)) map.put("startDate", mStartDate);
+            if(!TextUtils.isEmpty(mEndDate)) map.put("endDate", mEndDate);
+            if(!TextUtils.isEmpty(mPerformType)) map.put("performType", mPerformType);
             mPresenter.getPerformList(map);
 //        } else {
 //            map.put("lon", "121.6000");
 //            map.put("lat", "31.2200");
-//            map.put("distance", distance);
+//            map.put("mDistance", mDistance);
 //            mPresenter.getPerformList(map);
         }
     }
@@ -471,39 +476,37 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
             HashMap<String, String> map = new HashMap<>();
-            String dis = data.getStringExtra("distance");
+            String dis = data.getStringExtra(UserFilterFragment.KEY_DISTANCE);
             if (!TextUtils.isEmpty(dis)) {
-                distance = dis;
+                mDistance = dis;
             }
-            map.put("distance", distance);
-            String startDate1 = data.getStringExtra("startDate");
+            map.put("distance", mDistance);
+            String startDate1 = data.getStringExtra(UserFilterFragment.KEY_START_TIME);
             if (!TextUtils.isEmpty(startDate1)) {
-                startDate = startDate1;
-                map.put("startDate", startDate);
+                mStartDate = startDate1;
+                map.put("startDate", mStartDate);
             }
-            String endDate1 = data.getStringExtra("endDate");
+            String endDate1 = data.getStringExtra(UserFilterFragment.KEY_END_TIME);
             if (!TextUtils.isEmpty(endDate1)) {
-                endDate = endDate1;
-                map.put("endDate", endDate);
+                mEndDate = endDate1;
+                map.put("endDate", mEndDate);
             }
-            String venueType1 = data.getStringExtra("venueType");
+            String venueType1 = data.getStringExtra(UserFilterFragment.KEY_VENUE_TYPE);
             if (!TextUtils.isEmpty(venueType1)) {
-                venueType = venueType1;
-                map.put("venueType", venueType);
+                mVenueType = venueType1;
+                map.put("venueType", mVenueType);
             }
-            String performType1 = data.getStringExtra("performType");
+            String performType1 = data.getStringExtra(UserFilterFragment.KEY_PERFORM_TYPE);
             if (!TextUtils.isEmpty(performType1)) {
-                performType = performType1;
-                map.put("performType", performType);
+                mPerformType = performType1;
+                map.put("performType", mPerformType);
             }
-//            map.put("lon", "121.6000");
-//            map.put("lat", "31.2200");
             if (mLastLocation != null) {
                 map.put("lon", String.valueOf(mLastLocation.getLongitude()));
                 map.put("lat", String.valueOf(mLastLocation.getLatitude()));
             }
             mPresenter.getPerformList(map);
-        } else if (requestCode == OPEN_GPS_REQUEST_CODE && resultCode == RESULT_OK) {
+        } else if (requestCode == OPEN_GPS_REQUEST_CODE) {
             //请求开启gps服务成功，开始请求当前位置信息
             setUpLocationRequest();
         } else if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
@@ -576,7 +579,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                     loc = new LatLng(Double.parseDouble(model.getVenueLatitude()), Double.parseDouble(model.getVenueLongitude()));
                     Marker marker = mGoogleMap.addMarker(new MarkerOptions().position(loc)
                             .draggable(false)
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_opportunity)));
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_show)));
                     marker.setTag(model);
                     mMarkerList.add(marker);
                 }
