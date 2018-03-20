@@ -88,7 +88,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     private List<PerformDetail> performDetailList = new ArrayList<>();
     private PerformDetail mCurrentBean;//当前选中的演出
     private List<Marker> mMarkerList = new ArrayList<>();
-    private String mDistance = "50";//距离默认500mi
+    private String mDistance = "50";//距离默认50mi
     private String mStartDate, mEndDate;//表演时间
     private String mVenueType;//表演厅类型（多选，英文逗号隔开）
     private String mPerformType;//表演类型（多选，英文逗号隔开）

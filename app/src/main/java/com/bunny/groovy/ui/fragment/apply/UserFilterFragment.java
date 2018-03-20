@@ -31,6 +31,7 @@ import com.bunny.groovy.weidget.datepick.DatePickerHelper;
 import com.bunny.groovy.weidget.loopview.LoopView;
 import com.bunny.groovy.weidget.loopview.OnItemSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -156,7 +157,16 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         String startDate = getArguments().getString(KEY_START_TIME);
         String endDate = getArguments().getString(KEY_END_TIME);
         if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
-            mEtTime.setText(startDate + "-" + endDate.split(" ")[1]);
+            Date date = null;
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startDate);
+                startTime = startDate.split(" ")[1];
+                endTime = endDate.split(" ")[1];
+                mEtTime.setText(startDate + "-" + endTime);
+            } catch (Exception e) {
+            }
+            if (date != null) mSelectDate.setTime(date);
+
         }
         mEtTime.setFocusable(false);
         if (!TextUtils.isEmpty(venueType)) {
@@ -210,7 +220,9 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         //set data
         mTvTimeTitle.setText(Utils.getFormatDate(mSelectDate.getTime()));
         loopviewFromTime.setItems(mTimeClockList);
+        loopviewFromTime.setCurrentPosition(getTimeClockIndex(startTime));
         loopviewEndTime.setItems(mTimeClockList);
+        loopviewEndTime.setCurrentPosition(getTimeClockIndex(endTime));
         //set listener
         timeView.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -249,6 +261,17 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
                 showDatePop();
             }
         });
+    }
+
+    private int getTimeClockIndex(String time) {
+        int index = 0;
+        for (String s : mRealTimeList) {
+            if (TextUtils.equals(s, time)) {
+                break;
+            }
+            index++;
+        }
+        return index;
     }
 
 

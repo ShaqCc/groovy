@@ -10,9 +10,8 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -74,14 +73,12 @@ public class VenueDataFragment extends BaseFragment<VenueMePresenter> implements
     @Bind(R.id.personal_et_twitter)
     EditText mEtTwitter;
 
-    @Bind(R.id.venue_service_group)
-    RadioGroup mRgService;
     @Bind(R.id.service_choose_1)
-    RadioButton mRb1;
+    CheckBox mCb1;
     @Bind(R.id.service_choose_2)
-    RadioButton mRb2;
+    CheckBox mCb2;
     @Bind(R.id.service_choose_3)
-    RadioButton mRb3;
+    CheckBox mCb3;
 
     private String headImagePath, mServiceName;
 
@@ -138,6 +135,20 @@ public class VenueDataFragment extends BaseFragment<VenueMePresenter> implements
                 UIUtils.showBaseToast("Please input facebook.");
                 return super.onOptionsItemSelected(item);
             }
+            //获取演播厅类型
+            StringBuilder stringBuilder = new StringBuilder();
+            if (mCb1.isChecked()) {
+                stringBuilder.append(mCb1.getText().toString().trim());
+            }
+            if (mCb2.isChecked()) {
+                if (stringBuilder.length() > 0) stringBuilder.append(",");
+                stringBuilder.append(mCb2.getText().toString().trim());
+            }
+            if (mCb3.isChecked()) {
+                if (stringBuilder.length() > 0) stringBuilder.append(",");
+                stringBuilder.append(mCb3.getText().toString().trim());
+            }
+            mServiceName = stringBuilder.toString();
             HashMap<String, String> ma = new HashMap<>();
             ma.put("phoneNumber", mEtPhone.getText().toString());
             ma.put("venueTypeName", mServiceName);
@@ -171,30 +182,17 @@ public class VenueDataFragment extends BaseFragment<VenueMePresenter> implements
         });
         mServiceName = model.getVenueTypeName();
         if (!TextUtils.isEmpty(mServiceName)) {
-            if (TextUtils.equals(mRb1.getText().toString(), mServiceName)) {
-                mRb1.setChecked(true);
-            } else if (TextUtils.equals(mRb2.getText().toString(), mServiceName)) {
-                mRb2.setChecked(true);
-            } else if (TextUtils.equals(mRb3.getText().toString(), mServiceName)) {
-                mRb3.setChecked(true);
-            }
-        }
-        mRgService.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i) {
-                    case R.id.service_choose_1:
-                        mServiceName = "Exclude 21+";
-                        break;
-                    case R.id.service_choose_2:
-                        mServiceName = "Serves Food";
-                        break;
-                    case R.id.service_choose_3:
-                        mServiceName = "Serves Alcohol";
-                        break;
+            String data[] = mServiceName.split(",");
+            for (String v : data) {
+                if (TextUtils.equals(mCb1.getText().toString(), v)) {
+                    mCb1.setChecked(true);
+                } else if (TextUtils.equals(mCb2.getText().toString(), v)) {
+                    mCb2.setChecked(true);
+                } else if (TextUtils.equals(mCb3.getText().toString(), v)) {
+                    mCb3.setChecked(true);
                 }
             }
-        });
+        }
         mEtPhone.setText(model.getPhoneNumber());
         mEtWebsite.setText(model.getWebSiteAddress());
         mEtFaceBook.setText(model.getFacebookAccount());

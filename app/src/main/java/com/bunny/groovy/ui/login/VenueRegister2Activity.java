@@ -7,10 +7,9 @@ import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
@@ -68,7 +67,6 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
     @Bind(R.id.et_venue_twitter)
     XEditText mVenueTwitter;
     private PopupWindow popupWindow;
-    private RadioGroup mRadioGroup;
 
     private WeakReference<Activity> mWeakReference = new WeakReference<Activity>(this);
 
@@ -103,7 +101,7 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
     @OnClick(R.id.et_venue_service)
     void selectService() {
         UIUtils.hideSoftInput(mVenueService);
-        showPopWindow(this,mVenueService);
+        showPopWindow(this, mVenueService);
     }
 
     @OnClick(R.id.bt_sign_up)
@@ -209,7 +207,6 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
     }
 
 
-
     /**
      * 验证码结果回调
      *
@@ -238,23 +235,19 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
         if (popupWindow == null) {
             popupWindow = new PopupWindow(context);
             View inflate = LayoutInflater.from(context).inflate(R.layout.pop_venue_service_choose_layout, null, false);
-            mRadioGroup = inflate.findViewById(R.id.venue_service_group);
-            mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    popupWindow.dismiss();
-                }
-            });
-            RadioButton radioButton1 = inflate.findViewById(R.id.service_choose_1);
-            RadioButton radioButton2 = inflate.findViewById(R.id.service_choose_2);
-            RadioButton radioButton3 = inflate.findViewById(R.id.service_choose_3);
-            if(!TextUtils.isEmpty(value)){
-                if(TextUtils.equals(radioButton1.getText().toString(),value)){
-                    radioButton1.setChecked(true);
-                }else if(TextUtils.equals(radioButton2.getText().toString(),value)){
-                    radioButton2.setChecked(true);
-                }else if(TextUtils.equals(radioButton3.getText().toString(),value)){
-                    radioButton3.setChecked(true);
+            final CheckBox checkBox1 = inflate.findViewById(R.id.service_choose_1);
+            final CheckBox checkBox2 = inflate.findViewById(R.id.service_choose_2);
+            final CheckBox checkBox3 = inflate.findViewById(R.id.service_choose_3);
+            if (!TextUtils.isEmpty(value)) {
+                String data[] = value.split(",");
+                for (String v : data) {
+                    if (TextUtils.equals(checkBox1.getText().toString(), v)) {
+                        checkBox1.setChecked(true);
+                    } else if (TextUtils.equals(checkBox2.getText().toString(), v)) {
+                        checkBox2.setChecked(true);
+                    } else if (TextUtils.equals(checkBox3.getText().toString(), v)) {
+                        checkBox3.setChecked(true);
+                    }
                 }
             }
             popupWindow.setContentView(inflate);
@@ -264,20 +257,19 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
             popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public void onDismiss() {
-                    int checkId = mRadioGroup.getCheckedRadioButtonId();
-                    switch (checkId) {
-                        case R.id.service_choose_1:
-                            mVenueService.setText("Exclude 21+");
-                            break;
-                        case R.id.service_choose_2:
-                            mVenueService.setText("Serves Food");
-                            break;
-                        case R.id.service_choose_3:
-                            mVenueService.setText("Serves Alcohol");
-                            break;
-                        default:
-                            mVenueService.setText("");
+                    StringBuilder stringBuilder = new StringBuilder();
+                    if (checkBox1.isChecked()) {
+                        stringBuilder.append(checkBox1.getText().toString().trim());
                     }
+                    if (checkBox2.isChecked()) {
+                        if (stringBuilder.length() > 0) stringBuilder.append(",");
+                        stringBuilder.append(checkBox2.getText().toString().trim());
+                    }
+                    if (checkBox3.isChecked()) {
+                        if (stringBuilder.length() > 0) stringBuilder.append(",");
+                        stringBuilder.append(checkBox3.getText().toString().trim());
+                    }
+                    mVenueService.setText(stringBuilder.toString());
                     mVenueService.setCheckStatus(XEditText.CheckStatus.NONE);
                 }
             });
@@ -290,8 +282,7 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
             mVenueService.setCheckStatus(XEditText.CheckStatus.NONE);
-        }
-        else {
+        } else {
             popupWindow.showAsDropDown(mVenueService, 0, 0);
             mVenueService.setCheckStatus(XEditText.CheckStatus.INVALID);
         }
