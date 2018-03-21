@@ -107,4 +107,10 @@
         <item>23:00</item>
         <item>23:30</item>
     </string-array>
+
+    <string-array name="venue_service_type">
+        <item>@id/venue_service_exclude</item>
+        <item>@id/venue_service_food</item>
+        <item>@id/venue_service_alcohol</item>
+    </string-array>
 </resources>

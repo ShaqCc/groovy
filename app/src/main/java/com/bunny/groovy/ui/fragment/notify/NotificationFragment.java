@@ -11,6 +11,7 @@ import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.BaseListFragment;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.base.FragmentContainerActivity;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.weidget.SlidingTabLayout;
 
@@ -33,7 +34,10 @@ public class NotificationFragment extends BaseFragment {
     @Bind(R.id.notification_viewpager)
     ViewPager viewPager;
 
+    private int mType;
+
     private String[] titleArray = new String[]{"OPPORTUNITY", "INVITE", "APPLY"};
+    private String[] titleAVenueArray = new String[]{"OPPORTUNITY", "APPLY", "INVITE"};
 
     private List<BaseListFragment> mFragments = new ArrayList<>();
 
@@ -66,26 +70,39 @@ public class NotificationFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        //设置viewpager
-        NotifyListFragment opp = new NotifyListFragment();
-        Bundle args1 = new Bundle();
-        args1.putInt(NotifyListFragment.KEY_TYPE,0);
-        opp.setArguments(args1);
-        mFragments.add(opp);
+         mType = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+         if(mType == 2){
+             //设置viewpager
+             VenueNotify1ListFragment opp = new VenueNotify1ListFragment();
+             mFragments.add(opp);
 
-        NotifyListFragment invite = new NotifyListFragment();
-        Bundle args2 = new Bundle();
-        args2.putInt(NotifyListFragment.KEY_TYPE,1);
-        invite.setArguments(args2);
-        mFragments.add(invite);
+             VenueNotify2ListFragment invite = new VenueNotify2ListFragment();
+             mFragments.add(invite);
 
-        NotifyListFragment release = new NotifyListFragment();
-        Bundle args3 = new Bundle();
-        args3.putInt(NotifyListFragment.KEY_TYPE,2);
-        release.setArguments(args3);
-        mFragments.add(release);
+             VenueNotify3ListFragment release = new VenueNotify3ListFragment();
+             mFragments.add(release);
+         }else{
+             //设置viewpager
+             NotifyListFragment opp = new NotifyListFragment();
+             Bundle args1 = new Bundle();
+             args1.putInt(NotifyListFragment.KEY_TYPE,0);
+             opp.setArguments(args1);
+             mFragments.add(opp);
 
-        UserCenterAdapter adapter = new UserCenterAdapter(mFragments, titleArray, getChildFragmentManager());
+             NotifyListFragment invite = new NotifyListFragment();
+             Bundle args2 = new Bundle();
+             args2.putInt(NotifyListFragment.KEY_TYPE,1);
+             invite.setArguments(args2);
+             mFragments.add(invite);
+
+             NotifyListFragment release = new NotifyListFragment();
+             Bundle args3 = new Bundle();
+             args3.putInt(NotifyListFragment.KEY_TYPE,2);
+             release.setArguments(args3);
+             mFragments.add(release);
+         }
+
+        UserCenterAdapter adapter = new UserCenterAdapter(mFragments, mType == 2 ? titleAVenueArray : titleArray, getChildFragmentManager());
         viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(adapter);
         slidingTabLayout.setDistributeEvenly(true);

@@ -45,9 +45,9 @@
             android:layout_marginTop="10dp"
             android:text="SHOW DESCRIPTION"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginTop="6dp"
             android:background="@drawable/shape_textarea_bg"
             android:orientation="vertical"
@@ -58,7 +58,7 @@
             <EditText
                 android:id="@+id/edit_et_bio"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="100dp"
                 android:background="@null"
                 android:gravity="top"
                 android:hint="Tell people a little about the music you will play(400 cMax)"
@@ -68,7 +68,29 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/common_grey"
                 android:textSize="@dimen/text_size_common"/>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="7dp"
+                android:layout_marginBottom="7dp"
+                android:gravity="bottom">
+                <TextView
+                    android:id="@+id/tv_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#878787"
+                    android:text="0"
+                    android:textSize="@dimen/text_size_small"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/400"
+                    android:textColor="#878787"
+                    android:textSize="@dimen/text_size_small"/>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 

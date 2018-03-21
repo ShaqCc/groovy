@@ -1,7 +1,6 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
 import com.bunny.groovy.model.VenueModel;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.weidget.HeightLightTextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,14 +47,14 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
         VenueModel venueModel = mModelList.get(position);
         if (!TextUtils.isEmpty(venueModel.getHeadImg())) {
             Glide.with(mContext).load(venueModel.getHeadImg())
-                    .placeholder(R.mipmap.icon_load_pic)
-                    .error(R.mipmap.icon_load_pic)
+                    .placeholder(R.drawable.icon_load_pic)
+                    .error(R.drawable.icon_load_pic)
                     .into(holder.mIvHead);
         } else {
-            holder.mIvHead.setImageResource(R.mipmap.icon_load_pic);
+            holder.mIvHead.setImageResource(R.drawable.icon_load_pic);
         }
         holder.mTvName.setTextHeighLight(venueModel.getVenueName(), keyword);
-        holder.mTvStar.setText(venueModel.getVenueScore());
+        holder.mTvStar.setText(Utils.getStar(venueModel.getVenueScore()));
         holder.mTvPhone.setText(venueModel.getPhoneNumber());
         holder.mTvAddress.setText(venueModel.getVenueAddress());
 
@@ -92,11 +92,11 @@ public class VenueListAdapter extends RecyclerView.Adapter<VenueListAdapter.Venu
 
         public VenueHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.nextshow_iv_head);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.nextshow_tv_performerName);
-            mTvStar = (TextView) itemView.findViewById(R.id.nextshow_tv_performerStar);
-            mTvPhone = (TextView) itemView.findViewById(R.id.nextshow_tv_address);
-            mTvAddress = (TextView) itemView.findViewById(R.id.nextshow_tv_time);
+            mIvHead = itemView.findViewById(R.id.nextshow_iv_head);
+            mTvName = itemView.findViewById(R.id.nextshow_tv_performerName);
+            mTvStar = itemView.findViewById(R.id.nextshow_tv_performerStar);
+            mTvPhone = itemView.findViewById(R.id.nextshow_tv_address);
+            mTvAddress = itemView.findViewById(R.id.nextshow_tv_time);
         }
     }
 }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:gravity="center_vertical"
-              android:orientation="horizontal"
-              android:paddingLeft="16dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/venue_info_headimg"
         android:layout_width="140px"
         android:layout_height="140px"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@mipmap/venue_instead_pic"/>
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/venue_instead_pic" />
 
     <RelativeLayout
         android:layout_width="0dp"
@@ -40,18 +40,17 @@
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_common"
-                tools:text="The ShowThe Show"/>
+                tools:text="The ShowThe Show" />
 
             <TextView
                 android:id="@+id/venue_info_tv_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:drawableLeft="@mipmap/list_star"
+                android:drawableLeft="@drawable/list_star"
                 android:drawablePadding="4dp"
-                android:text="4.1"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_small"/>
+                android:textSize="@dimen/text_size_small" />
 
             <TextView
                 android:id="@+id/nextshow_tv_status"
@@ -62,7 +61,7 @@
                 android:text="Verification"
                 android:textColor="@color/common_grey"
                 android:textSize="9sp"
-                android:visibility="invisible"/>
+                android:visibility="invisible" />
         </LinearLayout>
 
         <TextView
@@ -74,7 +73,7 @@
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_small"
-            tools:text="Rodl.Ino"/>
+            tools:text="Rodl.Ino" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -91,7 +90,7 @@
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_common"
-                tools:text="13322221111"/>
+                tools:text="13322221111" />
         </RelativeLayout>
 
     </RelativeLayout>

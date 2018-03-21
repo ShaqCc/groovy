@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_textarea_bg"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="8dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_search" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:hint="Stage Name/Phone number"
+            android:lines="1"
+            android:maxLength="400"
+            android:textColor="@color/white"
+            android:textColorHint="@color/common_grey"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/black"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/discover_sort_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10.5sp"
+            android:gravity="left|center_vertical"
+            android:layout_centerVertical="true"
+            android:text="SORT BY RATING"
+
+            android:textColor="@color/discover_musician_color" />
+
+
+        <TextView
+            android:id="@+id/discover_sort_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="10.5sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@mipmap/icon_discover_genre"
+            android:text="GENRE"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/discover_sort_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.5"
+            android:textSize="10.5sp"
+            android:text="SORT BY DISTANCE"
+            android:paddingRight="5dp"
+            android:gravity="center"
+            android:layout_toRightOf="@id/discover_sort_rating"
+            android:layout_toLeftOf="@id/discover_sort_style"
+            android:textColor="@color/discover_musician_color" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#343434"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/venue_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"/>
+</LinearLayout>

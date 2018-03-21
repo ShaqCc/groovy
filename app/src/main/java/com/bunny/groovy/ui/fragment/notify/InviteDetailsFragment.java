@@ -150,11 +150,12 @@ public class InviteDetailsFragment extends BaseFragment {
             tvDate.setText(sModel.getPerformDate());
             tvVenueName1.setText(sModel.getVenueName());
             mTvVenueName_2.setText(sModel.getVenueName());
-            mTvVenueScore.setText(sModel.getVenueScore());
+            mTvVenueScore.setText(Utils.getStar(sModel.getVenueScore()));
             mTvAddress.setText(sModel.getVenueAddress());
             mTvTel.setText(sModel.getPhoneNumber());
             mTvEmail.setText(sModel.getWebSiteAddress());
-            Glide.with(mActivity).load(sModel.getHeadImg()).placeholder(R.mipmap.venue_instead_pic).error(R.mipmap.venue_instead_pic)
+            Glide.with(mActivity).load(sModel.getHeadImg()).placeholder(R.drawable.venue_instead_pic)
+                    .error(R.drawable.venue_instead_pic)
                     .into(mHead);
             mTvNotify.setVisibility(View.VISIBLE);
             llAction.setVisibility(View.GONE);

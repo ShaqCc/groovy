@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
+import com.bunny.groovy.utils.UIUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -60,6 +61,8 @@ public class FeedbackFragment extends BaseFragment<FdbPresenter> implements IFVi
         String string = mFeedbackTvContent.getText().toString();
         if (!TextUtils.isEmpty(string)) {
             mPresenter.feedback(string);
+        } else {
+            UIUtils.showToast("Please input content.");
         }
     }
 

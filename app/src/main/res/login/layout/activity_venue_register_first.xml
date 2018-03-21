@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="30dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_venue_head_pic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/head"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="2dp" />
+
+        <ImageView
+            android:id="@+id/iv_venue_select_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/login_photo" />
+    </FrameLayout>
+
+    <com.xw.repo.XEditText
+        android:id="@+id/et_venue_phone_or_email"
+        style="@style/base_edit_text_style"
+        android:layout_marginTop="30dp"
+        android:hint="@string/venue_register_phone_or_email"
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
+
+    <com.xw.repo.XEditText
+        android:id="@+id/et_venue_password"
+        style="@style/base_edit_text_style"
+        android:hint="@string/venue_register_password"
+        android:inputType="textPassword"
+        app:x_disableEmoji="true"
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_importantWord="true"
+        app:x_showPwdDrawable="@drawable/login_openeye" />
+
+    <com.xw.repo.XEditText
+        android:id="@+id/et_venue_password_again"
+        style="@style/base_edit_text_style"
+        android:hint="@string/venue_register_password_again"
+        android:inputType="textPassword"
+        app:x_disableEmoji="true"
+        app:x_hidePwdDrawable="@drawable/login_closeeye"
+        app:x_importantWord="true"
+        app:x_showPwdDrawable="@drawable/login_openeye" />
+
+    <com.xw.repo.XEditText
+        android:id="@+id/et_venue_public_name"
+        style="@style/base_edit_text_style"
+        android:hint="@string/venue_register_name"
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
+
+
+        <com.xw.repo.XEditText
+            android:id="@+id/et_venue_address"
+            style="@style/base_edit_text_style"
+            android:hint="@string/venue_register_address"
+            android:focusable="false"
+            app:x_importantWord="true" />
+
+    <TextView
+        android:id="@+id/tv_venue_protocol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="115px"
+        android:layout_marginRight="110px"
+        android:drawableLeft="@drawable/icon_start"
+        android:drawablePadding="3dp"
+        android:text="@string/required"
+        android:textColor="@color/common_grey"
+        android:textSize="@dimen/text_size_small" />
+
+    <TextView
+        android:id="@+id/tv_venue_next"
+        style="@style/role_selected_text_style"
+        android:layout_marginTop="30dp"
+        android:text="@string/next" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/tv_have_no_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/already_have_an_account"
+            android:textColor="@color/common_grey" />
+
+        <TextView
+            android:id="@+id/tv_signup_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_have_no_account"
+            android:text="@string/login"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</LinearLayout>

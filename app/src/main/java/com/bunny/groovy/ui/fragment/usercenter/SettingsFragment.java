@@ -3,6 +3,7 @@ package com.bunny.groovy.ui.fragment.usercenter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.api.ApiRetrofit;
@@ -39,6 +40,10 @@ public class SettingsFragment extends BaseFragment<SettingsPresenter> implements
     com.suke.widget.SwitchButton sbDiscover;
     @Bind(R.id.sb_notify)
     com.suke.widget.SwitchButton sbNotify;
+    @Bind(R.id.notification_layout)
+    RelativeLayout mNotificationLayout;
+    @Bind(R.id.discover_layout)
+    RelativeLayout mDiscoverLayout;
 
     @OnClick(R.id.settings_tv_logout)
     public void logout() {
@@ -91,7 +96,13 @@ public class SettingsFragment extends BaseFragment<SettingsPresenter> implements
         boolean isDiscover = (boolean) SharedPreferencesUtils.getUserParam(mActivity, AppConstants.KEY_DISCOVER, true);
         sbDiscover.setChecked(isDiscover);
         sbNotify.setChecked(true);
-
+        int type = Utils.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+        if (AppConstants.USER_TYPE_NORMAL == type) {
+            mNotificationLayout.setVisibility(View.GONE);
+        }
+        if (AppConstants.USER_TYPE_MUSICIAN != type) {
+            mDiscoverLayout.setVisibility(View.GONE);
+        }
         sbDiscover.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
@@ -122,7 +133,7 @@ public class SettingsFragment extends BaseFragment<SettingsPresenter> implements
                                     }
                                 }
                             });
-                }else {
+                } else {
                     ApiRetrofit.getInstance().getApiService()
                             .updateDiscover("1")
                             .subscribeOn(Schedulers.io())

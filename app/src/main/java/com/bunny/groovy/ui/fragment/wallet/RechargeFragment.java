@@ -7,22 +7,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.braintreepayments.api.BraintreeBrowserSwitchActivity;
 import com.braintreepayments.api.BraintreeFragment;
-import com.braintreepayments.api.PayPal;
 import com.braintreepayments.api.dropin.DropInActivity;
 import com.braintreepayments.api.dropin.DropInRequest;
 import com.braintreepayments.api.dropin.DropInResult;
-import com.braintreepayments.api.exceptions.InvalidArgumentException;
-import com.braintreepayments.api.interfaces.BraintreeErrorListener;
-import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
-import com.braintreepayments.api.models.PaymentMethodNonce;
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
-import com.socks.library.KLog;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

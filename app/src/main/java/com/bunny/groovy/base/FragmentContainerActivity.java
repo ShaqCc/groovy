@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bunny.groovy.R;
-import com.bunny.groovy.weidget.ToolbarAutoHeight;
 
 import java.lang.reflect.Method;
 
@@ -127,7 +126,7 @@ public class FragmentContainerActivity extends BaseActivity {
                 // 设置参数给Fragment
                 if (values != null) {
                     try {
-                        Method method = clazz.getMethod("setArguments", new Class[]{Bundle.class});
+                        Method method = clazz.getMethod("setArguments", Bundle.class);
                         method.invoke(fragment, values);
                     } catch (Exception e) {
                     }

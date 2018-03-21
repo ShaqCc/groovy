@@ -125,7 +125,7 @@ public class ConfirmInviteFragment extends BaseFragment<ApplyVenuePresenter> imp
         mPopupWindow.setTouchable(true);
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
-        RecyclerView recyclerview = (RecyclerView) popview.findViewById(R.id.recyclerview);
+        RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());
         recyclerview.setAdapter(mAdapter);

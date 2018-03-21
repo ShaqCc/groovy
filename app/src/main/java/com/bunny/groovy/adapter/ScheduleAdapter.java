@@ -1,7 +1,6 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,14 +17,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
-import com.bunny.groovy.model.ShowHistoryModel;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.ui.fragment.apply.EditPerformFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.ShowDetailFragment;
 import com.bunny.groovy.ui.fragment.spotlight.SpotlightFragment;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.weidget.HeightLightTextView;
-import com.socks.library.KLog;
 
 import java.util.List;
 
@@ -73,8 +70,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.HisHol
                 break;
         }
         Glide.with(mContext).load(bean.getHeadImg())
-                .placeholder(R.mipmap.venue_instead_pic)
-                .error(R.mipmap.venue_instead_pic)
+                .placeholder(R.drawable.venue_instead_pic)
+                .error(R.drawable.venue_instead_pic)
                 .into(holder.mIvHead);
         holder.mTvStar.setText(bean.getVenueScore());
         holder.mTvName.setText(bean.getVenueName());
@@ -191,13 +188,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.HisHol
 
         public HisHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.nextshow_iv_head);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.nextshow_tv_performerName);
-            mTvStar = (TextView) itemView.findViewById(R.id.nextshow_tv_performerStar);
-            mTvStyle = (TextView) itemView.findViewById(R.id.nextshow_tv_address);
-            mTvShowTime = (TextView) itemView.findViewById(R.id.nextshow_tv_time);
-            tvStatus = (TextView) itemView.findViewById(R.id.nextshow_tv_status);
-            ivEdit = (ImageView) itemView.findViewById(R.id.nextshow_iv_edit);
+            mIvHead = itemView.findViewById(R.id.nextshow_iv_head);
+            mTvName = itemView.findViewById(R.id.nextshow_tv_performerName);
+            mTvStar = itemView.findViewById(R.id.nextshow_tv_performerStar);
+            mTvStyle = itemView.findViewById(R.id.nextshow_tv_address);
+            mTvShowTime = itemView.findViewById(R.id.nextshow_tv_time);
+            tvStatus = itemView.findViewById(R.id.nextshow_tv_status);
+            ivEdit = itemView.findViewById(R.id.nextshow_iv_edit);
         }
     }
 }

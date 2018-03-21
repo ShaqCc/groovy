@@ -3,13 +3,9 @@ package com.bunny.groovy.ui.fragment.usercenter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
-import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;

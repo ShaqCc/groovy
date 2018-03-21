@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#161616"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="REWARD AMOUNT"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/et_reward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@mipmap/dashang"
+                android:drawablePadding="5dp"
+                android:hint="The max is $999"
+                android:inputType="numberDecimal"
+                android:paddingBottom="15dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#878787"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="1px"
+                    android:layout_height="1px"
+                    android:layout_centerHorizontal="true" />
+
+                <RadioButton
+                    android:id="@+id/rb_reward_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="60dp"
+                    android:layout_toLeftOf="@id/line1"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/selector_cb_round_white"
+                    android:drawablePadding="20dp"
+                    android:text="1$"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_reward_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toRightOf="@id/line1"
+                    android:layout_weight="2"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/selector_cb_round_white"
+                    android:drawablePadding="20dp"
+                    android:text="2$"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <View
+                    android:id="@+id/line2"
+                    android:layout_width="1px"
+                    android:layout_height="1px"
+                    android:layout_centerHorizontal="true" />
+
+                <RadioButton
+                    android:id="@+id/rb_reward_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="60dp"
+                    android:layout_toLeftOf="@id/line2"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/selector_cb_round_white"
+                    android:drawablePadding="20dp"
+                    android:text="5$"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_reward_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toRightOf="@id/line2"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/selector_cb_round_white"
+                    android:drawablePadding="20dp"
+                    android:text="10$"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+
+            <RadioGroup
+                android:id="@+id/rb_pay_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/selector_cb_round_white"
+                    android:text="BALANCE 10 $"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+
+                <RadioButton
+                    android:id="@+id/rb_paypal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_cb_round_white"
+                    android:text="PAYPAL"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_reward"
+                style="@style/role_selected_text_style"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="30dp"
+                android:text="REWARD" />
+
+            <TextView
+                android:id="@+id/tv_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="RECORD HISTORY"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:visibility="gone"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="45dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tv_reward1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#333"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="REWARD"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title_size"
+        android:visibility="gone" />
+</RelativeLayout>

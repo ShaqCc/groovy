@@ -1,7 +1,6 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
-import com.bunny.groovy.model.ShowHistoryModel;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.ui.fragment.releaseshow.ShowDetailFragment;
 import com.bunny.groovy.weidget.HeightLightTextView;
@@ -49,8 +47,8 @@ public class ShowHistoryAdapter extends RecyclerView.Adapter<ShowHistoryAdapter.
     public void onBindViewHolder(HisHolder holder, int position) {
         final ShowModel bean = mList.get(position);
         Glide.with(mContext).load(bean.getHeadImg())
-                .placeholder(R.mipmap.venue_instead_pic)
-                .error(R.mipmap.venue_instead_pic)
+                .placeholder(R.drawable.venue_instead_pic)
+                .error(R.drawable.venue_instead_pic)
                 .into(holder.mIvHead);
         holder.mTvStar.setText(bean.getVenueScore());
         holder.mTvName.setText(bean.getVenueName());
@@ -82,11 +80,11 @@ public class ShowHistoryAdapter extends RecyclerView.Adapter<ShowHistoryAdapter.
 
         public HisHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.nextshow_iv_head);
-            mTvName = (HeightLightTextView) itemView.findViewById(R.id.nextshow_tv_performerName);
-            mTvStar = (TextView) itemView.findViewById(R.id.nextshow_tv_performerStar);
-            mTvStyle = (TextView) itemView.findViewById(R.id.nextshow_tv_address);
-            mTvShowTime = (TextView) itemView.findViewById(R.id.nextshow_tv_time);
+            mIvHead = itemView.findViewById(R.id.nextshow_iv_head);
+            mTvName = itemView.findViewById(R.id.nextshow_tv_performerName);
+            mTvStar = itemView.findViewById(R.id.nextshow_tv_performerStar);
+            mTvStyle = itemView.findViewById(R.id.nextshow_tv_address);
+            mTvShowTime = itemView.findViewById(R.id.nextshow_tv_time);
         }
     }
 }

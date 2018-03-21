@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
-import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.PatternUtils;
@@ -18,7 +17,6 @@ import com.bunny.groovy.utils.UIUtils;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /****************************************

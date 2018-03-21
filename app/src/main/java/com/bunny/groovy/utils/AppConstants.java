@@ -1,7 +1,5 @@
 package com.bunny.groovy.utils;
 
-import java.util.Stack;
-
 /****************************************
  * 功能说明:  app常量类
  *
@@ -13,11 +11,10 @@ public class AppConstants {
     public static int ACCOUNT_TYPE_PHONE = 1;//账号类型：手机号
     public static int ACCOUNT_TYPE_EMAIL = 2;//账号类型：邮箱
 
-    public static String USER_TYPE_NORMAL = "0";//用户类型 普通用户
-    public static String USER_TYPE_MUSICIAN = "1";//用户类型 表演者
-    public static String USER_TYPE_SHOWER = "2";//用户类型 演出厅
+    public final static int USER_TYPE_NORMAL = 0;//用户类型 普通用户
+    public final static int USER_TYPE_MUSICIAN = 1;//用户类型 表演者
+    public final static int USER_TYPE_VENUE = 2;//用户类型 演出厅
 
-    public static String KEY_USER_TYPE = "key_user_type";
     public static String USER_TYPE;//用户类型
 
     public static int ACTIVITY_FINISH = -100;//activity结束标志
@@ -36,10 +33,11 @@ public class AppConstants {
     public static int REQUESTCODE_SELECT_PIC = 6;//选择图片的请求码
     public static int REQUESTCODE_SELECT_MUSIC = 666;//选择音乐的请求码
 
-    public static String KEY_LOGIN = "key_login";//是否登录标识
-    public static String KEY_USERID = "key_userid";//已登录的userid
-    public static String KEY_PHONE = "key_phone";//已登录的user 电话
-
+    public final static String KEY_LOGIN = "key_login";//是否登录标识
+    public final static String KEY_USERID = "key_userid";//已登录的userid
+    public final static String KEY_USER_TYPE = "key_user_type";//已登录的user_type
+    public final static String KEY_PHONE = "key_phone";//已登录的user 电话
+    public final static String KEY_FIRST_RUN = "key_first_run";//第一次运行
     public final static String Code_Send_Success = "0000";//发送成功
     public final static String Code_Send_ServerError = "5000";//sinch服务器出错
     public final static String Code_Send_InvalidPhone = "1000";//填的不对
@@ -52,8 +50,8 @@ public class AppConstants {
     public final static String EVENT_LOGIN_SUCCESS = "logout_success";//eventbus 用户退出标志
     public final static String EVENT_LOGIN_OUT = "logout";//eventbus 用户退出标志
 
-    public final static String Pay_Style_paypal = "0";//余额支付方式
-    public final static String Pay_Style_balance = "1";//PayPal支付方式
+    public final static String PAY_STYLE_BALANCE = "0";//余额支付方式
+    public final static String PAY_STYLE_PAYPAL = "1";//PayPal支付方式
 
     public static String KEY_DISCOVER = "key_discover";
 

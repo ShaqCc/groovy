@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/black"
-    tools:navigationIcon="@mipmap/icon_back"
+    tools:navigationIcon="@drawable/icon_back"
     tools:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 

@@ -62,7 +62,7 @@
                 android:id="@+id/iv_select_music"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/login_music"/>
+                android:src="@drawable/login_music"/>
 
             <Button
                 android:id="@+id/bt_play_music"

@@ -44,4 +44,22 @@
     <string name="balance">balance</string>
     <string name="true_name">TRUE NAME</string>
     <string name="paypal">PAYPAL</string>
+
+    <string name="venue_register_phone_or_email">BOOKING TELPHONE/E-MAIL</string>
+    <string name="venue_register_password">PASSWORD</string>
+    <string name="venue_register_password_again">PASSWORD AGAIN</string>
+    <string name="venue_register_name">PUBLIC NAME</string>
+    <string name="venue_register_address">ADDRESS</string>
+    <string name="venue_register_required">*REQUIRED</string>
+
+    <string name="venue_register_code">VERIFICATION CODE</string>
+    <string name="venue_register_service">VENUE SERVICE</string>
+    <string name="venue_register_booking_phone">BOOKING TELPHONE</string>
+    <string name="venue_register_booking_email">BOOKING EMAIL</string>
+    <string name="venue_register_phone">VENUE TELPHONE</string>
+    <string name="venue_register_website">WEBSITE</string>
+    <string name="venue_info_fill_social">INTEGRATE SOCIAL MEDIAN</string>
+    <string name="venue_register_service_exclude">Exclude 21+</string>
+    <string name="venue_register_service_food">Serves Food</string>
+    <string name="venue_register_service_alcohol">Serves Alcohol</string>
 </resources>

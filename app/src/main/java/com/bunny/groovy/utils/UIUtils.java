@@ -1,7 +1,6 @@
 package com.bunny.groovy.utils;
 
 import android.content.Context;
-import android.content.Loader;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -12,22 +11,15 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bunny.groovy.R;
-import com.bunny.groovy.adapter.StyleAdapter;
 import com.bunny.groovy.base.BaseApp;
-import com.bunny.groovy.model.StyleModel;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import static java.util.Calendar.HOUR_OF_DAY;
@@ -88,7 +80,7 @@ public class UIUtils {
             int height = wm.getDefaultDisplay().getHeight();
             baseToast.setGravity(Gravity.TOP, 0, height / 3);
         }
-        TextView tvMsg = (TextView) baseToast.getView().findViewById(R.id.toast_msg);
+        TextView tvMsg = baseToast.getView().findViewById(R.id.toast_msg);
         if (tvMsg != null)
             tvMsg.setText(msg);
         try {
@@ -324,12 +316,12 @@ public class UIUtils {
     }
 
     public static int getScreenWidth() {
-        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getWidth();
     }
 
     public static int getScreenHeight() {
-        WindowManager wm = (WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         return wm.getDefaultDisplay().getHeight();
     }
 

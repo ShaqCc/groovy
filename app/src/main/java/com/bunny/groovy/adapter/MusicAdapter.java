@@ -68,8 +68,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MHodler> {
 
         public MHodler(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.item_music_name);
-            tvSize = (TextView) itemView.findViewById(R.id.item_music_size);
+            tvName = itemView.findViewById(R.id.item_music_name);
+            tvSize = itemView.findViewById(R.id.item_music_size);
         }
     }
 }

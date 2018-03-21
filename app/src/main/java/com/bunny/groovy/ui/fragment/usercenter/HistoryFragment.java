@@ -3,11 +3,8 @@ package com.bunny.groovy.ui.fragment.usercenter;
 import android.app.Activity;
 
 import com.bunny.groovy.adapter.ShowHistoryAdapter;
-import com.bunny.groovy.adapter.VenueListAdapter;
 import com.bunny.groovy.base.BaseListFragment;
-import com.bunny.groovy.model.ShowHistoryModel;
 import com.bunny.groovy.model.ShowModel;
-import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.ListPresenter;
 import com.bunny.groovy.view.IListPageView;
 

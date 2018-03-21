@@ -4,8 +4,12 @@ import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.StyleModel;
+import com.bunny.groovy.model.VenueShowModel;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IApplyVenueView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 import java.util.Map;
@@ -74,12 +78,13 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
     }
 
     /**
-     *  确认邀请
+     * 确认邀请
+     *
      * @param inviteID
      * @param performDesc
      * @param performStyle
      */
-    public void confirmInvite(String inviteID,String performDesc,String performStyle){
+    public void confirmInvite(String inviteID, String performDesc, String performStyle) {
         addSubscription(apiService.agreePerformerInvite(inviteID, performStyle, performDesc), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
@@ -100,11 +105,22 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
     }
 
 
-    public void editPerform(Map<String, String> fieldMap) {
+    public void editPerform(final Map<String, String> fieldMap) {
         addSubscription(apiService.updatePerform(fieldMap), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
                 UIUtils.showBaseToast("修改成功！");
+                int type = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+                if (type == 2) {
+                    //编辑后刷新演出厅用户日程列表
+                    VenueShowModel model = new VenueShowModel();
+                    model.setPerformID(fieldMap.get("performID"));
+                    model.setPerformDesc(fieldMap.get("performDesc"));
+                    model.setPerformType(fieldMap.get("performType"));
+                    model.setPerformStartDate(fieldMap.get("performStartDate"));
+                    model.setPerformEndDate(fieldMap.get("performEndDate"));
+                    EventBus.getDefault().post(model);
+                }
                 mView.get().finish();
             }
 

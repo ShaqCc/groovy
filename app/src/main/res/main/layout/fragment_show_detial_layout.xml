@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/list_phone" />
+                android:src="@drawable/list_phone" />
 
             <ImageView
                 android:id="@+id/show_detail_iv_email"
@@ -181,7 +181,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:layout_toRightOf="@+id/item_favorite_iv_phone"
-                android:src="@mipmap/list_email" />
+                android:src="@drawable/list_email" />
 
         </LinearLayout>
 

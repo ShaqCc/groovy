@@ -2,10 +2,12 @@ package com.bunny.groovy.presenter;
 
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
-import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.ResultResponse;
-import com.bunny.groovy.model.ShowHistoryModel;
+import com.bunny.groovy.model.ShowModel;
+import com.bunny.groovy.model.VenueApplyModel;
+import com.bunny.groovy.model.VenueInViteModel;
 import com.bunny.groovy.model.VenueModel;
+import com.bunny.groovy.model.VenueOpportunityModel;
 import com.bunny.groovy.view.IListPageView;
 
 import java.util.List;
@@ -130,4 +132,66 @@ public class ListPresenter extends BasePresenter<IListPageView> {
             }
         });
     }
+
+
+
+
+    /**
+     * 演出厅用户-获取申请的表演机会列表
+     */
+    public void getVenueOpportunityList() {
+        addSubscription(apiService.getVenueApplyOpportunityList(), new SubscriberCallBack<List<VenueOpportunityModel>>(mView.get()) {
+            @Override
+            protected void onSuccess(List<VenueOpportunityModel> response) {
+                if (response != null && response.size() > 0)
+                    mView.setView(response);
+                else mView.setNodata();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+                mView.setError();
+            }
+        });
+    }
+
+
+    /**
+     * 演出厅用户-获取邀请列表
+     */
+    public void getVenueInviteList() {
+        addSubscription(apiService.getVenueInviteList(), new SubscriberCallBack<List<VenueInViteModel>>(mView.get()) {
+            @Override
+            protected void onSuccess(List<VenueInViteModel> response) {
+                if (response != null && response.size() > 0)
+                    mView.setView(response);
+                else mView.setNodata();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+                mView.setError();
+            }
+        });
+    }
+
+    /**
+     * 演出厅用户-获取申请的列表
+     */
+    public void getVenueReleaseList() {
+        addSubscription(apiService.getVenueReleaseShowList(), new SubscriberCallBack<List<VenueApplyModel>>(mView.get()) {
+            @Override
+            protected void onSuccess(List<VenueApplyModel> response) {
+                if (response != null && response.size() > 0)
+                    mView.setView(response);
+                else mView.setNodata();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+                mView.setError();
+            }
+        });
+    }
+
 }

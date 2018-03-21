@@ -65,6 +65,7 @@ public class XEditText extends AppCompatEditText {
     private String mImportantChar = "*";//星号
     private Paint mTextPaint;
     private int mInfoRes;
+    private int mRangeX;
 
     public XEditText(Context context) {
         this(context, null);
@@ -173,8 +174,8 @@ public class XEditText extends AppCompatEditText {
         //初始化画笔
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
-        mTextPaint.setTextSize(getTextSize());
         mTextPaint.setColor(Color.parseColor("#7B87F1"));
+        mRangeX = dp2px(10);
     }
 
     private Bitmap getBitmapFromVectorDrawable(Context context, int drawableId, boolean tint) {
@@ -211,10 +212,11 @@ public class XEditText extends AppCompatEditText {
             String hintText = getHint().toString();
             String text = getText().toString();
             if (!TextUtils.isEmpty(hintText) && (TextUtils.isEmpty(text) || text.length() == 0)) {
+                mTextPaint.setTextSize(getTextSize());
                 float hintTextWidth = mTextPaint.measureText(hintText);
                 Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-                float offset = (fontMetrics.descent - fontMetrics.ascent) / 2;
-                canvas.drawText(mImportantChar, hintTextWidth+dp2px(3), getMeasuredHeight() / 2 + offset, mTextPaint);
+                float offset = (fontMetrics.descent - fontMetrics.ascent) / 4;
+                canvas.drawText(mImportantChar, hintTextWidth + mRangeX, getMeasuredHeight() / 2 + offset, mTextPaint);
             }
         }
         //状态标记
@@ -308,6 +310,12 @@ public class XEditText extends AppCompatEditText {
         }
 
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        mTextPaint.setTextSize(getTextSize());
     }
 
     /**

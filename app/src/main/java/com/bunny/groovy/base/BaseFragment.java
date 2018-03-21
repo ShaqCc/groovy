@@ -1,12 +1,10 @@
 package com.bunny.groovy.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import com.bunny.groovy.R;
 import com.github.nukc.stateview.StateView;

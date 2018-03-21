@@ -96,9 +96,9 @@ public class OpportunityAdapter extends RecyclerView.Adapter<OpportunityAdapter.
             mTvTopLine = itemView.findViewById(R.id.tvTopLine);
             mTvDot = itemView.findViewById(R.id.tvDot);
             mTvBottomLine = itemView.findViewById(R.id.tvBottomLine);
-            mTvPerformTime = (TextView) itemView.findViewById(R.id.tvPerformTime);
-            mTvMessage = (TextView) itemView.findViewById(R.id.tvMessage);
-            mTvApply = (TextView) itemView.findViewById(R.id.tv_apply);
+            mTvPerformTime = itemView.findViewById(R.id.tvPerformTime);
+            mTvMessage = itemView.findViewById(R.id.tvMessage);
+            mTvApply = itemView.findViewById(R.id.tv_apply);
         }
     }
 }

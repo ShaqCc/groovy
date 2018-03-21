@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.bunny.groovy.BuildConfig;
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseActivity;
+import com.bunny.groovy.manager.LoginBlock;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.presenter.LoginPresenter;
-import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.setfile.SetFile1Activity;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.PatternUtils;
 import com.bunny.groovy.utils.UIUtils;
@@ -43,6 +45,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements ILoginView {
     private static final int RC_SIGN_IN = 123;
+    private int mUserType;
     @Bind(R.id.login_et_account)
     XEditText etPhoneOrEmail;
     @Bind(R.id.login_et_password)
@@ -57,7 +60,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     @OnClick(R.id.tv_sign_up)
     void signUp() {
-        startActivityForResult(new Intent(this, SignUpActivity.class), 2);
+        switch (mUserType) {
+            case AppConstants.USER_TYPE_MUSICIAN:
+                startActivityForResult(new Intent(this, SignUpActivity.class), 2);
+                break;
+            case AppConstants.USER_TYPE_VENUE:
+                startActivityForResult(new Intent(this, VenueRegister1Activity.class), 2);
+                break;
+            case AppConstants.USER_TYPE_NORMAL:
+                startActivityForResult(new Intent(this, UserRegister1Activity.class), 2);
+                break;
+        }
     }
 
     @OnClick(R.id.tv_musician_login)
@@ -83,7 +96,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         }
 
         //通过验证,登录
-        mPresenter.login(etPhoneOrEmail.getTrimmedString(), etPassword.getTrimmedString());
+        mPresenter.login(etPhoneOrEmail.getTrimmedString(), etPassword.getTrimmedString(), mUserType);
     }
 
     @OnClick(R.id.tv_forget_password)
@@ -111,8 +124,37 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
     }
 
-    public static void launch(Context activity) {
-        activity.startActivity(new Intent(activity, LoginActivity.class));
+    public static void launch(Context activity, int type) {
+        activity.startActivity(new Intent(activity, LoginActivity.class).putExtra("type", type));
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        boolean isSwitchType = getIntent().getBooleanExtra("switch_type", false);
+        if (isSwitchType) {
+            LoginBlock.getInstance().completeData(this, AppConstants.USER_TYPE_MUSICIAN, AppCacheData.getPerformerUserModel());
+            mUserType = AppConstants.USER_TYPE_MUSICIAN;
+        } else {
+            mUserType = getIntent().getIntExtra("type", AppConstants.USER_TYPE_NORMAL);
+        }
+        //just for test
+        if (BuildConfig.DEBUG) {
+            switch (mUserType) {
+                case AppConstants.USER_TYPE_NORMAL:
+                    etPhoneOrEmail.setText("18601794067");
+                    break;
+                case AppConstants.USER_TYPE_MUSICIAN:
+                    etPhoneOrEmail.setText("13564521320");
+                    break;
+                case AppConstants.USER_TYPE_VENUE:
+                    etPhoneOrEmail.setText("13761434342");
+//                    etPhoneOrEmail.setText("15021370938");
+//                    etPhoneOrEmail.setText("13476027261");
+            }
+            etPassword.setText("123456789");
+        }
+
     }
 
     @Override
@@ -166,9 +208,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
 
     @Override
-    public void launchMainPage() {
-        //登录成功，进入主页，结束登录页面
-        MainActivity.launch(this);
+    public void launchMainPage(int type) {
+        LoginBlock.getInstance().handleCheckSuccess(String.valueOf(type));
+        finish();
     }
 
     /**
@@ -176,7 +218,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
      */
     @Override
     public void launchToSetFile() {
-        startActivityForResult(new Intent(this, SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
+        switch (mUserType) {
+            case AppConstants.USER_TYPE_MUSICIAN:
+                startActivityForResult(new Intent(this, SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
+                break;
+            case AppConstants.USER_TYPE_VENUE:
+                startActivityForResult(new Intent(this, VenueFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
+        }
+
     }
 
     @Override
@@ -187,7 +236,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         super.onActivityResult(requestCode, resultCode, data);
         //设置资料结束，结束本页面,跳转至首页
         if (requestCode == AppConstants.REQUESTCODE_SETFILE && resultCode == AppConstants.ACTIVITY_FINISH) {
-            launchMainPage();
+            launchMainPage(mUserType);
         } else if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
@@ -206,7 +255,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             // Signed in successfully, show authenticated UI.
             KLog.d(account.toString());
             //检查是否绑定了账户
-            mPresenter.checkHadBindUid("0", account.getId(), account.getDisplayName());
+            mPresenter.checkHadBindUid("0", account.getId(), account.getDisplayName(), String.valueOf(mUserType));
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

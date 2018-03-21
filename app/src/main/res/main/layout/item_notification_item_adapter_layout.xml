@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:id="@+id/detail_layout">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_notification_iv_header"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="40dp"/>
+
+    <LinearLayout
+        android:id="@+id/info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/item_notification_iv_header"
+        android:paddingBottom="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_notification_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:maxEms="11"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="@dimen/text_size_common"
+                android:text="Taylor Swift"/>
+
+            <TextView
+                android:id="@+id/item_notification_tv_venueStar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:layout_marginLeft="16dp"
+                android:drawableLeft="@drawable/list_star"
+                android:drawablePadding="4dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_small"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/item_notification_tv_type"
+            style="@style/common_text_style"
+            android:text="Rock,Indie"/>
+        <TextView
+            android:id="@+id/item_notification_tv_des"
+            style="@style/common_text_style"
+            android:layout_marginTop="3dp"
+            android:text="Show description"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/info_layout"
+        android:layout_alignBottom="@+id/info_layout"
+        android:gravity="center">
+        <View
+            android:id="@+id/select_top_line"
+            android:layout_width="1dp"
+            android:layout_height="8dp"
+            android:background="#9DA9C1"/>
+        <ImageView
+            android:id="@+id/select_img"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/selector_perform_light"/>
+        <View
+            android:id="@+id/select_bottom_line"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#9DA9C1"/>
+    </LinearLayout>
+</RelativeLayout>

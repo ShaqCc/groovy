@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -19,7 +22,7 @@ import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.StyleModel;
-import com.bunny.groovy.model.VenueModel;
+import com.bunny.groovy.model.VenueShowModel;
 import com.bunny.groovy.presenter.ApplyVenuePresenter;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.DateUtils;
@@ -49,7 +52,9 @@ import butterknife.OnClick;
 public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> implements IApplyVenueView {
 
     public static String KEY_VENUE_BEAN = "KEY_VENUE_BEAN";
-    private static ShowModel sVenueBean;
+    public static String KEY_VENUE_SHOW = "KEY_VENUE_SHOW";
+    private static ShowModel sVenueBean;//表演者用户的bean
+    private static VenueShowModel sVenueShow;//演出厅用户的bean
     private TextView mTvTimeTitle;
     private List<String> mTimeClockList, mRealTimeList;
     private Calendar mSelectDate = Calendar.getInstance();//选择的日期
@@ -61,10 +66,13 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
     private PopupWindow mTimePop;
     private PopupWindow mPopupWindow;
     private StyleGridAdapter mAdapter;
+    private static int mType;
 
 
     public static void launch(Activity from, Bundle bundle) {
+        mType = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
         sVenueBean = bundle.getParcelable(KEY_VENUE_BEAN);
+        sVenueShow = bundle.getParcelable(KEY_VENUE_SHOW);
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "EDIT");
         FragmentContainerActivity.launch(from, EditPerformFragment.class, bundle);
     }
@@ -75,6 +83,8 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
     EditText etStyle;
     @Bind(R.id.edit_et_bio)
     EditText etDesc;
+    @Bind(R.id.tv_number)
+    TextView tvNumber;
 
 
     //弹出选择style窗口
@@ -108,7 +118,7 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         etStyle.setFocusable(false);
         etTime.setFocusable(false);
         //set data
-        if (sVenueBean != null) {
+        if (sVenueBean != null && mType != 2) {
             etDesc.setText(sVenueBean.getPerformDesc());
             etStyle.setText(sVenueBean.getPerformType());
             etTime.setText(sVenueBean.getPerformDate() + " " + sVenueBean.getPerformTime());
@@ -118,6 +128,35 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
             startTime = DateUtils.getDateHour(sVenueBean.getPerformStartDate());
             endTime = DateUtils.getDateHour(sVenueBean.getPerformEndDate());
         }
+        if (sVenueShow != null && mType == 2) {
+            etDesc.setText(sVenueShow.getPerformDesc());
+            etStyle.setText(sVenueShow.getPerformType());
+            etTime.setText(sVenueShow.getPerformDate() + " " + sVenueShow.getPerformTime());
+            //设置传过来的时间
+
+            mSelectDate.setTime(DateUtils.getDate(sVenueShow.getPerformStartDate()));
+            startTime = DateUtils.getDateHour(sVenueShow.getPerformStartDate());
+            endTime = DateUtils.getDateHour(sVenueShow.getPerformEndDate());
+        }
+        int index = sVenueShow.getPerformDesc().length();
+        etDesc.setSelection(index);
+        tvNumber.setText(String.valueOf(index));
+        etDesc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                tvNumber.setText(String.valueOf(charSequence.toString().length()));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
     /**
@@ -132,9 +171,9 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         timeView.setFocusable(true);
         timeView.setFocusableInTouchMode(true);
         mTimePop.setFocusable(true);
-        mTvTimeTitle = (TextView) timeView.findViewById(R.id.weidget_tv_title);
-        final LoopView loopviewFromTime = (LoopView) timeView.findViewById(R.id.weidget_from_time);
-        final LoopView loopviewEndTime = (LoopView) timeView.findViewById(R.id.weidget_end_time);
+        mTvTimeTitle = timeView.findViewById(R.id.weidget_tv_title);
+        final LoopView loopviewFromTime = timeView.findViewById(R.id.weidget_from_time);
+        final LoopView loopviewEndTime = timeView.findViewById(R.id.weidget_end_time);
 
         //set data
         mTvTimeTitle.setText(Utils.getFormatDate(mSelectDate.getTime()));
@@ -219,9 +258,9 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         mDatePop.setContentView(dateView);
         mDatePop.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mDatePop.setHeight(UIUtils.getScreenHeight() / 2);
-        LoopView loopMonth = (LoopView) dateView.findViewById(R.id.weidget_month);
-        final LoopView loopDay = (LoopView) dateView.findViewById(R.id.weidget_day);
-        LoopView loopYear = (LoopView) dateView.findViewById(R.id.weidget_year);
+        LoopView loopMonth = dateView.findViewById(R.id.weidget_month);
+        final LoopView loopDay = dateView.findViewById(R.id.weidget_day);
+        LoopView loopYear = dateView.findViewById(R.id.weidget_year);
         //set data
         final DatePickerHelper helper = new DatePickerHelper();
         //年
@@ -305,24 +344,12 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
             return;
         }
 
-        //set params
-        //   performType
-        //   performStartDate
-        //   performEndDate
-        //   performDesc
-        //   venueName
-        //   venueAddress
-        //   performerName
-        //   venueLongitude
-        //   venueLatitude
-        //   venueID
-
         HashMap<String, String> map = new HashMap<>();
         map.put("performStartDate", DateUtils.getFormatTime(mSelectDate.getTime(), startTime));
         map.put("performEndDate", DateUtils.getFormatTime(mSelectDate.getTime(), endTime));
         map.put("performType", etStyle.getText().toString());
         map.put("performDesc", etDesc.getText().toString());
-        map.put("performID", sVenueBean.getPerformID());
+        map.put("performID", mType == 2 ? sVenueShow.getPerformID() : sVenueBean.getPerformID());
         mPresenter.editPerform(map);
     }
 
@@ -337,7 +364,7 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         styleList = modelList;
         if (mPopupWindow == null)
             initStylePop(modelList);
-        mPopupWindow.showAtLocation(etStyle, Gravity.CENTER, 0, 0);
+        mPopupWindow.showAtLocation(etStyle, Gravity.CENTER, 0, UIUtils.dip2Px(15));
     }
 
 
@@ -356,7 +383,8 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
         mPopupWindow.setTouchable(true);
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
-        RecyclerView recyclerview = (RecyclerView) popview.findViewById(R.id.recyclerview);
+        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());
         recyclerview.setAdapter(mAdapter);

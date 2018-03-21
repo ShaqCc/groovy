@@ -6,12 +6,11 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.bunny.groovy.model.MusicBean;
+import com.bunny.groovy.utils.UIUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /****************************************
  * 功能说明:  音乐播放服务
@@ -25,6 +24,10 @@ public class MusicService extends Service {
     private String musicPath;
     private int currentPos;
     public static String MUSIC_EXTRA = "music_path";
+    private int mPlayState = STATE_PLAY_PREPARE;
+    private final static int STATE_PLAY_NORMAL = 0;
+    private final static int STATE_PLAY_PATH_FAILED = 1;
+    private final static int STATE_PLAY_PREPARE = 2;
 
     public interface CallBack {
         boolean isPlayerMusic();
@@ -92,11 +95,7 @@ public class MusicService extends Service {
 
         @Override
         public boolean isPlaying() {
-            if (mPlayer.isPlaying()) {
-                return true;
-            } else {
-                return false;
-            }
+            return mPlayer.isPlaying();
         }
 
     }
@@ -113,7 +112,7 @@ public class MusicService extends Service {
         mPlayer.reset();
         try {
             mPlayer.setDataSource(musicPath);
-            mPlayer.prepare();
+            mPlayer.prepareAsync();
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -121,24 +120,38 @@ public class MusicService extends Service {
                     EventBus.getDefault().post("end");
                 }
             });
-        } catch (IOException e) {
+            mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    UIUtils.showToast("Music load success!");
+                    mPlayState = STATE_PLAY_NORMAL;
+                }
+            });
+        } catch (Exception e) {
+            mPlayState = STATE_PLAY_PATH_FAILED;
             e.printStackTrace();
         }
     }
 
     public boolean playerMusic() {
-        if (mPlayer.isPlaying()) {
-            mPlayer.pause();
-            return false;
-        } else {
-            mPlayer.start();
-            return true;
+        if (mPlayState == STATE_PLAY_NORMAL) {
+            if (mPlayer.isPlaying()) {
+                mPlayer.pause();
+            } else {
+                mPlayer.start();
+                return true;
+            }
+        } else if (mPlayState == STATE_PLAY_PREPARE) {
+            UIUtils.showToast("Load music.");
+        } else if (mPlayState == STATE_PLAY_PATH_FAILED) {
+            UIUtils.showToast("Wrong music path.");
         }
+        return false;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        musicPath = intent.getStringExtra("music_path");
+        if (intent != null) musicPath = intent.getStringExtra("music_path");
         initMusic();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -159,11 +172,11 @@ public class MusicService extends Service {
         }
     }
 
-    public void setMusicResource(String musicPath){
+    public void setMusicResource(String musicPath) {
         mPlayer.reset();
         try {
             mPlayer.setDataSource(musicPath);
-            mPlayer.prepare();
+            mPlayer.prepareAsync();
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {

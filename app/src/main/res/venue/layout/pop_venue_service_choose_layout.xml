@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_progress_hud_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/service_choose_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_venue_service_checkbox"
+            android:paddingLeft="10dp"
+            android:text="Exclude 21+"
+            android:textColor="@color/white" />
+
+        <CheckBox
+            android:id="@+id/service_choose_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_venue_service_checkbox"
+            android:paddingLeft="10dp"
+            android:text="Serves Food"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white" />
+
+        <CheckBox
+            android:id="@+id/service_choose_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_venue_service_checkbox"
+            android:paddingLeft="10dp"
+            android:text="Serves Alcohol"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

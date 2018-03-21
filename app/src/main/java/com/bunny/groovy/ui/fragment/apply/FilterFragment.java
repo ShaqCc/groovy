@@ -3,9 +3,7 @@ package com.bunny.groovy.ui.fragment.apply;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +17,6 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.utils.DateUtils;
 import com.bunny.groovy.utils.UIUtils;
-import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.weidget.datepick.DatePickerHelper;
 import com.bunny.groovy.weidget.loopview.LoopView;
 import com.bunny.groovy.weidget.loopview.OnItemSelectedListener;
@@ -177,9 +174,9 @@ public class FilterFragment extends BaseFragment {
         mDatePop.setContentView(dateView);
         mDatePop.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mDatePop.setHeight(UIUtils.getScreenHeight() / 2);
-        LoopView loopMonth = (LoopView) dateView.findViewById(R.id.weidget_month);
-        final LoopView loopDay = (LoopView) dateView.findViewById(R.id.weidget_day);
-        LoopView loopYear = (LoopView) dateView.findViewById(R.id.weidget_year);
+        LoopView loopMonth = dateView.findViewById(R.id.weidget_month);
+        final LoopView loopDay = dateView.findViewById(R.id.weidget_day);
+        LoopView loopYear = dateView.findViewById(R.id.weidget_year);
         //set data
         final DatePickerHelper helper = new DatePickerHelper();
         //年

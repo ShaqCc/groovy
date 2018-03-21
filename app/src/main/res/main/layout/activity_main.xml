@@ -41,8 +41,8 @@
             android:id="@+id/tab_overview"
             style="@style/tab_item_style"
             app:iconHeight="25dp"
-            app:iconNormal="@mipmap/tab_overview"
-            app:iconSelected="@mipmap/tab_overview_selected"
+            app:iconNormal="@drawable/tab_overview"
+            app:iconSelected="@drawable/tab_overview_selected"
             app:iconWidth="25dp"
             app:itemText="@string/tab_home"
             app:itemTextSize="@dimen/text_size_small"
@@ -60,8 +60,8 @@
             app:textColorSelected="#fff"
             app:touchDrawable="@drawable/selector_bottom_tab"
             app:iconHeight="25dp"
-            app:iconNormal="@mipmap/tab_schedule"
-            app:iconSelected="@mipmap/tab_schedule_selected"
+            app:iconNormal="@drawable/tab_schedule"
+            app:iconSelected="@drawable/tab_schedule_selected"
             app:iconWidth="20dp"
             app:itemText="@string/tab_schedule" />
 
@@ -74,8 +74,8 @@
             app:textColorSelected="#fff"
             app:touchDrawable="@drawable/selector_bottom_tab"
             app:iconHeight="25dp"
-            app:iconNormal="@mipmap/tab_me"
-            app:iconSelected="@mipmap/tab_me_selected"
+            app:iconNormal="@drawable/tab_me"
+            app:iconSelected="@drawable/tab_me_selected"
             app:iconWidth="20dp"
             app:itemText="@string/tab_user" />
     </com.bunny.groovy.weidget.BottomBarLayout>

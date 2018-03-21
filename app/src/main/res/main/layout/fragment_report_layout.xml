@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_textarea_bg"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingTop="6dp">
+
+        <EditText
+            android:id="@+id/et_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:gravity="top"
+            android:hint="FILL IN THE CONTENTS OF THE REPORT"
+            android:lineSpacingExtra="3dp"
+            android:lines="8"
+            android:maxLength="400"
+            android:textColor="@color/white"
+            android:textColorHint="@color/common_grey"
+            android:textSize="@dimen/text_size_common" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/et_report"
+        style="@style/role_selected_text_style"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:text="SUBMIT" />
+</LinearLayout>

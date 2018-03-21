@@ -1,8 +1,8 @@
 package com.bunny.groovy.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -144,8 +144,9 @@ public class MainActivity extends BaseActivity {
      *
      * @param activity
      */
-    public static void launch(Activity activity) {
+    public static void launch(Context activity) {
         Intent intent = new Intent(activity, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
         for (Activity ac :
                 mActivities) {

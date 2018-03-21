@@ -1,6 +1,7 @@
 package com.bunny.groovy.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.WalletHold
                 holder.tvAmount.setText("+"+walletBean.getCost());
                 break;
             case "3":
-                holder.tvType.setText("REWARD@"+walletBean.getRewardBindID());
+                holder.tvType.setText("REWARD@"+walletBean.getUserName());
                 holder.tvAmount.setText("-"+walletBean.getCost());
                 break;
             case "4":
@@ -57,7 +58,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.WalletHold
                 break;
         }
 
-        holder.tvTime.setText(walletBean.getDealDate());
+        holder.tvTime.setText(!TextUtils.isEmpty(walletBean.getDealDate()) ? walletBean.getDealDate() : walletBean.getCreateDate());
     }
 
     public void refresh(List<WalletBean> list){

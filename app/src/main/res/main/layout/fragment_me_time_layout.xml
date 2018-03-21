@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="20dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="TUES"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common"
+            android:visibility="invisible"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Show Windows"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cover Charge"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="MON"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_mon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_mon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="TUES"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_tues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_tues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="WED"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_wed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_wed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="THUR"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_thur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_thur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="FRI"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_fri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_fri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="STA"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_sta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_sta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="SUN"
+            android:textColor="#878787"
+            android:textSize="@dimen/text_size_common" />
+        <TextView
+            android:id="@+id/tv_time_sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00am-10:00pm"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_size_common" />
+
+        <com.suke.widget.SwitchButton
+            android:id="@+id/switch_time_sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            app:sb_checked_color="@color/accentPurple" />
+    </LinearLayout>
+
+</LinearLayout>

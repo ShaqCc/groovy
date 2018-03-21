@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#242424"
+    app:cardCornerRadius="5dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp">
+
+    <TextView
+        android:id="@+id/marker_tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oct 2st"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="@dimen/text_size_small"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/icon_star"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/marker_tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="4.9"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_common"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="16dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/marker_iv_head"
+                android:layout_width="130px"
+                android:layout_height="130px"
+                android:src="@drawable/head"/>
+            <FrameLayout
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="130px"
+                android:layout_weight="1"
+                android:paddingLeft="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/marker_tv_venue_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textAccent"
+                        android:textSize="@dimen/text_size_common"
+                        android:text="The Gooota"/>
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/marker_tv_venue_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/common_grey"
+                    android:textSize="@dimen/text_size_small"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_gravity="center_vertical"
+                    android:text="The Gooota The Gooota The"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    >
+                    <TextView
+                        android:id="@+id/marker_tv_venue_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textAccent"
+                        android:textSize="@dimen/text_size_small"
+                        android:background="@drawable/shape_double_corner_rect_bg"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="DETAIL"/>
+                </RelativeLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/common_text_style"
+                    android:text="Genre" />
+
+                <TextView
+                    android:id="@+id/marker_tv_style"
+                    style="@style/common_white_text_style"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:text="Rock" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/common_text_style"
+                    android:text="Time" />
+
+                <TextView
+                    android:id="@+id/marker_tv_time"
+                    android:text="3:30-4:40"
+                    android:layout_marginTop="4dp"
+                    style="@style/common_white_text_style"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/common_text_style"
+                    android:text="Distance" />
+
+                <TextView
+                    android:id="@+id/marker_tv_distance"
+                    style="@style/common_white_text_style"
+                    android:layout_marginTop="4dp"
+                    android:text="20m" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/marker_tv_go"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/textAccent"
+                android:textSize="@dimen/text_size_common"
+                android:background="@drawable/shape_circle_blue_stroke_bg"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:text="GO!"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:hint="Search the venue by name or phone"
+            android:hint="Name/Stage Name/Phone number"
             android:maxLength="400"
             android:layout_marginLeft="16dp"
             android:textColor="@color/white"

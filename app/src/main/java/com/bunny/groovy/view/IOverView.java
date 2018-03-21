@@ -2,8 +2,8 @@ package com.bunny.groovy.view;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.PerformerUserModel;
+import com.bunny.groovy.model.ShowModel;
 
 /****************************************
  * 功能说明:  首页接口

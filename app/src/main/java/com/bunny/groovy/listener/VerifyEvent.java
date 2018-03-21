@@ -5,7 +5,6 @@ import android.app.Activity;
 import com.bunny.groovy.base.BaseApp;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
-import com.bunny.groovy.weidget.ProgressHUD;
 import com.sinch.verification.Config;
 import com.sinch.verification.PhoneNumberUtils;
 import com.sinch.verification.SinchVerification;

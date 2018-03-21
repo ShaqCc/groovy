@@ -33,7 +33,6 @@ import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ISetFileView;
 import com.xw.repo.XEditText;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
@@ -102,9 +101,9 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         if (callBack != null) {
             boolean isPlay = callBack.isPlayerMusic();
             if (isPlay) {
-                btPlay.setBackgroundResource(R.mipmap.login_stop);
+                btPlay.setBackgroundResource(R.drawable.login_stop);
             } else {
-                btPlay.setBackgroundResource(R.mipmap.login_play);
+                btPlay.setBackgroundResource(R.drawable.login_play);
             }
         }
     }
@@ -133,7 +132,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
 
     @OnClick(R.id.tv_login)
     void login() {
-        LoginActivity.launch(this);
+        LoginActivity.launch(this, AppConstants.USER_TYPE_MUSICIAN);
     }
 
     @Bind(R.id.tv_count)
@@ -172,7 +171,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
 
     @Subscribe
     public void onMusicEnd(String event) {
-        btPlay.setBackgroundResource(R.mipmap.login_play);
+        btPlay.setBackgroundResource(R.drawable.login_play);
     }
 
 
@@ -190,7 +189,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         if (popupWindow == null) {
             popupWindow = new PopupWindow(context);
             View inflate = LayoutInflater.from(context).inflate(R.layout.pop_performer_style_layout, null, false);
-            ListView listView = (ListView) inflate.findViewById(R.id.style_listview);
+            ListView listView = inflate.findViewById(R.id.style_listview);
             adapter = new StyleAdapter(dataList);
             listView.setAdapter(adapter);
             popupWindow.setContentView(inflate);
@@ -229,7 +228,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         super.onPause();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            btPlay.setBackgroundResource(R.mipmap.login_play);
+            btPlay.setBackgroundResource(R.drawable.login_play);
         }
     }
 
@@ -238,7 +237,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
         super.onDestroy();
         if (callBack != null && callBack.isPlaying()) {
             callBack.isPlayerMusic();
-            btPlay.setBackgroundResource(R.mipmap.login_play);
+            btPlay.setBackgroundResource(R.drawable.login_play);
         }
     }
 

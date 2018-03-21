@@ -53,7 +53,7 @@
             android:id="@+id/perfect_info_iv_select_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/login_photo"
+            android:src="@drawable/login_photo"
             android:layout_gravity="right|bottom"/>
     </FrameLayout>
 

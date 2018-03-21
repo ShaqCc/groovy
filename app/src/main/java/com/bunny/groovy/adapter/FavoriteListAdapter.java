@@ -12,15 +12,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
-import com.bunny.groovy.model.FavoriteModel;
 import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.ui.fragment.apply.ApplyVenueFragment;
 import com.bunny.groovy.ui.fragment.apply.VenueDetailFragment;
-import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
-import com.bunny.groovy.weidget.HeightLightTextView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -50,11 +45,11 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         VenueModel model = mModelList.get(position);
         if (!TextUtils.isEmpty(model.getHeadImg())) {
             Glide.with(mContext).load(model.getHeadImg())
-                    .placeholder(R.mipmap.icon_load_pic)
-                    .error(R.mipmap.icon_load_pic)
+                    .placeholder(R.drawable.icon_load_pic)
+                    .error(R.drawable.icon_load_pic)
                     .into(holder.mIvHead);
         } else {
-            holder.mIvHead.setImageResource(R.mipmap.icon_load_pic);
+            holder.mIvHead.setImageResource(R.drawable.icon_load_pic);
         }
         holder.mTvName.setText(model.getVenueName());
         holder.mTvStar.setText(model.getVenueScore());
@@ -116,13 +111,13 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
         public VenueHolder(View itemView) {
             super(itemView);
-            mIvHead = (ImageView) itemView.findViewById(R.id.item_favorite_iv_header);
-            mTvName = (TextView) itemView.findViewById(R.id.item_favorite_tv_name);
-            mTvStar = (TextView) itemView.findViewById(R.id.item_favorite_tv_score);
-            mTvAddress = (TextView) itemView.findViewById(R.id.item_favorite_tv_address);
-            mBtPhone = (ImageView) itemView.findViewById(R.id.item_favorite_iv_phone);
-            mBtEmail = (ImageView) itemView.findViewById(R.id.item_favorite_iv_email);
-            mBtApply = (TextView) itemView.findViewById(R.id.item_favorite_tv_apply);
+            mIvHead = itemView.findViewById(R.id.item_favorite_iv_header);
+            mTvName = itemView.findViewById(R.id.item_favorite_tv_name);
+            mTvStar = itemView.findViewById(R.id.item_favorite_tv_score);
+            mTvAddress = itemView.findViewById(R.id.item_favorite_tv_address);
+            mBtPhone = itemView.findViewById(R.id.item_favorite_iv_phone);
+            mBtEmail = itemView.findViewById(R.id.item_favorite_iv_email);
+            mBtApply = itemView.findViewById(R.id.item_favorite_tv_apply);
         }
     }
 }

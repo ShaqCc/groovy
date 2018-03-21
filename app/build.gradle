@@ -6,7 +6,7 @@ android {
             keyAlias 'groovy'
             keyPassword 'groovy'
             storePassword 'groovy'
-            storeFile file('D:/AndroidStudioProjects/pppppptj/groovy/groovy.jks')
+            storeFile file('../groovy.jks')
         }
     }
 
@@ -45,7 +45,8 @@ android {
                             'src/main/res/base',
                             'src/main/res/main',
                             'src/main/res/self_info',
-                            'src/main/res/login'
+                            'src/main/res/login',
+                            'src/main/res/venue'
                     ]//res 目录的拆分
         }
     }

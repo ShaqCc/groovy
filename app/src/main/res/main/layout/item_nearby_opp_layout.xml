@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20px"
-                android:drawableLeft="@mipmap/list_star"
+                android:drawableLeft="@drawable/list_star"
                 android:drawablePadding="4dp"
                 tools:text="2.0"
                 android:maxLines="1"
@@ -101,14 +101,14 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20px"
-                android:src="@mipmap/list_phone"/>
+                android:src="@drawable/list_phone"/>
 
             <ImageView
                 android:id="@+id/item_nearby_iv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20px"
-                android:src="@mipmap/list_email"/>
+                android:src="@drawable/list_email"/>
 
 
         </LinearLayout>

@@ -1,7 +1,6 @@
 package com.bunny.groovy.ui.fragment;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,8 +17,6 @@ import com.bunny.groovy.utils.DateUtils;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IScheduleView;
 import com.bunny.groovy.weidget.MoveLayout;
-import com.bunny.groovy.weidget.datepick.DatePickerHelper;
-import com.socks.library.KLog;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,9 +18,6 @@ import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.VenueDetailPresenter;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IVenueView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -119,7 +115,7 @@ public class VenueDetailFragment extends BaseFragment<VenueDetailPresenter> impl
     public void setView(VenueModel model) {
         venueModel = model;
         mTvVenueName.setText(model.getVenueName());
-        mTvScore.setText(model.getVenueScore());
+        mTvScore.setText(Utils.getStar(model.getVenueScore()));
         mTvTel.setText(model.getPhoneNumber());
         mTvAddress.setText(model.getVenueAddress());
         mTvEmail.setText(model.getWebSiteAddress());
@@ -143,7 +139,7 @@ public class VenueDetailFragment extends BaseFragment<VenueDetailPresenter> impl
         }
 
 
-        Glide.with(mActivity).load(model.getHeadImg()).error(R.mipmap.venue_instead_pic).into(mHead);
+        Glide.with(mActivity).load(model.getHeadImg()).error(R.drawable.venue_instead_pic).into(mHead);
         //set list
         if (mAdapter == null) {
             mAdapter = new VenueScheduleAdapter(model.getScheduleList());

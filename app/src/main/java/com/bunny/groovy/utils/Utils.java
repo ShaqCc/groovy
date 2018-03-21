@@ -3,12 +3,11 @@ package com.bunny.groovy.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.bunny.groovy.model.MusicBean;
@@ -18,6 +17,7 @@ import com.socks.library.KLog;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -259,6 +259,7 @@ public class Utils {
     public static void initLoginData(Context context, PerformerUserModel model) {
         SharedPreferencesUtils.setUserParam(context, AppConstants.KEY_LOGIN, true);
         SharedPreferencesUtils.setUserParam(context, AppConstants.KEY_USERID, model.getUserID());
+        SharedPreferencesUtils.setUserParam(context, AppConstants.KEY_USER_TYPE, model.getUserType());
         AppCacheData.setPerformerUserModel(model);
     }
 
@@ -285,10 +286,38 @@ public class Utils {
         boolean gps = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         // 通过WLAN或移动网络(3G/2G)确定的位置（也称作AGPS，辅助GPS定位。主要用于在室内或遮盖物（建筑群或茂密的深林等）密集的地方定位）
         boolean network = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        if (gps || network) {
-            return true;
-        }
+        return gps || network;
 
-        return false;
+    }
+
+    public static int parseInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public static String getStar(String star){
+        String starStr = "0.0";
+        if(!TextUtils.isEmpty(star)){
+            try {
+                double starDouble = Double.parseDouble(star);
+                DecimalFormat decimalFormat = new DecimalFormat("0.0");
+                starStr = decimalFormat.format(starDouble);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return starStr;
+    }
+
+    /**
+     * 打开google Web地图导航
+     */
+    public static void openWebGoogleNavi(Context context,String lat, String lng) {
+        StringBuffer stringBuffer = new StringBuffer("http://ditu.google.cn/maps?hl=zh&mrt=loc&q=").append(lat).append(",").append(lng);
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(stringBuffer.toString()));
+        context.startActivity(i);
     }
 }

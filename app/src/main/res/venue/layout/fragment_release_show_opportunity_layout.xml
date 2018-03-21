@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="26dp">
+
+    <TextView
+        style="@style/common_text_style"
+        android:layout_marginTop="10dp"
+        android:text="TIME"/>
+
+    <LinearLayout style="@style/input_text_parent">
+
+        <EditText
+            android:id="@+id/release_et_time"
+            style="@style/common_input_text"
+            android:hint="CHOOSE"/>
+
+    </LinearLayout>
+    <TextView
+        style="@style/common_text_style"
+        android:layout_marginTop="10dp"
+        android:text="MESSAGE TO MUSICIANS"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/shape_textarea_bg"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="6dp">
+
+        <EditText
+            android:id="@+id/release_et_bio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="top"
+            android:hint="400 cMax"
+            android:lineSpacingExtra="3dp"
+            android:lines="4"
+            android:maxLength="400"
+            android:textColor="@color/white"
+            android:textColorHint="@color/common_grey"
+            android:textSize="@dimen/text_size_common"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_release"
+        style="@style/role_selected_text_style"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/release"/>
+</LinearLayout>

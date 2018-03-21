@@ -2,7 +2,6 @@ package com.bunny.groovy.view;
 
 import android.support.v4.app.FragmentActivity;
 
-import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.model.VenueModel;
 
 import java.util.List;

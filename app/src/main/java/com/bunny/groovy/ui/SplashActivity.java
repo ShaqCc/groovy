@@ -9,6 +9,7 @@ import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.presenter.SplashPresenter;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.SharedPreferencesUtils;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.ISplashView;
 
 /****************************************
@@ -40,15 +41,18 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
         boolean isLogin = (boolean) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_LOGIN, false);
         String userID = (String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_USERID, "");
         if (isLogin && !TextUtils.isEmpty(userID)) {
-            //已登录
-            //请求表演者资料
-            mPresenter.requestPerformerInfo();
+            int useType = Utils.parseInt((String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_USER_TYPE, "1"));
+//            //已登录
+//            //请求表演者资料
+            mPresenter.requestUserInfo(useType);
         } else {
             //未登录
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    RoleChooseActivity.launch(SplashActivity.this);
+                    boolean isFirst = (boolean) SharedPreferencesUtils.getUserParam(SplashActivity.this, AppConstants.KEY_FIRST_RUN, true);
+                    if(isFirst) GuideActivity.launch(SplashActivity.this);
+                    else RoleChooseActivity.launch(SplashActivity.this);
                 }
             }, 2000);
         }

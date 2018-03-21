@@ -82,11 +82,7 @@ public class SlidingLayout extends FrameLayout {
                 int deltaX = x - mLastInterceptX;
                 int deltaY = y - mLastInterceptY;
                 // 手指处于屏幕边缘，且横向滑动距离大于纵向滑动距离时，拦截事件
-                if (mInterceptDownX < (getWidth() / 10) && Math.abs(deltaX) > Math.abs(deltaY)) {
-                    intercept = true;
-                } else {
-                    intercept = false;
-                }
+                intercept = mInterceptDownX < (getWidth() / 10) && Math.abs(deltaX) > Math.abs(deltaY);
                 mLastInterceptX = x;
                 mLastInterceptY = y;
                 break;

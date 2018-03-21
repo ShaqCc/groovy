@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
-import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.utils.AppCacheData;
@@ -58,7 +57,7 @@ public class WalletFragment extends BaseFragment<PayPalPresenter> implements IPa
 
     @Override
     protected void loadData() {
-        mPresenter.updateUserData();
+        mPresenter.updateUserData(AppCacheData.getPerformerUserModel().getUserType());
     }
 
     @Override

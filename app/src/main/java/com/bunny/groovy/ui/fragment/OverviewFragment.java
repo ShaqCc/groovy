@@ -3,7 +3,6 @@ package com.bunny.groovy.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,15 +10,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
 import com.bunny.groovy.base.BaseFragment;
-import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.PerformerUserModel;
+import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.presenter.OverviewPresenter;
 import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.ui.fragment.notify.NotificationFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.ExploreShowFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.ReleaseShowFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.ShowDetailFragment;
-import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IOverView;
 import com.bunny.groovy.weidget.HeightLightTextView;
 
@@ -116,9 +115,9 @@ public class OverviewFragment extends BaseFragment<OverviewPresenter> implements
         model = showModel;
         nextShowLayout.setVisibility(View.VISIBLE);
         Glide.with(this).load(showModel.getHeadImg())
-                .placeholder(R.mipmap.venue_instead_pic).error(R.mipmap.venue_instead_pic).into(ivHead);
+                .placeholder(R.drawable.venue_instead_pic).error(R.drawable.venue_instead_pic).into(ivHead);
         tvName.setText(showModel.getVenueName());
-        tvStar.setText(showModel.getVenueScore());
+        tvStar.setText(Utils.getStar(showModel.getVenueScore()));
         tvPerformType.setText(showModel.getPerformType());
         tvTime.setText(showModel.getPerformDate() + " " + showModel.getPerformTime());
     }
