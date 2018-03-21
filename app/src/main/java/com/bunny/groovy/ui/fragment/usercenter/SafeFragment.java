@@ -53,7 +53,7 @@ public class SafeFragment extends BaseFragment {
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
-        safeTvPhone.setText(AppCacheData.getPerformerUserModel().getPhoneNumber());
+        safeTvPhone.setText(AppCacheData.getPerformerUserModel().getTelephone());
         safeTvEmail.setText(AppCacheData.getPerformerUserModel().getUserEmail());
     }
 

@@ -335,6 +335,12 @@ public interface ApiService {
     @POST("PerformerMeController/addFeedbackList")
     Observable<ResultResponse<Object>> addFeedback(@Field("content") String content, @Field("deviceType") String deviceType);
 
+    //反馈
+    @FormUrlEncoded
+    @POST("PerformerMeController/addVenueFeesback")
+    Observable<ResultResponse<Object>> addVenueFeesback(@Field("userID") String userID,
+                                                        @Field("content") String content,
+                                                        @Field("deviceType") String deviceType);
 
     //发送邮箱验证码
     @FormUrlEncoded

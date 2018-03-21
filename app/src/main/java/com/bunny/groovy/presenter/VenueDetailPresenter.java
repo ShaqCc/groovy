@@ -4,6 +4,7 @@ import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.VenueModel;
+import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IVenueView;
 
 /****************************************
@@ -57,6 +58,7 @@ public class VenueDetailPresenter extends BasePresenter<IVenueView> {
 
             @Override
             protected void onSuccess(Object response) {
+                UIUtils.showToast("Collection successfully.");
                 mView.favorite();
             }
 
@@ -81,6 +83,7 @@ public class VenueDetailPresenter extends BasePresenter<IVenueView> {
 
             @Override
             protected void onSuccess(Object response) {
+                UIUtils.showToast("Cancel collection successfully.");
                 mView.cancleFavorite();
             }
 

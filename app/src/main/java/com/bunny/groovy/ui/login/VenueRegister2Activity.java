@@ -152,7 +152,7 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
 //                UIUtils.showBaseToast("Phone invalid.");
 //                return;
 //            }
-        mPresenter.registerVenue(mAccount, mPassword, mEditPhone.getTrimmedString(), mEditEmail.getTrimmedString(),
+        mPresenter.registerVenue(mPublicName, mPassword, mEditPhone.getTrimmedString(), mEditEmail.getTrimmedString(),
                 mEditCode.getTrimmedString(), mVenueService.getTrimmedString(), mAddress, mVenuePhone.getTrimmedString(),
                 mVenueWebsite.getTrimmedString(), mLongitude, mLatitude, mPlaceId, mVenueTwitter.getTrimmedString()
                 , mVenueFacebook.getTrimmedString(), mHeadUrl);

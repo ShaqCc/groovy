@@ -6,6 +6,7 @@ import com.bunny.groovy.model.MusicianDetailModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.ui.fragment.releaseshow.InviteMusicianFragment;
+import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.IMusicianView;
 
 /****************************************
@@ -78,6 +79,7 @@ public class MusicianDetailPresenter extends BasePresenter<IMusicianView> {
 
             @Override
             protected void onSuccess(Object response) {
+                UIUtils.showToast("Collection successfully.");
                 mView.favorite();
             }
 
@@ -100,6 +102,7 @@ public class MusicianDetailPresenter extends BasePresenter<IMusicianView> {
 
             @Override
             protected void onSuccess(Object response) {
+                UIUtils.showToast("Cancel collection successfully.");
                 mView.cancelFavorite();
             }
 
@@ -122,6 +125,7 @@ public class MusicianDetailPresenter extends BasePresenter<IMusicianView> {
 
             @Override
             protected void onSuccess(Object response) {
+                UIUtils.showToast("Collection successfully.");
                 mView.favorite();
             }
 
@@ -144,6 +148,7 @@ public class MusicianDetailPresenter extends BasePresenter<IMusicianView> {
 
             @Override
             protected void onSuccess(Object response) {
+                UIUtils.showToast("Cancel collection successfully.");
                 mView.cancelFavorite();
             }
 

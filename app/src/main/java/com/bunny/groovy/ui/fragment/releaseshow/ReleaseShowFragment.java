@@ -480,7 +480,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         if (Integer.parseInt(AppCacheData.getPerformerUserModel().getPackageCount()) > 0) {
             tvSpotLightMoney.setVisibility(View.GONE);
             cbUseSpotlight.setVisibility(View.VISIBLE);
-            cbUseSpotlight.setChecked(true);
+//            cbUseSpotlight.setChecked(true);
         } else {
             tvSpotLightMoney.setVisibility(View.VISIBLE);
             tvSpotLightMoney.setText(AppCacheData.getPerformerUserModel().getPackageCount());
