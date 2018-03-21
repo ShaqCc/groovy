@@ -101,6 +101,11 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
         Utils.openTwitter(mActivity, musicianDetailModel.twitterAccount);
     }
 
+    @OnClick(R.id.me_tv_cloud)
+    public void cloud() {
+        Utils.openSoundCloud(mActivity, musicianDetailModel.twitterAccount);
+    }
+
     @OnClick({R.id.user_iv_money, R.id.iv_reward})
     public void rewardPerformer() {
         RewardFragment.launch(mActivity, mPerformerId,false);

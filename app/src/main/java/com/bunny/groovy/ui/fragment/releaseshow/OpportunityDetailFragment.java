@@ -134,11 +134,11 @@ public class OpportunityDetailFragment extends BaseFragment {
             //设置演出厅提供服务
             String venueTypeName = sParcelable.getVenueTypeName();
             if (!TextUtils.isEmpty(venueTypeName)) {
-                tv21Plus.setEnabled(!venueTypeName.contains("21"));
+                tv21Plus.setEnabled(venueTypeName.contains("21"));
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
             } else {
-                tv21Plus.setEnabled(true);
+                tv21Plus.setEnabled(false);
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }

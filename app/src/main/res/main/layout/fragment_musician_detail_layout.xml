@@ -91,18 +91,20 @@
                             android:src="@drawable/user_facebook" />
 
                         <ImageView
+                            android:id="@+id/me_tv_twitter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:src="@drawable/user_twiter" />
+
+                        <ImageView
                             android:id="@+id/me_tv_cloud"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:src="@drawable/user_soundcloud" />
 
-                        <ImageView
-                            android:id="@+id/me_tv_twitter"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:src="@drawable/user_twiter" />
+
                     </LinearLayout>
 
                     <TextView

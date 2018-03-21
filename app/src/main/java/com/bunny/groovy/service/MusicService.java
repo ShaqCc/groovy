@@ -123,7 +123,7 @@ public class MusicService extends Service {
             mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
-                    UIUtils.showToast("Music load success!");
+                    UIUtils.showToast("Load music success!");
                     mPlayState = STATE_PLAY_NORMAL;
                 }
             });
@@ -142,7 +142,7 @@ public class MusicService extends Service {
                 return true;
             }
         } else if (mPlayState == STATE_PLAY_PREPARE) {
-            UIUtils.showToast("Load music.");
+            UIUtils.showToast("Loading music now, please wait a moment.");
         } else if (mPlayState == STATE_PLAY_PATH_FAILED) {
             UIUtils.showToast("Wrong music path.");
         }

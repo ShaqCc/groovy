@@ -285,7 +285,9 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
                     int endIndex = loopviewEndTime.getSelectedItem();
                     startTime = mRealTimeClockList.get(startIndex);
                     endTime = mRealTimeClockList.get(endIndex);
-                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startTime) + (startIndex < 12 ? "am" : "pm") + "-" + endTime + (endIndex < 12 ? "am" : "pm"));
+                    String startShowTime = mTimeClockList.get(startIndex);
+                    String endShowTime = mTimeClockList.get(endIndex);
+                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startShowTime) + (startIndex < 24 ? "am" : "pm") + "-" + endShowTime + (endIndex < 12 ? "am" : "pm"));
                 }
             }
         });

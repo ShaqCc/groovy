@@ -509,16 +509,21 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         } else if (requestCode == OPEN_GPS_REQUEST_CODE) {
             //请求开启gps服务成功，开始请求当前位置信息
             setUpLocationRequest();
-        } else if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK) {
-            //选取地址
-            Place place = PlacePicker.getPlace(data, get());
-            String toastMsg = String.format("Place: %s", place.getName());
-            KLog.a("Place:" + toastMsg);
-            etSearch.setText(place.getName());
-            //更新当前位置
-            mLastLocation.setLatitude(place.getLatLng().latitude);
-            mLastLocation.setLongitude(place.getLatLng().longitude);
-            updateCurrentLocation();
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
+            if(resultCode == RESULT_OK){
+                //选取地址
+                Place place = PlacePicker.getPlace(data, get());
+                String toastMsg = String.format("Place: %s", place.getName());
+                KLog.a("Place:" + toastMsg);
+                etSearch.setText(place.getName());
+                //更新当前位置
+                mLastLocation.setLatitude(place.getLatLng().latitude);
+                mLastLocation.setLongitude(place.getLatLng().longitude);
+                updateCurrentLocation();
+            }else {
+                etSearch.setText("");
+            }
+
         }
     }
 

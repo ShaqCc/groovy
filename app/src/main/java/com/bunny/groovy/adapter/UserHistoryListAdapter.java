@@ -119,7 +119,7 @@ public class UserHistoryListAdapter extends RecyclerView.Adapter<UserHistoryList
         public VenueHolder(View itemView) {
             super(itemView);
             mIvHead = itemView.findViewById(R.id.iv_head);
-            mTvName = itemView.findViewById(R.id.tv_venue_name);
+            mTvName = itemView.findViewById(R.id.tv_name);
             mTvStar = itemView.findViewById(R.id.tv_score);
             mTvTime = itemView.findViewById(R.id.tv_time);
             mTvVenueName = itemView.findViewById(R.id.tv_venue_name);
