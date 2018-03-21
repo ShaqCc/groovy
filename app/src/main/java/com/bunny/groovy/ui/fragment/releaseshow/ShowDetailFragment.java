@@ -187,6 +187,11 @@ public class ShowDetailFragment extends BaseFragment {
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
+            if (!TextUtils.isEmpty(model.getIsHaveCharges()) && model.getIsHaveCharges().equals("1")) {
+                tvCoverCharge.setEnabled(true);
+            } else {
+                tvCoverCharge.setEnabled(false);
+            }
         }
     }
 

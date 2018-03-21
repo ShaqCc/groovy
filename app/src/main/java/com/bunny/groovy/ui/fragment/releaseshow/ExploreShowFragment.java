@@ -178,7 +178,6 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
     private void filter() {
         Bundle bundle = new Bundle();
         bundle.putInt(FilterFragment.KEY_DISTANCE, Integer.parseInt(distance));
-        bundle.putString(FilterFragment.KEY_START_TIME, performDate);
         FilterFragment.launchForResult(mActivity, bundle, FILTER_REQUEST_CODE);
     }
 

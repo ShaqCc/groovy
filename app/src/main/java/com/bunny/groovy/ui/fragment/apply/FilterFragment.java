@@ -3,6 +3,7 @@ package com.bunny.groovy.ui.fragment.apply;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,8 +47,6 @@ public class FilterFragment extends BaseFragment {
     EditText mEtStartTime;
 
     public static String KEY_DISTANCE = "key_distance";
-    public static String KEY_START_TIME = "key_start_time";
-    public static String KEY_END_TIME = "key_end_time";
     private Calendar mSelectDate = Calendar.getInstance();//选择的日期
     private PopupWindow mDatePop;
     private Date today = Calendar.getInstance().getTime();
@@ -72,7 +71,8 @@ public class FilterFragment extends BaseFragment {
         distance = String.valueOf(mSeekBar.getProgress() * 10);
         Intent intent = new Intent();
         intent.putExtra("distance", distance);
-        intent.putExtra("performStartDate", DateUtils.getFormatTimeHHMM(mSelectDate.getTime()));
+        if (!TextUtils.isEmpty(mEtStartTime.getText().toString()))
+            intent.putExtra("performStartDate", DateUtils.getFormatTimeHHMM(mSelectDate.getTime()));
         mActivity.setResult(Activity.RESULT_OK, intent);
         mActivity.finish();
     }

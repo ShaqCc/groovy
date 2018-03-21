@@ -88,11 +88,10 @@ public class SignUp2Activity extends BaseActivity<SingUpPresenter> implements IS
                 mPresenter.register(mAccount, mPassword, etPhone.getTrimmedString(), etEmail.getTrimmedString());
                 break;
             case AppConstants.Code_Verify_Invalid:
-                UIUtils.showBaseToast("验证码不正确");
+                UIUtils.showBaseToast("check code incorrect.");
                 break;
             case AppConstants.Code_Send_ServerError:
-            default:
-                UIUtils.showBaseToast("服务器出错");
+                UIUtils.showBaseToast("server error!");
                 break;
         }
     }

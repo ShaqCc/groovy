@@ -449,7 +449,12 @@ public interface ApiService {
     Observable<ResultResponse<Object>> reportPerformer(@Field("beReportedID") String beReportedID,
                                                        @Field("reporterID") String reporterID,
                                                        @Field("reportContent") String reportContent);
-
+    //举报演出厅
+    @FormUrlEncoded
+    @POST("PerformerBasicsController/reportVenue")
+    Observable<ResultResponse<Object>> reportVenue(@Field("venueID") String venueID,
+                                                       @Field("performerID") String performerID,
+                                                       @Field("reportContent") String reportContent);
     //表演者个人主页：收藏表演者
     @FormUrlEncoded
     @POST("VenueBasicsController/collectionPerformer")

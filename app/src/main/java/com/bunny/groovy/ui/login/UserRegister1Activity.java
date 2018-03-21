@@ -114,7 +114,6 @@ public class UserRegister1Activity extends BaseActivity<SingUpPresenter> impleme
             case AppConstants.Code_Send_InvalidPhone://发送失败
                 UIUtils.showBaseToast("手机号码不正确");
                 break;
-            default:
             case "5000"://网络错误
                 UIUtils.showBaseToast("服务器出错");
                 break;

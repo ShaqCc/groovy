@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +19,7 @@ import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.VenueModel;
 import com.bunny.groovy.presenter.VenueDetailPresenter;
+import com.bunny.groovy.ui.fragment.notify.ReportFragment;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IVenueView;
 
@@ -148,6 +152,21 @@ public class VenueDetailFragment extends BaseFragment<VenueDetailPresenter> impl
         } else {
             mAdapter.refresh(model.getScheduleList());
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.venue_details_menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.tipoff_venue){
+            //举报演出厅
+            ReportVenueFragment.launch(get(),venueID);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

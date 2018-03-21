@@ -87,7 +87,6 @@ public class CheckCodeFragment extends BaseFragment<CheckcodePresenter> implemen
                 UIUtils.showBaseToast("验证码不正确");
                 break;
             case AppConstants.Code_Send_ServerError:
-            default:
                 UIUtils.showBaseToast("服务器出错");
                 break;
         }

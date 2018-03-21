@@ -118,10 +118,10 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
                 mPresenter.socialLogin(logintype, uid, username, etAccount.getTrimmedString(),userType);
                 break;
             case AppConstants.Code_Verify_Invalid:
-                UIUtils.showBaseToast("验证码不正确");
+                UIUtils.showBaseToast("check code incorrect.");
                 break;
             case AppConstants.Code_Send_ServerError:
-                UIUtils.showBaseToast("服务器出错");
+                UIUtils.showBaseToast("server error!");
                 break;
         }
     }
