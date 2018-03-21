@@ -97,7 +97,7 @@ public class SettingsFragment extends BaseFragment<SettingsPresenter> implements
             public void onCheckedChanged(SwitchButton view, boolean isChecked) {
                 if (isChecked) {
                     ApiRetrofit.getInstance().getApiService()
-                            .updateDiscover("1")
+                            .updateDiscover("0")
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Subscriber<ResultResponse<Object>>() {
@@ -124,7 +124,7 @@ public class SettingsFragment extends BaseFragment<SettingsPresenter> implements
                             });
                 }else {
                     ApiRetrofit.getInstance().getApiService()
-                            .updateDiscover("0")
+                            .updateDiscover("1")
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(new Subscriber<ResultResponse<Object>>() {
