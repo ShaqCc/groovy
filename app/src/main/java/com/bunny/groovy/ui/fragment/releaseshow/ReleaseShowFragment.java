@@ -478,12 +478,12 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         etTime.setFocusable(false);
         //spotlight
         if (Integer.parseInt(AppCacheData.getPerformerUserModel().getPackageCount()) > 0) {
-            tvSpotLightMoney.setVisibility(View.GONE);
+            tvSpotLightMoney.setVisibility(View.VISIBLE);
+            tvSpotLightMoney.setText(AppCacheData.getPerformerUserModel().getPackageCount());
             cbUseSpotlight.setVisibility(View.VISIBLE);
 //            cbUseSpotlight.setChecked(true);
         } else {
-            tvSpotLightMoney.setVisibility(View.VISIBLE);
-            tvSpotLightMoney.setText(AppCacheData.getPerformerUserModel().getPackageCount());
+            tvSpotLightMoney.setVisibility(View.GONE);
             cbUseSpotlight.setVisibility(View.GONE);
         }
     }

@@ -138,6 +138,10 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeView {
         SpotlightFragment.launch(mActivity);
     }
 
+    @OnClick(R.id.me_tv_switch_to)
+    public void switchTo(){
+        // TODO: 2018/3/21  切换到用户端
+    }
 
     @Override
     protected MePresenter createPresenter() {

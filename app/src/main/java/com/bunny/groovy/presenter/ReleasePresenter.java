@@ -2,8 +2,10 @@ package com.bunny.groovy.presenter;
 
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
+import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.StyleModel;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ISetFileView;
 
@@ -57,7 +59,8 @@ public class ReleasePresenter extends BasePresenter<ISetFileView> {
             @Override
             protected void onSuccess(Object response) {
                 UIUtils.showBaseToast("发布成功");
-                mView.get().finish();
+                //更新user数据
+                updateUserData();
             }
 
             @Override
@@ -68,6 +71,21 @@ public class ReleasePresenter extends BasePresenter<ISetFileView> {
             @Override
             protected boolean isShowProgress() {
                 return true;
+            }
+        });
+    }
+
+    private void updateUserData(){
+        addSubscription(apiService.getPerformerInfo(), new SubscriberCallBack<PerformerUserModel>(mView.get()) {
+            @Override
+            protected void onSuccess(PerformerUserModel response) {
+                AppCacheData.setPerformerUserModel(response);
+                mView.get().finish();
+            }
+
+            @Override
+            protected void onFailure(ResultResponse response) {
+
             }
         });
     }
