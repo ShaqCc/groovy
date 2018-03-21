@@ -15,6 +15,7 @@ import com.bunny.groovy.ui.setfile.SetFile1Activity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.PatternUtils;
+import com.bunny.groovy.utils.SharedPreferencesUtils;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.view.ILoginView;
 import com.facebook.CallbackManager;
@@ -131,10 +132,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @Override
     public void initData() {
         super.initData();
-        boolean isSwitchType = getIntent().getBooleanExtra("switch_type", false);
-        if (isSwitchType) {
-            LoginBlock.getInstance().completeData(this, AppConstants.USER_TYPE_MUSICIAN, AppCacheData.getPerformerUserModel());
-            mUserType = AppConstants.USER_TYPE_MUSICIAN;
+        int type = getIntent().getIntExtra("switch_type", -1);
+        if (type > -1) {
+            String userID = AppCacheData.getPerformerUserModel().getUserID();
+            String account = (String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_ACCOUNT + userID, "");
+            String password = (String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_PASSWORD + userID, "");
+            if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
+                mUserType = type;
+                etPhoneOrEmail.setText(account);
+                etPassword.setText(password);
+                login();
+            }
         } else {
             mUserType = getIntent().getIntExtra("type", AppConstants.USER_TYPE_NORMAL);
         }

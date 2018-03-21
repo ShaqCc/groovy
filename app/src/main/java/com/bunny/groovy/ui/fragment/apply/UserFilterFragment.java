@@ -417,7 +417,6 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, mEtPerformStyle.getText().toString().trim());
-        mAdapter.setSelectNum(12);
         recyclerview.setAdapter(mAdapter);
         popview.findViewById(R.id.pop_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

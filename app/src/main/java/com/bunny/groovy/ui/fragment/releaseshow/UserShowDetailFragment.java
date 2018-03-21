@@ -3,6 +3,7 @@ package com.bunny.groovy.ui.fragment.releaseshow;
 import android.app.Activity;
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -127,7 +128,7 @@ public class UserShowDetailFragment extends BaseFragment {
     }
 
     @OnClick(R.id.show_detail_go)
-    public void go(){
+    public void go() {
         Utils.openWebGoogleNavi(getActivity(), model.getVenueLatitude(), model.getVenueLongitude());
     }
 
@@ -153,7 +154,7 @@ public class UserShowDetailFragment extends BaseFragment {
     private static boolean isHistory;
     public static String KEY_SHOW_BEAN = "key_show_bean";
 
-    public static void launch(Activity from, PerformDetail performDetail,boolean history) {
+    public static void launch(Context from, PerformDetail performDetail, boolean history) {
         model = performDetail;
         isHistory = history;
         Bundle bundle = new Bundle();
@@ -181,6 +182,7 @@ public class UserShowDetailFragment extends BaseFragment {
             mTvVenueName_2.setText(model.getVenueName());
             mTvStyle.setText(model.getPerformType());
             mTvTime.setText(model.getPerformTime());
+            mTvDistance.setText(model.getDistance() + "mi");
             mTvDesc.setText(model.getPerformDesc());
             mTvVenueScore.setText(Utils.getStar(model.getVenueScore()));
             mTvAddress.setText(model.getVenueAddress());
@@ -207,10 +209,10 @@ public class UserShowDetailFragment extends BaseFragment {
             }
             if (!TextUtils.isEmpty(model.getPerformerMusic())) initMusicService();
 
-            if(isHistory){
+            if (isHistory) {
                 mGoView.setVisibility(View.GONE);
                 mNextView.setText("MY EVALUATION");
-                if(!TextUtils.isEmpty(model.getEvaluateContent())){
+                if (!TextUtils.isEmpty(model.getEvaluateContent())) {
                     if (mMusicianAdapter == null) {
                         MusicianDetailModel.PerformViewer performViewer = new MusicianDetailModel.PerformViewer();
                         performViewer.evaluateContent = model.getEvaluateContent();
@@ -225,11 +227,9 @@ public class UserShowDetailFragment extends BaseFragment {
                     } else {
                         mAdapter.refresh(model.getPerformList());
                     }
-                }else {
-                    mNextView.setVisibility(View.GONE);
                 }
-
-            }else {
+            } else {
+                mNextView.setVisibility(View.GONE);
                 if (mAdapter == null) {
                     mAdapter = new PerformDetailListAdapter(model.getPerformList());
                     mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));

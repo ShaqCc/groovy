@@ -7,6 +7,7 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IMeView;
 
@@ -35,6 +36,7 @@ public class UserMePresenter extends BasePresenter<IMeView> {
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
+                        response.setUserType(String.valueOf(AppConstants.USER_TYPE_NORMAL));
                         mView.setUserView(response);
                         Utils.initLoginData(mView.get(), response);
                     }
@@ -103,14 +105,38 @@ public class UserMePresenter extends BasePresenter<IMeView> {
 
             @Override
             protected void onSuccess(Object response) {
-                AppCacheData.getPerformerUserModel().setUserName(userName);
-                mView.get().finish();
+                requestNewUserData();
             }
 
             @Override
             protected void onFailure(ResultResponse response) {
             }
         });
+    }
+
+    /**
+     * 获取用户数据
+     */
+    public void requestNewUserData() {
+        addSubscription(apiService.getUserInfo(),
+                new SubscriberCallBack<PerformerUserModel>(mView.get()) {
+                    @Override
+                    protected boolean isShowProgress() {
+                        return true;
+                    }
+
+                    @Override
+                    protected void onSuccess(PerformerUserModel response) {
+                        response.setUserType(String.valueOf(AppConstants.USER_TYPE_NORMAL));
+                        Utils.initLoginData(mView.get(), response);
+                        mView.get().finish();
+                    }
+
+                    @Override
+                    protected void onFailure(ResultResponse response) {
+
+                    }
+                });
     }
 
 }

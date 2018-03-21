@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -195,6 +196,7 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
             popupWindow.setContentView(inflate);
             popupWindow.setOutsideTouchable(true);
             popupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(130));
+            popupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
             popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public void onDismiss() {

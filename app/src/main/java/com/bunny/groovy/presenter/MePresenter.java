@@ -11,6 +11,7 @@ import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.StyleModel;
 import com.bunny.groovy.ui.MainActivity;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IMeView;
@@ -44,7 +45,9 @@ public class MePresenter extends BasePresenter<IMeView> {
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
+                        response.setUserType(String.valueOf(AppConstants.USER_TYPE_MUSICIAN));
                         mView.setUserView(response);
+
                         Utils.initLoginData(mView.get(),response);
                     }
 

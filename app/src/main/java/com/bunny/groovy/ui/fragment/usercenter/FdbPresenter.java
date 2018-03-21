@@ -8,6 +8,11 @@ import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
+
+import java.util.HashMap;
+
+import retrofit2.http.FieldMap;
 
 /****************************************
  * 功能说明:  
@@ -21,14 +26,18 @@ public class FdbPresenter extends BasePresenter<IFView> {
     }
 
     public void feedback(String content) {
-        addSubscription((TextUtils.equals(AppCacheData.getPerformerUserModel().getUserType()
-                , String.valueOf(AppConstants.USER_TYPE_MUSICIAN))
-                        ? apiService.addFeedback(content, "1") :
-                        apiService.addVenueFeesback(AppCacheData.getPerformerUserModel().getUserID(), content, "1"))
+        HashMap<String, String> map = new HashMap<>();
+        map.put("content", content);
+        map.put("deviceType", "1");
+        if (AppConstants.USER_TYPE_NORMAL != Utils.parseInt(AppCacheData.getPerformerUserModel().getUserType())) {
+            map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
+        }
+        addSubscription(apiService.addVenueFeesback(map)
                 , new SubscriberCallBack(mView.get()) {
                     @Override
                     protected void onSuccess(Object response) {
-                        UIUtils.showBaseToast("success");
+                        UIUtils.showBaseToast("Success");
+                        mView.get().finish();
                     }
 
                     @Override

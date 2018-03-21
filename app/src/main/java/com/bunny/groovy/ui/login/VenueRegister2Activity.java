@@ -227,6 +227,8 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
             case AppConstants.Code_Send_ServerError:
                 UIUtils.showBaseToast("服务器出错");
                 break;
+            default:
+                break;
         }
     }
 

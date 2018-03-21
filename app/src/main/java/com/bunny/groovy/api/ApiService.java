@@ -337,10 +337,8 @@ public interface ApiService {
 
     //反馈
     @FormUrlEncoded
-    @POST("PerformerMeController/addVenueFeesback")
-    Observable<ResultResponse<Object>> addVenueFeesback(@Field("userID") String userID,
-                                                        @Field("content") String content,
-                                                        @Field("deviceType") String deviceType);
+    @POST("VenueMeController/addVenueFeesback")
+    Observable<ResultResponse<Object>> addVenueFeesback(@FieldMap Map<String, String> map);
 
     //发送邮箱验证码
     @FormUrlEncoded

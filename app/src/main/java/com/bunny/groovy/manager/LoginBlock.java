@@ -69,6 +69,7 @@ public class LoginBlock {
     }
 
     public void handleCheckSuccess(String type) {
+        AppCacheData.getPerformerUserModel().setUserType(type);
         int userType = Utils.parseInt(type);
         switch (userType) {
             case AppConstants.USER_TYPE_NORMAL:

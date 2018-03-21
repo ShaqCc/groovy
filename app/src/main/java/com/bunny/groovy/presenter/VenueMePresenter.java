@@ -7,6 +7,7 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IMeView;
 
@@ -35,6 +36,7 @@ public class VenueMePresenter extends BasePresenter<IMeView> {
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
+                        response.setUserType(String.valueOf(AppConstants.USER_TYPE_VENUE));
                         mView.setUserView(response);
                         Utils.initLoginData(mView.get(), response);
                     }

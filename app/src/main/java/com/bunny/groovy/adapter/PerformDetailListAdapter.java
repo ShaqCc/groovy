@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
 import com.bunny.groovy.model.PerformDetail;
+import com.bunny.groovy.ui.fragment.releaseshow.UserShowDetailFragment;
 import com.bunny.groovy.utils.Utils;
 
 import java.util.List;
@@ -22,7 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Author: Created by bayin on 2018/1/3.
  ****************************************/
 
-public class PerformDetailListAdapter extends RecyclerView.Adapter<PerformDetailListAdapter.MusicianScheduleHolder> {
+public class PerformDetailListAdapter extends RecyclerView.Adapter<PerformDetailListAdapter.MusicianScheduleHolder> implements View.OnClickListener {
 
     private List<PerformDetail> mList;
     private Context mContext;
@@ -50,14 +51,23 @@ public class PerformDetailListAdapter extends RecyclerView.Adapter<PerformDetail
         holder.tvBottomLine.setVisibility(position == mList.size() - 1 ? View.GONE : View.VISIBLE);
         holder.mTvUserName.setText(detail.getPerformerName());
         holder.mTvScore.setText(Utils.getStar(detail.getPerformerStarLevel()));
-        holder.mTvData.setText(detail.getPerformType() + "  |  " + detail.getPerformDate());
+        holder.mTvData.setText(detail.getPerformType() + "  |  " + detail.getPerformDate() + detail.getPerformTime());
         Glide.with(mContext).load(detail.getPerformerImg()).placeholder(R.drawable.icon_default_photo).into(holder.mIvUserHead);
+        holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(this);
     }
 
     @Override
     public int getItemCount() {
         if (mList != null) return mList.size();
         return 0;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int pos = (int) v.getTag();
+        PerformDetail detail = mList.get(pos);
+        UserShowDetailFragment.launch(mContext, detail, false);
     }
 
     static class MusicianScheduleHolder extends RecyclerView.ViewHolder {

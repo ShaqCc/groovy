@@ -298,9 +298,9 @@ public class Utils {
         return 0;
     }
 
-    public static String getStar(String star){
+    public static String getStar(String star) {
         String starStr = "0.0";
-        if(!TextUtils.isEmpty(star)){
+        if (!TextUtils.isEmpty(star)) {
             try {
                 double starDouble = Double.parseDouble(star);
                 DecimalFormat decimalFormat = new DecimalFormat("0.0");
@@ -315,9 +315,15 @@ public class Utils {
     /**
      * 打开google Web地图导航
      */
-    public static void openWebGoogleNavi(Context context,String lat, String lng) {
-        StringBuffer stringBuffer = new StringBuffer("http://ditu.google.cn/maps?hl=zh&mrt=loc&q=").append(lat).append(",").append(lng);
-        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(stringBuffer.toString()));
-        context.startActivity(i);
+    public static void openWebGoogleNavi(Context context, String lat, String lng) {
+        try {
+            StringBuilder stringBuilder = new StringBuilder("http://ditu.google.cn/maps?hl=zh&mrt=loc&q=").append(lat).append(",").append(lng);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(stringBuilder.toString()));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
+
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.bunny.groovy.ui.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -20,7 +21,9 @@ import com.bunny.groovy.ui.fragment.usercenter.HistoryFragment;
 import com.bunny.groovy.ui.fragment.usercenter.PersonalDataFragment;
 import com.bunny.groovy.ui.fragment.usercenter.SettingsFragment;
 import com.bunny.groovy.ui.fragment.wallet.WalletFragment;
+import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.MusicBox;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
@@ -140,7 +143,8 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeView {
 
     @OnClick(R.id.me_tv_switch_to)
     public void switchTo(){
-        // TODO: 2018/3/21  切换到用户端
+        startActivity(new Intent(getActivity(), LoginActivity.class).putExtra("switch_type", AppConstants.USER_TYPE_NORMAL));
+        getActivity().finish();
     }
 
     @Override

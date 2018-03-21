@@ -118,9 +118,9 @@ public class VenueInviteDetailsFragment extends BaseFragment {
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("拒绝成功！");
+                            UIUtils.showBaseToast("Success!");
                         } else {
-                            UIUtils.showBaseToast("拒绝失败！请重试");
+                            UIUtils.showBaseToast("Failed!");
                         }
                     }
                 });
@@ -152,9 +152,9 @@ public class VenueInviteDetailsFragment extends BaseFragment {
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("同意申请！");
+                            UIUtils.showBaseToast("Success!");
                         } else {
-                            UIUtils.showBaseToast("同意失败！请重试");
+                            UIUtils.showBaseToast("Failed!");
                         }
                     }
                 });

@@ -112,6 +112,7 @@
         android:layout_height="40dp"
         android:layout_gravity="bottom"
         android:background="#333"
+        android:visibility="invisible"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/invite_tv_reject"

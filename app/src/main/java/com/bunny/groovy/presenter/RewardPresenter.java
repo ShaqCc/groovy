@@ -57,6 +57,7 @@ public class RewardPresenter extends BasePresenter<IRewardView> {
                 , new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(final PerformerUserModel response) {
+                        response.setUserType(String.valueOf(userType));
                         Utils.initLoginData(mView.get(), response);
                     }
 

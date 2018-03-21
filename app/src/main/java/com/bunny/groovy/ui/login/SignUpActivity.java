@@ -106,6 +106,8 @@ public class SignUpActivity extends BaseActivity<SingUpPresenter> implements ISi
             case AppConstants.Code_Send_ServerError:
                 UIUtils.showBaseToast("server error!");
                 break;
+            default:
+                break;
         }
     }
 

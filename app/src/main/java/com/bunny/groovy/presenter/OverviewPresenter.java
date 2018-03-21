@@ -5,6 +5,7 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.ShowModel;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IOverView;
 
@@ -52,6 +53,7 @@ public class OverviewPresenter extends BasePresenter<IOverView> {
         addSubscription(apiService.getPerformerInfo(), new SubscriberCallBack<PerformerUserModel>(mView.get()) {
             @Override
             protected void onSuccess(PerformerUserModel response) {
+                response.setUserType(String.valueOf(AppConstants.USER_TYPE_MUSICIAN));
                 //缓存到本地
                 Utils.initLoginData(mView.get(), response);
                 //设置数据

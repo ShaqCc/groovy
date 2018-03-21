@@ -65,7 +65,7 @@
                 android:gravity="right"
                 android:maxLines="1"
                 android:textSize="@dimen/text_size_common"
-                tools:text="750.66km"/>
+                tools:text="750.66mi"/>
         </LinearLayout>
 
         <TextView

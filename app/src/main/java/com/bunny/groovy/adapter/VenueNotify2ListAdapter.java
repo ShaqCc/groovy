@@ -112,10 +112,10 @@ public class VenueNotify2ListAdapter extends RecyclerView.Adapter<VenueNotify2Li
                 VenueApplyDetailsFragment.launch(mContext, bundle);
                 break;
             case R.id.item_notification_tv_confirm://同意
-                agreeApply(showModel.getPerformerID(), pos);
+                agreeApply(showModel.getPerformID(), pos);
                 break;
             case R.id.item_notification_tv_reject://拒绝
-                rejectApply(showModel.getPerformerID(), pos);
+                rejectApply(showModel.getPerformID(), pos);
                 break;
         }
     }
@@ -150,11 +150,11 @@ public class VenueNotify2ListAdapter extends RecyclerView.Adapter<VenueNotify2Li
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("拒绝成功！");
+                            UIUtils.showBaseToast("Success！");
                             mList.get(position).setPerformState("2");
                             notifyItemChanged(position);
                         } else {
-                            UIUtils.showBaseToast("拒绝失败！请重试");
+                            UIUtils.showBaseToast("Failed");
                         }
                     }
                 });

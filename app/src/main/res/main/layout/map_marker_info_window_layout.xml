@@ -178,7 +178,7 @@
                     android:id="@+id/marker_tv_distance"
                     style="@style/common_white_text_style"
                     android:layout_marginTop="4dp"
-                    tools:text="20km" />
+                    tools:text="20mi" />
             </LinearLayout>
 
             <TextView

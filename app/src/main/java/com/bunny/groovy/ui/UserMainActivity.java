@@ -26,6 +26,7 @@ import com.bunny.groovy.ui.fragment.usercenter.UserDataFragment;
 import com.bunny.groovy.ui.fragment.wallet.WalletFragment;
 import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -125,8 +126,9 @@ public class UserMainActivity extends BaseActivity implements View.OnClickListen
             View headerView = mNavigationView.getHeaderView(0);
             CircleImageView mHeadImage = headerView.findViewById(R.id.nav_head);
             TextView mUserName = headerView.findViewById(R.id.nav_name);
-            Glide.with(this).load(AppCacheData.getPerformerUserModel().getHeadImg())
-                    .placeholder(R.drawable.icon_default_photo).into(mHeadImage);
+            String url = AppCacheData.getPerformerUserModel().getHeadImg();
+            Glide.with(this).load(url)
+                    .error(R.drawable.icon_default_photo).into(mHeadImage);
             mUserName.setText(AppCacheData.getPerformerUserModel().getUserName());
         }
 
@@ -171,7 +173,7 @@ public class UserMainActivity extends BaseActivity implements View.OnClickListen
                 MyFavoriteListFragment.launch(this);
                 break;
             case R.id.nav_switch:
-                startActivity(new Intent(this, LoginActivity.class).putExtra("switch_type", true));
+                startActivity(new Intent(this, LoginActivity.class).putExtra("switch_type", AppConstants.USER_TYPE_MUSICIAN));
                 finish();
                 break;
             case R.id.nav_settings:

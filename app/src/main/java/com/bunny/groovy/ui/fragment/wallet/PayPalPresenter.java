@@ -70,7 +70,7 @@ public class PayPalPresenter extends BasePresenter<IPayPalView> {
     /**
      * 获取用户数据
      */
-    public void updateUserData(String type) {
+    public void updateUserData(final String type) {
         addSubscription(TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_MUSICIAN))
                         ? apiService.getPerformerInfo() : (TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_VENUE))
                         ? apiService.getVenueDetailInfo() : apiService.getUserInfo()),
@@ -78,6 +78,7 @@ public class PayPalPresenter extends BasePresenter<IPayPalView> {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
                         //缓存到本地
+                        response.setUserType(String.valueOf(type));
                         Utils.initLoginData(mView.get(), response);
                         mView.setView(response);
                     }

@@ -44,13 +44,14 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
+                                    response.setUserType(String.valueOf(userType));
                                     //缓存数据
                                     Utils.initLoginData(mView.get(), response);
                                     //判断资料是否完善
                                     if (Utils.parseInt(response.getUserType()) == AppConstants.USER_TYPE_MUSICIAN
                                             && TextUtils.isEmpty(response.getZipCode())) {
                                         //需要完善信息
-                                        int type = Integer.parseInt(response.getUserType());
+                                        int type = Utils.parseInt(response.getUserType());
                                         LoginActivity.launch(mView.get(), type);
 //                                mView.get().startActivity(new Intent(mView.get(), SetFile1Activity.class));
                                     } else {

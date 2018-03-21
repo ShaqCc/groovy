@@ -15,6 +15,7 @@ import com.bunny.groovy.ui.login.VenueRegister1Activity;
 import com.bunny.groovy.ui.setfile.SetFile1Activity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
+import com.bunny.groovy.utils.SharedPreferencesUtils;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.ILoginView;
@@ -30,7 +31,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         super(view);
     }
 
-    public void login(String account, String password, final int type) {
+    public void login(final String account, final String password, final int type) {
         addSubscription(apiService.performerLogin(account, password, String.valueOf(type), Utils.getTimeZone()),
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     /**
@@ -38,6 +39,11 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                      */
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
+                        //保存用户账号密码，用于切换时自动登录
+                        SharedPreferencesUtils.setUserParam(mView.get(), AppConstants.KEY_ACCOUNT + response.getUserID(), account);
+                        SharedPreferencesUtils.setUserParam(mView.get(), AppConstants.KEY_PASSWORD + response.getUserID(), password);
+                        //坑爹服务器，登录之后类型还是原来的，只能自己转
+                        response.setUserType(String.valueOf(type));
                         //缓存到本地
                         Utils.initLoginData(mView.get(), response);
                         if (response != null) {
@@ -54,7 +60,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                                 mView.get().startActivityForResult(new Intent(mView.get(), VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                             } else {
                                 //进入主页
-                                mView.launchMainPage(type);
+                                mView.launchMainPage(userType);
                             }
                         }
                     }
@@ -183,6 +189,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
             @Override
             protected void onSuccess(PerformerUserModel response) {
                 //登录，判断是否完善了资料
+                response.setUserType(userType);
                 Utils.initLoginData(mView.get(), response);
                 switch (Utils.parseInt(userType)) {
                     case AppConstants.USER_TYPE_VENUE:

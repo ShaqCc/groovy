@@ -99,7 +99,7 @@ public class VenueMeFragment extends BaseFragment<VenueMePresenter> implements I
     }
 
     @OnClick(R.id.user_center_iv_header)
-    public void updateUserInfo(){
+    public void updateUserInfo() {
         VenueDataFragment.launch(mActivity);
     }
 
@@ -170,7 +170,7 @@ public class VenueMeFragment extends BaseFragment<VenueMePresenter> implements I
             }
             tvScore.setText(model.getVenueScore());
         }
-        Glide.with(getActivity()).load(model.getHeadImg()).into(ivHeader);
+        Glide.with(getActivity()).load(model.getHeadImg()).placeholder(R.drawable.icon_default_photo).into(ivHeader);
     }
 
     @Override

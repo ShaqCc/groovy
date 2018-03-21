@@ -117,6 +117,8 @@ public class UserRegister1Activity extends BaseActivity<SingUpPresenter> impleme
             case "5000"://网络错误
                 UIUtils.showBaseToast("服务器出错");
                 break;
+            default:
+                break;
         }
     }
 
