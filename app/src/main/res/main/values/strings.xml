@@ -7,8 +7,8 @@
 
 
     <string-array name="time_clock_array">
-        <item>12:00 AM</item>
-        <item>12:30 AM</item>
+        <item>00:00 AM</item>
+        <item>00:30 AM</item>
         <item>1:00 AM</item>
         <item>1:30 AM</item>
         <item>2:00 AM</item>
