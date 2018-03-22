@@ -33,6 +33,7 @@
             android:id="@+id/filter_seekbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:max="50"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/filter_tv_distance" />
 

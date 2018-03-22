@@ -216,11 +216,11 @@ public class NotifyListAdapter extends RecyclerView.Adapter<NotifyListAdapter.No
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("确认成功！");
+                            UIUtils.showBaseToast("Success!");
                             mList.get(position).setInvitationState("2");
                             notifyItemChanged(position);
                         } else {
-                            UIUtils.showBaseToast("确认失败！请重试");
+                            UIUtils.showBaseToast("Failed!");
                         }
                     }
                 });

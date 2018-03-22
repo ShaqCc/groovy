@@ -124,7 +124,7 @@ public class MusicService extends Service {
             mPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
-                    UIUtils.showToast("Load music success!");
+//                    UIUtils.showToast("Load music success!");
                     mPlayState = STATE_PLAY_NORMAL;
                 }
             });

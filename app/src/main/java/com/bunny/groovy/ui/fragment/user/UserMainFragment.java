@@ -33,6 +33,7 @@ import com.bunny.groovy.ui.fragment.apply.FilterFragment;
 import com.bunny.groovy.ui.fragment.apply.UserFilterFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.UserShowDetailFragment;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IListPageView;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -89,7 +90,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     private List<PerformDetail> performDetailList = new ArrayList<>();
     private PerformDetail mCurrentBean;//当前选中的演出
     private List<Marker> mMarkerList = new ArrayList<>();
-    private String mDistance = "50";//距离默认50mi
+    private String mDistance = "25";//距离默认50mi
     private String mStartDate, mEndDate;//表演时间
     private String mVenueType;//表演厅类型（多选，英文逗号隔开）
     private String mPerformType;//表演类型（多选，英文逗号隔开）
@@ -259,6 +260,13 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 }
             }
         });
+        mLocationClient.getLastLocation().addOnFailureListener(get(), new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                UIUtils.showToast("Positioning function is not available, please go to set to open the positioning.");
+
+            }
+        });
     }
 
 
@@ -394,22 +402,21 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
      */
     private void requestAroundList() {
         HashMap<String, String> map = new HashMap();
+
+        map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
         if (mLastLocation != null) {
-            map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
             map.put("lon", String.valueOf(mLastLocation.getLongitude()));
             map.put("lat", String.valueOf(mLastLocation.getLatitude()));
-            map.put("distance", mDistance);
-            if (!TextUtils.isEmpty(mVenueType)) map.put("venueType", mVenueType);
-            if (!TextUtils.isEmpty(mStartDate)) map.put("startDate", mStartDate);
-            if (!TextUtils.isEmpty(mEndDate)) map.put("endDate", mEndDate);
-            if (!TextUtils.isEmpty(mPerformType)) map.put("performType", mPerformType);
-            mPresenter.getPerformList(map);
-//        } else {
-//            map.put("lon", "121.6000");
-//            map.put("lat", "31.2200");
-//            map.put("mDistance", mDistance);
-//            mPresenter.getPerformList(map);
+        } else {
+            map.put("lon", "-122.419416");
+            map.put("lat", "37.774930");
         }
+        map.put("distance", mDistance);
+        if (!TextUtils.isEmpty(mVenueType)) map.put("venueType", mVenueType);
+        if (!TextUtils.isEmpty(mStartDate)) map.put("startDate", mStartDate);
+        if (!TextUtils.isEmpty(mEndDate)) map.put("endDate", mEndDate);
+        if (!TextUtils.isEmpty(mPerformType)) map.put("performType", mPerformType);
+        mPresenter.getPerformList(map);
     }
 
     @Override
@@ -520,6 +527,9 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             if (mLastLocation != null) {
                 map.put("lon", String.valueOf(mLastLocation.getLongitude()));
                 map.put("lat", String.valueOf(mLastLocation.getLatitude()));
+            } else {
+                map.put("lon", "-122.419416");
+                map.put("lat", "37.774930");
             }
             mPresenter.getPerformList(map);
         } else if (requestCode == OPEN_GPS_REQUEST_CODE) {

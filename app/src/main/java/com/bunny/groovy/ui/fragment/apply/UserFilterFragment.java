@@ -428,6 +428,7 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         textView.setText("SELECT ALL");
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, mEtPerformStyle.getText().toString().trim());
+        mAdapter.setSelectNum(100);
         recyclerview.setAdapter(mAdapter);
         popview.findViewById(R.id.pop_cancel).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -128,9 +128,9 @@ public class InviteDetailsFragment extends BaseFragment {
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("确认成功！");
+                            UIUtils.showBaseToast("Success!");
                         } else {
-                            UIUtils.showBaseToast("确认失败！请重试");
+                            UIUtils.showBaseToast("Failed!");
                         }
                     }
                 });

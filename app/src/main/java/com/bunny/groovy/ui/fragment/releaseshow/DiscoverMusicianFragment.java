@@ -14,6 +14,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -55,7 +57,7 @@ public class DiscoverMusicianFragment extends BaseFragment<DiscoverMusicianListP
     private String mPerformType;
     private String mKeyWord;
     private PopupWindow mPopupWindow;
-    private StyleGridAdapter mAdatper;
+    private StyleGridAdapter mAdapter;
     private List<StyleModel> styleList;
     private DiscoverMusicianListAdapter mMusicianListAdapter;
 
@@ -193,9 +195,19 @@ public class DiscoverMusicianFragment extends BaseFragment<DiscoverMusicianListP
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        mAdatper = new StyleGridAdapter(modelList, mPerformType);
-        mAdatper.setSelectNum(100);
-        recyclerview.setAdapter(mAdatper);
+        mAdapter = new StyleGridAdapter(modelList, mPerformType);
+        mAdapter.setSelectNum(100);
+        CheckBox checkBox = popview.findViewById(R.id.style_num_checkbox);
+        checkBox.setVisibility(View.VISIBLE);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mAdapter.selectAll(b);
+            }
+        });
+        TextView textView = popview.findViewById(R.id.style_num_text);
+        textView.setText("SELECT ALL");
+        recyclerview.setAdapter(mAdapter);
         popview.findViewById(R.id.pop_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,7 +218,7 @@ public class DiscoverMusicianFragment extends BaseFragment<DiscoverMusicianListP
             @Override
             public void onClick(View v) {
                 closePop();
-                mPerformType = mAdatper.getSelectStyles();
+                mPerformType = mAdapter.getSelectStyles();
                 mPresenter.searchPerformer(mKeyWord, mSortType, mPerformType);
             }
         });
