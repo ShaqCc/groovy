@@ -339,8 +339,8 @@ public interface ApiService {
 
     //反馈
     @FormUrlEncoded
-    @POST("PerformerMeController/addFeedbackList")
-    Observable<ResultResponse<Object>> addFeedback(@Field("userID") String userID,
+    @POST("VenueMeController/addVenueFeesback")
+    Observable<ResultResponse<Object>> addVenueFeesback(@Field("userID") String userID,
                                                    @Field("content") String content,
                                                    @Field("deviceType") String deviceType);
 
