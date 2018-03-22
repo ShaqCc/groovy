@@ -154,20 +154,20 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         mCheckList[0] = mCb1;
         mCheckList[1] = mCb2;
         mCheckList[2] = mCb3;
-        String startDate = getArguments().getString(KEY_START_TIME);
-        String endDate = getArguments().getString(KEY_END_TIME);
-        if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
-            Date date = null;
-            try {
-                date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startDate);
-                startTime = startDate.split(" ")[1];
-                endTime = endDate.split(" ")[1];
-                mEtTime.setText(startDate + "-" + endTime);
-            } catch (Exception e) {
-            }
-            if (date != null) mSelectDate.setTime(date);
-
-        }
+//        String startDate = getArguments().getString(KEY_START_TIME);
+//        String endDate = getArguments().getString(KEY_END_TIME);
+//        if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
+//            Date date = null;
+//            try {
+//                date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startDate);
+//                startTime = startDate.split(" ")[1];
+//                endTime = endDate.split(" ")[1];
+//                mEtTime.setText(startDate + "-" + endTime);
+//            } catch (Exception e) {
+//            }
+//            if (date != null) mSelectDate.setTime(date);
+//
+//        }
         mEtTime.setFocusable(false);
         if (!TextUtils.isEmpty(venueType)) {
             mVenueType = new StringBuilder(venueType);

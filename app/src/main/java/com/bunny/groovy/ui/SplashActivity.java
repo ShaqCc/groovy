@@ -44,7 +44,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements ISp
             int useType = Utils.parseInt((String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_USER_TYPE, "1"));
 //            //已登录
 //            //请求表演者资料
-            mPresenter.requestUserInfo(useType);
+            mPresenter.requestUserInfo(userID, useType);
         } else {
             //未登录
             new Handler().postDelayed(new Runnable() {

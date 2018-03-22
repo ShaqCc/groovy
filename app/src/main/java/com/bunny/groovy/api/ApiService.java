@@ -558,4 +558,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("FrontUserController/ordinaryFrontUserRegister")
     Observable<ResultResponse> ordinaryFrontUserRegister(@FieldMap Map<String, String> map);
+
+    //获取普通用户收藏的表演者列表
+    @FormUrlEncoded
+    @POST("UserHomeController/addPerformViewer")
+    Observable<ResultResponse<Object>> addPerformViewer(@Field("userID") String userID,@Field("performID") String performID);
 }

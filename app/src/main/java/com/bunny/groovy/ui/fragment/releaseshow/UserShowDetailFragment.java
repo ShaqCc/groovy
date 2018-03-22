@@ -24,6 +24,7 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.MusicianDetailModel;
 import com.bunny.groovy.model.PerformDetail;
+import com.bunny.groovy.presenter.UserListPresenter;
 import com.bunny.groovy.service.MusicService;
 import com.bunny.groovy.ui.fragment.apply.MusicianDetailFragment;
 import com.bunny.groovy.utils.UIUtils;
@@ -130,6 +131,7 @@ public class UserShowDetailFragment extends BaseFragment {
     @OnClick(R.id.show_detail_go)
     public void go() {
         Utils.openWebGoogleNavi(getActivity(), model.getVenueLatitude(), model.getVenueLongitude());
+        UserListPresenter.addPerformViewer(model.getPerformID());
     }
 
     @OnClick(R.id.performer_facebook_page)
@@ -182,7 +184,7 @@ public class UserShowDetailFragment extends BaseFragment {
             mTvVenueName_2.setText(model.getVenueName());
             mTvStyle.setText(model.getPerformType());
             mTvTime.setText(model.getPerformTime());
-            mTvDistance.setText(model.getDistance() + "mi");
+            mTvDistance.setText((TextUtils.isEmpty(model.getDistance()) ? "--" : model.getDistance()) + "mi");
             mTvDesc.setText(model.getPerformDesc());
             mTvVenueScore.setText(Utils.getStar(model.getVenueScore()));
             mTvAddress.setText(model.getVenueAddress());
