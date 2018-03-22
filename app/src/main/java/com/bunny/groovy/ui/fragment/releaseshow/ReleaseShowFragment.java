@@ -28,6 +28,7 @@ import com.bunny.groovy.presenter.ReleasePresenter;
 import com.bunny.groovy.ui.fragment.spotlight.SpotlightFragment;
 import com.bunny.groovy.ui.fragment.spotlight.SpotlightInfoFragment;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.DateUtils;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
@@ -158,7 +159,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         }
         Map<String, String> map = new HashMap<>();
         //mType-2:演出厅发布演出
-        if (mType == 2) {
+        if (mType == AppConstants.USER_TYPE_VENUE) {
             if (mPerformerModel != null && !TextUtils.isEmpty(mPerformerModel.getUserID())) {
                 map.put("performerID", mPerformerModel.getUserID());
             }
@@ -201,7 +202,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
      */
     @OnClick(R.id.release_tv_search)
     public void search() {
-        if (mType == 2) {
+        if (mType == AppConstants.USER_TYPE_VENUE) {
             SearchMusicianFragment.launchForResult(mActivity, new Bundle(), 1);
         } else {
             SearchVenueFragment.launchForResult(mActivity, new Bundle(), 1);

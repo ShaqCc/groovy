@@ -5,7 +5,9 @@ import com.bunny.groovy.base.BasePresenter;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 
 import java.util.Map;
 
@@ -38,8 +40,9 @@ public class SpotlightPresenter extends BasePresenter<ISpotLightView> {
     }
 
 
-    private void updateUserData(){
-        addSubscription(apiService.getPerformerInfo(), new SubscriberCallBack<PerformerUserModel>(mView.get()) {
+    private void updateUserData() {
+        addSubscription(Utils.parseInt(AppCacheData.getPerformerUserModel().getUserType()) == AppConstants.USER_TYPE_MUSICIAN
+                ? apiService.getPerformerInfo() : apiService.getVenueDetailInfo(), new SubscriberCallBack<PerformerUserModel>(mView.get()) {
             @Override
             protected void onSuccess(PerformerUserModel response) {
                 AppCacheData.setPerformerUserModel(response);

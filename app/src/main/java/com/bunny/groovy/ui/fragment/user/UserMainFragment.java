@@ -136,6 +136,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     @OnClick(R.id.marker_tv_go)
     public void go() {
         Utils.openWebGoogleNavi(getActivity(), mCurrentBean.getVenueLatitude(), mCurrentBean.getVenueLongitude());
+        UserListPresenter.addPerformViewer(mCurrentBean.getPerformID());
     }
 
     @OnClick(R.id.map_filter)
@@ -145,6 +146,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
 
     @OnClick(R.id.map_ll_search)
     public void searchAddress() {
+        hideMarkLayout();
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
         try {
             startActivityForResult(builder.build(mActivity), PLACE_PICKER_REQUEST);
@@ -166,6 +168,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         bundle.putString(UserFilterFragment.KEY_VENUE_TYPE, mVenueType);
         bundle.putString(UserFilterFragment.KEY_PERFORM_TYPE, mPerformType);
         UserFilterFragment.launchForResult(mActivity, bundle, FILTER_REQUEST_CODE);
+        hideMarkLayout();
     }
 
     public static void launch(Activity from) {
@@ -455,7 +458,17 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             mRecyclerView.setVisibility(View.VISIBLE);
             mapLayout.setVisibility(View.GONE);
             mapSearchBar.setVisibility(View.GONE);
+            hideMarkLayout();
         }
+    }
+
+    public void hideMarkLayout() {
+        if (lastMarkerSelected >= 0) {
+            mMarkerList.get(lastMarkerSelected).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_show));
+            lastMarkerSelected = -2;
+        }
+        mMarkerLayout.setVisibility(View.INVISIBLE);
+        isMarkerShowing = false;
     }
 
     @Override

@@ -339,8 +339,8 @@ public interface ApiService {
 
     //反馈
     @FormUrlEncoded
-    @POST("PerformerMeController/addFeedbackList")
-    Observable<ResultResponse<Object>> addFeedback(@Field("userID") String userID,
+    @POST("VenueMeController/addVenueFeesback")
+    Observable<ResultResponse<Object>> addVenueFeesback(@Field("userID") String userID,
                                                    @Field("content") String content,
                                                    @Field("deviceType") String deviceType);
 
@@ -513,9 +513,10 @@ public interface ApiService {
     @POST("VenueMeController/updateVenueInfo")
     Observable<ResultResponse<Object>> updateVenueInfo(@Body RequestBody body);
 
-    //获取表演信息列表
+    //获取普通用户钱包记录
+    @FormUrlEncoded
     @POST("UserCenterController/getUserTransactionRecord")
-    Observable<ResultResponse<List<WalletBean>>> getNormalUserTransactionRecord();
+    Observable<ResultResponse<List<WalletBean>>> getNormalUserTransactionRecord(@Field("userID") String userID);
 
     //获取表演者个人信息
     @FormUrlEncoded
@@ -558,4 +559,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("FrontUserController/ordinaryFrontUserRegister")
     Observable<ResultResponse> ordinaryFrontUserRegister(@FieldMap Map<String, String> map);
+
+    //获取普通用户收藏的表演者列表
+    @FormUrlEncoded
+    @POST("UserHomeController/addPerformViewer")
+    Observable<ResultResponse<Object>> addPerformViewer(@Field("userID") String userID,@Field("performID") String performID);
 }

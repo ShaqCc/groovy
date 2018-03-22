@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -154,20 +155,20 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         mCheckList[0] = mCb1;
         mCheckList[1] = mCb2;
         mCheckList[2] = mCb3;
-        String startDate = getArguments().getString(KEY_START_TIME);
-        String endDate = getArguments().getString(KEY_END_TIME);
-        if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
-            Date date = null;
-            try {
-                date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startDate);
-                startTime = startDate.split(" ")[1];
-                endTime = endDate.split(" ")[1];
-                mEtTime.setText(startDate + "-" + endTime);
-            } catch (Exception e) {
-            }
-            if (date != null) mSelectDate.setTime(date);
-
-        }
+//        String startDate = getArguments().getString(KEY_START_TIME);
+//        String endDate = getArguments().getString(KEY_END_TIME);
+//        if (!TextUtils.isEmpty(startDate) && !TextUtils.isEmpty(endDate)) {
+//            Date date = null;
+//            try {
+//                date = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(startDate);
+//                startTime = startDate.split(" ")[1];
+//                endTime = endDate.split(" ")[1];
+//                mEtTime.setText(startDate + "-" + endTime);
+//            } catch (Exception e) {
+//            }
+//            if (date != null) mSelectDate.setTime(date);
+//
+//        }
         mEtTime.setFocusable(false);
         if (!TextUtils.isEmpty(venueType)) {
             mVenueType = new StringBuilder(venueType);
@@ -415,6 +416,16 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
+        CheckBox checkBox = popview.findViewById(R.id.style_num_checkbox);
+        checkBox.setVisibility(View.VISIBLE);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                mAdapter.selectAll(b);
+            }
+        });
+        TextView textView = popview.findViewById(R.id.style_num_text);
+        textView.setText("SELECT ALL");
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, mEtPerformStyle.getText().toString().trim());
         recyclerview.setAdapter(mAdapter);

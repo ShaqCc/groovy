@@ -106,6 +106,15 @@ public class StyleGridAdapter extends RecyclerView.Adapter<StyleGridAdapter.Styl
         return mSelectStyle;
     }
 
+    public void selectAll(boolean select) {
+        if (mDataList != null) {
+            for (StyleModel model : mDataList) {
+                model.setChecked(select);
+            }
+            notifyDataSetChanged();
+        }
+    }
+
     public void updateSelectedStyle(List<StyleModel> list, String selectedStyle) {
         this.mDataList = list;
         setCheckData();

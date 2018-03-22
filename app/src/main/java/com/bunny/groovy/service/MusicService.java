@@ -107,6 +107,7 @@ public class MusicService extends Service {
     }
 
     private void initMusic() {
+        mPlayState = STATE_PLAY_PREPARE;
         // 根路径
         //      String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmd.mp3";
         mPlayer.reset();

@@ -18,7 +18,7 @@ public class FdbPresenter extends BasePresenter<IFView> {
     }
 
     public void feedback(String content) {
-        addSubscription(apiService.addFeedback(AppCacheData.getPerformerUserModel().getUserID(), content, "1")
+        addSubscription(apiService.addVenueFeesback(AppCacheData.getPerformerUserModel().getUserID(), content, "1")
                 , new SubscriberCallBack(mView.get()) {
                     @Override
                     protected void onSuccess(Object response) {
