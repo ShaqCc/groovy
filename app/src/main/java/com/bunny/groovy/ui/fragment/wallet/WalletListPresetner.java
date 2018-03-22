@@ -62,7 +62,7 @@ public class WalletListPresetner extends BasePresenter<IWalletListView> {
     }
 
     public void getNormalUserTransactionRecord() {
-        addSubscription(apiService.getNormalUserTransactionRecord(), new SubscriberCallBack<List<WalletBean>>(mView.get()) {
+        addSubscription(apiService.getNormalUserTransactionRecord(AppCacheData.getPerformerUserModel().getUserID()), new SubscriberCallBack<List<WalletBean>>(mView.get()) {
 
             @Override
             protected boolean isShowProgress() {

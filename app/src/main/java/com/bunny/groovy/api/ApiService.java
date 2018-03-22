@@ -513,9 +513,10 @@ public interface ApiService {
     @POST("VenueMeController/updateVenueInfo")
     Observable<ResultResponse<Object>> updateVenueInfo(@Body RequestBody body);
 
-    //获取表演信息列表
+    //获取普通用户钱包记录
+    @FormUrlEncoded
     @POST("UserCenterController/getUserTransactionRecord")
-    Observable<ResultResponse<List<WalletBean>>> getNormalUserTransactionRecord();
+    Observable<ResultResponse<List<WalletBean>>> getNormalUserTransactionRecord(@Field("userID") String userID);
 
     //获取表演者个人信息
     @FormUrlEncoded
