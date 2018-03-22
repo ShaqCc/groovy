@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.widget.ViewUtils;
 import android.text.TextUtils;
 
 import com.bunny.groovy.R;
@@ -16,6 +17,7 @@ import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.ISetFileView;
 import com.xw.repo.XEditText;
 import com.zfdang.multiple_images_selector.SelectorSettings;
@@ -49,6 +51,11 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
     XEditText etWebsite;
     @Bind(R.id.perfect_info_iv_headpic)
     CircleImageView headView;
+
+    @OnClick(R.id.zipcode_info)
+    void showZipCodeInfo(){
+        UIUtils.showBaseToast("Set the zip code for current location so that the performance hall can find you.");
+    }
 
     @OnClick(R.id.perfect_info_iv_select_pic)
     void selectPic() {
@@ -106,11 +113,6 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
 
     private String headImagePath = "";//头像文件路径
 
-    @Override
-    public void initView() {
-        super.initView();
-        etZipcode.setCheckStatus(XEditText.CheckStatus.INFO);
-    }
 
     @Override
     public Activity get() {

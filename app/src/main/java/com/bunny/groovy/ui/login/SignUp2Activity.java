@@ -67,7 +67,7 @@ public class SignUp2Activity extends BaseActivity<SingUpPresenter> implements IS
             {
                 UIUtils.showBaseToast("Phone must not be null.");
                 return;
-            } else if (!PatternUtils.isUSphonenumber(etPhone.getTrimmedString()) || !PatternUtils.isCNPhone(etPhone.getTrimmedString())) {
+            } else if (!(PatternUtils.isUSphonenumber(etPhone.getTrimmedString()) || PatternUtils.isCNPhone(etPhone.getTrimmedString()))) {
                 UIUtils.showBaseToast("Phone invalid.");
                 return;
             }

@@ -285,9 +285,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
                     int endIndex = loopviewEndTime.getSelectedItem();
                     startTime = mRealTimeClockList.get(startIndex);
                     endTime = mRealTimeClockList.get(endIndex);
-                    String startShowTime = mTimeClockList.get(startIndex);
-                    String endShowTime = mTimeClockList.get(endIndex);
-                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startShowTime) + (startIndex < 24 ? "am" : "pm") + "-" + endShowTime + (endIndex < 24 ? "am" : "pm"));
+                    etTime.setText(DateUtils.getFormatTime(mSelectDate.getTime(), startTime) + (startIndex < 24 ? "am" : "pm") + "-" + endTime + (endIndex < 24 ? "am" : "pm"));
                 }
             }
         });
@@ -478,6 +476,11 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
         //禁用编辑
         etStyle.setFocusable(false);
         etTime.setFocusable(false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         //spotlight
         if (Integer.parseInt(AppCacheData.getPerformerUserModel().getPackageCount()) > 0) {
             tvSpotLightMoney.setVisibility(View.VISIBLE);
