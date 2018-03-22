@@ -223,11 +223,8 @@ public class RewardFragment extends BaseFragment<RewardPresenter> implements IRe
 
     private void doReward(HashMap<String, String> map) {
         map.put("performerID", performerID);
-        if (!TextUtils.equals(String.valueOf(AppConstants.USER_TYPE_NORMAL), AppCacheData.getPerformerUserModel().getUserType())) {
-            map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
-        }
+        map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
         map.put("amount", String.valueOf(mAmount));
-
         mPresenter.rewardPerformer(map);
     }
 

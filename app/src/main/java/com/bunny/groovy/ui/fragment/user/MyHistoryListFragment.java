@@ -59,7 +59,7 @@ public class MyHistoryListFragment extends BaseListFragment<UserListPresenter, U
     public void setView(List<PerformDetail> o) {
         setNormalView();
         if (mAdapter == null) {
-            mAdapter = new UserHistoetSearchryListAdapter(o);
+            mAdapter = new UserHistoryListAdapter(o);
             mRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.refresh(o);

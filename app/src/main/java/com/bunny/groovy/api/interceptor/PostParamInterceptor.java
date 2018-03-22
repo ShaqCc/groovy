@@ -34,8 +34,6 @@ public class PostParamInterceptor implements Interceptor {
                 builder = builder.addQueryParameter("performerID", userID);
             }else if(TextUtils.equals(userType, String.valueOf(AppConstants.USER_TYPE_VENUE))){
                 builder = builder.addQueryParameter("venueID", userID);
-            }else if(TextUtils.equals(userType, String.valueOf(AppConstants.USER_TYPE_NORMAL))){
-                builder = builder.addQueryParameter("userID", userID);
             }
             HttpUrl url = builder.build();
             Request build = request.newBuilder().url(url).build();

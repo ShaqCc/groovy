@@ -52,10 +52,11 @@ public class PayPalPresenter extends BasePresenter<IPayPalView> {
 
 
     public void withDraw(String amount) {
-        addSubscription(apiService.getWithdrawals(amount), new SubscriberCallBack(mView.get()) {
+        addSubscription(AppConstants.USER_TYPE_MUSICIAN == Utils.parseInt(AppCacheData.getPerformerUserModel().getUserType()) ?
+                apiService.getWithdrawals(amount) : apiService.userWithdrawals(AppCacheData.getPerformerUserModel().getUserID(), amount), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("提现成功");
+                UIUtils.showBaseToast("Success.");
                 mView.get().finish();
             }
 
@@ -73,7 +74,7 @@ public class PayPalPresenter extends BasePresenter<IPayPalView> {
     public void updateUserData(final String type) {
         addSubscription(TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_MUSICIAN))
                         ? apiService.getPerformerInfo() : (TextUtils.equals(type, String.valueOf(AppConstants.USER_TYPE_VENUE))
-                        ? apiService.getVenueDetailInfo() : apiService.getUserInfo()),
+                        ? apiService.getVenueDetailInfo() : apiService.getUserInfo(AppCacheData.getPerformerUserModel().getUserID())),
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {

@@ -10,6 +10,7 @@ import com.bunny.groovy.manager.LoginBlock;
 import com.bunny.groovy.model.GlobalModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
+import com.bunny.groovy.ui.RoleChooseActivity;
 import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
@@ -34,7 +35,7 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
         startRequestTime = SystemClock.currentThreadTimeMillis();
         addSubscription(userType == AppConstants.USER_TYPE_MUSICIAN
                         ? apiService.getPerformerInfo() : (userType == AppConstants.USER_TYPE_NORMAL
-                        ? apiService.getUserInfo() : apiService.getVenueDetailInfo())
+                        ? apiService.getUserInfo(AppCacheData.getPerformerUserModel().getUserID()) : apiService.getVenueDetailInfo())
                 , new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(final PerformerUserModel response) {
@@ -48,12 +49,11 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
                                     //缓存数据
                                     Utils.initLoginData(mView.get(), response);
                                     //判断资料是否完善
-                                    if (Utils.parseInt(response.getUserType()) == AppConstants.USER_TYPE_MUSICIAN
-                                            && TextUtils.isEmpty(response.getZipCode())) {
-                                        //需要完善信息
-                                        int type = Utils.parseInt(response.getUserType());
-                                        LoginActivity.launch(mView.get(), type);
-//                                mView.get().startActivity(new Intent(mView.get(), SetFile1Activity.class));
+                                    if ((userType == AppConstants.USER_TYPE_MUSICIAN
+                                            && TextUtils.isEmpty(response.getZipCode()))
+                                            || (userType == AppConstants.USER_TYPE_VENUE
+                                            && TextUtils.isEmpty(response.getVenueTypeName()))) {
+                                        RoleChooseActivity.launch(mView.get());
                                     } else {
                                         LoginBlock.getInstance().handleCheckSuccess(response.getUserType());
                                     }

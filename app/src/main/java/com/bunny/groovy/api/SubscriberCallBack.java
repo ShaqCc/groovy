@@ -69,7 +69,7 @@ public abstract class SubscriberCallBack<T> extends Subscriber<ResultResponse<T>
     @Override
     public void onError(Throwable e) {
         if (mProgressHUD != null && mProgressHUD.isShowing()) mProgressHUD.dismiss();
-        UIUtils.showToast("网络出错啦！");
+        UIUtils.showToast("Server wrong!");
         e.printStackTrace();
         System.out.print("onError错误！" + e.toString());
 //        onError();

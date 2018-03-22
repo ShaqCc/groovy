@@ -32,7 +32,7 @@ public class UserMePresenter extends BasePresenter<IMeView> {
      * 获取用户数据
      */
     public void requestUserData() {
-        addSubscription(apiService.getUserInfo(),
+        addSubscription(apiService.getUserInfo(AppCacheData.getPerformerUserModel().getUserID()),
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
@@ -52,7 +52,8 @@ public class UserMePresenter extends BasePresenter<IMeView> {
      * 评价表演者
      */
     public void evaluatePerformer(String performerID, String performerStarLevel, String evaluateContent) {
-        addSubscription(apiService.evaluatePerformer(performerID, performerStarLevel, evaluateContent),
+        addSubscription(apiService.evaluatePerformer(performerID
+                , AppCacheData.getPerformerUserModel().getUserID(), performerStarLevel, evaluateContent),
                 new SubscriberCallBack<Object>(mView.get()) {
                     @Override
                     protected void onSuccess(Object response) {
@@ -116,9 +117,10 @@ public class UserMePresenter extends BasePresenter<IMeView> {
 
     /**
      * 获取用户数据
+     * 为了刷新个人界面，重新获取个人界面图片地址
      */
     public void requestNewUserData() {
-        addSubscription(apiService.getUserInfo(),
+        addSubscription(apiService.getUserInfo(AppCacheData.getPerformerUserModel().getUserID()),
                 new SubscriberCallBack<PerformerUserModel>(mView.get()) {
                     @Override
                     protected boolean isShowProgress() {

@@ -6,6 +6,7 @@ import com.bunny.groovy.model.MusicianModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.UserMainModel;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.view.IListPageView;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class UserListPresenter extends BasePresenter<IListPageView> {
      * 获取我收藏的所有表演者列表
      */
     public void getFavoriteList() {
-        addSubscription(apiService.getCollectionPerformerList(),
+        addSubscription(apiService.getUserCollectionPerformerList(AppCacheData.getPerformerUserModel().getUserID()),
                 new SubscriberCallBack<List<MusicianModel>>(mView.get()) {
                     @Override
                     protected void onSuccess(List<MusicianModel> response) {
@@ -52,7 +53,7 @@ public class UserListPresenter extends BasePresenter<IListPageView> {
      * 获取表演信息列表
      */
     public void getPerformViewList() {
-        addSubscription(apiService.getPerformViewList(),
+        addSubscription(apiService.getPerformViewList(AppCacheData.getPerformerUserModel().getUserID()),
                 new SubscriberCallBack<List<ShowModel>>(mView.get()) {
                     @Override
                     protected void onSuccess(List<ShowModel> response) {

@@ -32,6 +32,7 @@ import com.bunny.groovy.presenter.UserListPresenter;
 import com.bunny.groovy.ui.fragment.apply.FilterFragment;
 import com.bunny.groovy.ui.fragment.apply.UserFilterFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.UserShowDetailFragment;
+import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IListPageView;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -391,13 +392,14 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     private void requestAroundList() {
         HashMap<String, String> map = new HashMap();
         if (mLastLocation != null) {
+            map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
             map.put("lon", String.valueOf(mLastLocation.getLongitude()));
             map.put("lat", String.valueOf(mLastLocation.getLatitude()));
             map.put("distance", mDistance);
-            if(!TextUtils.isEmpty(mVenueType)) map.put("venueType", mVenueType);
-            if(!TextUtils.isEmpty(mStartDate)) map.put("startDate", mStartDate);
-            if(!TextUtils.isEmpty(mEndDate)) map.put("endDate", mEndDate);
-            if(!TextUtils.isEmpty(mPerformType)) map.put("performType", mPerformType);
+            if (!TextUtils.isEmpty(mVenueType)) map.put("venueType", mVenueType);
+            if (!TextUtils.isEmpty(mStartDate)) map.put("startDate", mStartDate);
+            if (!TextUtils.isEmpty(mEndDate)) map.put("endDate", mEndDate);
+            if (!TextUtils.isEmpty(mPerformType)) map.put("performType", mPerformType);
             mPresenter.getPerformList(map);
 //        } else {
 //            map.put("lon", "121.6000");
@@ -476,6 +478,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FILTER_REQUEST_CODE && resultCode == RESULT_OK) {
             HashMap<String, String> map = new HashMap<>();
+            map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
             String dis = data.getStringExtra(UserFilterFragment.KEY_DISTANCE);
             if (!TextUtils.isEmpty(dis)) {
                 mDistance = dis;
@@ -510,7 +513,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             //请求开启gps服务成功，开始请求当前位置信息
             setUpLocationRequest();
         } else if (requestCode == PLACE_PICKER_REQUEST) {
-            if(resultCode == RESULT_OK){
+            if (resultCode == RESULT_OK) {
                 //选取地址
                 Place place = PlacePicker.getPlace(data, get());
                 String toastMsg = String.format("Place: %s", place.getName());
@@ -520,7 +523,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 mLastLocation.setLatitude(place.getLatLng().latitude);
                 mLastLocation.setLongitude(place.getLatLng().longitude);
                 updateCurrentLocation();
-            }else {
+            } else {
                 etSearch.setText("");
             }
 

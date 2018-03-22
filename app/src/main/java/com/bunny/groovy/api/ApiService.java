@@ -264,13 +264,20 @@ public interface ApiService {
     @POST("PerformerMeController/getWithdrawals")
     Observable<ResultResponse<String>> getWithdrawals(@Field("balance") String balance);
 
+    //Wallet：提现申请）
+    @FormUrlEncoded
+    @POST("VenueMeController/userWithdrawals")
+    Observable<ResultResponse<String>> userWithdrawals(@Field("userID") String userID,
+                                                       @Field("amount") String amount);
+
     //交易记录
     @POST("PerformerMeController/getWalletList")
     Observable<ResultResponse<List<WalletBean>>> getWalletList();
 
     //演出厅用户--获取账单明细记录
+    @FormUrlEncoded
     @POST("VenueMeController/getUserTransactionRecord")
-    Observable<ResultResponse<List<WalletBean>>> getUserTransactionRecord();
+    Observable<ResultResponse<List<WalletBean>>> getUserTransactionRecord(@Field("userID") String userID);
 
 
     //获取PayPal 的token
@@ -333,12 +340,9 @@ public interface ApiService {
     //反馈
     @FormUrlEncoded
     @POST("PerformerMeController/addFeedbackList")
-    Observable<ResultResponse<Object>> addFeedback(@Field("content") String content, @Field("deviceType") String deviceType);
-
-    //反馈
-    @FormUrlEncoded
-    @POST("VenueMeController/addVenueFeesback")
-    Observable<ResultResponse<Object>> addVenueFeesback(@FieldMap Map<String, String> map);
+    Observable<ResultResponse<Object>> addFeedback(@Field("userID") String userID,
+                                                   @Field("content") String content,
+                                                   @Field("deviceType") String deviceType);
 
     //发送邮箱验证码
     @FormUrlEncoded
@@ -437,32 +441,27 @@ public interface ApiService {
     @POST("VenueBasicsController/getSingPerformerDetail")
     Observable<ResultResponse<MusicianDetailModel>> getSingPerformerDetail(@Field("performerID") String performerID,
                                                                            @Field("userID") String userID);
-    //表演者个人主页：获取表演者主页信息
-    @FormUrlEncoded
-    @POST("VenueBasicsController/getSingPerformerDetail")
-    Observable<ResultResponse<MusicianDetailModel>> getSingPerformerDetail(@Field("performerID") String performerID);
+
     //表演者个人主页：举报表演者
     @FormUrlEncoded
     @POST("VenueBasicsController/reportPerformer")
     Observable<ResultResponse<Object>> reportPerformer(@Field("beReportedID") String beReportedID,
                                                        @Field("reporterID") String reporterID,
                                                        @Field("reportContent") String reportContent);
+
     //举报演出厅
     @FormUrlEncoded
     @POST("PerformerBasicsController/reportVenue")
     Observable<ResultResponse<Object>> reportVenue(@Field("venueID") String venueID,
-                                                       @Field("performerID") String performerID,
-                                                       @Field("reportContent") String reportContent);
+                                                   @Field("performerID") String performerID,
+                                                   @Field("reportContent") String reportContent);
+
     //表演者个人主页：收藏表演者
     @FormUrlEncoded
     @POST("VenueBasicsController/collectionPerformer")
     Observable<ResultResponse<Object>> collectionPerformer(@Field("performerID") String performerID,
                                                            @Field("userID") String userID);
 
-    //表演者个人主页：取消收藏表演者
-    @FormUrlEncoded
-    @POST("VenueBasicsController/cancelCollectionPerformer")
-    Observable<ResultResponse<MusicianDetailModel>> cancelCollectionPerformer(@Field("performerID") String performerID);
 
     //表演者个人主页：收藏表演者
     @FormUrlEncoded
@@ -500,13 +499,15 @@ public interface ApiService {
     @POST("VenueMeController/getPerformHistoryList")
     Observable<ResultResponse<List<VenueShowModel>>> getPerformHistoryList();
 
-    //获取收藏的表演者列表
+    //获取演播厅收藏的表演者列表
     @FormUrlEncoded
     @POST("VenueMeController/getCollectionPerformerList")
     Observable<ResultResponse<List<PerformerUserModel>>> getCollectionPerformerList(@Field("userID") String userID);
 
-    @POST("VenueMeController/getCollectionPerformerList")
-    Observable<ResultResponse<List<MusicianModel>>> getCollectionPerformerList();
+    //获取普通用户收藏的表演者列表
+    @FormUrlEncoded
+    @POST("UserCenterController/getCollectionPerformerList")
+    Observable<ResultResponse<List<MusicianModel>>> getUserCollectionPerformerList(@Field("userID") String userID);
 
     //演播厅个人资料-编辑个人资料
     @POST("VenueMeController/updateVenueInfo")
@@ -517,8 +518,9 @@ public interface ApiService {
     Observable<ResultResponse<List<WalletBean>>> getNormalUserTransactionRecord();
 
     //获取表演者个人信息
+    @FormUrlEncoded
     @POST("UserCenterController/getUserInfo")
-    Observable<ResultResponse<PerformerUserModel>> getUserInfo();
+    Observable<ResultResponse<PerformerUserModel>> getUserInfo(@Field("userID") String userID);
 
     //获取演出列表-条件查询
     @FormUrlEncoded
@@ -526,8 +528,9 @@ public interface ApiService {
     Observable<ResultResponse<UserMainModel>> getPerformList(@FieldMap Map<String, String> map);
 
     //获取表演信息列表
+    @FormUrlEncoded
     @POST("UserCenterController/getPerformViewList")
-    Observable<ResultResponse<List<PerformDetail>>> getPerformViewList();
+    Observable<ResultResponse<List<PerformDetail>>> getPerformViewList(@Field("userID") String userID);
 
     //个人资料-编辑个人资料
     @POST("UserCenterController/updateUserInfo")
@@ -537,6 +540,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("UserCenterController/evaluatePerformer")
     Observable<ResultResponse<Object>> evaluatePerformer(@Field("performID") String performID,
+                                                         @Field("userID") String userID,
                                                          @Field("performerStarLevel") String performerStarLevel,
                                                          @Field("evaluateContent") String evaluateContent);
 

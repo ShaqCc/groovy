@@ -108,23 +108,15 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
 
     @OnClick({R.id.user_iv_money, R.id.iv_reward})
     public void rewardPerformer() {
-        RewardFragment.launch(mActivity, mPerformerId,false);
+        RewardFragment.launch(mActivity, mPerformerId, false);
     }
 
     @OnClick(R.id.user_iv_fav)
     public void setFavourite() {
-        if (mIsUserType) {
-            if (isFavorite) {
-                mPresenter.cancelCollectionPerformer(mPerformerId);
-            } else {
-                mPresenter.collectionPerformer(mPerformerId);
-            }
+        if (isFavorite) {
+            mPresenter.cancelCollectionPerformer(mPerformerId, AppCacheData.getPerformerUserModel().getUserID());
         } else {
-            if (isFavorite) {
-                mPresenter.cancelCollectionPerformer(mPerformerId, AppCacheData.getPerformerUserModel().getUserID());
-            } else {
-                mPresenter.collectionPerformer(mPerformerId, AppCacheData.getPerformerUserModel().getUserID());
-            }
+            mPresenter.collectionPerformer(mPerformerId, AppCacheData.getPerformerUserModel().getUserID());
         }
     }
 
@@ -237,11 +229,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
 
     @Override
     protected void loadData() {
-        if (mIsUserType) {
-            mPresenter.getSingPerformerDetail(mPerformerId);
-        } else {
-            mPresenter.getSingPerformerDetail(mPerformerId, AppCacheData.getPerformerUserModel().getUserID());
-        }
+        mPresenter.getSingPerformerDetail(mPerformerId, AppCacheData.getPerformerUserModel().getUserID());
     }
 
     private MusicService.CallBack callBack;
