@@ -103,9 +103,16 @@ public class MeTimeFragment extends BaseFragment<TimePresenter> implements ITime
     public void setView(List<VenueModel.ScheduleListBean> model) {
         mModel = model;
         for (int i = 0; i < model.size(); i++) {
-            tvTime.get(i).setText(model.get(i).getStartDate() + "-" + model.get(i).getEndDate());
+            tvTime.get(i).setText(getDefaultDate(model.get(i).getStartDate()) + "-" + getDefaultDate(model.get(i).getEndDate()));
             tvSwitchButton.get(i).setChecked(TextUtils.equals(model.get(i).getIsHaveCharges(), "1"));
         }
+    }
+
+    private String getDefaultDate(String date) {
+        if(TextUtils.isEmpty(date)){
+            date = "00:00AM";
+        }
+        return date;
     }
 
     @Override
@@ -167,31 +174,31 @@ public class MeTimeFragment extends BaseFragment<TimePresenter> implements ITime
     public void onCheckedChanged(SwitchButton view, boolean isChecked) {
         switch (view.getId()) {
             case R.id.switch_time_mon:
-                requeshSwitch(0);
+                requestSwitch(0);
                 break;
             case R.id.switch_time_tues:
-                requeshSwitch(1);
+                requestSwitch(1);
                 break;
             case R.id.switch_time_wed:
-                requeshSwitch(2);
+                requestSwitch(2);
                 break;
             case R.id.switch_time_thur:
-                requeshSwitch(3);
+                requestSwitch(3);
                 break;
             case R.id.switch_time_fri:
-                requeshSwitch(4);
+                requestSwitch(4);
                 break;
             case R.id.switch_time_sta:
-                requeshSwitch(5);
+                requestSwitch(5);
                 break;
             case R.id.switch_time_sun:
-                requeshSwitch(6);
+                requestSwitch(6);
                 break;
 
         }
     }
 
-    private void requeshSwitch(int index) {
+    private void requestSwitch(int index) {
         mIndex = index;
         if (mIndex != -1) {
             VenueModel.ScheduleListBean bean = mModel.get(mIndex);
