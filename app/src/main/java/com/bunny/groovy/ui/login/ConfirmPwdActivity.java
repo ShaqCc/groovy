@@ -96,10 +96,10 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
                 mPresenter.updateNewPassword(account, type, etPwd_1.getTrimmedString());
                 break;
             case AppConstants.Code_Verify_Invalid:
-                UIUtils.showBaseToast("验证码不正确");
+                UIUtils.showBaseToast("Check code incorrect.");
                 break;
             case AppConstants.Code_Send_ServerError:
-                UIUtils.showBaseToast("服务器出错");
+                UIUtils.showBaseToast("Server wrong.");
                 break;
         }
     }

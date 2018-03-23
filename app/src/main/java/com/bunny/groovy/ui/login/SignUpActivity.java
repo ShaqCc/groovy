@@ -101,10 +101,10 @@ public class SignUpActivity extends BaseActivity<SingUpPresenter> implements ISi
                 nextStep();
                 break;
             case AppConstants.Code_Send_InvalidPhone://发送失败
-                UIUtils.showBaseToast("phone number invalid.");
+                UIUtils.showBaseToast("Phone number invalid.");
                 break;
             case AppConstants.Code_Send_ServerError:
-                UIUtils.showBaseToast("server error!");
+                UIUtils.showBaseToast("Server error!");
                 break;
             default:
                 break;

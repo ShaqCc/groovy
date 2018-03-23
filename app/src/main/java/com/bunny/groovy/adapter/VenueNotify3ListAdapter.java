@@ -134,7 +134,7 @@ public class VenueNotify3ListAdapter extends RecyclerView.Adapter<VenueNotify3Li
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("确认成功！");
+                            UIUtils.showBaseToast("Reject successfully");
                             mList.get(position).setInvitationState("1");
                             notifyItemChanged(position);
                         } else {

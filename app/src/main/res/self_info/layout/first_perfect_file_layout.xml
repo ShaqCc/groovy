@@ -1,39 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/login_bg"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_bg"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/circle_bg_text_selected"
-            android:text="1"/>
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_back"/>
 
-        <View
-            style="@style/tranverse_line"
-            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            style="@style/circle_bg_text"
-            android:text="2"/>
+            <TextView
+                style="@style/circle_bg_text_selected"
+                android:text="1" />
 
-        <View
-            style="@style/tranverse_line"
-            android:layout_weight="1"/>
+            <View
+                style="@style/tranverse_line"
+                android:layout_weight="1" />
 
-        <TextView
-            style="@style/circle_bg_text"
-            android:text="3"/>
-    </LinearLayout>
+            <TextView
+                style="@style/circle_bg_text"
+                android:text="2" />
+
+            <View
+                style="@style/tranverse_line"
+                android:layout_weight="1" />
+
+            <TextView
+                style="@style/circle_bg_text"
+                android:text="3" />
+        </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,7 +55,7 @@
         android:layout_marginTop="8dp"
         android:text="@string/tell_us"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_common"/>
+        android:textSize="@dimen/text_size_common" />
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -56,15 +69,14 @@
             android:layout_height="80dp"
             android:src="@drawable/head"
             app:civ_border_color="@color/white"
-            app:civ_border_width="2dp"
-            />
+            app:civ_border_width="2dp" />
 
         <ImageView
             android:id="@+id/perfect_info_iv_select_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
-            android:src="@drawable/login_photo"/>
+            android:src="@drawable/login_photo" />
     </FrameLayout>
 
 
@@ -73,7 +85,7 @@
         style="@style/base_edit_text_style"
         android:layout_marginTop="20dp"
         android:hint="@string/full_name"
-        app:x_disableEmoji="true"/>
+        app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/perfect_info_et_artistname"
@@ -81,7 +93,7 @@
         android:layout_marginTop="10dp"
         android:hint="ARTIST NAME"
         app:x_disableEmoji="true"
-        app:x_importantWord="true"/>
+        app:x_importantWord="true" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -101,15 +113,15 @@
             android:textColor="@color/white"
             android:textColorHint="@color/common_grey"
             android:textSize="@dimen/text_size_common"
-            app:x_disableEmoji="true"/>
+            app:x_disableEmoji="true" />
 
         <ImageButton
             android:id="@+id/zipcode_info"
-            android:clickable="true"
             android:layout_width="43px"
             android:layout_height="43px"
             android:layout_alignParentRight="true"
-            android:background="@drawable/icon_info"/>
+            android:background="@drawable/icon_info"
+            android:clickable="true" />
     </RelativeLayout>
 
     <com.xw.repo.XEditText
@@ -117,7 +129,7 @@
         style="@style/base_edit_text_style"
         android:layout_marginTop="10dp"
         android:hint="WEBSITE"
-        app:x_disableEmoji="true"/>
+        app:x_disableEmoji="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -125,13 +137,13 @@
         android:layout_marginLeft="65dp"
         android:text="@string/required"
         android:textColor="@color/common_grey"
-        android:textSize="@dimen/text_size_small"/>
+        android:textSize="@dimen/text_size_small" />
 
     <TextView
         android:id="@+id/perfect_info_tv_next"
         style="@style/role_selected_text_style"
         android:layout_marginTop="30dp"
-        android:text="@string/next"/>
+        android:text="@string/next" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -144,7 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/already_have_an_account"
-            android:textColor="@color/common_grey"/>
+            android:textColor="@color/common_grey" />
 
         <TextView
             android:id="@+id/perfect_info_tv_login"
@@ -152,6 +164,6 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_have_no_account"
             android:text="@string/login"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
     </RelativeLayout>
 </LinearLayout>

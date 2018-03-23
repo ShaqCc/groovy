@@ -191,7 +191,7 @@ public class VenueInviteDetailsFragment extends BaseFragment {
             } else if ("2".equals(invitationState)) {
                 mTvNotify.setText(R.string.rejected);
             } else {
-                llAction.setVisibility(View.VISIBLE);
+//                llAction.setVisibility(View.VISIBLE);
                 mTvNotify.setVisibility(View.GONE);
             }
             if (!TextUtils.isEmpty(sModel.getMusicFile())) initMusicService();

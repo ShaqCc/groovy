@@ -53,7 +53,7 @@ public class UserHistoryListAdapter extends RecyclerView.Adapter<UserHistoryList
         //表演者姓名
         holder.mTvName.setText(model.getPerformerName());
         //评分
-        holder.mTvStar.setText(model.getPerformerStarLevel());
+        holder.mTvStar.setText(TextUtils.isEmpty(model.getPerformerStarLevel()) ? "0":model.getPerformerStarLevel());
         //演出厅名字
         holder.mTvVenueName.setText("@" + model.getVenueName());
         //演出厅地址

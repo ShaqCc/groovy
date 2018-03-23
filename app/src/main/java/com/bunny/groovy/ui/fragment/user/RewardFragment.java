@@ -133,9 +133,7 @@ public class RewardFragment extends BaseFragment<RewardPresenter> implements IRe
         if (isHistory) {
             HashMap<String, String> map = new HashMap<>();
             map.put("performerID", performerID);
-            if (AppConstants.USER_TYPE_NORMAL != userType) {
-                map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
-            }
+            map.put("userID", AppCacheData.getPerformerUserModel().getUserID());
             mPresenter.getrewardPerformerRecord(map);
         }
     }

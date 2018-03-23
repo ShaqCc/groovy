@@ -127,16 +127,14 @@ public class VenueApplyDetailsFragment extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        UIUtils.showBaseToast(e.toString());
+                        UIUtils.showBaseToast("Reject failed.");
                         KLog.d(e.toString());
                     }
 
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("拒绝成功！");
-                        } else {
-                            UIUtils.showBaseToast("拒绝失败！请重试");
+                            UIUtils.showBaseToast("Reject successfully.");
                         }
                     }
                 });
@@ -161,16 +159,14 @@ public class VenueApplyDetailsFragment extends BaseFragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        UIUtils.showBaseToast(e.toString());
+                        UIUtils.showBaseToast("Apply failed.");
                         KLog.d(e.toString());
                     }
 
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("同意申请！");
-                        } else {
-                            UIUtils.showBaseToast("同意失败！请重试");
+                            UIUtils.showBaseToast("Apply successfully");
                         }
                     }
                 });
@@ -229,7 +225,7 @@ public class VenueApplyDetailsFragment extends BaseFragment {
     @OnClick(R.id.performer_me_play_music)
     public void playMusic() {
         if (TextUtils.isEmpty(sModel.getMusicFile())) {
-            UIUtils.showBaseToast("No music.");
+            UIUtils.showBaseToast("Not found music.");
             return;
         }
         handleMusic();

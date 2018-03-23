@@ -84,10 +84,10 @@ public class ForgetActivity extends BaseActivity<ForgetPwdPresenter> implements 
                 next();
                 break;
             case AppConstants.Code_Send_InvalidPhone://发送失败
-                UIUtils.showBaseToast("手机号码不正确");
+                UIUtils.showBaseToast("Phone number invalid.");
                 break;
             case "5000"://网络错误
-                UIUtils.showBaseToast("服务器出错");
+                UIUtils.showBaseToast("Server wrong.");
                 break;
         }
     }
