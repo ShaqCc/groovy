@@ -190,11 +190,11 @@ public class VenueNotify2ListAdapter extends RecyclerView.Adapter<VenueNotify2Li
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("同意申请！");
+                            UIUtils.showBaseToast("Apply successfully.");
                             mList.get(position).setPerformState("1");
                             notifyItemChanged(position);
                         } else {
-                            UIUtils.showBaseToast("同意失败！请重试");
+                            UIUtils.showBaseToast("Apply failed.");
                         }
                     }
                 });

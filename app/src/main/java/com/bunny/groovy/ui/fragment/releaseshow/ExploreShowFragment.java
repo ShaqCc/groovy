@@ -490,9 +490,9 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
     @Override
     public void applyResult(boolean success, String msg) {
         if (success) {
-            UIUtils.showBaseToast("申请成功！");
+            UIUtils.showBaseToast("Apply successfully.");
         } else {
-            UIUtils.showBaseToast("申请失败:" + msg);
+            UIUtils.showBaseToast("Apply failed.");
         }
     }
 

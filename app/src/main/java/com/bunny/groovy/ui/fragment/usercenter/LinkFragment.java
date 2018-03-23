@@ -80,7 +80,7 @@ public class LinkFragment extends BaseFragment<LinkPresenter> implements ILinkVi
             } else if (sType.equals("email") && PatternUtils.isValidEmail(content)) {
                 mPresenter.sendEmailCode(content);
             } else {
-                UIUtils.showBaseToast("非法输入");
+                UIUtils.showBaseToast("Invalid input.");
             }
         }
     }
@@ -92,7 +92,7 @@ public class LinkFragment extends BaseFragment<LinkPresenter> implements ILinkVi
                 afterSendCode();
                 break;
             case AppConstants.Code_Send_InvalidPhone://发送失败
-                UIUtils.showBaseToast("手机号码不正确");
+                UIUtils.showBaseToast("Phone number is wrong.");
                 break;
         }
     }

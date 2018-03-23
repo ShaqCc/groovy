@@ -260,13 +260,6 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 }
             }
         });
-        mLocationClient.getLastLocation().addOnFailureListener(get(), new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                UIUtils.showToast("Positioning function is not available, please go to set to open the positioning.");
-
-            }
-        });
     }
 
 
@@ -408,6 +401,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             map.put("lon", String.valueOf(mLastLocation.getLongitude()));
             map.put("lat", String.valueOf(mLastLocation.getLatitude()));
         } else {
+            //定位失败默认使用美国旧金山的代码
             map.put("lon", "-122.419416");
             map.put("lat", "37.774930");
         }
@@ -428,6 +422,9 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     checkLocationSettings();
+                }else{
+                    UIUtils.showToast("Positioning function is not available, please go to set to open the positioning.");
+                    updateCurrentLocation();
                 }
             }
         }

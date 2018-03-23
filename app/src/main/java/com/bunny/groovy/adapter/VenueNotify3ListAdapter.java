@@ -138,7 +138,7 @@ public class VenueNotify3ListAdapter extends RecyclerView.Adapter<VenueNotify3Li
                             mList.get(position).setInvitationState("1");
                             notifyItemChanged(position);
                         } else {
-                            UIUtils.showBaseToast("确认失败！请重试");
+                            UIUtils.showBaseToast("Reject failed.");
                         }
                     }
                 });
