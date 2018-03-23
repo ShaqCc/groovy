@@ -26,7 +26,7 @@ public class ReportPresenter extends BasePresenter<ISetFileView> {
         addSubscription(apiService.reportPerformer(beReportedID,reporterID,reportContent), new SubscriberCallBack<List<Object>>(mView.get()) {
             @Override
             protected void onSuccess(List<Object> response) {
-                UIUtils.showBaseToast("Report success!");
+                UIUtils.showBaseToast("Report successfully.");
                 mView.get().finish();
             }
 
@@ -37,7 +37,7 @@ public class ReportPresenter extends BasePresenter<ISetFileView> {
 
             @Override
             protected void onFailure(ResultResponse response) {
-                UIUtils.showBaseToast("Report failed!");
+                UIUtils.showBaseToast("Report failed.");
             }
         });
     }

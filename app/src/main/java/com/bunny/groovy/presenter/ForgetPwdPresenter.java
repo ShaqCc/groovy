@@ -26,7 +26,7 @@ public class ForgetPwdPresenter extends BasePresenter<IForgetView> {
 
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("Send Success.");
+                UIUtils.showBaseToast("Send successfully.");
                 mView.next();
             }
 
@@ -47,7 +47,7 @@ public class ForgetPwdPresenter extends BasePresenter<IForgetView> {
             @Override
             protected void onSuccess(Object response) {
                 //code正确
-                UIUtils.showBaseToast("Code Correct.");
+                UIUtils.showBaseToast("Code successfully.");
                 //设置密码
                 updateNewPassword(account, type, password);
             }
@@ -69,7 +69,7 @@ public class ForgetPwdPresenter extends BasePresenter<IForgetView> {
 
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("Password reset success.");
+                UIUtils.showBaseToast("Password reset successfully.");
                 mView.next();
             }
 

@@ -79,7 +79,7 @@ public class ExplorerOpptnyPresenter extends BasePresenter<IExploreView> {
                 if (response != null && response.size() > 0) {
                     mView.showStylePop(response);
                 } else {
-                    UIUtils.showBaseToast("获取style失败，稍后再试");
+                    UIUtils.showBaseToast("Get Style Failed");
                 }
             }
 
@@ -90,6 +90,7 @@ public class ExplorerOpptnyPresenter extends BasePresenter<IExploreView> {
 
             @Override
             protected void onFailure(ResultResponse response) {
+                UIUtils.showBaseToast("Get Style Failed");
             }
         });
     }

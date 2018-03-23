@@ -68,12 +68,18 @@ public class MePresenter extends BasePresenter<IMeView> {
                 if (response != null && response.size() > 0) {
                     mView.showStylePop(response);
                 } else {
-                    UIUtils.showBaseToast("获取style失败，稍后再试");
+                    UIUtils.showBaseToast("Get Style Failed");
                 }
             }
 
             @Override
+            protected boolean isShowProgress() {
+                return true;
+            }
+
+            @Override
             protected void onFailure(ResultResponse response) {
+                UIUtils.showBaseToast("Get Style Failed");
             }
         });
     }
@@ -145,7 +151,7 @@ public class MePresenter extends BasePresenter<IMeView> {
      * @param zipCode
      */
     public void searchLocation(String zipCode, final HashMap<String, String> params) {
-        addSubscription(apiService.getLocation(zipCode, ApiConstants.GoogleMapAppKey), new Subscriber<GoogleMapLoc>() {
+        addSubscription(apiService.getLocation(zipCode, ApiConstants.GOOGLE_MAP_APP_KEY), new Subscriber<GoogleMapLoc>() {
             ProgressHUD mProgressHUD;
 
             @Override
@@ -180,7 +186,7 @@ public class MePresenter extends BasePresenter<IMeView> {
                         params.put("latitude", loc.getResults().get(0).getGeometry().getLocation().getLat());
                         updatePerformerData(params);
                     } else {
-                        UIUtils.showBaseToast("邮编错误" + loc.getError_message());
+                        UIUtils.showBaseToast("The code is wrong.");
                     }
                 } catch (Exception e) {
                     UIUtils.showBaseToast(e.toString());

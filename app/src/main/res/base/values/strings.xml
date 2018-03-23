@@ -62,4 +62,5 @@
     <string name="venue_register_service_exclude">Exclude 21+</string>
     <string name="venue_register_service_food">Serves Food</string>
     <string name="venue_register_service_alcohol">Serves Alcohol</string>
+    <string name="protocol_link">By signing up,I agree with &lt;font color="#7887eb"&gt;terms of the services&lt;/font&gt;</string>
 </resources>

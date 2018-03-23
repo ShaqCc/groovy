@@ -60,7 +60,7 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
                         //加入邮箱参数
                         AppCacheData.getPerformerUserModel().setUserEmail(etEmail.getTrimmedString());
                     else {
-                        UIUtils.showBaseToast("invalid Email.");
+                        UIUtils.showBaseToast("Invalid Email.");
                         return;
                     }
                 }
@@ -72,7 +72,7 @@ public class BindAccountFragment extends BaseFragment<LoginPresenter> implements
                         VerifyEvent.verifyCode(code);
                     } else {
                         //非法账户
-                        UIUtils.showBaseToast("invalid account.");
+                        UIUtils.showBaseToast("Invalid account.");
                     }
                 }
                 break;

@@ -27,7 +27,7 @@ public class InviteMusicianPresenter extends BasePresenter<ISetFileView> {
         addSubscription(apiService.addPerformInvitation(performerID,performStartDate,performEndDate,desc), new SubscriberCallBack<List<StyleModel>>(mView.get()) {
             @Override
             protected void onSuccess(List<StyleModel> response) {
-                UIUtils.showBaseToast("Invite success!");
+                UIUtils.showBaseToast("Invite successfully.");
                 mView.get().finish();
             }
 
@@ -38,7 +38,7 @@ public class InviteMusicianPresenter extends BasePresenter<ISetFileView> {
 
             @Override
             protected void onFailure(ResultResponse response) {
-                UIUtils.showBaseToast("Invite failed!");
+                UIUtils.showBaseToast("Invite failed.");
             }
         });
     }

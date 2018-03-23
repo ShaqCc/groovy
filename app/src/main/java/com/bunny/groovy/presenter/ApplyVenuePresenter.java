@@ -36,7 +36,7 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
                 if (response != null && response.size() > 0) {
                     mView.showStylePop(response);
                 } else {
-                    UIUtils.showBaseToast("获取style失败，稍后再试");
+                    UIUtils.showBaseToast("Get Style Failed");
                 }
             }
 
@@ -47,6 +47,7 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
 
             @Override
             protected void onFailure(ResultResponse response) {
+                UIUtils.showBaseToast("Get Style Failed");
             }
         });
     }
@@ -61,13 +62,13 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
         addSubscription(apiService.releaseShow(fieldMap), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("申请成功");
+                UIUtils.showBaseToast("Apply successfully.");
                 mView.get().finish();
             }
 
             @Override
             protected void onFailure(ResultResponse response) {
-
+                UIUtils.showBaseToast("Apply failed.");
             }
 
             @Override
@@ -88,13 +89,13 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
         addSubscription(apiService.agreePerformerInvite(inviteID, performStyle, performDesc), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("确认成功");
+                UIUtils.showBaseToast("Confirm successfully.");
                 mView.get().finish();
             }
 
             @Override
             protected void onFailure(ResultResponse response) {
-
+                UIUtils.showBaseToast("Confirm failed.");
             }
 
             @Override
@@ -109,7 +110,7 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
         addSubscription(apiService.updatePerform(fieldMap), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("修改成功！");
+                UIUtils.showBaseToast("Update successfully.");
                 int type = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
                 if (type == 2) {
                     //编辑后刷新演出厅用户日程列表
@@ -126,7 +127,7 @@ public class ApplyVenuePresenter extends BasePresenter<IApplyVenueView> {
 
             @Override
             protected void onFailure(ResultResponse response) {
-
+                UIUtils.showBaseToast("Update failed.");
             }
 
             @Override

@@ -4,14 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.bunny.groovy.R;
+import com.bunny.groovy.api.ApiConstants;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.presenter.VenueRegisterPresenter;
 import com.bunny.groovy.utils.AppConstants;
@@ -67,6 +71,13 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
     @Bind(R.id.et_venue_twitter)
     XEditText mVenueTwitter;
     private PopupWindow popupWindow;
+    @Bind(R.id.tv_venue_protocol)
+    TextView mProtocolView;
+
+    @OnClick(R.id.tv_venue_protocol)
+    void link() {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ApiConstants.BASE_PROTOCOL_URL)));
+    }
 
     private WeakReference<Activity> mWeakReference = new WeakReference<Activity>(this);
 
@@ -96,6 +107,7 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
             mEditPhone.setFocusable(false);
             mEditPhone.setTextColor(Color.GRAY);
         }
+        mProtocolView.setText(Html.fromHtml(getString(R.string.protocol_link)));
     }
 
     @OnClick(R.id.et_venue_service)

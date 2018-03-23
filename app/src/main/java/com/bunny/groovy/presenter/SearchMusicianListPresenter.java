@@ -30,8 +30,6 @@ public class SearchMusicianListPresenter extends BasePresenter<ISearchMusicianLi
             protected void onSuccess(List<PerformerUserModel> response) {
                 if (response != null && response.size() > 0)
                     mView.setListView(response);
-                else
-                    UIUtils.showBaseToast("查询结果为空，请重新输入");
             }
 
             @Override

@@ -50,7 +50,7 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
             type = AppConstants.ACCOUNT_TYPE_EMAIL;
         } else {
             //不合法，提示用户
-            mView.showCheckResult(false, type, "账户不是合法的手机号或者邮箱!");
+            mView.showCheckResult(false, type, "Invalid phone or email!");
             return;
         }
 
@@ -124,7 +124,7 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
 
     //发送手机验证码
     private void sendPhoneCheckCode(String account) {
-        ProgressHUD show = ProgressHUD.show(mView.get(), "发送验证码...", true, true, null);
+        ProgressHUD show = ProgressHUD.show(mView.get(), "Send code...", true, true, null);
         if (mVerification == null) {
             Config config = SinchVerification.config().applicationKey(AppConstants.SINCH_APPKEY).context(BaseApp.getContext()).build();
             mListener = new MyVerificationListener();
@@ -161,7 +161,7 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
         addSubscription(apiService.performerRegister(account, pwd, phone, email), new SubscriberCallBack<ResultResponse>(mView.get()) {
             @Override
             protected void onSuccess(ResultResponse response) {
-                UIUtils.showBaseToast("注册成功！");
+                UIUtils.showBaseToast("Register successfully！");
                 mView.registerSuccess();
             }
 
@@ -174,17 +174,13 @@ public class SingUpPresenter extends BasePresenter<ISingUpView> {
     /**
      * 表演者注册
      *
-     * @param name
-     * @param pwd
-     * @param phone
-     * @param email
      */
     public void registerUser(HashMap<String,String> map) {
 
         addSubscription(apiService.ordinaryFrontUserRegister(map), new SubscriberCallBack<ResultResponse>(mView.get()) {
             @Override
             protected void onSuccess(ResultResponse response) {
-                UIUtils.showBaseToast("注册成功！");
+                UIUtils.showBaseToast("Register successfully！");
                 mView.registerSuccess();
             }
 

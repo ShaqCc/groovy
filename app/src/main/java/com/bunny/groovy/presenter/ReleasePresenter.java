@@ -59,7 +59,7 @@ public class ReleasePresenter extends BasePresenter<ISetFileView> {
         addSubscription(type == AppConstants.USER_TYPE_VENUE ? apiService.releaseVenueShow(fieldMap) : apiService.releaseShow(fieldMap), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("Release Success");
+                UIUtils.showBaseToast("Release successfully");
                 //更新user数据
                 updateUserData(type);
             }

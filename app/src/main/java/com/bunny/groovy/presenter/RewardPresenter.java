@@ -78,7 +78,7 @@ public class RewardPresenter extends BasePresenter<IRewardView> {
         addSubscription(apiService.rewardPerformer(map), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("reward success.");
+                UIUtils.showBaseToast("Reward successfully.");
                 mView.get().finish();
             }
 

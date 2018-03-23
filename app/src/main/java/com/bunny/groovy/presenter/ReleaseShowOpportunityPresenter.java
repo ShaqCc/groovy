@@ -29,7 +29,7 @@ public class ReleaseShowOpportunityPresenter extends BasePresenter<ISetFileView>
         addSubscription(type == 2 ? apiService.releaseVenueShow(fieldMap) : apiService.releaseShow(fieldMap), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("发布成功");
+                UIUtils.showBaseToast("Release successfully");
                 mView.get().finish();
             }
 
@@ -52,7 +52,7 @@ public class ReleaseShowOpportunityPresenter extends BasePresenter<ISetFileView>
         addSubscription(apiService.addPerformOpportunity(startTime, endTime,desc), new SubscriberCallBack(mView.get()) {
             @Override
             protected void onSuccess(Object response) {
-                UIUtils.showBaseToast("Release success!");
+                UIUtils.showBaseToast("Release successfully.");
                 mView.get().finish();
             }
 

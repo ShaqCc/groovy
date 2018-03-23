@@ -30,7 +30,7 @@ public class DiscoverMusicianListPresenter extends BasePresenter<IDiscoverSearch
                 if (response != null && response.size() > 0) {
                     mView.showStylePop(response);
                 } else {
-                    UIUtils.showBaseToast("获取style失败，稍后再试");
+                    UIUtils.showBaseToast("Get Style Failed");
                 }
             }
 
@@ -41,6 +41,7 @@ public class DiscoverMusicianListPresenter extends BasePresenter<IDiscoverSearch
 
             @Override
             protected void onFailure(ResultResponse response) {
+                UIUtils.showBaseToast("Get Style Failed");
             }
         });
     }
@@ -53,8 +54,6 @@ public class DiscoverMusicianListPresenter extends BasePresenter<IDiscoverSearch
             protected void onSuccess(List<PerformerUserModel> response) {
                 if (response != null && response.size() > 0)
                     mView.setListView(response);
-                else
-                    UIUtils.showBaseToast("查询结果为空，请重新输入");
             }
 
             @Override

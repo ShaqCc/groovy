@@ -32,8 +32,6 @@ public class SearchVenueListPresenter extends BasePresenter<ISearchVenueList> {
             protected void onSuccess(List<VenueModel> response) {
                 if (response != null && response.size() > 0)
                     mView.setListView(response);
-                else
-                    UIUtils.showBaseToast("查询结果为空，请重新输入");
             }
 
             @Override
