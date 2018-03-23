@@ -29,10 +29,10 @@ import com.bunny.groovy.divider.HLineDecoration;
 import com.bunny.groovy.model.PerformDetail;
 import com.bunny.groovy.model.UserMainModel;
 import com.bunny.groovy.presenter.UserListPresenter;
-import com.bunny.groovy.ui.fragment.apply.FilterFragment;
 import com.bunny.groovy.ui.fragment.apply.UserFilterFragment;
 import com.bunny.groovy.ui.fragment.releaseshow.UserShowDetailFragment;
 import com.bunny.groovy.utils.AppCacheData;
+import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IListPageView;
@@ -377,9 +377,15 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
      * 设置当前位置
      */
     private void updateCurrentLocation() {
-        if (mLastLocation != null && mGoogleMap != null) {
+        if (mGoogleMap != null) {
             mGoogleMap.clear();
-            LatLng myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            LatLng myLoc = null;
+            if (mLastLocation != null) {
+                myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            } else {
+                //定位不到使用旧金山默认坐标
+                myLoc = new LatLng(AppConstants.DEFAULT_LATITUDE, AppConstants.DEFAULT_LONGITUDE);
+            }
             mGoogleMap.addMarker(new MarkerOptions().position(myLoc)
                     .title("Your Location")
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
@@ -402,8 +408,8 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             map.put("lat", String.valueOf(mLastLocation.getLatitude()));
         } else {
             //定位失败默认使用美国旧金山的代码
-            map.put("lon", "-122.419416");
-            map.put("lat", "37.774930");
+            map.put("lon", String.valueOf(AppConstants.DEFAULT_LONGITUDE));
+            map.put("lat", String.valueOf(AppConstants.DEFAULT_LATITUDE));
         }
         map.put("distance", mDistance);
         if (!TextUtils.isEmpty(mVenueType)) map.put("venueType", mVenueType);
@@ -422,7 +428,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     checkLocationSettings();
-                }else{
+                } else {
                     UIUtils.showToast("Positioning function is not available, please go to set to open the positioning.");
                     updateCurrentLocation();
                 }
@@ -438,18 +444,22 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     private void resetMap() {
         if (mGoogleMap != null) {
             mGoogleMap.clear();
+            LatLng myLoc = null;
             if (mLastLocation != null) {
                 KLog.a("当前位置：" + mLastLocation.getLatitude() + " -- " + mLastLocation.getLongitude());
-                LatLng myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-                mGoogleMap.addMarker(new MarkerOptions().position(myLoc)
-                        .title("Your Location")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
-                        .draggable(true));
-
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15));
+                myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+            } else {
+                //定位不到使用旧金山默认坐标
+                myLoc = new LatLng(AppConstants.DEFAULT_LATITUDE, AppConstants.DEFAULT_LONGITUDE);
             }
+            mGoogleMap.addMarker(new MarkerOptions().position(myLoc)
+                    .title("Your Location")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
+                    .draggable(true));
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15));
         }
     }
+
 
     public void switchListOrMap(boolean isMap) {
         if (isMap) {
@@ -464,6 +474,12 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             mapSearchBar.setVisibility(View.GONE);
             hideMarkLayout();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mLastLocation == null) setUpLocationRequest();
     }
 
     public void hideMarkLayout() {
@@ -525,8 +541,8 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 map.put("lon", String.valueOf(mLastLocation.getLongitude()));
                 map.put("lat", String.valueOf(mLastLocation.getLatitude()));
             } else {
-                map.put("lon", "-122.419416");
-                map.put("lat", "37.774930");
+                map.put("lon", String.valueOf(AppConstants.DEFAULT_LONGITUDE));
+                map.put("lat", String.valueOf(AppConstants.DEFAULT_LATITUDE));
             }
             mPresenter.getPerformList(map);
         } else if (requestCode == OPEN_GPS_REQUEST_CODE) {

@@ -40,6 +40,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                     @Override
                     protected void onSuccess(PerformerUserModel response) {
                         //保存用户账号密码，用于切换时自动登录
+                        SharedPreferencesUtils.setAppParam(mView.get(), AppConstants.KEY_HISTORY_ACCOUNT_BY_TYPE + type, account);
                         SharedPreferencesUtils.setUserParam(mView.get(), AppConstants.KEY_ACCOUNT + response.getUserID(), account);
                         SharedPreferencesUtils.setUserParam(mView.get(), AppConstants.KEY_PASSWORD + response.getUserID(), password);
                         //坑爹服务器，登录之后类型还是原来的，只能自己转

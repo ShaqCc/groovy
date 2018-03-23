@@ -88,6 +88,14 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
         EventBus.getDefault().post(AppConstants.EVENT_LOGIN_OUT);
     }
 
+    @Override
+    public void initView() {
+        super.initView();
+        try {
+            etFullName.setText(AppCacheData.getPerformerUserModel().getUserName());
+        }catch (Exception e){}
+    }
+
     @OnClick(R.id.perfect_info_tv_login)
     void login() {
         LoginActivity.launch(this, AppConstants.USER_TYPE_MUSICIAN);

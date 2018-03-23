@@ -142,6 +142,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                 etPhoneOrEmail.setText(account);
                 etPassword.setText(password);
                 login();
+                return;
             }
         } else {
             mUserType = getIntent().getIntExtra("type", AppConstants.USER_TYPE_NORMAL);
@@ -162,6 +163,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             }
             etPassword.setText("123456789");
         }
+        try {
+            String account = (String) SharedPreferencesUtils.getAppParam(this
+                    , AppConstants.KEY_HISTORY_ACCOUNT_BY_TYPE + mUserType, "");
+            if (!TextUtils.isEmpty(account)) etPhoneOrEmail.setText(account);
+        } catch (Exception e) {
+        }
+
 
     }
 

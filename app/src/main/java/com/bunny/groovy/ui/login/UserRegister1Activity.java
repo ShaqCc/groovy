@@ -50,9 +50,9 @@ public class UserRegister1Activity extends BaseActivity<SingUpPresenter> impleme
         } else if (TextUtils.isEmpty(pwd) || TextUtils.isEmpty(pwdAgain)) {
             UIUtils.showBaseToast("Please input your code");
         } else if (pwd.length() < 8 || pwdAgain.length() < 8) {
-            UIUtils.showBaseToast("密码至少8位");
+            UIUtils.showBaseToast("Password length less than 8.");
         } else if (!pwd.equals(pwdAgain)) {
-            UIUtils.showBaseToast("密码输入不一致");
+            UIUtils.showBaseToast("Password not same.");
         } else {
             //检查账户
             String account = etPhoneEmail.getTrimmedString();
