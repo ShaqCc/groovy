@@ -83,11 +83,11 @@ public class InviteMusicianFragment extends BaseFragment<InviteMusicianPresenter
     public void invite() {
         //判断空
         if (UIUtils.isEdittextEmpty(etTime)) {
-            UIUtils.showBaseToast("请选择演出机会时间");
+            UIUtils.showBaseToast("Please Choose Perform Date.");
             return;
         }
         if (UIUtils.isEdittextEmpty(etBio)) {
-            UIUtils.showBaseToast("请填写内容");
+            UIUtils.showBaseToast("Please input Bio.");
             return;
         }
         mPresenter.inviteMusician(mPerformerModel.getUserID(), DateUtils.getFormatTime(mSelectDate.getTime(), startTime),
@@ -271,7 +271,7 @@ public class InviteMusicianFragment extends BaseFragment<InviteMusicianPresenter
             @Override
             public void onClick(View v) {
                 if (mSelectDate.getTime().before(today)) {
-                    UIUtils.showBaseToast("选择日期小于今天");
+                    UIUtils.showBaseToast("The selection date is less than today");
                 } else {
                     closeDatePop();
                     //设置title

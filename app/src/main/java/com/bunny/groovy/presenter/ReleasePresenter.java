@@ -34,7 +34,7 @@ public class ReleasePresenter extends BasePresenter<ISetFileView> {
                 if (response != null && response.size() > 0) {
                     mView.showStylePop(response);
                 } else {
-                    UIUtils.showBaseToast("获取style失败，稍后再试");
+                    UIUtils.showBaseToast("Net error.Try again.");
                 }
             }
 

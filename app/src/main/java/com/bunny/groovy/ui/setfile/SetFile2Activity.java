@@ -117,11 +117,11 @@ public class SetFile2Activity extends BaseActivity<SetFilePresenter> implements 
     @OnClick(R.id.tv_next)
     void next() {
         if (TextUtils.isEmpty(etSelectStyle.getTrimmedString())) {
-            UIUtils.showBaseToast("请选择类型");
+            UIUtils.showBaseToast("Please select Style.");
             return;
         }
         if (TextUtils.isEmpty(etBio.getText().toString())) {
-            UIUtils.showBaseToast("请输入签名");
+            UIUtils.showBaseToast("Please input Bio.");
             return;
         }
         AppCacheData.getFileMap().put("performTypeName", etSelectStyle.getTrimmedString());

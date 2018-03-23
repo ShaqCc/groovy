@@ -124,7 +124,7 @@ public class MusicBox {
      */
     public void playOnLineMusic(String url, Context context) {
         if (TextUtils.isEmpty(url)) {
-            UIUtils.showBaseToast("音乐URL为空");
+            UIUtils.showBaseToast("Music URL is empty.");
         } else {
             //播放音乐
             executeMusicUrl(url, context);
@@ -164,7 +164,7 @@ public class MusicBox {
                                             File file1 = new File(music_path + File.separator + getMusicFileName(url));
                                             KLog.d("写入成功, 文件长度", file1.length());
                                         } else {
-                                            UIUtils.showBaseToast("下载失败");
+                                            UIUtils.showBaseToast("Download failed.");
                                         }
                                         Log.d(TAG, "file download was a success? " + writtenToDisk);
                                         return null;

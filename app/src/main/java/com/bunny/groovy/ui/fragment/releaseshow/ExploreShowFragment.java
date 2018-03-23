@@ -64,6 +64,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.socks.library.KLog;
 
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -331,7 +332,7 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
     @Override
     public void onMapReady(final GoogleMap map) {
         mGoogleMap = map;
-        if (ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED ||
+        if (ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mGoogleMap.setMyLocationEnabled(true);
         }
@@ -374,7 +375,6 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
                 return false;
             }
         });
-//        updateLoc();
         //设置当前位置
         updateCurrentLocation();
     }
@@ -383,14 +383,26 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
      * 设置当前位置
      */
     private void updateCurrentLocation() {
-        if (mLastLocation != null && mGoogleMap != null) {
+        if (mGoogleMap != null) {
             mGoogleMap.clear();
-            LatLng myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-            mGoogleMap.addMarker(new MarkerOptions().position(myLoc)
-                    .title("Your Location")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
-                    .draggable(true));
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15));
+            if (mLastLocation != null) {
+                LatLng myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
+                mGoogleMap.addMarker(new MarkerOptions().position(myLoc)
+                        .title("Your Location")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
+                        .draggable(true));
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15));
+            } else {
+                //默认位置旧金山
+                LatLng defaultLoc = new LatLng(37.774930, -122.419416);
+                mGoogleMap.addMarker(new MarkerOptions().position(defaultLoc)
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
+                        .draggable(true));
+
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLoc, 15));
+            }
+
+
         }
         //请求机会数据
         requestAroundList();
@@ -418,6 +430,10 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     checkLocationSettings();
+                } else {
+                    //设置默认位置
+                    //Latitude:37.774930 longitude:-122.419416
+                    UIUtils.showBaseToast("Positioning function is not available, please go to set to open the positioning.");
                 }
             }
         }
@@ -442,7 +458,7 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
         }
         //设置当前位置
         resetMap();
-        if (list!=null){
+        if (list != null) {
             //设置marker
             isMarkerShowing = false;
             mMarkerLayout.setVisibility(View.GONE);
@@ -475,7 +491,6 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
         if (mGoogleMap != null) {
             mGoogleMap.clear();
             if (mLastLocation != null) {
-                KLog.a("当前位置：" + mLastLocation.getLatitude() + " -- " + mLastLocation.getLongitude());
                 LatLng myLoc = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
                 mGoogleMap.addMarker(new MarkerOptions().position(myLoc)
                         .title("Your Location")
@@ -483,6 +498,14 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
                         .draggable(true));
 
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLoc, 15));
+            } else {
+                LatLng defaultLoc = new LatLng(37.774930, -122.419416);
+                mGoogleMap.addMarker(new MarkerOptions().position(defaultLoc)
+                        .title("Your Location")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_location))
+                        .draggable(true));
+
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLoc, 15));
             }
         }
     }

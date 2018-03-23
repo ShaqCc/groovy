@@ -45,7 +45,7 @@ public class VerifyEvent {
      */
     public static void verifyCode(String code) {
         if (mVerification == null) {
-            UIUtils.showBaseToast("请返回重新发送");
+            UIUtils.showBaseToast("Failed!Please send code again.");
         } else mVerification.verify(code);
     }
 }

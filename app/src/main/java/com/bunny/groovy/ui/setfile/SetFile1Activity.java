@@ -97,19 +97,19 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
     void next() {
         //拦截
         if (TextUtils.isEmpty(etFullName.getTrimmedString())) {
-            UIUtils.showBaseToast("请输入名字");
+            UIUtils.showBaseToast("Please input name.");
             return;
         }
         if (TextUtils.isEmpty(etArtistName.getTrimmedString())) {
-            UIUtils.showBaseToast("请输入昵称");
+            UIUtils.showBaseToast("Please input nickname.");
             return;
         }
         if (TextUtils.isEmpty(etZipcode.getTrimmedString())) {
-            UIUtils.showBaseToast("请输入邮编");
+            UIUtils.showBaseToast("Please input zip code.");
             return;
         }
         if (TextUtils.isEmpty(etWebsite.getTrimmedString())) {
-            UIUtils.showBaseToast("请输入网站");
+            UIUtils.showBaseToast("Please input website.");
             return;
         }
         //保存数据

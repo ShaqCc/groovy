@@ -318,7 +318,7 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
             @Override
             public void onClick(View v) {
                 if (mSelectDate.getTime().before(today)) {
-                    UIUtils.showBaseToast("选择日期小于今天");
+                    UIUtils.showBaseToast("The selection date is less than today");
                 } else {
                     closeDatePop();
                     //设置title

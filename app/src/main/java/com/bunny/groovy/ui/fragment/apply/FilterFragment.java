@@ -68,7 +68,7 @@ public class FilterFragment extends BaseFragment {
     @OnClick(R.id.filter_tv_submit)
     public void submit() {
         //提交过滤条件
-        distance = String.valueOf(mSeekBar.getProgress() * 10);
+        distance = String.valueOf(mSeekBar.getProgress());
         Intent intent = new Intent();
         intent.putExtra("distance", distance);
         if (!TextUtils.isEmpty(mEtStartTime.getText().toString()))
@@ -107,7 +107,7 @@ public class FilterFragment extends BaseFragment {
 //                mEtStartTime.setText(DateUtils.getFormatTime(new Date()));
 //            }
         } else {
-            mSeekBar.setProgress(50);
+            mSeekBar.setProgress(25);
             mTvDistance.setText("25mi");
             mEtStartTime.setText(DateUtils.getFormatTime(new Date()));
         }
@@ -234,7 +234,7 @@ public class FilterFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (mSelectDate.getTime().before(today)) {
-                    UIUtils.showBaseToast("选择日期小于今天");
+                    UIUtils.showBaseToast("The selection date is less than today");
                 } else {
                     mEtStartTime.setText(DateUtils.getFormatTime(mSelectDate.getTime()));
                     closeDatePop();

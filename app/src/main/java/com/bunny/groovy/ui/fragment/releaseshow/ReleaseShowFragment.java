@@ -142,19 +142,19 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
     public void release() {
         //判断空
         if (UIUtils.isEdittextEmpty(etVenue)) {
-            UIUtils.showBaseToast(mType == 2 ? "请选择表演者" : "请选择音乐厅");
+            UIUtils.showBaseToast(mType == 2 ? "Please choose Performer" : "Please choose Venue.");
             return;
         }
         if (UIUtils.isEdittextEmpty(etStyle)) {
-            UIUtils.showBaseToast("请选择演出类型");
+            UIUtils.showBaseToast("Please Choose Perform Style.");
             return;
         }
         if (UIUtils.isEdittextEmpty(etTime)) {
-            UIUtils.showBaseToast("请选择演出时间");
+            UIUtils.showBaseToast("Please Choose Perform Date.");
             return;
         }
         if (UIUtils.isEdittextEmpty(etBio)) {
-            UIUtils.showBaseToast("请填写演出介绍");
+            UIUtils.showBaseToast("Please input Perform Bio.");
             return;
         }
         Map<String, String> map = new HashMap<>();
@@ -182,7 +182,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
                 map.put("venueLongitude", String.valueOf(mPlace.getLatLng().longitude));
                 map.put("venueLatitude", String.valueOf(mPlace.getLatLng().latitude));
             } else {
-                UIUtils.showBaseToast("音乐厅选取失败，请重新选择");
+                UIUtils.showBaseToast("Please Try again.");
                 return;
             }
             map.put("performerName", AppCacheData.getPerformerUserModel().getUserName());
@@ -389,7 +389,7 @@ public class ReleaseShowFragment extends BaseFragment<ReleasePresenter> implemen
             @Override
             public void onClick(View v) {
                 if (mSelectDate.getTime().before(today)) {
-                    UIUtils.showBaseToast("选择日期小于今天");
+                    UIUtils.showBaseToast("The selection date is less than today.");
                 } else {
                     closeDatePop();
                     //设置title
