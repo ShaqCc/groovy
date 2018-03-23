@@ -91,8 +91,7 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
     private List<OpportunityModel> mOpportunityModelList = new ArrayList<>();
     private OpportunityModel mCurrentBean;//当前选中的演出机会bean
     private List<Marker> mMarkerList = new ArrayList<>();
-    private String distance = "500";//距离默认500mi
-    private String performDate;//表演时间
+    private String distance = "25";//距离默认25mi
     private Location mLastLocation;
     private boolean isMarkerShowing = false;
 
@@ -562,7 +561,6 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
 
             String performStartDate = data.getStringExtra("performStartDate");
             if (!TextUtils.isEmpty(performStartDate)) {
-                performDate = performStartDate;
                 map.put("performStartDate", performStartDate);
             }
 

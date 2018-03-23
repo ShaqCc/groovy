@@ -3,9 +3,11 @@ package com.bunny.groovy.ui.login;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.text.TextUtils;
 
 import com.bunny.groovy.R;
+import com.bunny.groovy.api.ApiConstants;
 import com.bunny.groovy.base.BaseActivity;
 import com.bunny.groovy.listener.VerifyEvent;
 import com.bunny.groovy.presenter.SingUpPresenter;
@@ -74,6 +76,11 @@ public class SignUp2Activity extends BaseActivity<SingUpPresenter> implements IS
             mPresenter.checkEmailCode(etCode.getTrimmedString(), URLEncoder.encode(mAccount));
         }
 
+    }
+
+    @OnClick(R.id.tv_services)
+    void registerServices(){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ApiConstants.BASE_PROTOCOL_URL)));
     }
 
     /**
