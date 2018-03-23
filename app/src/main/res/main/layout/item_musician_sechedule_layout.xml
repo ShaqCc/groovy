@@ -37,7 +37,6 @@
         android:layout_width="5dp"
         android:layout_height="5dp"
         android:layout_alignTop="@id/item_musician_reply_data"
-        android:layout_marginTop="8dp"
         android:src="@drawable/details_ok" />
 
     <View
@@ -46,9 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/item_musician_reply_user_name"
         android:layout_above="@id/tvDot"
-        android:layout_marginLeft="0.5dp"
-        android:background="@color/white" />
-
+        android:layout_marginLeft="2.5dp"
+        android:background="@color/light_purple" />
 
     <View
         android:id="@+id/tvBottomLine"

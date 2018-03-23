@@ -234,10 +234,10 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
                         , mVenueFacebook.getTrimmedString(), mHeadUrl);
                 break;
             case AppConstants.Code_Verify_Invalid:
-                UIUtils.showBaseToast("验证码不正确");
+                UIUtils.showBaseToast("Check code incorrect.");
                 break;
             case AppConstants.Code_Send_ServerError:
-                UIUtils.showBaseToast("服务器出错");
+                UIUtils.showBaseToast("Server wrong.");
                 break;
             default:
                 break;

@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -108,6 +109,8 @@ public class UserShowDetailFragment extends BaseFragment {
     TextView mGoView;
     @Bind(R.id.detail_next)
     TextView mNextView;
+    @Bind(R.id.show_detail_tv_distance_layout)
+    LinearLayout mDistanceLinearLayout;
     private PerformDetailListAdapter mAdapter;
     private MusicianScheduleAdapter mMusicianAdapter;
 
@@ -184,7 +187,11 @@ public class UserShowDetailFragment extends BaseFragment {
             mTvVenueName_2.setText(model.getVenueName());
             mTvStyle.setText(model.getPerformType());
             mTvTime.setText(model.getPerformTime());
-            mTvDistance.setText((TextUtils.isEmpty(model.getDistance()) ? "--" : model.getDistance()) + "mi");
+            if(!TextUtils.isEmpty(model.getDistance())){
+                mTvDistance.setText(model.getDistance());
+            }else {
+                mDistanceLinearLayout.setVisibility(View.GONE);
+            }
             mTvDesc.setText(model.getPerformDesc());
             mTvVenueScore.setText(Utils.getStar(model.getVenueScore()));
             mTvAddress.setText(model.getVenueAddress());
@@ -200,7 +207,11 @@ public class UserShowDetailFragment extends BaseFragment {
                     .into(mPerformerHead);
             //设置演出厅提供服务
             String venueTypeName = model.getVenueTypeName();
-            if (!TextUtils.isEmpty(venueTypeName)) {
+            if (!TextUtils.isEmpty(venueTypeName)) {{
+                tv21Plus.setEnabled(!venueTypeName.contains("21"));
+                tvFood.setEnabled(venueTypeName.contains("Food"));
+                tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
+            }
                 tv21Plus.setEnabled(!venueTypeName.contains("21"));
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));

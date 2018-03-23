@@ -76,9 +76,9 @@ public class ReportVenueFragment extends BaseFragment<BasePresenter> {
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.isSuccess()) {
-                            UIUtils.showBaseToast("Success.");
+                            UIUtils.showBaseToast("Report successfully.");
                         } else {
-                            UIUtils.showBaseToast("Failure.");
+                            UIUtils.showBaseToast("Report failed.");
                         }
                     }
                 });
