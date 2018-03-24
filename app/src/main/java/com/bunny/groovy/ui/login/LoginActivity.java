@@ -89,7 +89,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             return;
         }
         if (TextUtils.isEmpty(etPassword.getTrimmedString())) {
-            UIUtils.showBaseToast(getString(R.string.account_not_be_null));
+            UIUtils.showBaseToast(getString(R.string.password_not_be_null));
             return;
         } else if (etPassword.getTrimmedString().length() < 8) {
             UIUtils.showBaseToast(getString(R.string.invalid_password));
