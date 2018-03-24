@@ -13,6 +13,7 @@
         style="@style/base_edit_text_style"
         android:layout_marginTop="30dp"
         android:hint="@string/venue_register_code"
+        app:x_importantWord="true"
         app:x_disableEmoji="true" />
 
     <com.xw.repo.XEditText

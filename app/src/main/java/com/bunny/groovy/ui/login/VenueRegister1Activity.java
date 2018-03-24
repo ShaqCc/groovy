@@ -139,13 +139,17 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
     //下一步
     @OnClick(R.id.tv_venue_next)
     void next() {
+        //检查账户
+        String account = mPhoneEmail.getTrimmedString();
         String pwd = mPassword.getTrimmedString();
         String pwdAgain = mPasswordAgain.getTrimmedString();
         String publicName = mPublicName.getTrimmedString();
         String address = mAddress.getText().toString().trim();
-        if (TextUtils.isEmpty(pwd) || TextUtils.isEmpty(pwdAgain)) {
-            UIUtils.showBaseToast("Please input code.");
-        } else if (pwd.length() < 8 || pwdAgain.length() < 8) {
+        if (TextUtils.isEmpty(account)) {
+            UIUtils.showBaseToast("Please input account.");
+        }else if (TextUtils.isEmpty(pwd)) {
+            UIUtils.showBaseToast("Please input password.");
+        } else if (pwd.length() < 8) {
             UIUtils.showBaseToast("Password length less than 8.");
         } else if (!pwd.equals(pwdAgain)) {
             UIUtils.showBaseToast("Password not same.");
@@ -154,13 +158,8 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
         } else if (TextUtils.isEmpty(address)) {
             UIUtils.showBaseToast("Please input address.");
         } else {
-            //检查账户
-            String account = mPhoneEmail.getTrimmedString();
-            if (TextUtils.isEmpty(account)) {
-                UIUtils.showBaseToast("Please input account!");
-                return;
-            }
-            mPresenter.checkAccount(account, true);
+            nextStep();
+//            mPresenter.checkAccount(account, true);
         }
     }
 
