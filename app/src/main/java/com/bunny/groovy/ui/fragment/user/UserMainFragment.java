@@ -189,16 +189,21 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         getChildFragmentManager().beginTransaction().add(R.id.map_container, supportMapFragment, "map_fragment").commit();
         supportMapFragment.getMapAsync(this);
 
+        checkPermission(true);
+//        updateCurrentLocation();
+    }
+
+    private void checkPermission(boolean needRequestPermission){
         //检查权限
         if (ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //申请权限
+            if(needRequestPermission)
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         } else {
             checkLocationSettings();
         }
-//        updateCurrentLocation();
     }
 
     /**
@@ -476,10 +481,13 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         }
     }
 
+    private boolean mFirst;
+
     @Override
     public void onResume() {
         super.onResume();
-        if (mLastLocation == null) setUpLocationRequest();
+        if(mFirst) mFirst = false;
+        else if (mLastLocation == null) checkPermission(false);
     }
 
     public void hideMarkLayout() {
