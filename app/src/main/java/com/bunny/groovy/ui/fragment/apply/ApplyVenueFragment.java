@@ -316,6 +316,7 @@ public class ApplyVenueFragment extends BaseFragment<ApplyVenuePresenter> implem
         map.put("venueAddress", sVenueBean.getVenueAddress());
         map.put("venueLongitude", sVenueBean.getLongitude());
         map.put("venueLatitude", sVenueBean.getLatitude());
+        map.put("isOpportunity", "0");
         mPresenter.applyVenue(map);
     }
 

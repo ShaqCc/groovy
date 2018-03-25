@@ -112,6 +112,7 @@ public class ApplyOppFragment extends BaseFragment<ExplorerOpptnyPresenter> impl
 //        }
         map.put("performType", etStyle.getText().toString());
         map.put("performDesc", etDesc.getText().toString());
+        map.put("isOpportunity", "0");
         mPresenter.applyOpportunity(map);
     }
 

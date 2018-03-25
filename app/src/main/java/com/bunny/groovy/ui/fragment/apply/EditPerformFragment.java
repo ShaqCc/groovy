@@ -137,10 +137,11 @@ public class EditPerformFragment extends BaseFragment<ApplyVenuePresenter> imple
             mSelectDate.setTime(DateUtils.getDate(sVenueShow.getPerformStartDate()));
             startTime = DateUtils.getDateHour(sVenueShow.getPerformStartDate());
             endTime = DateUtils.getDateHour(sVenueShow.getPerformEndDate());
+            int index = sVenueShow.getPerformDesc().length();
+            etDesc.setSelection(index);
+            tvNumber.setText(String.valueOf(index));
         }
-        int index = sVenueShow.getPerformDesc().length();
-        etDesc.setSelection(index);
-        tvNumber.setText(String.valueOf(index));
+
         etDesc.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
