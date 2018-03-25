@@ -94,13 +94,13 @@ public class UserDataFragment extends BaseFragment<UserMePresenter> implements I
             //判断空，拦截
             if (TextUtils.isEmpty(mEtName.getText().toString())) {
                 UIUtils.showBaseToast("Please input name.");
-                return super.onOptionsItemSelected(item);
+            } else {
+                HashMap<String, String> ma = new HashMap<>();
+                ma.put("userName", mEtName.getText().toString());
+                if (!TextUtils.isEmpty(headImagePath))
+                    ma.put("imgfile", headImagePath);
+                mPresenter.updateUserInfo(ma);
             }
-            HashMap<String, String> ma = new HashMap<>();
-            ma.put("userName", mEtName.getText().toString());
-            if (!TextUtils.isEmpty(headImagePath))
-                ma.put("imgfile", headImagePath);
-            mPresenter.updateUserInfo(ma);
         }
         return super.onOptionsItemSelected(item);
     }

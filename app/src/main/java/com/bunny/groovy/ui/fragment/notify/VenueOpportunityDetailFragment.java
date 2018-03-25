@@ -125,10 +125,10 @@ public class VenueOpportunityDetailFragment extends BaseFragment {
                         @Override
                         public void onNext(ResultResponse<Object> response) {
                             if (response.success) {
-                                UIUtils.showBaseToast("选择表演者成功！");
+                                UIUtils.showBaseToast("Choose successfully.");
                                 mActivity.finish();
                             } else {
-                                UIUtils.showBaseToast("选择表演者成功失败！请重试");
+                                UIUtils.showBaseToast("Choose failed.");
                             }
                         }
                     });

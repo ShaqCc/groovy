@@ -89,7 +89,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             return;
         }
         if (TextUtils.isEmpty(etPassword.getTrimmedString())) {
-            UIUtils.showBaseToast(getString(R.string.account_not_be_null));
+            UIUtils.showBaseToast(getString(R.string.password_not_be_null));
             return;
         } else if (etPassword.getTrimmedString().length() < 8) {
             UIUtils.showBaseToast(getString(R.string.invalid_password));
@@ -142,6 +142,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                 etPhoneOrEmail.setText(account);
                 etPassword.setText(password);
                 login();
+                return;
             }
         } else {
             mUserType = getIntent().getIntExtra("type", AppConstants.USER_TYPE_NORMAL);
@@ -162,6 +163,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             }
             etPassword.setText("123456789");
         }
+        try {
+            String account = (String) SharedPreferencesUtils.getAppParam(this
+                    , AppConstants.KEY_HISTORY_ACCOUNT_BY_TYPE + mUserType, "");
+            if (!TextUtils.isEmpty(account)) etPhoneOrEmail.setText(account);
+        } catch (Exception e) {
+        }
+
 
     }
 

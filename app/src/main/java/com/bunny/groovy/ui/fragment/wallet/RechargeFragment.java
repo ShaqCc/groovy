@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.braintreepayments.api.BraintreeFragment;
 import com.braintreepayments.api.dropin.DropInActivity;
 import com.braintreepayments.api.dropin.DropInRequest;
 import com.braintreepayments.api.dropin.DropInResult;
@@ -37,7 +36,6 @@ public class RechargeFragment extends BaseFragment<RechargePresenter> implements
     EditText mRechargeEtBalance;
     @Bind(R.id.tv_recharge)
     TextView mTvRecharge;
-    private BraintreeFragment mBraintreeFragment;
     private double mAmount;
 
     public static void launch(Activity from) {
@@ -98,7 +96,9 @@ public class RechargeFragment extends BaseFragment<RechargePresenter> implements
     @OnClick(R.id.tv_recharge)
     public void onViewClicked() {
         //判断金额
-        mAmount = Double.parseDouble(mRechargeEtBalance.getText().toString());
+        try{
+            mAmount = Double.parseDouble(mRechargeEtBalance.getText().toString());
+        }catch (Exception e){}
         if (mAmount <= 0) {
             UIUtils.showBaseToast("Input incorrect.");
             return;

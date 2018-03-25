@@ -54,7 +54,8 @@
         style="@style/base_edit_text_style"
         android:layout_marginTop="20dp"
         android:hint="@string/venue_register_booking_email"
-        app:x_disableEmoji="true" />
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/venue_info_service"
@@ -69,7 +70,8 @@
         style="@style/base_edit_text_style"
         android:layout_marginTop="10dp"
         android:hint="@string/venue_register_phone"
-        app:x_disableEmoji="true" />
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
 
     <com.xw.repo.XEditText
         android:id="@+id/venue_info_website"
@@ -83,7 +85,8 @@
         style="@style/base_edit_text_style"
         android:layout_marginTop="10dp"
         android:hint="@string/venue_register_address"
-        app:x_disableEmoji="true" />
+        app:x_disableEmoji="true"
+        app:x_importantWord="true" />
 
     <TextView
         android:layout_width="wrap_content"

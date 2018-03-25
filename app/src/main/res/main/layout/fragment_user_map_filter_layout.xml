@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginBottom="15dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
@@ -34,6 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:maxHeight="1.5dp"
+            android:thumb="@drawable/shape_seekbar_button"
+            android:progressDrawable="@drawable/seekbar_bg"
             android:layout_toLeftOf="@id/filter_tv_distance"
             android:max="50" />
 
@@ -91,29 +94,27 @@
         android:id="@+id/filter_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:hint="CHOOSE"
-        android:padding="0dp"
         android:textColor="@color/white"
         android:textColorHint="@color/common_grey"
-        android:textSize="@dimen/text_size_common" />
+        android:lineSpacingExtra="2dp"
+        android:textSize="12dp" />
 
     <TextView
         style="@style/common_text_style"
         android:layout_marginTop="15dp"
-
         android:text="TIME" />
 
     <EditText
         android:id="@+id/filter_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:hint="CHOOSE"
-        android:padding="0dp"
         android:textColor="@color/white"
         android:textColorHint="@color/common_grey"
-        android:textSize="@dimen/text_size_common" />
+        android:textSize="12dp" />
 
     <TextView
         android:id="@+id/tv_apply"

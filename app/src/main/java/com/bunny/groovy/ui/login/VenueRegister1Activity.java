@@ -139,28 +139,27 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
     //下一步
     @OnClick(R.id.tv_venue_next)
     void next() {
+        //检查账户
+        String account = mPhoneEmail.getTrimmedString();
         String pwd = mPassword.getTrimmedString();
         String pwdAgain = mPasswordAgain.getTrimmedString();
         String publicName = mPublicName.getTrimmedString();
         String address = mAddress.getText().toString().trim();
-        if (TextUtils.isEmpty(pwd) || TextUtils.isEmpty(pwdAgain)) {
-            UIUtils.showBaseToast("Please input code.");
-        } else if (pwd.length() < 8 || pwdAgain.length() < 8) {
-            UIUtils.showBaseToast("密码至少8位");
+        if (TextUtils.isEmpty(account)) {
+            UIUtils.showBaseToast("Please input account.");
+        }else if (TextUtils.isEmpty(pwd)) {
+            UIUtils.showBaseToast("Please input password.");
+        } else if (pwd.length() < 8) {
+            UIUtils.showBaseToast("Password length less than 8.");
         } else if (!pwd.equals(pwdAgain)) {
-            UIUtils.showBaseToast("密码输入不一致");
+            UIUtils.showBaseToast("Password not same.");
         } else if (TextUtils.isEmpty(publicName)) {
             UIUtils.showBaseToast("Please input name.");
         } else if (TextUtils.isEmpty(address)) {
             UIUtils.showBaseToast("Please input address.");
         } else {
-            //检查账户
-            String account = mPhoneEmail.getTrimmedString();
-            if (TextUtils.isEmpty(account)) {
-                UIUtils.showBaseToast("Please input account!");
-                return;
-            }
-            mPresenter.checkAccount(account, true);
+            nextStep();
+//            mPresenter.checkAccount(account, true);
         }
     }
 
@@ -176,13 +175,14 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
             e.printStackTrace();
             UIUtils.showBaseToast("GooglePlay services not available!");
         }
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             mAddress.setText("中国上海市浦东新区");
             mLongitude = "121.6000";
             mLatitude = "31.2200";
             mPlaceId = "ChIJG9rV8LJ3sjURgCSirgwJAGM";
         }
     }
+
     //登陆
     @OnClick(R.id.tv_signup_login)
     void login() {
@@ -219,7 +219,7 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
         } else if (requestCode == 2 && resultCode == AppConstants.ACTIVITY_FINISH) {
             setResult(AppConstants.ACTIVITY_FINISH);
             finish();
-        }else if (requestCode == PLACE_PICKER_REQUEST) {
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
                 mAddress.setText(place.getAddress());

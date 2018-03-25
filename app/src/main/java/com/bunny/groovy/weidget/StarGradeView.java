@@ -130,20 +130,14 @@ public class StarGradeView extends View {
         if (event.getAction() == MotionEvent.ACTION_MOVE || event.getAction() == MotionEvent.ACTION_DOWN) {
             if (mChangeGradeEnable) {
                 float x = event.getX();
-                int count = (int) (x / (mStarWidth + mStarSpace));
-                //没有半星
-                mGrade = count;
-                Log.i("wjy", "x:" + x + ",count:" + count);
-
-                //有半星
-//                int remainder = (int) (x % (mStarWidth + mStarSpace));
-//                if (remainder < mStarWidth / 3) {
-//                    mGrade = count * 20;
-//                } else if (remainder > mStarWidth / 3 * 2) {
-//                    mGrade = (count + 1) * 20;
-//                } else {
-//                    mGrade = count * 20 + 10;
-//                }
+                if(x < 0){
+                    mGrade = 0;
+                }else {
+                    int count = (int) (x / (mStarWidth + mStarSpace)) + 1;
+                    count = count > 5 ? 5 : count;
+                    //没有半星
+                    mGrade = count;
+                }
                 invalidate();
             }
         }

@@ -63,7 +63,7 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
     private Date today = Calendar.getInstance().getTime();
     private String startTime = "";//开始时间
     private String endTime = "";//结束时间
-    private int mDistance;//距离
+    private int mDistance = 25;//距离
     private StringBuilder mVenueType;//演播厅类型
     private String mPerformType;//表演类型
     private List<StyleModel> styleList;
@@ -146,10 +146,10 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
-        mDistance = getArguments().getInt(KEY_DISTANCE);
-        mPerformType = getArguments().getString(KEY_PERFORM_TYPE);
-        String venueType = getArguments().getString(KEY_VENUE_TYPE);
-        mEtPerformStyle.setText(mPerformType);
+//        mDistance = getArguments().getInt(KEY_DISTANCE);
+//        mPerformType = getArguments().getString(KEY_PERFORM_TYPE);
+//        String venueType = getArguments().getString(KEY_VENUE_TYPE);
+//        mEtPerformStyle.setText(mPerformType);
         mEtPerformStyle.setFocusable(false);
         mCheckList = new CheckBox[3];
         mCheckList[0] = mCb1;
@@ -170,18 +170,18 @@ public class UserFilterFragment extends BaseFragment<ApplyVenuePresenter> implem
 //
 //        }
         mEtTime.setFocusable(false);
-        if (!TextUtils.isEmpty(venueType)) {
-            mVenueType = new StringBuilder(venueType);
-            String types[] = venueType.split(",");
-            for (String t : types) {
-                for (int i = 0; i < mCheckList.length; i++) {
-                    if (TextUtils.equals(mCheckList[i].getText().toString().trim(), t)) {
-                        mCheckList[i].setChecked(true);
-                        break;
-                    }
-                }
-            }
-        }
+//        if (!TextUtils.isEmpty(venueType)) {
+//            mVenueType = new StringBuilder(venueType);
+//            String types[] = venueType.split(",");
+//            for (String t : types) {
+//                for (int i = 0; i < mCheckList.length; i++) {
+//                    if (TextUtils.equals(mCheckList[i].getText().toString().trim(), t)) {
+//                        mCheckList[i].setChecked(true);
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         mSeekBar.setProgress(mDistance);
         mFilterDistance.setText(mDistance + "mi");
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

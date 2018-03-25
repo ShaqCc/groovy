@@ -119,22 +119,6 @@ public class VenueDataFragment extends BaseFragment<VenueMePresenter> implements
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.personal_item_save) {
             //判断空，拦截
-            if (TextUtils.isEmpty(mEtPhone.getText().toString())) {
-                UIUtils.showBaseToast("Please input phone.");
-                return super.onOptionsItemSelected(item);
-            }
-            if (TextUtils.isEmpty(mEtWebsite.getText().toString())) {
-                UIUtils.showBaseToast("Please input website.");
-                return super.onOptionsItemSelected(item);
-            }
-            if (TextUtils.isEmpty(mEtTwitter.getText().toString())) {
-                UIUtils.showBaseToast("Please input twitter.");
-                return super.onOptionsItemSelected(item);
-            }
-            if (TextUtils.isEmpty(mEtFaceBook.getText().toString())) {
-                UIUtils.showBaseToast("Please input facebook.");
-                return super.onOptionsItemSelected(item);
-            }
             //获取演播厅类型
             StringBuilder stringBuilder = new StringBuilder();
             if (mCb1.isChecked()) {
@@ -149,16 +133,28 @@ public class VenueDataFragment extends BaseFragment<VenueMePresenter> implements
                 stringBuilder.append(mCb3.getText().toString().trim());
             }
             mServiceName = stringBuilder.toString();
-            HashMap<String, String> ma = new HashMap<>();
-            ma.put("phoneNumber", mEtPhone.getText().toString());
-            ma.put("venueTypeName", mServiceName);
-            ma.put("webSiteAddress", mEtWebsite.getText().toString());
-            ma.put("twitterAccount", mEtTwitter.getText().toString());
-            ma.put("facebookAccount", mEtFaceBook.getText().toString());
-            //无法维护的参数
-            if (!TextUtils.isEmpty(headImagePath))
-                ma.put("imgfile", headImagePath);
-            mPresenter.updateVenueData(ma);
+            if (TextUtils.isEmpty(mEtPhone.getText().toString())) {
+                UIUtils.showBaseToast("Please input phone.");
+            } else if (TextUtils.isEmpty(mServiceName)) {
+                UIUtils.showBaseToast("Please select venue service.");
+            } else if (TextUtils.isEmpty(mEtWebsite.getText().toString())) {
+                UIUtils.showBaseToast("Please input website.");
+            } else if (TextUtils.isEmpty(mEtFaceBook.getText().toString())) {
+                UIUtils.showBaseToast("Please input facebook.");
+            } else if (TextUtils.isEmpty(mEtTwitter.getText().toString())) {
+                UIUtils.showBaseToast("Please input twitter.");
+            } else {
+                HashMap<String, String> ma = new HashMap<>();
+                ma.put("phoneNumber", mEtPhone.getText().toString());
+                ma.put("venueTypeName", mServiceName);
+                ma.put("webSiteAddress", mEtWebsite.getText().toString());
+                ma.put("twitterAccount", mEtTwitter.getText().toString());
+                ma.put("facebookAccount", mEtFaceBook.getText().toString());
+                //头像
+                if (!TextUtils.isEmpty(headImagePath))
+                    ma.put("imgfile", headImagePath);
+                mPresenter.updateVenueData(ma);
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -133,28 +133,18 @@ public class VenueFile1Activity extends BaseActivity<SingUpPresenter> implements
     @OnClick(R.id.perfect_info_tv_next)
     void next() {
         //拦截
-        if (TextUtils.isEmpty(mVenueAddress.getTrimmedString())) {
-            UIUtils.showBaseToast("Please input address!");
-            return;
-        }
-        if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
-            UIUtils.showBaseToast("Please input venue service!");
-            return;
-        }
         if (TextUtils.isEmpty(mVenueEmail.getTrimmedString())) {
-            UIUtils.showBaseToast("Please input venue email!");
-            return;
-        }
-        if (TextUtils.isEmpty(mVenuePhone.getTrimmedString())) {
-            UIUtils.showBaseToast("Please input venue phone!");
-            return;
-        }
-        if (TextUtils.isEmpty(mHeadUrl)) {
-            UIUtils.showBaseToast("Please select image!");
-            return;
+            UIUtils.showBaseToast("Please input venue email.");
+        } else if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
+            UIUtils.showBaseToast("Please select venue service.");
+        } else if (TextUtils.isEmpty(mVenuePhone.getTrimmedString())) {
+            UIUtils.showBaseToast("Please input venue phone.");
+        } else if (TextUtils.isEmpty(mVenueAddress.getTrimmedString())) {
+            UIUtils.showBaseToast("Please input address.");
+        } else if (TextUtils.isEmpty(mHeadUrl)) {
+            UIUtils.showBaseToast("Please select head image.");
         }
         //保存数据
-        AppCacheData.getFileMap().put("headUrl", mVenueAddress.getTrimmedString());
         AppCacheData.getFileMap().put("venueTypeName", mVenueService.getTrimmedString());
         AppCacheData.getFileMap().put("longitude", mLongitude);
         AppCacheData.getFileMap().put("latitude", mLatitude);
@@ -162,7 +152,7 @@ public class VenueFile1Activity extends BaseActivity<SingUpPresenter> implements
         AppCacheData.getFileMap().put("userEmail", mVenueEmail.getTrimmedString());
         AppCacheData.getFileMap().put("phoneNumber", mVenuePhone.getTrimmedString());
         AppCacheData.getFileMap().put("userID", AppCacheData.getPerformerUserModel().getUserID());
-        if(!TextUtils.isEmpty(mWebsite.getTrimmedString())){
+        if (!TextUtils.isEmpty(mWebsite.getTrimmedString())) {
             AppCacheData.getFileMap().put("webSiteAddress", mWebsite.getTrimmedString());
         }
         AppCacheData.getFileMap().put("headUrl", mHeadUrl);
@@ -181,7 +171,7 @@ public class VenueFile1Activity extends BaseActivity<SingUpPresenter> implements
         } else if (requestCode == 2 && resultCode == AppConstants.ACTIVITY_FINISH) {
             setResult(AppConstants.ACTIVITY_FINISH);
             finish();
-        }else if (requestCode == PLACE_PICKER_REQUEST) {
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, this);
                 mVenueAddress.setText(place.getAddress());
@@ -245,8 +235,7 @@ public class VenueFile1Activity extends BaseActivity<SingUpPresenter> implements
         if (popupWindow.isShowing()) {
             popupWindow.dismiss();
             mVenueService.setCheckStatus(XEditText.CheckStatus.NONE);
-        }
-        else {
+        } else {
             popupWindow.showAsDropDown(mVenueService, 0, 0);
             mVenueService.setCheckStatus(XEditText.CheckStatus.INVALID);
         }
