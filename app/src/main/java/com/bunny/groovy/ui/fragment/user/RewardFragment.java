@@ -124,6 +124,7 @@ public class RewardFragment extends BaseFragment<RewardPresenter> implements IRe
             mRewardView1.setVisibility(View.VISIBLE);
             mRewardView.setVisibility(View.GONE);
         }
+        Utils.controlEditText(mEtReward,2);
     }
 
     @Override

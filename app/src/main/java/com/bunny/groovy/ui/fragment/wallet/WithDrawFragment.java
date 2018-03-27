@@ -13,6 +13,7 @@ import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +49,7 @@ public class WithDrawFragment extends BaseFragment<PayPalPresenter> implements I
         mBalance = AppCacheData.getPerformerUserModel().getBalance();
         mRechargeTvPaypalMax.setText("The max is $" + mBalance);
         mTvWithDraw.setText("WITHDRAW");
+        Utils.controlEditText(mRechargeEtBalance,2);
     }
 
     @Override

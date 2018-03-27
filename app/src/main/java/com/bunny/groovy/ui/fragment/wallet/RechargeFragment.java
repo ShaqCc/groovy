@@ -3,6 +3,8 @@ package com.bunny.groovy.ui.fragment.wallet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +51,7 @@ public class RechargeFragment extends BaseFragment<RechargePresenter> implements
     public void initView(View rootView) {
         super.initView(rootView);
         mRechargeTvPaypalValue.setText(AppCacheData.getPerformerUserModel().getPaypalAccount());
+        Utils.controlEditText(mRechargeEtBalance,2);
     }
 
     @Override

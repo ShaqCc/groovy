@@ -7,8 +7,11 @@ import android.database.Cursor;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.bunny.groovy.model.MusicBean;
 import com.bunny.groovy.model.PerformerUserModel;
@@ -324,6 +327,50 @@ public class Utils {
         } catch (Exception e) {
 
         }
+    }
 
+    /**
+     * 控制edittext输入位数
+     *
+     * @param et             输入框
+     * @param DECIMAL_DIGITS 小数点后的位数
+     */
+    public static void controlEditText(final EditText et, final int DECIMAL_DIGITS) {
+        et.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().contains(".")) {
+                    if (s.length() - 1 - s.toString().indexOf(".") > DECIMAL_DIGITS) {
+                        s = s.toString().subSequence(0,
+                                s.toString().indexOf(".") + DECIMAL_DIGITS + 1);
+                        et.setText(s);
+                        et.setSelection(s.length());
+                    }
+                }
+                if (s.toString().trim().substring(0).equals(".")) {
+                    s = "0" + s;
+                    et.setText(s);
+                    et.setSelection(2);
+                }
+                if (s.toString().startsWith("0")
+                        && s.toString().trim().length() > 1) {
+                    if (!s.toString().substring(1, 2).equals(".")) {
+                        et.setText(s.subSequence(0, 1));
+                        et.setSelection(1);
+                        return;
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }
