@@ -158,7 +158,6 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
         mVenueService.setCursorVisible(false);
         mVenueService.setFocusable(false);
         mVenueService.setFocusableInTouchMode(false);
-        registerEventBus(this);
     }
 
 
@@ -212,6 +211,18 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerEventBus(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterEventBus(this);
     }
 
     private void initPopWindow(Context context, String value) {

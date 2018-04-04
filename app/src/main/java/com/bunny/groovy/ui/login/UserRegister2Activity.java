@@ -112,7 +112,18 @@ public class UserRegister2Activity extends BaseActivity<SingUpPresenter> impleme
     @Override
     public void initListener() {
         super.initListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         registerEventBus(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterEventBus(this);
     }
 
     @Override

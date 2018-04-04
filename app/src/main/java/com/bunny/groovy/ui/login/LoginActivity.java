@@ -102,9 +102,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     @OnClick(R.id.tv_forget_password)
     void forgetPassword() {
-        Intent intent = new Intent();
-        intent.setClass(this, ForgetActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, ForgetActivity.class).putExtra("userType", mUserType));
     }
 
     @OnClick(R.id.iv_login_google)

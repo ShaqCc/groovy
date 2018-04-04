@@ -67,8 +67,10 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
 
     public static String KEY_ACCOUNT = "key_account";
     public static String KEY_TYPE = "key_type";
+    public static String KEY_USER_TYPE = "key_user_type";
     private String account;
     private String type;
+    private int mUserType;
 
 
     @Override
@@ -78,10 +80,22 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
             Intent intent = getIntent();
             account = intent.getStringExtra(KEY_ACCOUNT);
             type = intent.getStringExtra(KEY_TYPE);
+            mUserType = intent.getIntExtra(KEY_USER_TYPE, 0);
         } catch (Exception e) {
             finish();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         registerEventBus(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterEventBus(this);
     }
 
     /**
@@ -111,8 +125,7 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
 
     @Override
     public void next() {
-        int type = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
-        LoginActivity.launch(this, type);
+        LoginActivity.launch(this, mUserType);
     }
 
     @Override

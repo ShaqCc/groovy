@@ -106,6 +106,18 @@ public class SignUp2Activity extends BaseActivity<SingUpPresenter> implements IS
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        registerEventBus(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterEventBus(this);
+    }
+
+    @Override
     public void initView() {
         super.initView();
         Intent intent = getIntent();
@@ -130,7 +142,6 @@ public class SignUp2Activity extends BaseActivity<SingUpPresenter> implements IS
     @Override
     public void initListener() {
         super.initListener();
-        registerEventBus(this);
     }
 
     @Override

@@ -32,6 +32,7 @@ public class ForgetActivity extends BaseActivity<ForgetPwdPresenter> implements 
     @Bind(R.id.forget_et_account)
     XEditText etAccount;
     private ProgressHUD progress;
+    private int userType = 0;
 
     @OnClick({R.id.forget_tv_login, R.id.forget_tv_next})
     public void onViewClick(View view) {
@@ -72,7 +73,19 @@ public class ForgetActivity extends BaseActivity<ForgetPwdPresenter> implements 
     public void initView() {
         super.initView();
         progress = ProgressHUD.show(this, "Sending...", false, true, null);
+        userType = getIntent().getIntExtra("userType", 0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         registerEventBus(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterEventBus(this);
     }
 
     @Subscribe
@@ -103,6 +116,7 @@ public class ForgetActivity extends BaseActivity<ForgetPwdPresenter> implements 
         intent.setClass(this, ConfirmPwdActivity.class);
         intent.putExtra(ConfirmPwdActivity.KEY_ACCOUNT, etAccount.getTrimmedString());
         intent.putExtra(ConfirmPwdActivity.KEY_TYPE, type);
+        intent.putExtra(ConfirmPwdActivity.KEY_USER_TYPE, userType);
         startActivity(intent);
     }
 

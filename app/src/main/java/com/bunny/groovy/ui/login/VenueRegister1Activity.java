@@ -158,8 +158,8 @@ public class VenueRegister1Activity extends BaseActivity<SingUpPresenter> implem
         } else if (TextUtils.isEmpty(address)) {
             UIUtils.showBaseToast("Please input address.");
         } else {
-            nextStep();
-//            mPresenter.checkAccount(account, true);
+//            nextStep();
+            mPresenter.checkAccount(account, true);
         }
     }
 
