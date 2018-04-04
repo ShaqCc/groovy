@@ -7,7 +7,7 @@ package com.bunny.groovy.api;
  */
 
 public class ApiConstants {
-    public final static String BASE_SERVER_URL = "http://47.100.104.82:8083/";
-    public final static String BASE_PROTOCOL_URL = "http://47.100.104.82:8083/GroovyProtocol.html";
+    public final static String BASE_SERVER_URL = "http://45.32.219.175:8083/";
+    public final static String BASE_PROTOCOL_URL = "http://45.32.219.175:8083/GroovyProtocol.html";
     public final static String GOOGLE_MAP_APP_KEY = "AIzaSyAgZEKKl4FjWBtTcGBtNOridEfxRbplyp8";
 }
