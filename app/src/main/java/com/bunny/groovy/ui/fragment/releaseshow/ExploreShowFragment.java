@@ -375,6 +375,7 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
                 return false;
             }
         });
+        mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
         //设置当前位置
         updateCurrentLocation();
     }

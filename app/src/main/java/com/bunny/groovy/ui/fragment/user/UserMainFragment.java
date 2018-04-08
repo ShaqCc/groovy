@@ -7,14 +7,19 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -26,6 +31,7 @@ import com.bunny.groovy.adapter.UserMainListAdapter;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.divider.HLineDecoration;
+import com.bunny.groovy.model.LocationModel;
 import com.bunny.groovy.model.PerformDetail;
 import com.bunny.groovy.model.UserMainModel;
 import com.bunny.groovy.presenter.UserListPresenter;
@@ -35,9 +41,7 @@ import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
-import com.bunny.groovy.view.IListPageView;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.bunny.groovy.view.IUserMainView;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -79,8 +83,8 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class UserMainFragment extends BaseFragment<UserListPresenter> implements
-        OnMapReadyCallback,
-        IListPageView<UserMainModel> {
+        OnMapReadyCallback, TextWatcher,
+        IUserMainView<UserMainModel> {
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 11;
     int FILTER_REQUEST_CODE = 1;
     int PLACE_PICKER_REQUEST = 2;
@@ -121,12 +125,31 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     @Bind(R.id.map_layout)
     RelativeLayout mapLayout;
     @Bind(R.id.map_et_search)
-    TextView etSearch;
+    EditText etSearch;
     @Bind(R.id.map_search_bar)
     View mapSearchBar;
 
     private FusedLocationProviderClient mLocationClient;
     private LocationRequest mLocationRequest;
+    private String mKeyword;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (!TextUtils.isEmpty(mKeyword)) {
+                String location = null;
+                if (mLastLocation != null) {
+                    location = String.valueOf(mLastLocation.getLatitude()) + "," + String.valueOf(mLastLocation.getLongitude());
+                } else {
+                    //定位失败默认使用美国旧金山的代码
+                    location = String.valueOf(AppConstants.DEFAULT_LATITUDE) + "," + String.valueOf(AppConstants.DEFAULT_LONGITUDE);
+                }
+                mPresenter.search(location, mKeyword);
+            } else {
+
+            }
+        }
+    };
 
     @OnClick(R.id.marker_tv_venue_detail)
     public void venueDetail() {
@@ -145,18 +168,6 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         filter();
     }
 
-    @OnClick(R.id.map_ll_search)
-    public void searchAddress() {
-        hideMarkLayout();
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        try {
-            startActivityForResult(builder.build(mActivity), PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * 跳转到条件页面
@@ -183,7 +194,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     public void initView(View rootView) {
         super.initView(rootView);
         mMarkerLayout.setVisibility(View.GONE);
-
+        etSearch.addTextChangedListener(this);
         //初始化map
         SupportMapFragment supportMapFragment = new SupportMapFragment();
         getChildFragmentManager().beginTransaction().add(R.id.map_container, supportMapFragment, "map_fragment").commit();
@@ -193,14 +204,14 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
 //        updateCurrentLocation();
     }
 
-    private void checkPermission(boolean needRequestPermission){
+    private void checkPermission(boolean needRequestPermission) {
         //检查权限
         if (ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
                 ActivityCompat.checkSelfPermission(get(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //申请权限
-            if(needRequestPermission)
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            if (needRequestPermission)
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         } else {
             checkLocationSettings();
         }
@@ -337,6 +348,18 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         mGoogleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(
                 mActivity, R.raw.map_style));
 
+        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                if (mMarkerLayout.getVisibility() == View.VISIBLE) {
+                    try {
+                        mMarkerLayout.setVisibility(View.GONE);
+                        mMarkerList.get(lastMarkerSelected).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icon_show));
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        });
         //点击监听
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
@@ -373,6 +396,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 return false;
             }
         });
+        mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
 //        updateLoc();
         //设置当前位置
         updateCurrentLocation();
@@ -486,7 +510,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     @Override
     public void onResume() {
         super.onResume();
-        if(mFirst) mFirst = false;
+        if (mFirst) mFirst = false;
         else if (mLastLocation == null) checkPermission(false);
     }
 
@@ -648,6 +672,11 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     }
 
     @Override
+    public void setSearchView(LocationModel model) {
+
+    }
+
+    @Override
     public void setNormalView() {
 
     }
@@ -665,5 +694,21 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     @Override
     protected int provideContentViewId() {
         return R.layout.fragment_user_map_layout;
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        mKeyword = s.toString();
+        mHandler.removeMessages(1);
+        mHandler.sendEmptyMessageDelayed(1, 1000);
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
     }
 }

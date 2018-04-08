@@ -2,6 +2,7 @@ package com.bunny.groovy.api;
 
 import com.bunny.groovy.model.GlobalModel;
 import com.bunny.groovy.model.GoogleMapLoc;
+import com.bunny.groovy.model.LocationModel;
 import com.bunny.groovy.model.MusicianDetailModel;
 import com.bunny.groovy.model.MusicianModel;
 import com.bunny.groovy.model.OpportunityModel;
@@ -130,6 +131,12 @@ public interface ApiService {
     @GET("https://maps.googleapis.com/maps/api/geocode/json")
     Observable<GoogleMapLoc> getLocation(@Query("address") String address, @Query("key") String apiKey);
 
+    //根据内容查找就近的place
+    @GET("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+    Observable<LocationModel> getSearchPlaceList(@Query("location") String location
+            , @Query("radius") String radius
+            , @Query("keyword") String keyword
+            , @Query("key") String apiKey);
 
     //    performerID
 //    longitude
@@ -341,8 +348,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("VenueMeController/addVenueFeesback")
     Observable<ResultResponse<Object>> addVenueFeesback(@Field("userID") String userID,
-                                                   @Field("content") String content,
-                                                   @Field("deviceType") String deviceType);
+                                                        @Field("content") String content,
+                                                        @Field("deviceType") String deviceType);
 
     //发送邮箱验证码
     @FormUrlEncoded
@@ -563,5 +570,5 @@ public interface ApiService {
     //获取普通用户收藏的表演者列表
     @FormUrlEncoded
     @POST("UserHomeController/addPerformViewer")
-    Observable<ResultResponse<Object>> addPerformViewer(@Field("userID") String userID,@Field("performID") String performID);
+    Observable<ResultResponse<Object>> addPerformViewer(@Field("userID") String userID, @Field("performID") String performID);
 }

@@ -1,17 +1,18 @@
 package com.bunny.groovy.presenter;
 
+import com.bunny.groovy.api.ApiConstants;
 import com.bunny.groovy.api.ApiRetrofit;
 import com.bunny.groovy.api.SubscriberCallBack;
 import com.bunny.groovy.base.BasePresenter;
+import com.bunny.groovy.model.LocationModel;
 import com.bunny.groovy.model.MusicianModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.model.ShowModel;
 import com.bunny.groovy.model.UserMainModel;
 import com.bunny.groovy.utils.AppCacheData;
-import com.bunny.groovy.utils.AppConstants;
-import com.bunny.groovy.utils.SharedPreferencesUtils;
 import com.bunny.groovy.utils.UIUtils;
-import com.bunny.groovy.view.IListPageView;
+import com.bunny.groovy.view.IUserMainView;
+import com.bunny.groovy.weidget.ProgressHUD;
 
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,8 @@ import rx.schedulers.Schedulers;
  * Created by Administrator on 2017/12/21.
  */
 
-public class UserListPresenter extends BasePresenter<IListPageView> {
-    public UserListPresenter(IListPageView view) {
+public class UserListPresenter extends BasePresenter<IUserMainView> {
+    public UserListPresenter(IUserMainView view) {
         super(view);
     }
 
@@ -102,6 +103,44 @@ public class UserListPresenter extends BasePresenter<IListPageView> {
             }
 
         });
+    }
+
+    //请求周边地点数据
+    public void search(String location, String keyword) {
+        addSubscription(apiService.getSearchPlaceList(location, "10000", keyword, ApiConstants.GOOGLE_MAP_APP_KEY)
+                , new Subscriber<LocationModel>() {
+                    ProgressHUD mProgressHUD;
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        mProgressHUD = ProgressHUD.show(mView.get(), "", true, true, null);
+                        mProgressHUD.setCancelable(false);
+                        mProgressHUD.setMessage("");
+                        mProgressHUD.show();
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        if (mProgressHUD != null) mProgressHUD.dismiss();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (mProgressHUD != null) mProgressHUD.dismiss();
+                        UIUtils.showBaseToast(e.toString());
+                    }
+
+                    @Override
+                    public void onNext(LocationModel model) {
+                        try {
+                            UIUtils.showBaseToast("success.");
+                        } catch (Exception e) {
+                            UIUtils.showBaseToast(e.toString());
+                        }
+                    }
+
+                });
     }
 
     /**
