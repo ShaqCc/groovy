@@ -10,7 +10,7 @@ public class LocationModel {
 
     public List<LocationDetail> results;
 
-    final class LocationDetail{
+    public final class LocationDetail{
         // 评价信息
         public LocationGeometry geometry; // 地址
         public String icon;// 图标

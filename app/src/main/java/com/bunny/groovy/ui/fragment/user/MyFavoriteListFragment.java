@@ -10,9 +10,11 @@ import com.bunny.groovy.adapter.UserFavoriteListAdapter;
 import com.bunny.groovy.base.BaseListFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.divider.HLineDecoration;
+import com.bunny.groovy.model.LocationModel;
 import com.bunny.groovy.model.MusicianModel;
 import com.bunny.groovy.presenter.UserListPresenter;
 import com.bunny.groovy.view.IListPageView;
+import com.bunny.groovy.view.IUserMainView;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2017/12/26.
  */
 
-public class MyFavoriteListFragment extends BaseListFragment<UserListPresenter, UserFavoriteListAdapter> implements IListPageView<List<MusicianModel>> {
+public class MyFavoriteListFragment extends BaseListFragment<UserListPresenter, UserFavoriteListAdapter> implements IUserMainView<List<MusicianModel>> {
 
     public static void launch(Activity from) {
         Bundle bundle = new Bundle();
@@ -64,6 +66,11 @@ public class MyFavoriteListFragment extends BaseListFragment<UserListPresenter, 
         } else {
             mAdapter.refresh(o);
         }
+    }
+
+    @Override
+    public void setSearchView(LocationModel model) {
+
     }
 
     @Override

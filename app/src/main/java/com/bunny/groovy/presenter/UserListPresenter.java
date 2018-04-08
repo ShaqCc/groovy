@@ -134,9 +134,9 @@ public class UserListPresenter extends BasePresenter<IUserMainView> {
                     @Override
                     public void onNext(LocationModel model) {
                         try {
-                            UIUtils.showBaseToast("success.");
+                            mView.setSearchView(model);
                         } catch (Exception e) {
-                            UIUtils.showBaseToast(e.toString());
+                            e.printStackTrace();
                         }
                     }
 

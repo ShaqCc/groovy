@@ -10,9 +10,11 @@ import com.bunny.groovy.adapter.UserHistoryListAdapter;
 import com.bunny.groovy.base.BaseListFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
 import com.bunny.groovy.divider.HLineDecoration;
+import com.bunny.groovy.model.LocationModel;
 import com.bunny.groovy.model.PerformDetail;
 import com.bunny.groovy.presenter.UserListPresenter;
 import com.bunny.groovy.view.IListPageView;
+import com.bunny.groovy.view.IUserMainView;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2017/12/26.
  */
 
-public class MyHistoryListFragment extends BaseListFragment<UserListPresenter, UserHistoryListAdapter> implements IListPageView<List<PerformDetail>> {
+public class MyHistoryListFragment extends BaseListFragment<UserListPresenter, UserHistoryListAdapter> implements IUserMainView<List<PerformDetail>> {
 
     public static void launch(Activity from) {
         Bundle bundle = new Bundle();
@@ -64,6 +66,11 @@ public class MyHistoryListFragment extends BaseListFragment<UserListPresenter, U
         } else {
             mAdapter.refresh(o);
         }
+    }
+
+    @Override
+    public void setSearchView(LocationModel model) {
+
     }
 
     @Override

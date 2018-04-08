@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,16 +20,21 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bunny.groovy.R;
+import com.bunny.groovy.adapter.SearchListAdapter;
 import com.bunny.groovy.adapter.UserMainListAdapter;
 import com.bunny.groovy.base.BaseFragment;
 import com.bunny.groovy.base.FragmentContainerActivity;
@@ -128,6 +136,8 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     EditText etSearch;
     @Bind(R.id.map_search_bar)
     View mapSearchBar;
+    @Bind(R.id.map_ll_search)
+    LinearLayout searchLayout;
 
     private FusedLocationProviderClient mLocationClient;
     private LocationRequest mLocationRequest;
@@ -673,6 +683,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
 
     @Override
     public void setSearchView(LocationModel model) {
+        showSelectNumberPopupWindow(model.results);
 
     }
 
@@ -710,5 +721,49 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
 
     @Override
     public void afterTextChanged(Editable s) {
+    }
+
+    private PopupWindow mPopupWindow;
+    private RecyclerView mPopupRecyclerView;
+    private SearchListAdapter mRecyclerViewAdapter;
+    /**
+     * 弹出选择号码的对话框
+     */
+    private void showSelectNumberPopupWindow(List<LocationModel.LocationDetail> list) {
+        initRecyclerView(list);
+        if(mPopupWindow == null){
+            mPopupWindow = new PopupWindow(mPopupRecyclerView, mapSearchBar.getWidth() - 4, etSearch.getWidth()/2);
+            mPopupWindow.setOutsideTouchable(true);   // 设置外部可以被点击
+            mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+            mPopupWindow.setFocusable(true);    // 使PopupWindow可以获得焦点
+        }
+
+        // 显示在输入框的左下角
+        mPopupWindow.showAsDropDown(etSearch, 2, -5);
+    }
+
+    /**
+     * 初始化RecyclerView，模仿ListView下拉列表的效果
+     */
+    private void initRecyclerView(List<LocationModel.LocationDetail> list){
+        if(mPopupRecyclerView == null){
+            mPopupRecyclerView = new RecyclerView(getContext());
+            //设置布局管理器
+            mPopupRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            //设置Adapter
+            mRecyclerViewAdapter = new SearchListAdapter(list);
+            mRecyclerViewAdapter.setKeyword(mKeyword);
+            mPopupRecyclerView.setAdapter(mRecyclerViewAdapter);
+        }else {
+            mRecyclerViewAdapter.setKeyword(mKeyword);
+            mRecyclerViewAdapter.refresh(list);
+        }
+
+
+        //设置点击事件
+
+//        //添加分割线
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
     }
 }
