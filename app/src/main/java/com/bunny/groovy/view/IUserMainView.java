@@ -14,8 +14,6 @@ public interface IUserMainView<T> {
 
     void setView(T t);
 
-    void setSearchView(LocationModel model);
-
     void setNormalView();
 
     void setNodata();

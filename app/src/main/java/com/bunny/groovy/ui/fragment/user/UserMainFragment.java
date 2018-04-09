@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +49,10 @@ import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
 import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IUserMainView;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -57,7 +61,12 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.AutocompletePrediction;
+import com.google.android.gms.location.places.AutocompletePredictionBuffer;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceBuffer;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -65,6 +74,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -76,6 +86,7 @@ import com.socks.library.KLog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -89,7 +100,7 @@ import static android.app.Activity.RESULT_OK;
  */
 
 public class UserMainFragment extends BaseFragment<UserListPresenter> implements
-        OnMapReadyCallback, TextWatcher,
+        OnMapReadyCallback, TextWatcher, GoogleApiClient.ConnectionCallbacks,
         IUserMainView<UserMainModel> {
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 11;
     int FILTER_REQUEST_CODE = 1;
@@ -136,6 +147,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     View mapSearchBar;
     @Bind(R.id.map_ll_search)
     LinearLayout searchLayout;
+    private GoogleApiClient mGoogleApiClient;
 
     private FusedLocationProviderClient mLocationClient;
     private LocationRequest mLocationRequest;
@@ -144,17 +156,37 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if (!TextUtils.isEmpty(mKeyword)) {
-                String location = null;
-                if (mLastLocation != null) {
-                    location = String.valueOf(mLastLocation.getLatitude()) + "," + String.valueOf(mLastLocation.getLongitude());
-                } else {
-                    //定位失败默认使用美国旧金山的代码
-                    location = String.valueOf(AppConstants.DEFAULT_LATITUDE) + "," + String.valueOf(AppConstants.DEFAULT_LONGITUDE);
+            if (msg.what == 1) {
+                if (mGoogleApiClient.isConnected()) {
+                    if (!TextUtils.isEmpty(mKeyword)) {
+                        LatLngBounds bounds = new LatLngBounds(
+                                new LatLng(mLastLocation.getLatitude() - 0.02, mLastLocation.getLongitude() - 0.02),
+                                new LatLng(mLastLocation.getLatitude() + 0.02, mLastLocation.getLongitude() + 0.02));
+                        final PendingResult<AutocompletePredictionBuffer> results =
+                                Places.GeoDataApi.getAutocompletePredictions(mGoogleApiClient, mKeyword,
+                                        bounds, new AutocompleteFilter.Builder().setTypeFilter(AutocompleteFilter.TYPE_FILTER_NONE).build());
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                AutocompletePredictionBuffer autocompletePredictions = (AutocompletePredictionBuffer) results.await();
+                                int count = autocompletePredictions.getCount();
+                                if (mLocationList != null) mLocationList.clear();
+                                else mLocationList = new ArrayList<>();
+                                for (AutocompletePrediction autocompletePrediction : autocompletePredictions) {
+                                    LocationModel model = new LocationModel();
+                                    model.id = autocompletePrediction.getPlaceId();
+                                    model.name = autocompletePrediction.getPrimaryText(null);
+                                    model.summary = autocompletePrediction.getSecondaryText(null);
+                                    mLocationList.add(model);
+                                }
+                                mHandler.sendEmptyMessage(2);
+                                autocompletePredictions.release();
+                            }
+                        }).start();
+                    }
                 }
-                mPresenter.search(location, mKeyword);
             } else {
-
+                showLocationPopupWindow();
             }
         }
     };
@@ -201,6 +233,11 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                .addConnectionCallbacks(this)
+                .addApi(Places.GEO_DATA_API)
+                .build();
+        mGoogleApiClient.connect();
         mMarkerLayout.setVisibility(View.GONE);
         etSearch.addTextChangedListener(this);
         etSearch.clearFocus();
@@ -608,6 +645,12 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+//        if (mGoogleApiClient != null) mGoogleApiClient.disconnect();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
         stopLocationUpdates();
@@ -681,12 +724,6 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     }
 
     @Override
-    public void setSearchView(LocationModel model) {
-        showSelectNumberPopupWindow(model.results);
-
-    }
-
-    @Override
     public void setNormalView() {
 
     }
@@ -715,7 +752,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         mKeyword = s.toString();
         mHandler.removeMessages(1);
-        mHandler.sendEmptyMessageDelayed(1, 1000);
+        mHandler.sendEmptyMessageDelayed(1, 500);
     }
 
     @Override
@@ -729,19 +766,18 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     /**
      * 弹出选择号码的对话框
      */
-    private void showSelectNumberPopupWindow(List<LocationModel.LocationDetail> list) {
-        mLocationList = list;
-        if (list != null && list.size() > 0) {
-            initRecyclerView(list);
+    private void showLocationPopupWindow() {
+        if (mLocationList != null && mLocationList.size() > 0) {
+            initRecyclerView(mLocationList);
             if (mPopupWindow == null) {
-                mPopupWindow = new PopupWindow(mPopupRecyclerView, searchLayout.getWidth() - 4, etSearch.getWidth() / 2);
+                mPopupWindow = new PopupWindow(mPopupRecyclerView, searchLayout.getWidth() - 4, etSearch.getWidth() * 3 / 5);
                 mPopupWindow.setOutsideTouchable(true);   // 设置外部可以被点击
                 mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
                 mPopupWindow.setFocusable(true);    // 使PopupWindow可以获得焦点
             }
             // 显示在输入框的左下角
             mPopupWindow.showAsDropDown(searchLayout, 2, 50);
-        }else {
+        } else {
             UIUtils.showBaseToast("No search for content.");
         }
 
@@ -751,9 +787,9 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     /**
      * 初始化RecyclerView，模仿ListView下拉列表的效果
      */
-    private List<LocationModel.LocationDetail> mLocationList;
+    private List<LocationModel> mLocationList;
 
-    private void initRecyclerView(List<LocationModel.LocationDetail> list) {
+    private void initRecyclerView(List<LocationModel> list) {
         if (mPopupRecyclerView == null) {
             mPopupRecyclerView = new RecyclerView(getContext());
             mPopupRecyclerView.setMinimumWidth(mapSearchBar.getWidth() - 4);
@@ -766,11 +802,21 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
             mRecyclerViewAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    LocationModel.LocationDetail detail = mLocationList.get(position);
-                    mLastLocation.setLatitude(Double.parseDouble(detail.geometry.location.lat));
-                    mLastLocation.setLongitude(Double.parseDouble(detail.geometry.location.lng));
+                    LocationModel model = mLocationList.get(position);
+                    Places.GeoDataApi.getPlaceById(mGoogleApiClient, model.id)
+                            .setResultCallback(new ResultCallback<PlaceBuffer>() {
+                                @Override
+                                public void onResult(PlaceBuffer places) {
+                                    if (places.getStatus().isSuccess() && places.getCount() > 0) {
+                                        final Place myPlace = places.get(0);
+                                        mLastLocation.setLatitude(myPlace.getLatLng().latitude);
+                                        mLastLocation.setLongitude(myPlace.getLatLng().longitude);
+                                        updateCurrentLocation();
+                                    }
+                                    places.release();
+                                }
+                            });
                     mPopupWindow.dismiss();
-                    updateCurrentLocation();
                 }
             });
             mPopupRecyclerView.setAdapter(mRecyclerViewAdapter);
@@ -780,9 +826,14 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         }
 
 
-        //设置点击事件
+    }
 
-//        //添加分割线
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        mGoogleApiClient.connect();
     }
 }

@@ -69,11 +69,6 @@ public class MyFavoriteListFragment extends BaseListFragment<UserListPresenter, 
     }
 
     @Override
-    public void setSearchView(LocationModel model) {
-
-    }
-
-    @Override
     public void setNormalView() {
         setPageState(PageState.NORMAL);
     }

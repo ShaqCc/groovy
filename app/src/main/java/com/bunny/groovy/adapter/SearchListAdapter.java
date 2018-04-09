@@ -20,7 +20,7 @@ import java.util.List;
  ****************************************/
 
 public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.LocationHolder> implements View.OnClickListener {
-    private List<LocationModel.LocationDetail> mModelList;
+    private List<LocationModel> mModelList;
     private Activity mContext;
     private String mKeyword;
 
@@ -34,7 +34,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Lo
         this.mKeyword = keyword;
     }
 
-    public SearchListAdapter(List<LocationModel.LocationDetail> modelList) {
+    public SearchListAdapter(List<LocationModel> modelList) {
         mModelList = modelList;
     }
 
@@ -47,9 +47,9 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Lo
 
     @Override
     public void onBindViewHolder(LocationHolder holder, int position) {
-        LocationModel.LocationDetail model = mModelList.get(position);
+        LocationModel model = mModelList.get(position);
         //地址
-        holder.mTvAddress.setTextHeighLight(model.name, mKeyword);
+        holder.mTvAddress.setTextHeighLight(model.name.toString(), mKeyword);
         //点击效果
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(this);
@@ -61,7 +61,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Lo
         return 0;
     }
 
-    public void refresh(List<LocationModel.LocationDetail> list) {
+    public void refresh(List<LocationModel> list) {
         this.mModelList = list;
         notifyDataSetChanged();
     }
@@ -70,7 +70,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Lo
     public void onClick(View v) {
         try {
             int pos = (int) v.getTag();
-            if(mOnItemClickListener != null)mOnItemClickListener.onItemClick(null, null, pos, 0);
+            if (mOnItemClickListener != null) mOnItemClickListener.onItemClick(null, null, pos, 0);
         } catch (Exception e) {
         }
     }
