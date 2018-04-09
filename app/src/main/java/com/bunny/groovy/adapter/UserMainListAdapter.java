@@ -54,6 +54,15 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         holder.mTvName.setText(model.getPerformerName());
         //评分
         holder.mTvStar.setText(Utils.getStar(model.getPerformerScore()));
+        //表演类型
+        if(!TextUtils.isEmpty(model.getPerformType())){
+            String type[] = model.getPerformType().split(",");
+            if(type.length > 2){
+                holder.mTvStyle.setText(type[0] + "," + type[1] + "...");
+            }else {
+                holder.mTvStyle.setText(model.getPerformType());
+            }
+        }
         //演出厅名字
         holder.mTvVenueName.setText("@" + model.getVenueName());
         //演出厅地址
@@ -62,8 +71,7 @@ public class UserMainListAdapter extends RecyclerView.Adapter<UserMainListAdapte
         holder.mTvTime.setText(model.getPerformDate() + " " + model.getPerformTime());
         //距离
         holder.mTvDistance.setText(model.getDistance()+"mi");
-        //表演类型
-        holder.mTvStyle.setText(model.getPerformType());
+
         //点击效果
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(this);

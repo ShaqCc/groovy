@@ -132,10 +132,10 @@ public interface ApiService {
     Observable<GoogleMapLoc> getLocation(@Query("address") String address, @Query("key") String apiKey);
 
     //根据内容查找就近的place
-    @GET("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+    @GET("https://maps.googleapis.com/maps/api/place/textsearch/json")
     Observable<LocationModel> getSearchPlaceList(@Query("location") String location
             , @Query("radius") String radius
-            , @Query("keyword") String keyword
+            , @Query("query") String keyword
             , @Query("key") String apiKey);
 
     //    performerID

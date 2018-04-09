@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.bunny.groovy.R;
 import com.bunny.groovy.model.LocationModel;
@@ -22,6 +23,12 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Lo
     private List<LocationModel.LocationDetail> mModelList;
     private Activity mContext;
     private String mKeyword;
+
+    private AdapterView.OnItemClickListener mOnItemClickListener;
+
+    public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
+    }
 
     public void setKeyword(String keyword) {
         this.mKeyword = keyword;
@@ -63,7 +70,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Lo
     public void onClick(View v) {
         try {
             int pos = (int) v.getTag();
-            LocationModel.LocationDetail locationModel = mModelList.get(pos);
+            if(mOnItemClickListener != null)mOnItemClickListener.onItemClick(null, null, pos, 0);
         } catch (Exception e) {
         }
     }

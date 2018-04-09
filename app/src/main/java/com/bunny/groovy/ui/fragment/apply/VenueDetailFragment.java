@@ -142,7 +142,6 @@ public class VenueDetailFragment extends BaseFragment<VenueDetailPresenter> impl
             tvAlcohol.setEnabled(false);
         }
 
-
         Glide.with(mActivity).load(model.getHeadImg()).error(R.drawable.venue_instead_pic).into(mHead);
         //set list
         if (mAdapter == null) {

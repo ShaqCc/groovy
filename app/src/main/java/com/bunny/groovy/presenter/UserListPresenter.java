@@ -107,7 +107,7 @@ public class UserListPresenter extends BasePresenter<IUserMainView> {
 
     //请求周边地点数据
     public void search(String location, String keyword) {
-        addSubscription(apiService.getSearchPlaceList(location, "10000", keyword, ApiConstants.GOOGLE_MAP_APP_KEY)
+        addSubscription(apiService.getSearchPlaceList(location, "50000", keyword, ApiConstants.GOOGLE_MAP_APP_KEY)
                 , new Subscriber<LocationModel>() {
                     ProgressHUD mProgressHUD;
 

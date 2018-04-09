@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.os.Bundle;
@@ -20,10 +19,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -205,6 +203,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         super.initView(rootView);
         mMarkerLayout.setVisibility(View.GONE);
         etSearch.addTextChangedListener(this);
+        etSearch.clearFocus();
         //初始化map
         SupportMapFragment supportMapFragment = new SupportMapFragment();
         getChildFragmentManager().beginTransaction().add(R.id.map_container, supportMapFragment, "map_fragment").commit();
@@ -409,7 +408,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         mGoogleMap.getUiSettings().setMapToolbarEnabled(false);
 //        updateLoc();
         //设置当前位置
-        updateCurrentLocation();
+//        updateCurrentLocation();
     }
 
     /**
@@ -515,7 +514,7 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         }
     }
 
-    private boolean mFirst;
+    private boolean mFirst = true;
 
     @Override
     public void onResume() {
@@ -726,36 +725,56 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
     private PopupWindow mPopupWindow;
     private RecyclerView mPopupRecyclerView;
     private SearchListAdapter mRecyclerViewAdapter;
+
     /**
      * 弹出选择号码的对话框
      */
     private void showSelectNumberPopupWindow(List<LocationModel.LocationDetail> list) {
-        initRecyclerView(list);
-        if(mPopupWindow == null){
-            mPopupWindow = new PopupWindow(mPopupRecyclerView, mapSearchBar.getWidth() - 4, etSearch.getWidth()/2);
-            mPopupWindow.setOutsideTouchable(true);   // 设置外部可以被点击
-            mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
-            mPopupWindow.setFocusable(true);    // 使PopupWindow可以获得焦点
+        mLocationList = list;
+        if (list != null && list.size() > 0) {
+            initRecyclerView(list);
+            if (mPopupWindow == null) {
+                mPopupWindow = new PopupWindow(mPopupRecyclerView, searchLayout.getWidth() - 4, etSearch.getWidth() / 2);
+                mPopupWindow.setOutsideTouchable(true);   // 设置外部可以被点击
+                mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+                mPopupWindow.setFocusable(true);    // 使PopupWindow可以获得焦点
+            }
+            // 显示在输入框的左下角
+            mPopupWindow.showAsDropDown(searchLayout, 2, 50);
+        }else {
+            UIUtils.showBaseToast("No search for content.");
         }
 
-        // 显示在输入框的左下角
-        mPopupWindow.showAsDropDown(etSearch, 2, -5);
+
     }
 
     /**
      * 初始化RecyclerView，模仿ListView下拉列表的效果
      */
-    private void initRecyclerView(List<LocationModel.LocationDetail> list){
-        if(mPopupRecyclerView == null){
+    private List<LocationModel.LocationDetail> mLocationList;
+
+    private void initRecyclerView(List<LocationModel.LocationDetail> list) {
+        if (mPopupRecyclerView == null) {
             mPopupRecyclerView = new RecyclerView(getContext());
+            mPopupRecyclerView.setMinimumWidth(mapSearchBar.getWidth() - 4);
             //设置布局管理器
             mPopupRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
             //设置Adapter
             mRecyclerViewAdapter = new SearchListAdapter(list);
             mRecyclerViewAdapter.setKeyword(mKeyword);
+            mRecyclerViewAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    LocationModel.LocationDetail detail = mLocationList.get(position);
+                    mLastLocation.setLatitude(Double.parseDouble(detail.geometry.location.lat));
+                    mLastLocation.setLongitude(Double.parseDouble(detail.geometry.location.lng));
+                    mPopupWindow.dismiss();
+                    updateCurrentLocation();
+                }
+            });
             mPopupRecyclerView.setAdapter(mRecyclerViewAdapter);
-        }else {
+        } else {
             mRecyclerViewAdapter.setKeyword(mKeyword);
             mRecyclerViewAdapter.refresh(list);
         }

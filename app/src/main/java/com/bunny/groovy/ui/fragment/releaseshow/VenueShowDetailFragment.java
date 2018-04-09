@@ -191,6 +191,9 @@ public class VenueShowDetailFragment extends BaseFragment {
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
+            if(model.getPerformDesc() != null && model.getPerformDesc().contains("18+")){
+                tv21Plus.setEnabled(false);
+            }
             if (!TextUtils.isEmpty(model.getPerformerMusic())) initMusicService();
         }
     }

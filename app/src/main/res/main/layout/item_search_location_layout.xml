@@ -9,7 +9,9 @@
     <com.bunny.groovy.weidget.HeightLightTextView
         android:id="@+id/tv_address"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:textColor="@color/white" />
 

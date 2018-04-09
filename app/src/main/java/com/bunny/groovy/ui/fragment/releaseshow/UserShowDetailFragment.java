@@ -207,11 +207,7 @@ public class UserShowDetailFragment extends BaseFragment {
                     .into(mPerformerHead);
             //设置演出厅提供服务
             String venueTypeName = model.getVenueTypeName();
-            if (!TextUtils.isEmpty(venueTypeName)) {{
-                tv21Plus.setEnabled(!venueTypeName.contains("21"));
-                tvFood.setEnabled(venueTypeName.contains("Food"));
-                tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
-            }
+            if (!TextUtils.isEmpty(venueTypeName)) {
                 tv21Plus.setEnabled(!venueTypeName.contains("21"));
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
@@ -219,6 +215,9 @@ public class UserShowDetailFragment extends BaseFragment {
                 tv21Plus.setEnabled(true);
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
+            }
+            if(model.getPerformDesc() != null && model.getPerformDesc().contains("18+")){
+                tv21Plus.setEnabled(false);
             }
             if (!TextUtils.isEmpty(model.getPerformerMusic())) initMusicService();
 

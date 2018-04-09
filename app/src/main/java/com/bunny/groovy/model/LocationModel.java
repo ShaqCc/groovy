@@ -20,9 +20,9 @@ public class LocationModel {
         public String rating;//评分
         public String vicinity;//附近
 
-        final class LocationGeometry{
+        public final class LocationGeometry{
             public Location location;
-            final class Location{
+            public final class Location{
                 public String lat;
                 public String lng;
             }
