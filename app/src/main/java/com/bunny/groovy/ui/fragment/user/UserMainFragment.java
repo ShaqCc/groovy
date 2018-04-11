@@ -86,7 +86,6 @@ import com.socks.library.KLog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -412,6 +411,14 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                     } catch (Exception e) {
                     }
                 }
+            }
+        });
+        mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                mLastLocation = mGoogleMap.getMyLocation();
+                updateCurrentLocation();
+                return false;
             }
         });
         //点击监听

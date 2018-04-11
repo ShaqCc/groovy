@@ -73,6 +73,7 @@ public class RewardFragment extends BaseFragment<RewardPresenter> implements IRe
     private static boolean isHistory;
 
     public static void launch(Activity from, String performerId, boolean history) {
+        if(TextUtils.isEmpty(performerId)) return;
         performerID = performerId;
         isHistory = history;
         Bundle bundle = new Bundle();

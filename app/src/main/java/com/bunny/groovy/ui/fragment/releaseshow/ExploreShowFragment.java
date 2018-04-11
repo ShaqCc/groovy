@@ -413,7 +413,14 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
         }
         mGoogleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(
                 mActivity, R.raw.map_style));
-
+        mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                mLastLocation = mGoogleMap.getMyLocation();
+                updateCurrentLocation();
+                return false;
+            }
+        });
         //点击监听
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
