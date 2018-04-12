@@ -90,9 +90,6 @@ public class WithDrawFragment extends BaseFragment<PayPalPresenter> implements I
         if (TextUtils.isEmpty(withdraw)) {
             UIUtils.showBaseToast("Please input withdraw money.");
             return;
-        } else if ((Double.parseDouble(withdraw) > Double.parseDouble(mBalance))) {
-            UIUtils.showBaseToast("Can not more than max balance.");
-            return;
         }
         mPresenter.withDraw(withdraw);
     }

@@ -107,9 +107,6 @@ public class RechargeFragment extends BaseFragment<RechargePresenter> implements
         if (mAmount <= 0) {
             UIUtils.showBaseToast("Input incorrect.");
             return;
-        } else if (mAmount > 999) {
-            UIUtils.showBaseToast("Recharge At most $999.");
-            return;
         }
         mPresenter.getToken();
     }
