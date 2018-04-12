@@ -31,14 +31,14 @@ import butterknife.OnClick;
 
 public class RechargeFragment extends BaseFragment<RechargePresenter> implements IRechargeView {
     private static final int REQUEST_CODE = 888;
-    @Bind(R.id.recharge_tv_paypal_value)
-    TextView mRechargeTvPaypalValue;
-    @Bind(R.id.recharge_tv_paypal_max)
-    TextView mRechargeTvPaypalMax;
+//    @Bind(R.id.recharge_tv_paypal_value)
+//    TextView mRechargeTvPaypalValue;
+//    @Bind(R.id.recharge_tv_paypal_max)
+//    TextView mRechargeTvPaypalMax;
     @Bind(R.id.recharge_et_balance)
     EditText mRechargeEtBalance;
-    @Bind(R.id.tv_recharge)
-    TextView mTvRecharge;
+//    @Bind(R.id.tv_recharge)
+//    TextView mTvRecharge;
     private double mAmount;
 
     public static void launch(Activity from) {
@@ -50,7 +50,8 @@ public class RechargeFragment extends BaseFragment<RechargePresenter> implements
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
-        mRechargeTvPaypalValue.setText(AppCacheData.getPerformerUserModel().getPaypalAccount());
+//        mRechargeTvPaypalValue.setText(AppCacheData.getPerformerUserModel().getPaypalAccount());
+        mRechargeEtBalance.setHint("CHARGE AMOUNT");
         Utils.controlEditText(mRechargeEtBalance,2);
     }
 

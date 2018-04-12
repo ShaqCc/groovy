@@ -26,10 +26,10 @@ import butterknife.OnClick;
  ****************************************/
 
 public class WithDrawFragment extends BaseFragment<PayPalPresenter> implements IPayPalView {
-    @Bind(R.id.recharge_tv_paypal_value)
-    TextView mRechargeTvPaypalValue;
-    @Bind(R.id.recharge_tv_paypal_max)
-    TextView mRechargeTvPaypalMax;
+//    @Bind(R.id.recharge_tv_paypal_value)
+//    TextView mRechargeTvPaypalValue;
+//    @Bind(R.id.recharge_tv_paypal_max)
+//    TextView mRechargeTvPaypalMax;
     @Bind(R.id.recharge_et_balance)
     EditText mRechargeEtBalance;
     @Bind(R.id.tv_recharge)
@@ -45,10 +45,11 @@ public class WithDrawFragment extends BaseFragment<PayPalPresenter> implements I
     @Override
     public void initView(View rootView) {
         super.initView(rootView);
-        mRechargeTvPaypalValue.setText(AppCacheData.getPerformerUserModel().getPaypalAccount());
-        mBalance = AppCacheData.getPerformerUserModel().getBalance();
-        mRechargeTvPaypalMax.setText("The max is $" + mBalance);
+//        mRechargeTvPaypalValue.setText(AppCacheData.getPerformerUserModel().getPaypalAccount());
+//        mBalance = AppCacheData.getPerformerUserModel().getBalance();
+//        mRechargeTvPaypalMax.setText("The max is $" + mBalance);
         mTvWithDraw.setText("WITHDRAW");
+        mRechargeEtBalance.setHint("WITHDRAW AMOUNT");
         Utils.controlEditText(mRechargeEtBalance,2);
     }
 
