@@ -180,9 +180,7 @@ public class InviteDetailsFragment extends BaseFragment {
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
-            if (sModel.getPerformDesc()!= null && sModel.getPerformDesc().contains("18+")) {
-                tv21Plus.setEnabled(false);
-            }
+            tv21Plus.setEnabled(Utils.is21Enabled(sModel.getPerformDesc()));
         }
     }
 

@@ -191,7 +191,7 @@ public class Utils {
         Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null,
                 MediaStore.Audio.Media.DATA + " like ?",
-                new String[]{dirName + "%"},
+                new String[]{dirName + "%" },
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 
         if (cursor == null) return null;
@@ -372,5 +372,41 @@ public class Utils {
 
             }
         });
+    }
+
+    private static final String STR_21[] = new String[]{
+            "21+",
+            "21 +",
+            "Over 21",
+            "21 Plus",
+            "21-Plus",
+            "Adults Only",
+            "21 with ID",
+            "21 or older",
+            ">21",
+            "Must be 21",
+            "21 and over",
+            "21 and up",
+            "at least 21",
+            "21 & over",
+            "21 & up",
+            "older than 21",
+            "Other situation",
+    };
+
+    public static boolean is21Enabled(String desc) {
+        boolean enable = false;
+        if (desc != null) {
+            for (String s : STR_21) {
+                if (desc.contains(s)) {
+                    enable = true;
+                    break;
+                }
+            }
+            if (desc.contains("18+")) {
+                enable = false;
+            }
+        }
+        return enable;
     }
 }
