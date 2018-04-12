@@ -377,26 +377,27 @@ public class Utils {
     private static final String STR_21[] = new String[]{
             "21+",
             "21 +",
-            "Over 21",
-            "21 Plus",
-            "21-Plus",
-            "Adults Only",
-            "21 with ID",
+            "over 21",
+            "21 plus",
+            "21-plus",
+            "adults only",
+            "21 with id",
             "21 or older",
             ">21",
-            "Must be 21",
+            "must be 21",
             "21 and over",
             "21 and up",
             "at least 21",
             "21 & over",
             "21 & up",
             "older than 21",
-            "Other situation",
+            "other situation",
     };
 
     public static boolean is21Enabled(String desc) {
         boolean enable = false;
         if (desc != null) {
+            desc = desc.toLowerCase();
             for (String s : STR_21) {
                 if (desc.contains(s)) {
                     enable = true;
