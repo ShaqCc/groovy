@@ -98,6 +98,7 @@ public class InviteDetailsFragment extends BaseFragment {
 
     @OnClick(R.id.invite_iv_email)
     public void email() {
+        if (sModel!=null)
         Utils.sendEmail(mActivity, sModel.getVenueEmail());
     }
 

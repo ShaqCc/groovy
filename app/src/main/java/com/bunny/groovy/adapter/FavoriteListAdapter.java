@@ -86,6 +86,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                 Utils.CallPhone(mContext,mModelList.get(pos).getPhoneNumber());
                 break;
             case R.id.item_favorite_iv_email:
+                if (mModelList!=null&& mModelList.get(pos)!=null)
                 Utils.sendEmail(mContext,mModelList.get(pos).getVenueEmail());
                 break;
             case R.id.item_favorite_tv_apply:

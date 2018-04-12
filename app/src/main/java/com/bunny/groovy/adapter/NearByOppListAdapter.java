@@ -95,6 +95,7 @@ public class NearByOppListAdapter extends RecyclerView.Adapter<NearByOppListAdap
                 Utils.CallPhone(mContext, model.getPhoneNumber());
                 break;
             case R.id.item_nearby_iv_email:
+                if (model!=null)
                 Utils.sendEmail(mContext, model.getVenueEmail());
                 break;
             case R.id.item_nearby_tv_apply:

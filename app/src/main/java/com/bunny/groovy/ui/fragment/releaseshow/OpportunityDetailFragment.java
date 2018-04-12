@@ -88,6 +88,7 @@ public class OpportunityDetailFragment extends BaseFragment {
     }
     @OnClick(R.id.opp_detail_iv_email)
     public void email() {
+        if (sParcelable!=null)
         Utils.sendEmail(mActivity, sParcelable.getVenueEmail());
     }
 

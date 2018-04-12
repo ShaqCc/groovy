@@ -210,7 +210,8 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
 
     @OnClick(R.id.marker_iv_email)
     public void email() {
-        Utils.sendEmail(mActivity, mCurrentBean.getVenueEmail());
+        if (mCurrentBean != null)
+            Utils.sendEmail(mActivity, mCurrentBean.getVenueEmail());
     }
 
     /**
@@ -756,8 +757,8 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
                 mPopupWindow.setFocusable(true);    // 使PopupWindow可以获得焦点
             }
             if (!mPopupWindow.isShowing())
-            // 显示在输入框的左下角
-            mPopupWindow.showAsDropDown(searchLayout, 2, 50);
+                // 显示在输入框的左下角
+                mPopupWindow.showAsDropDown(searchLayout, 2, 50);
         } else {
             UIUtils.showBaseToast("No search for content.");
         }

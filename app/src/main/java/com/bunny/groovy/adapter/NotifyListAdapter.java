@@ -177,6 +177,7 @@ public class NotifyListAdapter extends RecyclerView.Adapter<NotifyListAdapter.No
                 rejectInvite(showModel.getInviteID(), pos);
                 break;
             case R.id.item_notification_iv_email://发邮箱
+                if (showModel!=null)
                 Utils.sendEmail(mContext, showModel.getVenueEmail());
                 break;
             case R.id.item_notification_iv_phone://打电话

@@ -86,6 +86,7 @@ public class ShowDetailFragment extends BaseFragment {
 
     @OnClick(R.id.show_detail_iv_email)
     public void email() {
+        if (model!=null)
         Utils.sendEmail(mActivity, model.getVenueEmail());
     }
 
