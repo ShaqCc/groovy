@@ -104,6 +104,7 @@ public class ShowDetailFragment extends BaseFragment {
 
     public static void launch(Activity from, Bundle bundle) {
         model = bundle.getParcelable(KEY_SHOW_BEAN);
+        if(model == null || TextUtils.isEmpty(model.getPerformID())) return;
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "DETAILS");
         type = bundle.getInt("type", -1);
         FragmentContainerActivity.launch(from, ShowDetailFragment.class, bundle);
@@ -187,9 +188,7 @@ public class ShowDetailFragment extends BaseFragment {
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
-            if (model.getPerformDesc()!= null && model.getPerformDesc().contains("18+")) {
-                tv21Plus.setEnabled(false);
-            }
+            tv21Plus.setEnabled(Utils.is21Enabled(model.getPerformDesc()));
             if (!TextUtils.isEmpty(model.getIsHaveCharges()) && model.getIsHaveCharges().equals("1")) {
                 tvCoverCharge.setEnabled(true);
             } else {

@@ -51,6 +51,7 @@ public class UserReviewFragment extends BaseFragment<UserMePresenter> implements
     }
 
     public static void launch(Activity from, String performerID) {
+        if(TextUtils.isEmpty(performerID)) return;
         performerId = performerID;
         Bundle bundle = new Bundle();
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "PERSONAL DATA");

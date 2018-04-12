@@ -86,7 +86,6 @@ import com.socks.library.KLog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -157,33 +156,41 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == 1) {
-                if (mGoogleApiClient.isConnected()) {
-                    if (!TextUtils.isEmpty(mKeyword)) {
-                        LatLngBounds bounds = new LatLngBounds(
+                if (!TextUtils.isEmpty(mKeyword) && mGoogleApiClient.isConnected()) {
+                    LatLngBounds bounds = null;
+                    if (mLastLocation == null) {
+                        bounds = new LatLngBounds(
+                                new LatLng(AppConstants.DEFAULT_LATITUDE - 0.02, AppConstants.DEFAULT_LONGITUDE - 0.02),
+                                new LatLng(AppConstants.DEFAULT_LATITUDE + 0.02, AppConstants.DEFAULT_LONGITUDE + 0.02));
+                    } else {
+                        bounds = new LatLngBounds(
                                 new LatLng(mLastLocation.getLatitude() - 0.02, mLastLocation.getLongitude() - 0.02),
                                 new LatLng(mLastLocation.getLatitude() + 0.02, mLastLocation.getLongitude() + 0.02));
-                        final PendingResult<AutocompletePredictionBuffer> results =
-                                Places.GeoDataApi.getAutocompletePredictions(mGoogleApiClient, mKeyword,
-                                        bounds, new AutocompleteFilter.Builder().setTypeFilter(AutocompleteFilter.TYPE_FILTER_NONE).build());
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                AutocompletePredictionBuffer autocompletePredictions = (AutocompletePredictionBuffer) results.await();
-                                int count = autocompletePredictions.getCount();
+                    }
+                    final PendingResult<AutocompletePredictionBuffer> results =
+                            Places.GeoDataApi.getAutocompletePredictions(mGoogleApiClient, mKeyword,
+                                    bounds, new AutocompleteFilter.Builder().setTypeFilter(AutocompleteFilter.TYPE_FILTER_NONE).build());
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AutocompletePredictionBuffer autocompletePredictions = results.await();
+                            if (autocompletePredictions != null) {
                                 if (mLocationList != null) mLocationList.clear();
                                 else mLocationList = new ArrayList<>();
                                 for (AutocompletePrediction autocompletePrediction : autocompletePredictions) {
-                                    LocationModel model = new LocationModel();
-                                    model.id = autocompletePrediction.getPlaceId();
-                                    model.name = autocompletePrediction.getPrimaryText(null);
-                                    model.summary = autocompletePrediction.getSecondaryText(null);
-                                    mLocationList.add(model);
+                                    if (autocompletePrediction != null) {
+                                        LocationModel model = new LocationModel();
+                                        model.id = autocompletePrediction.getPlaceId();
+                                        model.name = autocompletePrediction.getPrimaryText(null);
+                                        model.summary = autocompletePrediction.getSecondaryText(null);
+                                        mLocationList.add(model);
+                                    }
                                 }
                                 mHandler.sendEmptyMessage(2);
                                 autocompletePredictions.release();
                             }
-                        }).start();
-                    }
+                        }
+                    }).start();
                 }
             } else {
                 showLocationPopupWindow();
@@ -404,6 +411,14 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                     } catch (Exception e) {
                     }
                 }
+            }
+        });
+        mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener() {
+            @Override
+            public boolean onMyLocationButtonClick() {
+                mLastLocation = mGoogleMap.getMyLocation();
+                updateCurrentLocation();
+                return false;
             }
         });
         //点击监听
@@ -775,8 +790,9 @@ public class UserMainFragment extends BaseFragment<UserListPresenter> implements
                 mPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
                 mPopupWindow.setFocusable(true);    // 使PopupWindow可以获得焦点
             }
-            // 显示在输入框的左下角
-            mPopupWindow.showAsDropDown(searchLayout, 2, 50);
+            if (!mPopupWindow.isShowing())
+                // 显示在输入框的左下角
+                mPopupWindow.showAsDropDown(searchLayout, 2, 50);
         } else {
             UIUtils.showBaseToast("No search for content.");
         }

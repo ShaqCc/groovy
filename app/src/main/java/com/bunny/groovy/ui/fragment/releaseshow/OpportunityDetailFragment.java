@@ -142,9 +142,7 @@ public class OpportunityDetailFragment extends BaseFragment {
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
-            if (sParcelable.getPerformDesc().contains("18+")) {
-                tv21Plus.setEnabled(false);
-            }
+            tv21Plus.setEnabled(Utils.is21Enabled(sParcelable.getPerformDesc()));
             List<OpportunityModel.PerformerOpportunityBean> OpportunityList = sParcelable.getPerformerOpportunity();
             if (OpportunityList != null && OpportunityList.size() > 0) {
                 //set adapter

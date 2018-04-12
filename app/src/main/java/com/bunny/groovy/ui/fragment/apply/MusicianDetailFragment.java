@@ -123,6 +123,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
     private boolean isFavorite = false;
 
     public static void launch(Activity from, String performerId) {
+        if (TextUtils.isEmpty(performerId)) return;
         mPerformerId = performerId;
         Bundle bundle = new Bundle();
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "MUSICIAN DETAILS");

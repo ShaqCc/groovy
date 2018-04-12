@@ -160,7 +160,9 @@ public class UserShowDetailFragment extends BaseFragment {
     public static String KEY_SHOW_BEAN = "key_show_bean";
 
     public static void launch(Context from, PerformDetail performDetail, boolean history) {
+        if(performDetail == null || TextUtils.isEmpty(performDetail.getPerformID())) return;
         model = performDetail;
+
         isHistory = history;
         Bundle bundle = new Bundle();
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "SHOW DETAILS");
@@ -216,9 +218,7 @@ public class UserShowDetailFragment extends BaseFragment {
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
-            if(model.getPerformDesc() != null && model.getPerformDesc().contains("18+")){
-                tv21Plus.setEnabled(false);
-            }
+            tv21Plus.setEnabled(Utils.is21Enabled(model.getPerformDesc()));
             if (!TextUtils.isEmpty(model.getPerformerMusic())) initMusicService();
 
             if (isHistory) {
