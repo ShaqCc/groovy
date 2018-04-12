@@ -217,7 +217,7 @@ public class RewardFragment extends BaseFragment<RewardPresenter> implements IRe
     private void doRewardPayPal(String checkCode) {
         HashMap<String, String> map = new HashMap<>();
         map.put("payMethod", AppConstants.PAY_STYLE_PAYPAL);
-        map.put("checkCode", checkCode);
+        map.put("payment_method_nonce", checkCode);
         doReward(map);
     }
 
