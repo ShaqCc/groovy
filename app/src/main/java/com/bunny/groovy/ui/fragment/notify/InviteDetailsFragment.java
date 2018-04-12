@@ -176,11 +176,10 @@ public class InviteDetailsFragment extends BaseFragment {
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
             } else {
-                tv21Plus.setEnabled(true);
+                tv21Plus.setEnabled(Utils.is21Enabled(sModel.getPerformDesc()));
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
-            tv21Plus.setEnabled(Utils.is21Enabled(sModel.getPerformDesc()));
         }
     }
 
