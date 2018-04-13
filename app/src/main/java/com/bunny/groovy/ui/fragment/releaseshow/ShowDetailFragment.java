@@ -181,14 +181,13 @@ public class ShowDetailFragment extends BaseFragment {
             //设置演出厅提供服务
             String venueTypeName = model.getVenueTypeName();
             if (!TextUtils.isEmpty(venueTypeName)) {
-                tv21Plus.setEnabled(!venueTypeName.contains("21"));
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
             } else {
-                tv21Plus.setEnabled(Utils.is21Enabled(model.getPerformDesc()));
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
+            tv21Plus.setEnabled(Utils.is21Enabled(model.getVenueID(), model.getVenueTypeName(), model.getPerformDesc()));
             if (!TextUtils.isEmpty(model.getIsHaveCharges()) && model.getIsHaveCharges().equals("1")) {
                 tvCoverCharge.setEnabled(true);
             } else {

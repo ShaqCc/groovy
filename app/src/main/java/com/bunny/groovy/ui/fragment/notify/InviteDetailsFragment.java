@@ -173,14 +173,13 @@ public class InviteDetailsFragment extends BaseFragment {
             //设置演出厅提供服务
             String venueTypeName = sModel.getVenueTypeName();
             if (!TextUtils.isEmpty(venueTypeName)) {
-                tv21Plus.setEnabled(!venueTypeName.contains("21"));
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
             } else {
-                tv21Plus.setEnabled(Utils.is21Enabled(sModel.getPerformDesc()));
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
+            tv21Plus.setEnabled(Utils.is21Enabled(sModel.getVenueID(), sModel.getVenueTypeName(), sModel.getPerformDesc()));
         }
     }
 

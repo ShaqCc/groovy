@@ -3,6 +3,7 @@ package com.bunny.groovy.ui.fragment.wallet;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.bunny.groovy.R;
@@ -29,10 +30,20 @@ public class BindPaypalFragment extends BaseFragment<PayPalPresenter> implements
     @Bind(R.id.bind_paypal_tv_bind)
     TextView mBindPaypalTvBind;
 
-    public static void launch(Activity from){
+    public static void launch(Activity from,String account){
         Bundle bundle = new Bundle();
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE,"BIND PAYPAL");
+        bundle.putString("account",account);
         FragmentContainerActivity.launch(from,BindPaypalFragment.class,bundle);
+    }
+
+    @Override
+    public void initView(View rootView) {
+        super.initView(rootView);
+        String account = getArguments().getString("account");
+        if(!TextUtils.isEmpty(account)){
+            mBindPaypalEtAccount.setText(account);
+        }
     }
 
     @Override

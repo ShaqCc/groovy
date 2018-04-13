@@ -394,8 +394,12 @@ public class Utils {
             "other situation",
     };
 
-    public static boolean is21Enabled(String desc) {
+    public static boolean is21Enabled(String venueId, String venueTypeName, String desc) {
         boolean enable = false;
+        if(venueId == null || venueTypeName == null) return false;
+        if(!venueTypeName.contains("21")){
+            enable = true;
+        }
         if (desc != null) {
             desc = desc.toLowerCase();
             for (String s : STR_21) {

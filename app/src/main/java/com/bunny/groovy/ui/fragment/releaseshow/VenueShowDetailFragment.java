@@ -133,7 +133,7 @@ public class VenueShowDetailFragment extends BaseFragment {
 
     public static void launch(Activity from, Bundle bundle) {
         model = bundle.getParcelable(KEY_SHOW_BEAN);
-        if(model == null || TextUtils.isEmpty(model.getPerformID())) return;
+        if (model == null || TextUtils.isEmpty(model.getPerformID())) return;
         bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "DETAILS");
         FragmentContainerActivity.launch(from, VenueShowDetailFragment.class, bundle);
     }
@@ -184,14 +184,13 @@ public class VenueShowDetailFragment extends BaseFragment {
             //设置演出厅提供服务
             String venueTypeName = model.getVenueTypeName();
             if (!TextUtils.isEmpty(venueTypeName)) {
-                tv21Plus.setEnabled(!venueTypeName.contains("21"));
                 tvFood.setEnabled(venueTypeName.contains("Food"));
                 tvAlcohol.setEnabled(venueTypeName.contains("Alcohol"));
             } else {
-                tv21Plus.setEnabled(Utils.is21Enabled(model.getPerformDesc()));
                 tvFood.setEnabled(false);
                 tvAlcohol.setEnabled(false);
             }
+            tv21Plus.setEnabled(Utils.is21Enabled(model.getVenueID(), model.getVenueTypeName(), model.getPerformDesc()));
             if (!TextUtils.isEmpty(model.getPerformerMusic())) initMusicService();
         }
     }

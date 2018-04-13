@@ -51,8 +51,8 @@ public class UserMePresenter extends BasePresenter<IMeView> {
     /**
      * 评价表演者
      */
-    public void evaluatePerformer(String performerID, String performerStarLevel, String evaluateContent) {
-        addSubscription(apiService.evaluatePerformer(performerID
+    public void evaluatePerformer(String performID, String performerStarLevel, String evaluateContent) {
+        addSubscription(apiService.evaluatePerformer(performID
                 , AppCacheData.getPerformerUserModel().getUserID(), performerStarLevel, evaluateContent),
                 new SubscriberCallBack<Object>(mView.get()) {
                     @Override

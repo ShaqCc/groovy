@@ -90,11 +90,7 @@ public class WalletFragment extends BaseFragment<PayPalPresenter> implements IPa
                 break;
             case R.id.wallet_tv_bind_paypal:
                 //绑定
-                if (!TextUtils.isEmpty(paypalAccount)) {
-                    UIUtils.showBaseToast("You have bound PayPal.");
-                    return;
-                }
-                BindPaypalFragment.launch(mActivity);
+                BindPaypalFragment.launch(mActivity, paypalAccount);
                 break;
         }
     }
