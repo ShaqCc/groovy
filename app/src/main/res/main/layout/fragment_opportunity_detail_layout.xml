@@ -2,7 +2,6 @@
 
 <!--演出机会详情 从地图上点进去的-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/theme_bg">
@@ -15,9 +14,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/opp_detail_tv_time"
@@ -28,21 +27,14 @@
                 android:textSize="@dimen/text_size_big"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" \@ "
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big"/>
-
-            <TextView
                 android:id="@+id/opp_detail_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:gravity="center"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big"
-                tools:text="The XXX"/>
+                android:textSize="@dimen/text_size_big"/>
         </LinearLayout>
 
         <TextView

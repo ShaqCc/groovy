@@ -123,7 +123,7 @@ public class OpportunityDetailFragment extends BaseFragment {
     protected void loadData() {
         if (sParcelable != null) {
             mTvTime.setText(sParcelable.getPerformDate() + " " + sParcelable.getPerformTime());
-            mTvName.setText(sParcelable.getVenueName());
+            mTvName.setText("@ " + sParcelable.getVenueName());
             mTvDesc.setText(sParcelable.getPerformDesc());
             mTvVenueName.setText(sParcelable.getVenueName());
             mTvScore.setText(Utils.getStar(sParcelable.getVenueScore()));

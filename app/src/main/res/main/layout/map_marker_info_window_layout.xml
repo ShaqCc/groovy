@@ -70,8 +70,11 @@
                         android:id="@+id/marker_tv_venue_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxWidth="100dp"
                         android:textColor="@color/textAccent"
                         android:textSize="@dimen/text_size_common"
+                        android:lines="1"
+                        android:ellipsize="end"
                         android:text="The Gooota"/>
 
                     <TextView
