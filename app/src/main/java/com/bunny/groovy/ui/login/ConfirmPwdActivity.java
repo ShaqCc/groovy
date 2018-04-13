@@ -38,24 +38,19 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
     public void submit() {
         String pwd_1 = etPwd_1.getTrimmedString();
         String pwd_2 = etPwd_2.getTrimmedString();
-        if (!TextUtils.isEmpty(pwd_1) && !TextUtils.isEmpty(pwd_2)) {
-            if (pwd_1.equals(pwd_2)) {
-                if (TextUtils.isEmpty(etCode.getTrimmedString()))
-                    UIUtils.showBaseToast("Please input code.");
-                else {
-                    if ("0".equals(type)) {//手机
-                        //验证code
-                        VerifyEvent.verifyCode(etCode.getTrimmedString());
-                    } else if ("1".equals(type)) {//邮箱
-                        mPresenter.checkMailCode(etCode.getTrimmedString(), account, type, etPwd_1.getTrimmedString());
-                    }
-                }
-
-            } else {
-                UIUtils.showBaseToast("Password not same.");
-            }
+        if (TextUtils.isEmpty(etCode.getTrimmedString())) {
+            UIUtils.showBaseToast("Please input password.");
+        } else if (pwd_1.length() < 8 || pwd_1.length() < 8) {
+            UIUtils.showBaseToast("Password length less than 8.");
+        } else if (!pwd_2.equals(pwd_1)) {
+            UIUtils.showBaseToast("Password not same.");
         } else {
-            UIUtils.showBaseToast("Please input correct password.");
+            if ("0".equals(type)) {//手机
+                //验证code
+                VerifyEvent.verifyCode(etCode.getTrimmedString());
+            } else if ("1".equals(type)) {//邮箱
+                mPresenter.checkMailCode(etCode.getTrimmedString(), account, type, etPwd_1.getTrimmedString());
+            }
         }
     }
 

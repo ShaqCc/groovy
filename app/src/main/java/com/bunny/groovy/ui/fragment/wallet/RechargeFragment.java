@@ -103,6 +103,10 @@ public class RechargeFragment extends BaseFragment<RechargePresenter> implements
         //判断金额
         try{
             mAmount = Double.parseDouble(mRechargeEtBalance.getText().toString());
+            if(mAmount > 1000){
+                UIUtils.showBaseToast("Maximum amount: $1000");
+                return;
+            }
         }catch (Exception e){}
         if (mAmount <= 0) {
             UIUtils.showBaseToast("Input incorrect.");
