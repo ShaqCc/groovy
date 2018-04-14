@@ -122,8 +122,8 @@ public class VenueRegister2Activity extends BaseActivity<VenueRegisterPresenter>
         if (TextUtils.isEmpty(mEditCode.getTrimmedString())) {
             UIUtils.showBaseToast("Code must not be null.");
             //venueType为空
-        }else if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
-            UIUtils.showBaseToast("Please select venue service.");
+//        }else if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
+//            UIUtils.showBaseToast("Please select venue service.");
         }else if (TextUtils.isEmpty(mVenuePhone.getTrimmedString())) {
             UIUtils.showBaseToast("Please input booking telphone.");
         }else if (TextUtils.isEmpty(mVenueWebsite.getTrimmedString())) {

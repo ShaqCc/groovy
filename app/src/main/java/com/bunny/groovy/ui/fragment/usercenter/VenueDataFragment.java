@@ -135,8 +135,8 @@ public class VenueDataFragment extends BaseFragment<VenueMePresenter> implements
             mServiceName = stringBuilder.toString();
             if (TextUtils.isEmpty(mEtPhone.getText().toString())) {
                 UIUtils.showBaseToast("Please input phone.");
-            } else if (TextUtils.isEmpty(mServiceName)) {
-                UIUtils.showBaseToast("Please select venue service.");
+//            } else if (TextUtils.isEmpty(mServiceName)) {
+//                UIUtils.showBaseToast("Please select venue service.");
             } else if (TextUtils.isEmpty(mEtWebsite.getText().toString())) {
                 UIUtils.showBaseToast("Please input website.");
             } else if (TextUtils.isEmpty(mEtFaceBook.getText().toString())) {

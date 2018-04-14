@@ -39,6 +39,8 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
         String pwd_1 = etPwd_1.getTrimmedString();
         String pwd_2 = etPwd_2.getTrimmedString();
         if (TextUtils.isEmpty(etCode.getTrimmedString())) {
+            UIUtils.showBaseToast("Please input code.");
+        } else if (TextUtils.isEmpty(pwd_1)) {
             UIUtils.showBaseToast("Please input password.");
         } else if (pwd_1.length() < 8 || pwd_1.length() < 8) {
             UIUtils.showBaseToast("Password length less than 8.");

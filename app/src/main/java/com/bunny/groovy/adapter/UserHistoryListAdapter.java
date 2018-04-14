@@ -94,6 +94,9 @@ public class UserHistoryListAdapter extends RecyclerView.Adapter<UserHistoryList
                     RewardFragment.launch(mContext, performDetail.getPerformerID(), true);
                     break;
                 case R.id.tv_review:
+                    if(TextUtils.isEmpty(performDetail.getPerformerID())){
+                        return;
+                    }
                     UserReviewFragment.launch(mContext, performDetail.getPerformID());
                     break;
                 default:

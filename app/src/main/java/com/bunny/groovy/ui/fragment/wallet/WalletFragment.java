@@ -74,10 +74,6 @@ public class WalletFragment extends BaseFragment<PayPalPresenter> implements IPa
         switch (view.getId()) {
             case R.id.wallet_tv_recharge:
                 //充值
-                if (TextUtils.isEmpty(paypalAccount)) {
-                    UIUtils.showBaseToast("Please bind PayPal.");
-                    return;
-                }
                 RechargeFragment.launch(mActivity);
                 break;
             case R.id.wallet_tv_withdraw:

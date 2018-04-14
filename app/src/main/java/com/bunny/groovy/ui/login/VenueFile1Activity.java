@@ -135,8 +135,8 @@ public class VenueFile1Activity extends BaseActivity<SingUpPresenter> implements
         //拦截
         if (TextUtils.isEmpty(mVenueEmail.getTrimmedString())) {
             UIUtils.showBaseToast("Please input venue email.");
-        } else if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
-            UIUtils.showBaseToast("Please select venue service.");
+//        } else if (TextUtils.isEmpty(mVenueService.getTrimmedString())) {
+//            UIUtils.showBaseToast("Please select venue service.");
         } else if (TextUtils.isEmpty(mVenuePhone.getTrimmedString())) {
             UIUtils.showBaseToast("Please input venue phone.");
         } else if (TextUtils.isEmpty(mVenueAddress.getTrimmedString())) {
