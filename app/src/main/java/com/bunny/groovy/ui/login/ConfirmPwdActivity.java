@@ -42,7 +42,7 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
             UIUtils.showBaseToast("Please input code.");
         } else if (TextUtils.isEmpty(pwd_1)) {
             UIUtils.showBaseToast("Please input password.");
-        } else if (pwd_1.length() < 8 || pwd_1.length() < 8) {
+        } else if (pwd_1.length() < 8) {
             UIUtils.showBaseToast("Password length less than 8.");
         } else if (!pwd_2.equals(pwd_1)) {
             UIUtils.showBaseToast("Password not same.");
