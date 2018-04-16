@@ -187,7 +187,7 @@ public class VenueApplyDetailsFragment extends BaseFragment {
             }
             mTvDesDetail.setText(sModel.getPerformDesc());
             mTvDesc.setText(sModel.getPerformDesc());
-            tvVenueName1.setText(sModel.getVenueName());
+            tvVenueName1.setText("@ " + sModel.getVenueName());
             mTvVenueName_2.setText(sModel.getPerformerName());
             mTvStars.setText(Utils.getStar(sModel.getStarLevel()));
             Glide.with(mActivity).load(sModel.getHeadImg()).placeholder(R.drawable.venue_instead_pic).error(R.drawable.venue_instead_pic)

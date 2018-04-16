@@ -95,6 +95,13 @@
         app:x_disableEmoji="true"
         app:x_importantWord="true" />
 
+    <com.xw.repo.XEditText
+        android:id="@+id/perfect_info_et_phone"
+        style="@style/base_edit_text_style"
+        android:layout_marginTop="10dp"
+        android:hint="PHONE NUMBER"
+        app:x_disableEmoji="true" />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

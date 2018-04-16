@@ -47,6 +47,8 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
     XEditText etFullName;
     @Bind(R.id.perfect_info_et_artistname)
     XEditText etArtistName;
+    @Bind(R.id.perfect_info_et_phone)
+    XEditText etPhone;
     @Bind(R.id.perfect_info_et_zipcode)
     XEditText etZipcode;
     @Bind(R.id.perfect_info_et_website)
@@ -93,6 +95,7 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
         super.initView();
         try {
             etFullName.setText(AppCacheData.getPerformerUserModel().getUserName());
+            etPhone.setText(AppCacheData.getPerformerUserModel().getTelephone());
         }catch (Exception e){}
     }
 
@@ -123,7 +126,7 @@ public class SetFile1Activity extends BaseActivity<SetFilePresenter> implements 
         //保存数据
         AppCacheData.getFileMap().put("userName", etFullName.getTrimmedString());
         AppCacheData.getFileMap().put("zipCode", etZipcode.getTrimmedString());
-        AppCacheData.getFileMap().put("phoneNumber", AppCacheData.getPerformerUserModel().getTelephone());
+        AppCacheData.getFileMap().put("phoneNumber", etPhone.getTrimmedString());
         AppCacheData.getFileMap().put("stageName", etArtistName.getTrimmedString());
         AppCacheData.getFileMap().put("webSiteAddress", etWebsite.getTrimmedString());
         AppCacheData.getFileMap().put("imgfile", headImagePath);

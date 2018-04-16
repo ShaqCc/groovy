@@ -149,7 +149,7 @@ public class InviteDetailsFragment extends BaseFragment {
         super.initView(rootView);
         if (sModel != null) {
             tvDate.setText(sModel.getPerformDate());
-            tvVenueName1.setText(sModel.getVenueName());
+            tvVenueName1.setText("@ " + sModel.getVenueName());
             mTvVenueName_2.setText(sModel.getVenueName());
             mTvVenueScore.setText(Utils.getStar(sModel.getVenueScore()));
             mTvAddress.setText(sModel.getVenueAddress());

@@ -32,9 +32,6 @@ public class ShowDetailFragment extends BaseFragment {
     @Bind(R.id.show_detail_tv_performer_name)
     TextView mTvPerformerName;
 
-    @Bind(R.id.show_detail_tv_venue_name)
-    TextView mTvVenueName_1;
-
     @Bind(R.id.show_detail_tv_style)
     TextView mTvStyle;
 
@@ -126,8 +123,7 @@ public class ShowDetailFragment extends BaseFragment {
         super.initView(rootView);
         if (model != null) {
             mTvDate.setText(model.getPerformDate());
-            mTvPerformerName.setText(model.getPerformerName());
-            mTvVenueName_1.setText(model.getVenueName());
+            mTvPerformerName.setText(model.getPerformerName() + " @ " + model.getVenueName());
             mTvVenueName_2.setText(model.getVenueName());
             mTvStyle.setText(model.getPerformType());
             mTvTime.setText(model.getPerformTime());

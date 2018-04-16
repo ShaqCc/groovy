@@ -129,6 +129,7 @@
                     style="@style/common_white_text_style"
                     android:layout_marginTop="4dp"
                     android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="Rock" />
             </LinearLayout>
             <LinearLayout
@@ -163,7 +164,7 @@
                     android:id="@+id/marker_tv_distance"
                     style="@style/common_white_text_style"
                     android:layout_marginTop="4dp"
-                    android:text="20m" />
+                    android:text="20mi" />
             </LinearLayout>
 
             <TextView

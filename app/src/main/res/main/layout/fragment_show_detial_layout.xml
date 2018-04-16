@@ -2,10 +2,10 @@
 
 <!--演出机会详情 从地图上点进去的-->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:background="@color/theme_bg">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,51 +36,26 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_common" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/show_detail_tv_performer_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="The Xkkl"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/show_detail_tv_performer_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/show_detail_tv_center_tag"
-                android:gravity="right"
-                android:text="AMEAL"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big" />
-
-            <TextView
-                android:id="@+id/show_detail_tv_center_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:text="\@"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big" />
-
-            <TextView
-                android:id="@+id/show_detail_tv_venue_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="The Xkkl"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big" />
-        </LinearLayout>
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_big" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
+            android:orientation="horizontal"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:orientation="horizontal">
+            android:paddingRight="16dp">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -133,7 +108,7 @@
                     android:id="@+id/show_detail_tv_distance"
                     style="@style/common_white_text_style"
                     android:layout_marginTop="4dp"
-                    android:text="20km" />
+                    android:text="20m" />
             </LinearLayout>
 
         </LinearLayout>
@@ -142,9 +117,9 @@
             android:id="@+id/show_detail_tv_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
             android:gravity="left"
-            android:text="VENUE GIVE MUSICIAN A MESSAGE"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_small" />
 

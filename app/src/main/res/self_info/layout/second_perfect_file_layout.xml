@@ -97,6 +97,7 @@
             android:hint="YOUR STYLE"
             app:x_disableEmoji="true"
             android:focusable="false"
+            android:maxLines="3"
             app:x_importantWord="true"/>
 
         <TextView

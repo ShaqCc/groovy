@@ -42,8 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="VENUE GIVE MUSICIAN A MESSAGE"
+            android:gravity="left"
+            android:layout_marginLeft="16dp"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_small"/>
 
@@ -111,7 +111,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:gravity="center"
-                android:text="暂无数据"
+                android:text="No data"
                 android:textColor="@color/common_grey"
                 android:textSize="@dimen/text_size_common"
                 android:visibility="gone"/>
