@@ -191,7 +191,7 @@ public class Utils {
         Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null,
                 MediaStore.Audio.Media.DATA + " like ?",
-                new String[]{dirName + "%" },
+                new String[]{dirName + "%"},
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
 
         if (cursor == null) return null;
@@ -396,8 +396,8 @@ public class Utils {
 
     public static boolean is21Enabled(String venueId, String venueTypeName, String desc) {
         boolean enable = false;
-        if(venueId == null || venueTypeName == null) return false;
-        if(!venueTypeName.contains("21")){
+        if (venueId == null || venueTypeName == null) return false;
+        if (TextUtils.isEmpty(venueTypeName) || !venueTypeName.contains("21")) {
             enable = true;
         }
         if (desc != null) {
