@@ -97,11 +97,14 @@ public class Utils {
      * @param eamil
      */
     public static void sendEmail(Context context, String eamil) {
-        Intent data = new Intent(Intent.ACTION_SENDTO);
-        data.setData(Uri.parse("mailto:" + eamil));
+        try {
+            Intent data = new Intent(Intent.ACTION_SENDTO);
+            data.setData(Uri.parse("mailto:" + eamil));
 //        data.putExtra(Intent.EXTRA_SUBJECT, "这是标题");
 //        data.putExtra(Intent.EXTRA_TEXT, "这是内容");
-        context.startActivity(data);
+            context.startActivity(data);
+        }catch (Exception e){}
+
     }
 
     public static void i(String tag, String msg) {  //信息太长,分段打印

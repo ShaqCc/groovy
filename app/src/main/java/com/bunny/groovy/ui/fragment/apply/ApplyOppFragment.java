@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.bunny.groovy.R;
@@ -161,6 +162,7 @@ public class ApplyOppFragment extends BaseFragment<ExplorerOpptnyPresenter> impl
         mPopupWindow.setTouchable(true);
         mPopupWindow.setFocusable(true);
         mPopupWindow.setWidth(UIUtils.getScreenWidth() - UIUtils.dip2Px(32));
+        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         RecyclerView recyclerview = popview.findViewById(R.id.recyclerview);
         recyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mAdapter = new StyleGridAdapter(modelList, etStyle.getText().toString().trim());

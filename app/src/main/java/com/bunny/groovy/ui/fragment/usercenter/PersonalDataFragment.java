@@ -98,6 +98,9 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
     EditText mEtStyle;
     private String headImagePath;
 
+    @Bind(R.id.personal_et_phone)
+    EditText mEtPhone;
+
     @OnClick(R.id.personal_et_style)
     public void selectStyle() {
         mPresenter.requestStyle();
@@ -215,6 +218,7 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
             ma.put("performTypeName", mEtStyle.getText().toString());
             ma.put("signature", mEtBio.getText().toString());
             ma.put("zipCode", mEtZipcode.getText().toString());
+            ma.put("phoneNumber", mEtPhone.getText().toString());
             ma.put("stageName", mEtArtistName.getText().toString());
             ma.put("webSiteAddress", mEtWebsite.getText().toString());
             ma.put("twitterAccount", mEtTwitter.getText().toString());
@@ -258,6 +262,7 @@ public class PersonalDataFragment extends BaseFragment<MePresenter> implements I
         mEtFaceBook.setText(model.getFacebookAccount());
         mEtTwitter.setText(model.getTwitterAccount());
         mEtSoundClound.setText(model.getSoundcloudAccount());
+        mEtPhone.setText(model.getTelephone());
     }
 
     @Override

@@ -30,7 +30,7 @@ public class SafeFragment extends BaseFragment {
     public static void launch(Activity from) {
         Bundle bundle = new Bundle();
 
-        bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "ACCOUNT SECURITY");
+        bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "ACCOUNT INFO");
         FragmentContainerActivity.launch(from, SafeFragment.class, bundle);
     }
 

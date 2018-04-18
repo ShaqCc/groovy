@@ -74,6 +74,18 @@
             style="@style/common_text_style"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="19dp"
+            android:text="PHONE" />
+
+        <EditText
+            android:id="@+id/personal_et_phone"
+            style="@style/personal_data_input_text"
+            android:hint="PNONE"
+            tools:text="HAHHAHA" />
+
+        <TextView
+            style="@style/common_text_style"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="19dp"
             android:text="WEBSITE" />
 
         <EditText
