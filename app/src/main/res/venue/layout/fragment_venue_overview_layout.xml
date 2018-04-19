@@ -102,9 +102,9 @@
             android:layout_marginRight="20dp"
             android:background="#0888"
             android:drawablePadding="3dp"
-            android:lines="2"
             android:drawableTop="@mipmap/icon_home_four"
             android:gravity="center_horizontal"
+            android:lines="2"
             android:text="Release Show Opportunity"
             android:textColor="#ffffff"
             android:textSize="13sp" />
@@ -112,13 +112,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/tv_release_opportunity">
+            android:layout_above="@id/tv_release_opportunity"
+            android:layout_marginBottom="30dp"
+            android:gravity="bottom">
 
             <TextView
                 android:id="@+id/tv_release_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:background="#0888"
                 android:drawablePadding="3dp"
                 android:drawableTop="@drawable/icon_home_one"
@@ -132,22 +134,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_below="@id/tv_release_opportunity">
+            android:layout_below="@id/tv_release_opportunity"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/tv_notifications"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:background="#0888"
                 android:drawablePadding="3dp"
                 android:drawableTop="@drawable/icon_home_three"
                 android:gravity="center_horizontal"
                 android:text="Notifications"
                 android:textColor="#ffffff"
-                android:textSize="13sp"
-                />
+                android:textSize="13sp" />
         </RelativeLayout>
     </RelativeLayout>
 

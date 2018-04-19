@@ -171,7 +171,7 @@ public class MusicianDetailFragment extends BaseFragment<MusicianDetailPresenter
 
     @OnClick(R.id.user_music)
     public void playMusic() {
-        if (TextUtils.isEmpty(musicianDetailModel.musicFile)) {
+        if (musicianDetailModel == null || TextUtils.isEmpty(musicianDetailModel.musicFile)) {
             UIUtils.showBaseToast("No music.");
             return;
         }

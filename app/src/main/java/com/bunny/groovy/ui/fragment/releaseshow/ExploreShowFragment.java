@@ -171,21 +171,25 @@ public class ExploreShowFragment extends BaseFragment<ExplorerOpptnyPresenter> i
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            AutocompletePredictionBuffer autocompletePredictions = results.await();
-                            if (autocompletePredictions != null) {
-                                if (mLocationList != null) mLocationList.clear();
-                                else mLocationList = new ArrayList<>();
-                                for (AutocompletePrediction autocompletePrediction : autocompletePredictions) {
-                                    if (autocompletePrediction != null) {
-                                        LocationModel model = new LocationModel();
-                                        model.id = autocompletePrediction.getPlaceId();
-                                        model.name = autocompletePrediction.getPrimaryText(null);
-                                        model.summary = autocompletePrediction.getSecondaryText(null);
-                                        mLocationList.add(model);
+                            try {
+                                AutocompletePredictionBuffer autocompletePredictions = results.await();
+                                if (autocompletePredictions != null) {
+                                    if (mLocationList != null) mLocationList.clear();
+                                    else mLocationList = new ArrayList<>();
+                                    for (AutocompletePrediction autocompletePrediction : autocompletePredictions) {
+                                        if (autocompletePrediction != null) {
+                                            LocationModel model = new LocationModel();
+                                            model.id = autocompletePrediction.getPlaceId();
+                                            model.name = autocompletePrediction.getPrimaryText(null);
+                                            model.summary = autocompletePrediction.getSecondaryText(null);
+                                            mLocationList.add(model);
+                                        }
                                     }
+                                    mHandler.sendEmptyMessage(2);
+                                    autocompletePredictions.release();
                                 }
-                                mHandler.sendEmptyMessage(2);
-                                autocompletePredictions.release();
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
                     }).start();

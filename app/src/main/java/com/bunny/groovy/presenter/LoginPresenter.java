@@ -56,7 +56,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                                     && TextUtils.isEmpty(response.getZipCode())) {
                                 mView.get().startActivityForResult(new Intent(mView.get(), SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                             } else if (userType == AppConstants.USER_TYPE_VENUE
-                                    && TextUtils.isEmpty(response.getVenueTypeName())) {
+                                    && TextUtils.isEmpty(response.getVenueAddress())) {
                                 mView.get().startActivityForResult(new Intent(mView.get(), VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                             } else {
                                 //进入主页
@@ -103,7 +103,8 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
             protected void onSuccess(PerformerUserModel response) {
                 //已经绑定，直接登录
                 if (response != null) {
-                    AppCacheData.setPerformerUserModel(response);
+                    response.setUserType(userType);
+                    Utils.initLoginData(mView.get(), response);
                     //获取全局参数
                     getGlobParam();
                     //判断资料是否完善
@@ -112,7 +113,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                             && TextUtils.isEmpty(response.getZipCode())) {
                         mView.get().startActivityForResult(new Intent(mView.get(), SetFile1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                     } else if (type == AppConstants.USER_TYPE_VENUE
-                            && TextUtils.isEmpty(response.getVenueTypeName())) {
+                            && TextUtils.isEmpty(response.getVenueAddress())) {
                         mView.get().startActivityForResult(new Intent(mView.get(), VenueRegister1Activity.class), AppConstants.REQUESTCODE_SETFILE);
                     } else {
                         //进入主页
@@ -194,8 +195,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                 Utils.initLoginData(mView.get(), response);
                 switch (Utils.parseInt(userType)) {
                     case AppConstants.USER_TYPE_VENUE:
-                        if (response == null || TextUtils.isEmpty(response.getStageName()) ||
-                                TextUtils.isEmpty(response.getVenueTypeName())) {
+                        if (response == null || TextUtils.isEmpty(response.getVenueAddress())) {
                             mView.launchToSetFile();
                             return;
                         }

@@ -55,8 +55,7 @@ public class DiscoverMusicianListAdapter extends RecyclerView.Adapter<DiscoverMu
         }
         holder.mTvName.setTextHeighLight(performerModel.getUserName(), keyword);
         holder.mTvStar.setText(Utils.getStar(performerModel.getStarLevel()));
-        holder.mTvDistance.setText(performerModel.getDistance() + "mi");
-        holder.mTvType.setText(performerModel.getPerformTypeName());
+        holder.mTvType.setText(performerModel.getPerformTypeName() + " | " + performerModel.getDistance() + "mi");
 
         holder.mTvInvite.setTag(position);
         holder.mTvInvite.setOnClickListener(this);
@@ -94,7 +93,6 @@ public class DiscoverMusicianListAdapter extends RecyclerView.Adapter<DiscoverMu
         private final HeightLightTextView mTvName;
         private final TextView mTvStar;
         private final TextView mTvType;
-        private final TextView mTvDistance;
         private final TextView mTvInvite;
 
         public MusicianHolder(View itemView) {
@@ -103,7 +101,6 @@ public class DiscoverMusicianListAdapter extends RecyclerView.Adapter<DiscoverMu
             mTvName = itemView.findViewById(R.id.musician_tv_name);
             mTvStar = itemView.findViewById(R.id.musician_tv_performerStar);
             mTvType = itemView.findViewById(R.id.musician_tv_type);
-            mTvDistance = itemView.findViewById(R.id.musician_tv_distance);
             mTvInvite = itemView.findViewById(R.id.musician_tv_invite);
         }
     }

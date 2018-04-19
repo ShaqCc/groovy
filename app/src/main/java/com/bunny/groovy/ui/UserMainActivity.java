@@ -111,8 +111,10 @@ public class UserMainActivity extends BaseActivity implements View.OnClickListen
         View headerView = mNavigationView.getHeaderView(0);
         CircleImageView mHeadImage = headerView.findViewById(R.id.nav_head);
         TextView mUserName = headerView.findViewById(R.id.nav_name);
-        Glide.with(this).load(AppCacheData.getPerformerUserModel().getHeadImg()).into(mHeadImage);
-        mUserName.setText(AppCacheData.getPerformerUserModel().getUserName());
+        if(AppCacheData.getPerformerUserModel() != null){
+            Glide.with(this).load(AppCacheData.getPerformerUserModel().getHeadImg()).into(mHeadImage);
+            mUserName.setText(AppCacheData.getPerformerUserModel().getUserName());
+        }
         mHeadImage.setOnClickListener(this);
         headerView.findViewById(R.id.nav_wallet).setOnClickListener(this);
         headerView.findViewById(R.id.nav_history).setOnClickListener(this);

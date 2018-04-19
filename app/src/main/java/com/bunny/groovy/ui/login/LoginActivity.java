@@ -132,11 +132,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         super.initData();
         int type = getIntent().getIntExtra("switch_type", -1);
         if (type > -1) {
+            mUserType = type;
             String userID = AppCacheData.getPerformerUserModel().getUserID();
             String account = (String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_ACCOUNT + userID, "");
             String password = (String) SharedPreferencesUtils.getUserParam(this, AppConstants.KEY_PASSWORD + userID, "");
             if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(password)) {
-                mUserType = type;
                 etPhoneOrEmail.setText(account);
                 etPassword.setText(password);
                 login();

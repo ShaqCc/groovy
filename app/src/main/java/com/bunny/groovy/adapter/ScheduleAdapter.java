@@ -1,10 +1,13 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -117,8 +120,30 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.HisHol
                     @Override
                     public void onClick(View v) {
                         //推广
-                        SpotlightFragment.launch(mContext);
+                        if (TextUtils.equals(bean.getIsHaveCharges(), "1")) {//已收费
+//                            mPresenter.spotlightPerform(bean.getPerformID(), bean.getVenueID());
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                            builder.setTitle("No promotional package");
+                            builder.setMessage("Whether to buy promotional package?");
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    SpotlightFragment.launch(mContext);
+                                }
+                            });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                        }
+
                         popupWindow.dismiss();
+
+
                     }
                 });
 

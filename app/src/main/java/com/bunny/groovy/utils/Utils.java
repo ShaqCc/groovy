@@ -103,7 +103,9 @@ public class Utils {
 //        data.putExtra(Intent.EXTRA_SUBJECT, "这是标题");
 //        data.putExtra(Intent.EXTRA_TEXT, "这是内容");
             context.startActivity(data);
-        }catch (Exception e){}
+        }catch (Exception e){
+            UIUtils.showBaseToast("Not find the appropriate application to open");
+        }
 
     }
 
@@ -399,7 +401,7 @@ public class Utils {
 
     public static boolean is21Enabled(String venueId, String venueTypeName, String desc) {
         boolean enable = false;
-        if (venueId == null || venueTypeName == null) return false;
+        if (venueId == null) return false;
         if (TextUtils.isEmpty(venueTypeName) || !venueTypeName.contains("21")) {
             enable = true;
         }

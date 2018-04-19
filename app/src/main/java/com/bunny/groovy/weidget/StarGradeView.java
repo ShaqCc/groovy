@@ -31,7 +31,6 @@ public class StarGradeView extends View {
     private float mStarSpace = 15;
     private boolean mChangeGradeEnable = false;
     private static Bitmap sFullStar, sStrokeStar;
-    private Rect mSrcRect, mDstRect;
     private Context mContext;
     private PaintFlagsDrawFilter mPaintFlagsDrawFilter;
 
@@ -56,9 +55,6 @@ public class StarGradeView extends View {
         mPaint.setFilterBitmap(true);
         mPaintFlagsDrawFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
 
-        mSrcRect = new Rect(0, 0, 72, 68);
-        mDstRect = new Rect();
-
         if (attrs != null) {
             TypedArray values = context.obtainStyledAttributes(attrs, R.styleable.StarGradeAttr);
             if (values != null) {
@@ -81,7 +77,7 @@ public class StarGradeView extends View {
                                 .load(R.drawable.icon_review_selected)
                                 .asBitmap()
                                 .centerCrop()
-                                .into(72, 68)
+                                .into((int)mStarWidth, (int)mStarHeight)
                                 .get();
                         needRefresh = true;
                     }
@@ -90,7 +86,7 @@ public class StarGradeView extends View {
                         sStrokeStar = Glide.with(mContext)
                                 .load(R.drawable.icon_review)
                                 .asBitmap() //必须
-                                .into(72, 68)
+                                .into((int)mStarWidth, (int)mStarHeight)
                                 .get();
                         needRefresh = true;
                     }
@@ -111,9 +107,8 @@ public class StarGradeView extends View {
         canvas.setDrawFilter(mPaintFlagsDrawFilter);
         for (int i = 0; i < 5; i++) {
             float startX = i * (mStarWidth + mStarSpace);
-            mDstRect.set((int) startX, 0, (int) (startX + mStarWidth), (int) mStarHeight);
             if (sFullStar != null && sStrokeStar != null) {
-                canvas.drawBitmap(mGrade > i ? sFullStar : sStrokeStar, mSrcRect, mDstRect, mPaint);
+                canvas.drawBitmap(mGrade > i ? sFullStar : sStrokeStar , startX, 0, mPaint);
             }
         }
     }

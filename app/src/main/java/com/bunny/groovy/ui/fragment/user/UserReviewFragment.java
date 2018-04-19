@@ -54,7 +54,7 @@ public class UserReviewFragment extends BaseFragment<UserMePresenter> implements
         if(TextUtils.isEmpty(performID)) return;
         performId = performID;
         Bundle bundle = new Bundle();
-        bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "PERSONAL DATA");
+        bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "REVIEW MUSICIAN");
         FragmentContainerActivity.launch(from, UserReviewFragment.class, bundle);
     }
 

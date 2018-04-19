@@ -53,14 +53,13 @@ public class ShowMusicianHistoryAdapter extends RecyclerView.Adapter<ShowMusicia
                 .into(holder.mIvHead);
         holder.mTvStar.setText(Utils.getStar(bean.getPerformerScore()));
         holder.mTvName.setText(bean.getPerformerName());
-        holder.mTvStyle.setText(bean.getPerformType());
-        holder.mTvShowTime.setText(bean.getPerformDate() + " " + bean.getPerformTime());
+        holder.mTvStyle.setText(bean.getPerformType() + " | " + bean.getPerformDate() + " " + bean.getPerformTime());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(VenueShowDetailFragment.KEY_SHOW_BEAN,bean);
+                bundle.putParcelable(VenueShowDetailFragment.KEY_SHOW_BEAN, bean);
                 VenueShowDetailFragment.launch(mContext, bundle);
             }
         });
@@ -77,7 +76,6 @@ public class ShowMusicianHistoryAdapter extends RecyclerView.Adapter<ShowMusicia
         private final HeightLightTextView mTvName;
         private final TextView mTvStar;
         private final TextView mTvStyle;
-        private final TextView mTvShowTime;
 
         public HisHolder(View itemView) {
             super(itemView);
@@ -85,7 +83,6 @@ public class ShowMusicianHistoryAdapter extends RecyclerView.Adapter<ShowMusicia
             mTvName = itemView.findViewById(R.id.musician_tv_name);
             mTvStar = itemView.findViewById(R.id.musician_tv_performerStar);
             mTvStyle = itemView.findViewById(R.id.musician_tv_type);
-            mTvShowTime = itemView.findViewById(R.id.musician_tv_time);
         }
     }
 }

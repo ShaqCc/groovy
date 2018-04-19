@@ -180,6 +180,11 @@ public class InviteDetailsFragment extends BaseFragment {
                 tvAlcohol.setEnabled(false);
             }
             tv21Plus.setEnabled(Utils.is21Enabled(sModel.getVenueID(), sModel.getVenueTypeName(), sModel.getPerformDesc()));
+            if (!TextUtils.isEmpty(sModel.getIsHaveCharges()) && sModel.getIsHaveCharges().equals("1")) {
+                tvCoverCharge.setEnabled(true);
+            } else {
+                tvCoverCharge.setEnabled(false);
+            }
         }
     }
 

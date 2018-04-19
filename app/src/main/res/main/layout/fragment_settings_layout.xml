@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/settings_tv_safe"
         style="@style/settings_text"
-        android:text="ACCOUNT SECURITY"/>
+        android:text="ACCOUNT INFO"/>
 
     <RelativeLayout
         android:id="@+id/notification_layout"

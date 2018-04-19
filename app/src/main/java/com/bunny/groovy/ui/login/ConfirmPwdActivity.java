@@ -11,6 +11,7 @@ import com.bunny.groovy.presenter.ForgetPwdPresenter;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.UIUtils;
+import com.bunny.groovy.utils.Utils;
 import com.bunny.groovy.view.IForgetView;
 import com.xw.repo.XEditText;
 
@@ -58,7 +59,8 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
 
     @OnClick(R.id.confirm_pwd_tv_login)
     public void login() {
-        int type = Integer.parseInt(AppCacheData.getPerformerUserModel().getUserType());
+        if (AppCacheData.getPerformerUserModel() == null) return;
+        int type = Utils.parseInt(AppCacheData.getPerformerUserModel().getUserType());
         LoginActivity.launch(this, type);
     }
 
@@ -104,10 +106,10 @@ public class ConfirmPwdActivity extends BaseActivity<ForgetPwdPresenter> impleme
     public void onVerifyEvent(String result) {
         switch (result) {
             case AppConstants.Code_Verify_Correct:
-                mPresenter.updateNewPassword(account, type, etPwd_1.getTrimmedString());
+//                mPresenter.updateNewPassword(account, type, etPwd_1.getTrimmedString());
                 break;
             case AppConstants.Code_Verify_Invalid:
-                UIUtils.showBaseToast("Check code incorrect.");
+//                UIUtils.showBaseToast("Check code incorrect.");
                 break;
             case AppConstants.Code_Send_ServerError:
                 UIUtils.showBaseToast("Server wrong.");

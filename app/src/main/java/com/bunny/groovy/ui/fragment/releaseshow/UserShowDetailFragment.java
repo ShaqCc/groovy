@@ -213,6 +213,11 @@ public class UserShowDetailFragment extends BaseFragment {
                 tvAlcohol.setEnabled(false);
             }
             tv21Plus.setEnabled(Utils.is21Enabled(model.getVenueID(), model.getVenueTypeName(), model.getPerformDesc()));
+            if (!TextUtils.isEmpty(model.getIsHaveCharges()) && model.getIsHaveCharges().equals("1")) {
+                tvCoverCharge.setEnabled(true);
+            } else {
+                tvCoverCharge.setEnabled(false);
+            }
             if (!TextUtils.isEmpty(model.getPerformerMusic())) initMusicService();
 
             if (isHistory) {

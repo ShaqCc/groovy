@@ -1,9 +1,11 @@
 package com.bunny.groovy.adapter;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -123,7 +125,22 @@ public class ScheduleVenueAdapter extends RecyclerView.Adapter<ScheduleVenueAdap
                                 mOnSpotlightListener.spotlight(bean.getPerformID(), bean.getVenueID());
                             }
                         } else {
-                            SpotlightFragment.launch(mContext);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                            builder.setTitle("No promotional package");
+                            builder.setMessage("Whether to buy promotional package?");
+                            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            });
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    SpotlightFragment.launch(mContext);
+                                }
+                            });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
                         }
                         popupWindow.dismiss();
                     }

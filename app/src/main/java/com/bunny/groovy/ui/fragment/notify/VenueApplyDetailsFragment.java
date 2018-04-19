@@ -52,8 +52,6 @@ public class VenueApplyDetailsFragment extends BaseFragment {
 
     @Bind(R.id.show_detail_tv_date)
     TextView mTvDate;
-    @Bind(R.id.invite_tv_date)
-    TextView tvName;
     @Bind(R.id.invite_tv_venue_name)
     TextView tvVenueName1;
     @Bind(R.id.invite_tv_notify)
@@ -178,7 +176,6 @@ public class VenueApplyDetailsFragment extends BaseFragment {
         mApplyLayout.setVisibility(View.GONE);
         if (sModel != null) {
             mTvDate.setText(sModel.getPerformDate());
-            tvName.setText(sModel.getPerformerName());
             mTvStyle.setText(sModel.getPerformType());
             mTvTime.setText(sModel.getPerformType());
             mTvTime.setText(sModel.getPerformTime());

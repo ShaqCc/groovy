@@ -11,7 +11,6 @@ import com.bunny.groovy.model.GlobalModel;
 import com.bunny.groovy.model.PerformerUserModel;
 import com.bunny.groovy.model.ResultResponse;
 import com.bunny.groovy.ui.RoleChooseActivity;
-import com.bunny.groovy.ui.login.LoginActivity;
 import com.bunny.groovy.utils.AppCacheData;
 import com.bunny.groovy.utils.AppConstants;
 import com.bunny.groovy.utils.Utils;
@@ -52,12 +51,12 @@ public class SplashPresenter extends BasePresenter<ISplashView> {
                                     if ((userType == AppConstants.USER_TYPE_MUSICIAN
                                             && TextUtils.isEmpty(response.getZipCode()))
                                             || (userType == AppConstants.USER_TYPE_VENUE
-                                            && TextUtils.isEmpty(response.getVenueTypeName()))) {
+                                            && TextUtils.isEmpty(response.getVenueAddress()))) {
                                         RoleChooseActivity.launch(mView.get());
                                     } else {
                                         LoginBlock.getInstance().handleCheckSuccess(response.getUserType());
                                     }
-                                    mView.get().finish();
+                                    if (mView.get() != null)  mView.get().finish();
                                 }
                             }, 3000 - (delta / 1000));
                         //获取全局参数

@@ -1,9 +1,11 @@
 package com.bunny.groovy.ui.fragment.venue;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -116,7 +118,20 @@ public class VenueOverviewFragment extends BaseFragment<VenueOverviewPresenter> 
                 if (TextUtils.equals(model.getIsHaveCharges(), "1")) {//已收费
                     mPresenter.spotlightPerform(model.getPerformID(), model.getVenueID());
                 } else {
-                    SpotlightFragment.launch(mActivity);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+                    builder.setTitle("No promotional package");
+                    builder.setMessage("Whether to buy promotional package?");
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SpotlightFragment.launch(mActivity);
+                        }
+                    });
                 }
                 popupWindow.dismiss();
             }
