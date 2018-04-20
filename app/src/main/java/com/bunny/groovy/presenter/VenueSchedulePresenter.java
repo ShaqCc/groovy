@@ -121,11 +121,12 @@ public class VenueSchedulePresenter extends BasePresenter<IScheduleVenueView> {
                     @Override
                     public void onNext(ResultResponse<Object> response) {
                         if (response.success) {
-                            UIUtils.showBaseToast("To promote success !");
+                            UIUtils.showBaseToast("This show has joined the promotion.");
                         } else {
                             UIUtils.showBaseToast(response.errorMsg);
                         }
                     }
                 });
     }
+
 }

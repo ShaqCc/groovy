@@ -41,7 +41,7 @@
         android:id="@+id/wallet_tv_withdraw"
         style="@style/role_selected_text_style"
         android:layout_marginTop="40px"
-        android:text="WITHDRAW"/>
+        android:text="WITHDRAWALS"/>
 
     <TextView
         android:id="@+id/wallet_tv_bind_paypal"

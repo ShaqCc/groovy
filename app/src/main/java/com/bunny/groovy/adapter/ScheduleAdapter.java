@@ -222,4 +222,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.HisHol
             ivEdit = itemView.findViewById(R.id.nextshow_iv_edit);
         }
     }
+
+    private ScheduleVenueAdapter.OnSpotlightListener mOnSpotlightListener;
+
+    public void setOnSpotlightListener(ScheduleVenueAdapter.OnSpotlightListener listener) {
+        mOnSpotlightListener = listener;
+    }
 }

@@ -51,7 +51,7 @@ public class VenueScheduleFragment extends BaseFragment<VenueSchedulePresenter> 
     @Bind(R.id.recyclerview)
     RecyclerView mRcyvlerview;
     @Bind(R.id.schedule_tv_empty)
-    View mEmptyView;
+    TextView mEmptyView;
 
     @Bind(R.id.schedule_tv_time)
     TextView mTvTime;
@@ -200,13 +200,13 @@ public class VenueScheduleFragment extends BaseFragment<VenueSchedulePresenter> 
     private void setWeekListData(int i) {
         mWeek = i;
         if (mVenueScheduleModel.getShowModelList(String.valueOf(i)) != null && mVenueScheduleModel.getShowModelList(String.valueOf(i)).size() > 0) {
-            mTvListTitle.setText(String.format(listTitleStr, DateUtils.CN_weeks[i - 1]));
+            mTvListTitle.setText(String.format(listTitleStr, DateUtils.CN_FULL_WEEKS[i - 1]));
             mTvListTitle.setGravity(Gravity.LEFT);
             mAdapter.refresh(mVenueScheduleModel.getShowModelList(String.valueOf(i)));
             mRcyvlerview.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
         } else {
-            mTvListTitle.setText(String.format(listTitleClearStr, DateUtils.getDayOfWeek(todayCal)));
+            mTvListTitle.setText(String.format(listTitleClearStr, DateUtils.CN_FULL_WEEKS[i - 1]));
             mTvListTitle.setGravity(Gravity.CENTER);
             mRcyvlerview.setVisibility(View.GONE);
             mEmptyView.setVisibility(View.VISIBLE);
@@ -220,7 +220,7 @@ public class VenueScheduleFragment extends BaseFragment<VenueSchedulePresenter> 
     private String sameMonthTimeStr = "%s %s-%s";
     private String diffMonthTimeStr = "%s %s-%s %s";
     private String listTitleStr = "SHOW LIST ON %s";
-    private String listTitleClearStr = "YOUR SCHEDULE'S CLEAR %s!";
+    private String listTitleClearStr = "YOUR SCHEDULE'S CLEAR ON %s!";
 
     @Override
     public void initView(View rootView) {
@@ -330,12 +330,12 @@ public class VenueScheduleFragment extends BaseFragment<VenueSchedulePresenter> 
             }
         }
         if (venueShowModelList != null && venueShowModelList.size() > 0) {
-            mTvListTitle.setText(String.format(listTitleStr, DateUtils.getDayOfWeek(todayCal)));
+            mTvListTitle.setText(String.format(listTitleStr, DateUtils.CN_FULL_WEEKS[day - 1]));
             mTvListTitle.setGravity(Gravity.LEFT);
             mRcyvlerview.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
         } else {
-            mTvListTitle.setText(String.format(listTitleClearStr, DateUtils.getDayOfWeek(todayCal)));
+            mTvListTitle.setText(String.format(listTitleClearStr, DateUtils.FULL_WEEKS[day - 1]));
             mTvListTitle.setGravity(Gravity.CENTER);
             mRcyvlerview.setVisibility(View.GONE);
             mEmptyView.setVisibility(View.VISIBLE);

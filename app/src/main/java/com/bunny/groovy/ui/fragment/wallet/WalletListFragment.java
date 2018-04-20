@@ -26,7 +26,7 @@ public class WalletListFragment extends BaseListFragment<WalletListPresetner, Wa
 
     public static void launch(Activity from) {
         Bundle bundle = new Bundle();
-        bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "WALLET RECORD");
+        bundle.putString(FragmentContainerActivity.FRAGMENT_TITLE, "WALLET DETAILS");
         FragmentContainerActivity.launch(from, WalletListFragment.class, bundle);
     }
 

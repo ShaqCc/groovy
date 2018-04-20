@@ -37,7 +37,7 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.WalletHold
         switch (dealType){
             // 交易类型（0-提现 1-充值 3-打赏支出 4-打赏收入 5-推广包购买支出）
             case "0":
-                holder.tvType.setText("WITHDRAWS");
+                holder.tvType.setText("WITHDRAW");
                 holder.tvAmount.setText("-"+walletBean.getCost());
                 break;
             case "1":
